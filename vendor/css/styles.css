@@ -1,6 +1,10 @@
 /********************/
 /*		GENERAL		*/
 /********************/
+html,
+body {
+	font-family: "Lato Regular", Arial;
+}
 .left {
 	background-color: #ff0000;
 }
@@ -9,15 +13,16 @@
 }
 .right {
 	background-color: #0000ff;
-	color: #fff;
 }
-.left .block {
-	float: left;
-	margin-left: 100px;
+.block {
+	display: inline-block;
 }
-.right .block {
-	float: right;
-	margin-right: 100px;
+
+/********************/
+/*		BLOCKS		*/
+/********************/
+#block-slidshow {
+	background-color: #00ff00;
 }
 
 /********************/
@@ -25,4 +30,28 @@
 /********************/
 header {
 	margin-top: 40px;
+}
+
+/********************/
+/*		FONTS 		*/
+/********************/
+@font-face {
+  font-family: 'Lato Light';
+
+  src: 	url('../fonts/lato-light-webfont.eot');
+  src: 	url('../fonts/lato-light-webfont.eot') format('embedded-opentype'), 
+  		url('../fonts/lato-light-webfont.woff2') format('woff2'), 
+  		url('../fonts/lato-light-webfont.woff') format('woff'), 
+  		url('../fonts/lato-light-webfont.ttf') format('truetype'), 
+  		url('../fonts/lato-light-webfont.svg') format('svg');
+}
+@font-face {
+  font-family: 'Lato Regular';
+
+  src: 	url('../fonts/lato-regular-webfont.eot');
+  src: 	url('../fonts/lato-regular-webfont.eot') format('embedded-opentype'), 
+  		url('../fonts/lato-regular-webfont.woff2') format('woff2'), 
+  		url('../fonts/lato-regular-webfont.woff') format('woff'), 
+  		url('../fonts/lato-regular-webfont.ttf') format('truetype'), 
+  		url('../fonts/lato-regular-webfont.svg') format('svg');
 }

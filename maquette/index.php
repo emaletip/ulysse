@@ -10,13 +10,25 @@
 	<body>
 		<!-- HEADER -->
 		<header class="clearfix">
-			<div class="col-md-4 left">
-				<div id="block-login" class="block">Connexion ou inscription</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 left">
+						<div id="block-login" class="block">Connexion ou inscription</div>
+					</div>
+					<div class="col-md-4 middle">
+					</div>
+					<div class="col-md-4 right">
+						<div id="block-search" class="block"><input type="text" placeholder="Recherche" /></div>
+						<div id="block-cart" class="block">Panier</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-4 middle">
-			</div>
-			<div class="col-md-4 right">
-				<div id="block-panier" class="block">Panier</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="block-slideshow" class="block">
+						<img class="img-responsive" src="img/cats-q-c-1920-1250-5.jpg" alt="UN CHAT !">
+					</div>
+				</div>
 			</div>
 		</header>
 		<!-- END HEADER -->
