@@ -13,3 +13,4 @@ if (!array_search('config', array_column($db->pdo->query("SHOW TABLES")->fetchAl
 	require_once(ROOT_PATH.'/config/init.php');
 }
 
+
