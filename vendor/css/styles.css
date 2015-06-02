@@ -28,12 +28,53 @@ header {
 	margin-top: 40px;
 }
 
+/*    Block Login/Inscription    */
+#block-login a {
+  color: #777;
+  padding: 0 10px;
+}
+
+/*    Block Search    */
+
+/*    Block Cart    */
+
+/*    Menu    */
+nav {
+  border: none !important;
+}
+nav ul {
+  list-style: none;
+}
+nav ul .first-ul {
+  display: inline-block;
+}
+nav ul li a {
+  color: #777;
+}
+nav ul li a:hover {
+  color: #777;
+}
+nav ul li .list-title {
+  color: #000 !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+nav ul li .list-title:hover {
+  text-decoration: underline;
+}
+nav ul li .logo {
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
 /*****************/
 /*    CONTENT    */
 /*****************/
 #content-wrapper .container {
   padding-top: 20px;
 }
+
+/*    LOL    */
 
 /********************/
 /*		FONTS 		*/
@@ -43,18 +84,18 @@ header {
 
   src: 	url('../fonts/lato-light-webfont.eot');
   src: 	url('../fonts/lato-light-webfont.eot') format('embedded-opentype'), 
-  		url('../fonts/lato-light-webfont.woff2') format('woff2'), 
-  		url('../fonts/lato-light-webfont.woff') format('woff'), 
-  		url('../fonts/lato-light-webfont.ttf') format('truetype'), 
-  		url('../fonts/lato-light-webfont.svg') format('svg');
+  		  url('../fonts/lato-light-webfont.woff2') format('woff2'), 
+  		  url('../fonts/lato-light-webfont.woff') format('woff'), 
+  		  url('../fonts/lato-light-webfont.ttf') format('truetype'), 
+  		  url('../fonts/lato-light-webfont.svg') format('svg');
 }
 @font-face {
   font-family: 'Lato Regular';
 
   src: 	url('../fonts/lato-regular-webfont.eot');
   src: 	url('../fonts/lato-regular-webfont.eot') format('embedded-opentype'), 
-  		url('../fonts/lato-regular-webfont.woff2') format('woff2'), 
-  		url('../fonts/lato-regular-webfont.woff') format('woff'), 
-  		url('../fonts/lato-regular-webfont.ttf') format('truetype'), 
-  		url('../fonts/lato-regular-webfont.svg') format('svg');
+  		  url('../fonts/lato-regular-webfont.woff2') format('woff2'), 
+  		  url('../fonts/lato-regular-webfont.woff') format('woff'), 
+  		  url('../fonts/lato-regular-webfont.ttf') format('truetype'), 
+  		  url('../fonts/lato-regular-webfont.svg') format('svg');
 }
