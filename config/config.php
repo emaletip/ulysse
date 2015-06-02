@@ -1,6 +1,4 @@
 <?php 
-echo 'configuration<br>';
-
 define("PROJECT_PATH",    "/ulysse");
 define("ROOT_PATH","/".$_SERVER['DOCUMENT_ROOT'].PROJECT_PATH);
 
