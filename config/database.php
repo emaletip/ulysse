@@ -2,16 +2,12 @@
 
 class database {
 
-	const DSN = 'mysql:dbname=test;host=localhost';
-	const DATABASE = 'test';
-	const USER = 'root';
-	const PASS = 'root';
-	
 	public $pdo;
 	private $install;
 	
 	public function __construct() {
-		$this->dbConnect(self::DSN,self::USER,self::PASS);
+		global $ini_array;
+		$this->dbConnect($ini_array['dsn'],$ini_array['user'],$ini_array['password']);
 	}
 	
 	private function dbConnect($dsn, $user, $pass) {
