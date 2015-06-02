@@ -5,42 +5,34 @@ html,
 body {
 	font-family: "Lato Regular", Arial;
 }
-nav {
-  background-color: #00ff00;
-}
 .left,
 .middle,
 .right {
   height: auto;
 }
-.left {
-	background-color: #ff0000;
-}
-.middle {
-	background-color: #00ff00;
-}
-.right {
-	background-color: #0000ff;
-}
-.block {
-	display: inline-block;
-}
-.col-md-12 {
+.slideshow {
   padding: 0;
 }
 
-/********************/
+/****************/
 /*		BLOCKS		*/
-/********************/
+/****************/
 #block-slideshow {
   width: 100%;
 }
 
-/********************/
+/****************/
 /*		HEADER		*/
-/********************/
+/****************/
 header {
 	margin-top: 40px;
+}
+
+/*****************/
+/*    CONTENT    */
+/*****************/
+#content-wrapper .container {
+  padding-top: 20px;
 }
 
 /********************/
