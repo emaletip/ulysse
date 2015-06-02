@@ -1,4 +1,3 @@
 <?php
-echo "Bienvenue les loulous !";
-echo "ça marche enfin !";
-echo "<br />BANDE DE MOULES !";
+require_once('config/config.php');
+echo "MON SITE";
