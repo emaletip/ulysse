@@ -1,0 +1,28 @@
+/********************/
+/*		GENERAL		*/
+/********************/
+.left {
+	background-color: #ff0000;
+}
+.middle {
+	background-color: #00ff00;
+}
+.right {
+	background-color: #0000ff;
+	color: #fff;
+}
+.left .block {
+	float: left;
+	margin-left: 100px;
+}
+.right .block {
+	float: right;
+	margin-right: 100px;
+}
+
+/********************/
+/*		HEADER		*/
+/********************/
+header {
+	margin-top: 40px;
+}
