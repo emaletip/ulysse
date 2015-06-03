@@ -27,17 +27,20 @@ class Api {
 		->setRequest($this->getRouter()->getRequest());
 
 		$this->get(ROUTE_PATH . 'dashboard/login', function () {
+			
 			require_once BACK_VIEWS_PATH . 'login.phtml';
 			$result = new Result();
 			return $result;
 		});
 		
 		$this->post(ROUTE_PATH . 'dashboard/connect', function () {
-			
 			$userObj = new User();
 			$user = $userObj->postConnect();
-			
-			require_once BACK_VIEWS_PATH . 'login.phtml';
+			if($user) {
+				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY);
+			} else {
+				require_once BACK_VIEWS_PATH . 'login.phtml';
+			}
 			$result = new Result();
 			return $result;
 		});
@@ -181,7 +184,7 @@ class Api {
     }
 
     public function get($route, $action) {
-        return $this->addService('GET', $route, $action);
+		return $this->addService('GET', $route, $action);
     }
 
     public function post($route, $action) {

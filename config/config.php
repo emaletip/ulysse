@@ -45,7 +45,9 @@ if ($fichier_ini == FALSE) {
 	    require_once str_replace('\\',DS,$file) . '.php' ;
 	}
 	spl_autoload_register('myLoader');
-	
+
+	session_start();
+
 	require_once(ROOT_PATH.'/router/Api.php');
     require_once(ROOT_PATH.'/database.php');
     

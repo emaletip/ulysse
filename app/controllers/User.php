@@ -5,11 +5,17 @@ namespace app\controllers;
 class User {
 
 	public function postConnect() {
+		if(isset($_SESSION['user'])) {
+			unset($_SESSION['user']);
+		}
+		
 		$username = $_POST['user']['email'];
 		$password = $_POST['user']['password'];
 		$userModel = new \app\models\User();
 		$user = $userModel->connectUser($username, $password);
-		$userModel->setId($user['id'])
+		
+		if($user) {
+			$userModel->setId($user['id'])
 					->setEmail($user['email'])
 					->setPassword($user['password'])
 					->setLast_name($user['last_name'])
@@ -22,8 +28,10 @@ class User {
 					->setPath($user['path'])
 					->setCreated_date($user['created_date']);
 					
-					var_dump('<pre>',$user,$userModel);die;
-		
-		return $this;
+			$_SESSION['user'] = $userModel;
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
