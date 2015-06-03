@@ -19,8 +19,8 @@ if ($fichier_ini == FALSE) {
     
 	define("PS", PATH_SEPARATOR);
 	define('DS', DIRECTORY_SEPARATOR);
-	define("PROJECT_DIRECTORY",    $ini_array['projectpath'].'/');
-	define("ROUTE_PATH",    '/'.PROJECT_DIRECTORY);
+	define("PROJECT_DIRECTORY",    $ini_array['projectpath']. '/');
+	define("ROUTE_PATH",    '/'.PROJECT_DIRECTORY );
 	
 	define('HTTP_PATH', 'http://'.$_SERVER['HTTP_HOST'] . ROUTE_PATH);
 	

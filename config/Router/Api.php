@@ -31,6 +31,17 @@ class Api {
 			$result = new Result();
 			return $result;
 		});
+		
+		$this->post(ROUTE_PATH . 'dashboard/connect', function () {
+		
+			$userObj = new User();
+			$user = $userObj->postConnect();
+			
+			$user = $route['path'].'\controllers\\'.$controllerName;
+			require_once BACK_VIEWS_PATH . 'login.phtml';
+			$result = new Result();
+			return $result;
+		});
 
 		$this->get(ROUTE_PATH, function () {
 			header('Location: ' . HTTP_PATH . 'index');
