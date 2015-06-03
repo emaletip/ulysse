@@ -38,7 +38,8 @@ if ($fichier_ini == FALSE) {
 	define('BACK_IMG_PATH', PUBLIC_PATH . 'img/admin/' );
 	define('BACK_JS_PATH', PUBLIC_PATH . 'js/admin/' );
 
-
+	require_once('functions.php');
+	
 	set_include_path(implode( PATH_SEPARATOR, array(FRONT_VIEWS_PATH, ROOT_PATH, PUBLIC_PATH, FRONT_CSS_PATH, FRONT_IMG_PATH, FRONT_JS_PATH,BACK_VIEWS_PATH,BACK_CSS_PATH,BACK_IMG_PATH,BACK_JS_PATH)));
 	
 	function myLoader($file){
