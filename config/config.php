@@ -25,16 +25,18 @@ if ($fichier_ini == FALSE) {
 	define('HTTP_PATH', 'http://'.$_SERVER['HTTP_HOST'] . ROUTE_PATH);
 	
 	define('ROOT_PATH', __DIR__ . DS);
-	define('PUBLIC_PATH', ROOT_PATH  . 'public' . DS);
+	define('PUBLIC_PATH', HTTP_PATH . '/public' . DS);
+	define('VENDOR_PATH', HTTP_PATH .'/vendor' . DS);
+
 	define('FRONT_VIEWS_PATH', ROOT_PATH . '../app/views/' );
-	define('FRONT_CSS_PATH', HTTP_PATH . '../app/css/' );
-	define('FRONT_IMG_PATH', HTTP_PATH . '../app/img/' );
-	define('FRONT_JS_PATH', HTTP_PATH . '../app/js/' );
+	define('FRONT_CSS_PATH', PUBLIC_PATH . 'css/' );
+	define('FRONT_IMG_PATH', PUBLIC_PATH . 'img/' );
+	define('FRONT_JS_PATH', PUBLIC_PATH . 'js/' );
 	
-	define('BACK_VIEWS_PATH', ROOT_PATH . '../admin/app/views/' );
-	define('BACK_CSS_PATH', HTTP_PATH . '../admin/app/css/' );
-	define('BACK_IMG_PATH', HTTP_PATH . '../admin/app/img/' );
-	define('BACK_JS_PATH', HTTP_PATH . '../admin/app/js/' );
+	define('BACK_VIEWS_PATH', ROOT_PATH . '../app/views/admin/' );
+	define('BACK_CSS_PATH', PUBLIC_PATH . 'css/admin/' );
+	define('BACK_IMG_PATH', PUBLIC_PATH . 'img/admin/' );
+	define('BACK_JS_PATH', PUBLIC_PATH . 'js/admin/' );
 
 
 	set_include_path(implode( PATH_SEPARATOR, array(FRONT_VIEWS_PATH, ROOT_PATH, PUBLIC_PATH, FRONT_CSS_PATH, FRONT_IMG_PATH, FRONT_JS_PATH,BACK_VIEWS_PATH,BACK_CSS_PATH,BACK_IMG_PATH,BACK_JS_PATH)));

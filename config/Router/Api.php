@@ -7,6 +7,7 @@ use config\Router\Response;
 use config\Router\Route;
 use config\Router\Router;
 use config\Router\Result\Result404;
+use app\models\User
 
 class Api {
 
@@ -18,6 +19,9 @@ class Api {
 	* Project routes.
 	*/
 	public function __construct() {
+	
+	//	$user = new User();
+	
 		$this->setResponse(new Response())
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
@@ -31,6 +35,8 @@ class Api {
 		$this->get(ROUTE_PATH, function () {
 			header('Location: ' . HTTP_PATH . 'index');
 		});
+
+		
 
 		$this->get(ROUTE_PATH . 'index', function () {
 			require_once FRONT_VIEWS_PATH . 'index.phtml';
@@ -104,14 +110,22 @@ class Api {
     public function serve() {
         $route = $this->getRouter()->run();
         $error404 = new Result404();
+        
+        
 
         if ($route instanceof Route) {
             $result = call_user_func_array(
                     $route->getAction(), $this->getRequest()->getParams()
             );
+           /*
+ if ($user->isLoged()) {
+	            
+            }
+*/
             if (!($result instanceof Result)) {
                 $result = $error404;
             }
+            
         } else {
             $result = $error404;
         }

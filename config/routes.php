@@ -20,9 +20,15 @@ $routes['layout'] = array(
 					  'action' => 'Layout',
 					  'view' => 'maquette',
 				   );	
-
-/* exemple route post
-				   
+$routes['layout'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Layout',
+					  'action' => 'Layout',
+					  'view' => 'maquette',
+				   );	
+/* exemple route post			   
 $routes['add'] = array(
 					  'path' => 'app',
 					  'id' => false,
