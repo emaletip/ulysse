@@ -31,7 +31,13 @@ if ($fichier_ini == FALSE) {
 	define('FRONT_IMG_PATH', HTTP_PATH . '../app/img/' );
 	define('FRONT_JS_PATH', HTTP_PATH . '../app/js/' );
 	
-	set_include_path(implode( PATH_SEPARATOR, array(FRONT_VIEWS_PATH, ROOT_PATH, PUBLIC_PATH, FRONT_CSS_PATH, FRONT_IMG_PATH, FRONT_JS_PATH)));
+	define('BACK_VIEWS_PATH', ROOT_PATH . '../admin/app/views/' );
+	define('BACK_CSS_PATH', HTTP_PATH . '../admin/app/css/' );
+	define('BACK_IMG_PATH', HTTP_PATH . '../admin/app/img/' );
+	define('BACK_JS_PATH', HTTP_PATH . '../admin/app/js/' );
+
+
+	set_include_path(implode( PATH_SEPARATOR, array(FRONT_VIEWS_PATH, ROOT_PATH, PUBLIC_PATH, FRONT_CSS_PATH, FRONT_IMG_PATH, FRONT_JS_PATH,BACK_VIEWS_PATH,BACK_CSS_PATH,BACK_IMG_PATH,BACK_JS_PATH)));
 	
 	function myLoader($file){
 	    require_once str_replace('\\',DS,$file) . '.php' ;

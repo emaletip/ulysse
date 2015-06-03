@@ -22,8 +22,8 @@ class Api {
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
 
-		$this->get(ROUTE_PATH . 'login', function () {
-			require_once FRONT_VIEWS_PATH . 'login.phtml';
+		$this->get(ROUTE_PATH . 'dashboard/login', function () {
+			require_once BACK_VIEWS_PATH . 'login.phtml';
 			$result = new Result();
 			return $result;
 		});
@@ -33,8 +33,13 @@ class Api {
 		});
 
 		$this->get(ROUTE_PATH . 'index', function () {
-			$user = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 			require_once FRONT_VIEWS_PATH . 'index.phtml';
+			$result = new Result();
+			return $result;
+		});
+		
+		$this->get(ROUTE_PATH . 'dashboard', function () {
+			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
 		});
@@ -50,13 +55,15 @@ class Api {
         require_once('routes.php');
 		$_SESSION['routes'] = $routes;
 		
+/* 		var_dump('<pre>',$routes); */
+		
         foreach($routes as $key => $route) {
 			$id = $route['id'];
 			if (!$id) {
 				$this->$route['type'](ROUTE_PATH . $key, function () {
-
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getUri()); 
 					$route = $_SESSION['routes'][$key];
+
 					$controllerName = $route['controller'];
 					$controllerActionResultName = $route['controller'].'s';
 					$controllerActionName = $route['type'].$route['action'];
@@ -65,7 +72,9 @@ class Api {
 	
 					$$controllerName = new $controllerObjectName();
 					$$controllerActionResultName = $$controllerName->$controllerActionName();
+					
 					require_once FRONT_VIEWS_PATH . $controllerName . DS . $controllerView.'.phtml';
+					
 					$result = new Result();
 					return $result;
 				});
