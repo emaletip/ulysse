@@ -174,8 +174,8 @@
 								75004 PARIS
 							</p>
 							<p>
-								icon-tel : 08 36 65 65 65<br>
-								icon-mail : nom-du-site@lol.fr
+								<i class="fa fa-phone"></i> :  08 36 65 65 65<br>
+								<i class="fa fa-envelope-o"></i> : nom-du-site@lol.fr
 							</p>
 						</div>
 					</div>
