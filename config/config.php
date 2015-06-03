@@ -25,8 +25,8 @@ if ($fichier_ini == FALSE) {
 	define('HTTP_PATH', 'http://'.$_SERVER['HTTP_HOST'] . ROUTE_PATH);
 	
 	define('ROOT_PATH', __DIR__ . DS);
-	define('PUBLIC_PATH', HTTP_PATH . '/public' . DS);
-	define('VENDOR_PATH', HTTP_PATH .'/vendor' . DS);
+	define('PUBLIC_PATH', HTTP_PATH . 'public/'); //Pauline
+	define('VENDOR_PATH', HTTP_PATH .'vendor/'); //Pauline
 
 	define('FRONT_VIEWS_PATH', ROOT_PATH . '../app/views/' );
 	define('FRONT_CSS_PATH', PUBLIC_PATH . 'css/' );

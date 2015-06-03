@@ -3,14 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<title>La maquette du site</title>
-		<link rel="stylesheet" type="text/css" href="../vendor/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../vendor/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../vendor/css/styles.css">
-		<script type="text/javascript" src="../vendor/js/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="../vendor/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../vendor/js/npm.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH . "css/bootstrap.min.css" ?>">
+		<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH . "css/font-awesome.min.css" ?>">
+		<link rel="stylesheet" type="text/css" href="<?= FRONT_CSS_PATH . "styles.css" ?>">
+		<script type="text/javascript" src="<?= VENDOR_PATH . "js/jquery-2.1.4.min.js" ?>"></script>
+		<script type="text/javascript" src="<?= VENDOR_PATH . "js/bootstrap.min.js" ?>"></script>
+		<script type="text/javascript" src="<?= VENDOR_PATH . "js/npm.js" ?>"></script>
 	</head>
 	<body>
+		<?php echo FRONT_IMG_PATH; ?>
 		<!-- HEADER -->
 		<header class="clearfix">
 
@@ -87,7 +88,7 @@
 				<div class="row">
 					<div class="col-md-12 slideshow">
 						<div id="block-slideshow" class="block">
-							<img class="img-responsive" src="img/cats-q-c-1920-1250-5.jpg" alt="UN CHAT !" />
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-1920-1250-5.jpg" alt="UN CHAT !" />
 						</div>
 					</div>
 				</div>
@@ -104,17 +105,17 @@
 					<hr>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-1.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-4.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-4.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-9.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-9.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 				</div>
@@ -123,17 +124,17 @@
 					<hr>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-1.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-4.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-4.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-9.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-9.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 				</div>
@@ -142,17 +143,17 @@
 					<hr>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-1.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-4.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-4.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 					<div class="col-md-4">
 						<a href="#">
-							<img class="img-responsive" src="img/cats-q-c-600-600-9.jpg" alt="DES CHATS !">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-9.jpg" alt="DES CHATS !">
 						</a>
 					</div>
 				</div>
@@ -181,7 +182,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="block" id="block-map">
-							<img class="img-responsive" src="img/map.png">
+							<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>map.png">
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -211,9 +212,4 @@
 		</footer>
 		<!-- END FOOTER -->
 	</body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> origin/master
->>>>>>> b79411f1d6675fc98d84a9353e5749d2083e1d55
