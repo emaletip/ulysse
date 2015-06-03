@@ -7,10 +7,12 @@ $routes['test'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'controllertest',
+					  'controller' => 'Test',
 					  'action' => 'Test',
 					  'view' => 'list',
 				   );	
+
+/* exemple route post
 				   
 $routes['add'] = array(
 					  'path' => 'app',
@@ -20,8 +22,8 @@ $routes['add'] = array(
 					  'action' => 'Add',
 					  'view' => 'list',
 				   );
-				   	
-/* exemple route avec ID */
+*/			   	
+/* exemple route avec ID 
 
 $routes['test/([0-9]+)'] = array(
 						  'path' => 'app',
@@ -31,3 +33,4 @@ $routes['test/([0-9]+)'] = array(
 						  'action' => 'Test',
 						  'view' => 'list',
 					   );	
+*/
