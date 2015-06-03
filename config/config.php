@@ -34,9 +34,9 @@ if ($fichier_ini == FALSE) {
 	define('FRONT_JS_PATH', PUBLIC_PATH . 'js/' );
 	
 	define('BACK_VIEWS_PATH', ROOT_PATH . '../app/views/admin/' );
-	define('BACK_CSS_PATH', PUBLIC_PATH . 'css/admin/' );
-	define('BACK_IMG_PATH', PUBLIC_PATH . 'img/admin/' );
-	define('BACK_JS_PATH', PUBLIC_PATH . 'js/admin/' );
+	define('BACK_CSS_PATH', PUBLIC_PATH . 'admin/css/' ); // Pauline (accès aux fichiers publiques d'admin)
+	define('BACK_IMG_PATH', PUBLIC_PATH . 'admin/img/' ); // Pauline (accès aux fichiers publiques d'admin)
+	define('BACK_JS_PATH', PUBLIC_PATH . 'admin/js/' ); // Pauline (accès aux fichiers publiques d'admin)
 
 	require_once('functions.php');
 	
