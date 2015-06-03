@@ -73,7 +73,7 @@
 						            </li>
 						          </ul>
 						        </li>
-						        <li class="first-ul"><a class="logo">Le logo lol</a></li>
+						        <li class="first-ul"><a class="logo"><h1>Le logo lol</h1></a></li>
 								<li class="first-ul"><a class="list-title" href="#">About</a></li>
 								<li class="first-ul"><a class="list-title" href="#">Contact</a></li>
 							</ul>
@@ -100,6 +100,43 @@
 		<div id="content-wrapper">
 			<div class="container">
 				<div class="row">
+					<h2>Meilleures ventes</h2>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-4.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-9.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<h2>Nouveautés</h2>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-4.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+					<div class="col-md-4">
+						<a href="#">
+							<img class="img-responsive" src="img/cats-q-c-600-600-9.jpg" alt="DES CHATS !">
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<h2>Prochaines ventes</h2>
 					<div class="col-md-4">
 						<a href="#">
 							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
@@ -122,6 +159,50 @@
 
 		<!-- FOOTER -->
 		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="block" id="block-informations">
+							<p>Le nom du site</p>
+							<p>
+								42 rue du Pangolin<br>
+								75004 PARIS
+							</p>
+							<p>
+								icon-tel : 08 36 65 65 65<br>
+								icon-mail : nom-du-site@lol.fr
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="block" id="block-map">
+							<img class="img-responsive" src="img/map.png">
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="block" id="block-sitemap">
+							<div class="cat-sitemap">
+								<p class="list-title">Home</p>
+							</div>
+							<div class="cat-sitemap">
+								<p class="list-title">Shop</p>
+								<ul>
+									<li>Catégorie 1</li>
+									<li>Catégorie 2</li>
+									<li>Catégorie 3</li>
+									<li>Catégorie 4</li>
+								</ul>
+							</div>
+							<div class="cat-sitemap">
+								<p class="list-title">About</p>
+							</div>
+							<div class="cat-sitemap">
+								<p class="list-title">Contact</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</footer>
 		<!-- END FOOTER -->
 	</body>
