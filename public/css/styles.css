@@ -112,7 +112,6 @@ footer .container {
 footer #block-informations,
 footer #block-map img,
 footer #block-sitemap {
-  border: 1px solid #777;
   height: 249px;
 }
 footer #block-informations h2,
