@@ -13,6 +13,24 @@ body {
 .slideshow {
   padding: 0;
 }
+.list-title {
+  color: #000 !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+a {
+  color: #777;
+}
+a:hover {
+  color: #777;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+hr {
+  border-color: #ccc;
+}
 
 /****************/
 /*		BLOCKS		*/
@@ -42,17 +60,8 @@ header {
 nav {
   border: none !important;
 }
-nav ul {
-  list-style: none;
-}
 nav ul .first-ul {
   display: inline-block;
-}
-nav ul li a {
-  color: #777;
-}
-nav ul li a:hover {
-  color: #777;
 }
 nav ul li .list-title {
   color: #000 !important;
@@ -92,19 +101,23 @@ footer .container {
   background-color: #fff;
 }
 footer #block-informations,
-footer #block-map,
+footer #block-map img,
 footer #block-sitemap {
   border: 1px solid #777;
   height: 249px;
+}
+footer #block-informations h2,
+footer #block-map h2,
+footer #block-sitemap h2 {
+  margin-bottom: 20px;
+  margin-top: 0;
 }
 footer #block-informations,
 footer #block-sitemap {
   padding: 20px;
 }
-footer #block-sitemap .cat-sitemap {
-  display: inline-block;
-  margin: 0 30px 10px;
-  vertical-align: top;
+footer #block-sitemap .row {
+  height: 25%;
 }
 
 /****************/

@@ -101,6 +101,7 @@
 			<div class="container">
 				<div class="row">
 					<h2>Meilleures ventes</h2>
+					<hr>
 					<div class="col-md-4">
 						<a href="#">
 							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
@@ -119,6 +120,7 @@
 				</div>
 				<div class="row">
 					<h2>Nouveautés</h2>
+					<hr>
 					<div class="col-md-4">
 						<a href="#">
 							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
@@ -137,6 +139,7 @@
 				</div>
 				<div class="row">
 					<h2>Prochaines ventes</h2>
+					<hr>
 					<div class="col-md-4">
 						<a href="#">
 							<img class="img-responsive" src="img/cats-q-c-600-600-1.jpg" alt="DES CHATS !">
@@ -163,6 +166,8 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="block" id="block-informations">
+							<h2>Informations</h2>
+							<hr>
 							<p>Le nom du site</p>
 							<p>
 								42 rue du Pangolin<br>
@@ -181,23 +186,23 @@
 					</div>
 					<div class="col-md-4">
 						<div class="block" id="block-sitemap">
-							<div class="cat-sitemap">
-								<p class="list-title">Home</p>
+							<h2>Plan du Site</h2>
+							<hr>
+							<div class="row">
+								<div class="col-md-6">
+									<a class="list-title" href="#">Home</a>
+								</div>
+								<div class="col-md-6">
+									<a class="list-title" href="#">Shop</a>
+								</div>
 							</div>
-							<div class="cat-sitemap">
-								<p class="list-title">Shop</p>
-								<ul>
-									<li>Catégorie 1</li>
-									<li>Catégorie 2</li>
-									<li>Catégorie 3</li>
-									<li>Catégorie 4</li>
-								</ul>
-							</div>
-							<div class="cat-sitemap">
-								<p class="list-title">About</p>
-							</div>
-							<div class="cat-sitemap">
-								<p class="list-title">Contact</p>
+							<div class="row">
+								<div class="col-md-6">
+									<a class="list-title" href="#">About</a>
+								</div>
+								<div class="col-md-6">
+									<a class="list-title" href="#">Contact</a>
+								</div>
 							</div>
 						</div>
 					</div>
