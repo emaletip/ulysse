@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class Laytout {
+class Layout {
 
 	public function getLayout() {
 		return $this;
