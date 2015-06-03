@@ -36,7 +36,7 @@
         (!empty($_POST['host'])) ? $host = $_POST['host'] : $errors .= '<p>Veuillez renseigner l\'hôte</p>';
         (!empty($_POST['dbname'])) ? $dbname = $_POST['dbname'] : $errors .= '<p>Veuillez renseigner le nom de la base de données</p>';
         (!empty($_POST['user'])) ? $user = $_POST['user'] : $errors .= '<p>Veuillez renseigner l\'utilisateur</p>';
-        (!empty($_POST['mdp'])) ? $mdp = $_POST['mdp'] : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
+        (!empty($_POST['mdp'])) ? $mdp = $_POST['mdp'] : $mdp = '';
         (!empty($_POST['path'])) ? $path = $_POST['path'] : $path = '';
             
         if($errors == ''){
