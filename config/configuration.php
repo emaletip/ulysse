@@ -34,9 +34,9 @@
 
         (!empty($_POST['sitename'])) ? $sitename = $_POST['sitename'] : $errors .= '<p>Veuillez renseigner le nom du site</p>';
         (!empty($_POST['slogan'])) ? $slogan = $_POST['slogan'] : $slogan = '';
-        (!empty($_POST['user'])) ? $user = $_POST['user'] : $errors .= '<p>Veuillez renseigner l\'utilisateur</p>';
-        (!empty($_POST['mdp'])) ? $mdp = $_POST['mdp'] : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
         (!empty($_POST['copyright'])) ? $copyright = $_POST['copyright'] : $errors .= '<p>Veuillez renseigner le copyright</p>';
+        (!empty($_POST['user'])) ? $user = $_POST['user'] : $errors .= '<p>Veuillez renseigner l\'utilisateur</p>';
+        (!empty($_POST['mdp'])) ? $mdp = sha1($_POST['mdp']) : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
         
         $logo = '';
 
@@ -49,13 +49,18 @@
                 $db = new PDO('mysql:host='.$ini_array['host'].';dbname='.$ini_array['dbname'].'', $ini_array['user'], $ini_array['password']);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
-                $update = $db->prepare('INSERT INTO config (sitename, slogan, logo, copyright, is_maintenance) VALUES (:sitename, :slogan, :logo, :copyright, :is_maintenance)');
-                $update->bindParam(':sitename', $sitename);
-                $update->bindParam(':slogan', $slogan);
-                $update->bindParam(':logo', $logo);
-                $update->bindParam(':copyright', $copyright);
-                $update->bindValue(':is_maintenance', 0);
-                $update->execute();
+                $config = $db->prepare('INSERT INTO config (sitename, slogan, logo, copyright, is_maintenance) VALUES (:sitename, :slogan, :logo, :copyright, :is_maintenance)');
+                $config->bindParam(':sitename', $sitename);
+                $config->bindParam(':slogan', $slogan);
+                $config->bindParam(':logo', $logo);
+                $config->bindParam(':copyright', $copyright);
+                $config->bindValue(':is_maintenance', 0);
+                $config->execute();
+                
+                $db_user = $db->prepare('INSERT INTO user (login, password) VALUES (:login, :password)');
+                $db_user->bindParam(':login', $user);
+                $db_user->bindParam(':password', $mdp);
+                $db_user->execute();
                 
                 $handle = fopen("config/config.ini", "a+");
                 fseek($handle, 1, SEEK_END);
@@ -142,7 +147,7 @@
         <div class="panel-body">
         
             <p>La configuration a été enregistrée. Vous pouvez dès à présent utiliser le site !</p>
-            <p style="text-align:center;"><a class="btn btn-primary" href="index" role="button">Aller sur le site</a></p>
+            <p style="text-align:center;"><a class="btn btn-primary" href="'.$base_directory.'" role="button">Aller sur le site</a></p>
             
             
         </div>';
