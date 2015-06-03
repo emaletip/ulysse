@@ -7,7 +7,7 @@ use config\Router\Response;
 use config\Router\Route;
 use config\Router\Router;
 use config\Router\Result\Result404;
-use app\models\User
+use app\models\User;
 
 class Api {
 
