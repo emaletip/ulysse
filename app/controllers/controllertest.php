@@ -6,12 +6,12 @@ class controllertest {
 
 private $test = 'test';
 
-	public function setTest($test) {
+	public function setMaquette($test) {
 		$this->test = $test;
 		return $this;
 	}
 
-	public function getTest() {
+	public function getMaquette() {
 		return $this->test;
 	}
 	
