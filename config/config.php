@@ -1,6 +1,6 @@
 <?php 
 $ini_array = parse_ini_file("config.ini");
-
+ 
 define("PS", PATH_SEPARATOR);
 define('DS', DIRECTORY_SEPARATOR);
 define("PROJECT_DIRECTORY",    $ini_array['projectpath'].'/');
