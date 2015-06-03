@@ -59,6 +59,7 @@
                     'CREATE TABLE IF NOT EXISTS `block` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(45) NOT NULL,
+                      `is_active` tinyint(1) NOT NULL,
                       `is_editable` tinyint(1) NOT NULL,
                       `content_type_id` int(11) NOT NULL,
                       `emplacement_id` int(11) NOT NULL,

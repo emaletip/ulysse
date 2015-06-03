@@ -19,16 +19,17 @@ class Api {
 	* Project routes.
 	*/
 	public function __construct() {
-	
-	//	$user = new User();
-	
+		
 		$this->setResponse(new Response())
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
 
 		$this->get(ROUTE_PATH . 'dashboard/login', function () {
-			
-			require_once BACK_VIEWS_PATH . 'login.phtml';
+			if(isset($_SESSION['user'])) {
+				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'dashboard');
+			} else {
+				require_once BACK_VIEWS_PATH . 'login.phtml';
+			}
 			$result = new Result();
 			return $result;
 		});
@@ -37,7 +38,7 @@ class Api {
 			$userObj = new User();
 			$user = $userObj->postConnect();
 			if($user) {
-				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY);
+				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'dashboard');
 			} else {
 				require_once BACK_VIEWS_PATH . 'login.phtml';
 			}
@@ -49,15 +50,35 @@ class Api {
 			header('Location: ' . HTTP_PATH . 'index');
 		});
 
-		
-
 		$this->get(ROUTE_PATH . 'index', function () {
 			require_once FRONT_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
 		});
 		
+		$this->get(ROUTE_PATH . 'index/', function () {
+			require_once FRONT_VIEWS_PATH . 'index.phtml';
+			$result = new Result();
+			return $result;
+		});
+		
+		/* DASHBOARD INDEX */
+		
+		$this->get(ROUTE_PATH . 'dashboard/index', function () {
+			require_once BACK_VIEWS_PATH . 'index.phtml';
+			$result = new Result();
+			return $result;
+		});
+		
+		$this->get(ROUTE_PATH . 'dashboard/', function () {
+			is_admin();
+			require_once BACK_VIEWS_PATH . 'index.phtml';
+			$result = new Result();
+			return $result;
+		});
+		
 		$this->get(ROUTE_PATH . 'dashboard', function () {
+			is_admin();
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
@@ -71,10 +92,16 @@ class Api {
             $this->getResponse()->redirect('index');
         });
         
+        $this->get(ROUTE_PATH . 'dashboard/logout', function () {
+            if (isset($_SESSION['user'])) {
+                unset($_SESSION['user']);
+            }
+
+            $this->getResponse()->redirect('index');
+        });
+        
         require_once('routes.php');
 		$_SESSION['routes'] = $routes;
-		
-/* 		var_dump('<pre>',$routes); */
 		
         foreach($routes as $key => $route) {
 			$id = $route['id'];
@@ -123,18 +150,11 @@ class Api {
     public function serve() {
         $route = $this->getRouter()->run();
         $error404 = new Result404();
-        
-        
 
         if ($route instanceof Route) {
             $result = call_user_func_array(
-                    $route->getAction(), $this->getRequest()->getParams()
+				$route->getAction(), $this->getRequest()->getParams()
             );
-           /*
- if ($user->isLoged()) {
-	            
-            }
-*/
             if (!($result instanceof Result)) {
                 $result = $error404;
             }
