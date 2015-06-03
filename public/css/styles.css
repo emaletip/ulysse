@@ -58,10 +58,18 @@ header {
 
 /*    Menu    */
 nav {
+  background-color: #fff !important;
   border: none !important;
+}
+nav ul {
+  float: none !important;
+  text-align: center;
 }
 nav ul .first-ul {
   display: inline-block;
+}
+nav ul li {
+  float: none !important;
 }
 nav ul li .list-title {
   color: #000 !important;
