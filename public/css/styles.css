@@ -38,6 +38,13 @@ hr {
 #block-slideshow {
   width: 100%;
 }
+#block-login a {
+  color: #777;
+  padding: 0 10px;
+}
+#block-cart a {
+  margin-left: 15px;
+}
 
 /****************/
 /*		HEADER		*/
@@ -45,18 +52,6 @@ hr {
 header {
 	margin-top: 40px;
 }
-
-/*    Block Login/Inscription    */
-#block-login a {
-  color: #777;
-  padding: 0 10px;
-}
-
-/*    Block Search    */
-
-/*    Block Cart    */
-
-/*    Menu    */
 nav {
   background-color: #fff !important;
   border: none !important;
