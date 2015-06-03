@@ -48,7 +48,8 @@ if ($fichier_ini == FALSE) {
 	
 	require_once(ROOT_PATH.'/router/Api.php');
     require_once(ROOT_PATH.'/database.php');
-    $db = new database();
+    
+    $db = new config\database();
     
 	$api = new config\Router\Api();
 	$api->serve();

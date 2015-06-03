@@ -1,5 +1,7 @@
 <?php 
 
+namespace config;
+
 class database {
 
 	public $pdo;
@@ -12,7 +14,7 @@ class database {
 	
 	private function dbConnect($dsn, $user, $pass) {
 		try {
-		    $this->pdo = new PDO($dsn, $user, $pass);
+		    $this->pdo = new \PDO($dsn, $user, $pass);
 		    $this->setInstall(false);
 		} catch (PDOException $e) {
 		    if($e->getCode() == 1049) {
