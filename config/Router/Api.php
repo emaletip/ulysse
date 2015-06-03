@@ -7,7 +7,7 @@ use config\Router\Response;
 use config\Router\Route;
 use config\Router\Router;
 use config\Router\Result\Result404;
-use app\models\User;
+use app\controllers\User;
 
 class Api {
 
@@ -33,11 +33,10 @@ class Api {
 		});
 		
 		$this->post(ROUTE_PATH . 'dashboard/connect', function () {
-		
+			
 			$userObj = new User();
 			$user = $userObj->postConnect();
 			
-			$user = $route['path'].'\controllers\\'.$controllerName;
 			require_once BACK_VIEWS_PATH . 'login.phtml';
 			$result = new Result();
 			return $result;

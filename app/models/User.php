@@ -17,8 +17,17 @@ class User {
 	private $path;
 	private $created_date;
 	
-	public function __construct() {
+	public function connectUser($email, $password) {
+		$password = sha1($password);
+		$db = new \config\database();
+		$dbuser = $db->pdo->prepare('SELECT * FROM user WHERE password=:password AND email=:email');
+                
+        $dbuser->bindParam(':email', $email);
+        $dbuser->bindParam(':password', $password);
 		
+		$dbuser->execute();
+		$result = $dbuser->fetch();
+		return $result;
 	}
 	
 	public function getId() {
