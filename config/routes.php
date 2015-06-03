@@ -28,6 +28,7 @@ $routes['layout'] = array(
 					  'action' => 'Layout',
 					  'view' => 'maquette',
 				   );	
+				   
 /* exemple route post			   
 $routes['add'] = array(
 					  'path' => 'app',
