@@ -57,10 +57,12 @@
                 $config->bindValue(':is_maintenance', 0);
                 $config->execute();
                 
-                $db_user = $db->prepare('INSERT INTO user (login, password) VALUES (:login, :password)');
-                $db_user->bindParam(':login', $user);
-                $db_user->bindParam(':password', $mdp);
-                $db_user->execute();
+                $root = $db->prepare('INSERT INTO user (login, password) VALUES (:login, :password)');
+                $root->bindParam(':login', $user);
+                $root->bindParam(':password', $mdp);
+                $root->execute();
+                
+                $db->exec('INSERT INTO user_role (user_id, role_id) VALUES (\'1\', \'1\')');
                 
                 $handle = fopen("config/config.ini", "a+");
                 fseek($handle, 1, SEEK_END);

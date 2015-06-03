@@ -42,6 +42,8 @@
         if($errors == ''){
 
             try {
+                
+                $roles = array("root", "administrateur", "inscrit");
 
                 $db = new PDO('mysql:host='.$host, $user, $mdp);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -180,6 +182,12 @@
                 {
                     $create_table = $db->prepare($table);
                     $create_table->execute();
+                }
+                
+                foreach($roles as $role)
+                {
+                    $query = 'INSERT INTO role (name) VALUES (\''.$role.'\')';
+                    $db->exec($query);
                 }
 
                 $ini = fopen("config/config.ini", "a+");
