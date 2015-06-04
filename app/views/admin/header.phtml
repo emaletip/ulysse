@@ -1,17 +1,15 @@
 <html>
-<header>
-	<head>
-		<meta charset="utf-8">
-		<title>La maquette du site</title>
-		<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="<?= BACK_CSS_PATH ?>styles.css">
-		<link rel="stylesheet" type="text/css" href="<?= BACK_CSS_PATH ?>modern.min.css">
-		<script type="text/javascript" src="<?= VENDOR_PATH ?>js/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="<?= VENDOR_PATH ?>js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?= VENDOR_PATH ?>js/npm.js"></script>
-	</head>
-</header>
+<head>
+	<meta charset="utf-8">
+	<title>La maquette du site</title>
+	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?= BACK_CSS_PATH ?>styles.css">
+	<link rel="stylesheet" type="text/css" href="<?= BACK_CSS_PATH ?>modern.min.css">
+	<script type="text/javascript" src="<?= VENDOR_PATH ?>js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="<?= VENDOR_PATH ?>js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?= VENDOR_PATH ?>js/npm.js"></script>
+</head>
 <body class="page-header-fixed pace-done">
 	<main class="page-content content-wrap">
 		<div class="navbar">
@@ -241,3 +239,13 @@
 				</div>
 			</div>
 		</div><!-- Navbar -->
+<?php 
+if (isset($_SESSION['flash'])) {
+	foreach($_SESSION['flash'] as $key => $flash) { ?>
+		<div role="alert" class="alert alert-success">
+			<strong>Well done!</strong> You successfully read <a class="alert-link" href="#">this important alert message</a>.
+		</div>
+<?php }
+	unset($_SESSION['flash']);
+}	
+?>
