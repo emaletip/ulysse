@@ -126,7 +126,7 @@ class Api {
 					return $result;
 				});
 			} else {
-				$this->$route['type'](ROUTE_PATH.$key, function ($id) {
+				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
 					$route = $_SESSION['routes'][$key];
 					echo 'id: '.$id.'<br>';

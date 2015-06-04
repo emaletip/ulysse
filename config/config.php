@@ -53,7 +53,6 @@ if ($fichier_ini == FALSE) {
     require_once(ROOT_PATH.'/database.php');
     
     $db = new config\database();
-    $cms = $db->getCmsConfig();
     
 	$api = new config\Router\Api();
 	$api->serve();

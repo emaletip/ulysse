@@ -1,6 +1,7 @@
+<?php $cms = new app\models\Config(); ?>
 <head>
 	<meta charset="utf-8">
-	<title>La maquette du site</title>
+	<title> <?= $cms->getSitename(); ?> :: Dashboard </title>
 	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH ?>css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="<?= BACK_CSS_PATH ?>modern.min.css">

@@ -3,15 +3,6 @@ $routes = array();
 
 /* exemple route simple */
 
-$routes['test'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'get',
-					  'controller' => 'Test',
-					  'action' => 'Test',
-					  'view' => 'list',
-				   );
-
 $routes['layout'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -20,14 +11,16 @@ $routes['layout'] = array(
 					  'action' => 'Layout',
 					  'view' => 'maquette',
 				   );	
-$routes['layout'] = array(
+$routes['dashboard/config'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Layout',
-					  'action' => 'Layout',
-					  'view' => 'maquette',
+					  'controller' => 'Config',
+					  'action' => 'Config',
+					  'view' => 'edit',
 				   );	
+				   
+				   
 				   
 /* exemple route post			   
 $routes['add'] = array(
