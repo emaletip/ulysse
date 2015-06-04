@@ -9,7 +9,10 @@ function is_loged(){
 		header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$location.'login');
 	
 	} else {
-		$_SESSION['flash']['success'] = 'GG t’es co maggle';
+		if(!isset($_SESSION['loged'])) {
+			$_SESSION['flash']['success'] = 'GG t’es co maggle';
+			$_SESSION['loged'] = true;
+		}
 		return true;
 	}
 }

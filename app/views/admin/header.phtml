@@ -225,7 +225,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="login.html" class="log-out waves-effect waves-button waves-classic">
+								<a href="/<?= PROJECT_DIRECTORY ?>dashboard/logout" class="log-out waves-effect waves-button waves-classic">
 									<span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
 								</a>
 							</li>
@@ -239,16 +239,17 @@
 				</div>
 			</div>
 		</div><!-- Navbar -->
-		<?php 
-		if (isset($_SESSION['flash'])) {
-			foreach($_SESSION['flash'] as $key => $flash) { ?>
-				<div role="alert" class="alert alert-success">
-					<strong>Well done!</strong> You successfully read <a class="alert-link" href="#">this important alert message</a>.
-				</div>
-		<?php }
-			unset($_SESSION['flash']);
-		}	
-		?>
+<?php 
+if (isset($_SESSION['flash'])) {
+	foreach($_SESSION['flash'] as $key => $flash) { ?>
+		<div role="alert" class="alert alert-<?= $key ?>">
+			<?= $flash ?>
+		</div>
+<?php
+	unset($_SESSION['flash'][$key]);
+	}
+}	
+?>
 		<div class="page-sidebar sidebar">
 			<div class="page-sidebar-inner slimscroll">
 				<div class="sidebar-header">

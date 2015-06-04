@@ -65,6 +65,7 @@ class Api {
 		/* DASHBOARD INDEX */
 		
 		$this->get(ROUTE_PATH . 'dashboard/index', function () {
+			is_admin();
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
@@ -85,10 +86,10 @@ class Api {
 		});
 		
 		$this->get(ROUTE_PATH . 'logout', function () {
+            
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
-
             $this->getResponse()->redirect('index');
         });
         
@@ -96,7 +97,7 @@ class Api {
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
             }
-
+            unset($_SESSION['loged']);
             $this->getResponse()->redirect('index');
         });
         
