@@ -13,11 +13,13 @@
 	color: #90a0b0;
 }
 .page-header-fixed .page-sidebar .menu a:hover,
-.page-header-fixed .page-sidebar .menu .active a {
+.page-header-fixed .page-sidebar .menu .active a,
+.page-header-fixed .page-sidebar .menu .open a {
 	color: #eeeeee;
 }
 .page-header-fixed .page-sidebar .menu li:hover,
-.page-header-fixed .page-sidebar .menu .active {
+.page-header-fixed .page-sidebar .menu .active,
+.page-header-fixed .page-sidebar .menu .open {
 	background-color: #203040;
 }
 .page-header-fixed .page-sidebar .dropdown-menu {
