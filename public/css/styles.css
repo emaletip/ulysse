@@ -1,6 +1,9 @@
 /********************/
 /*		GENERAL		*/
 /********************/
+
+/* #5d9907 */
+
 html,
 body {
 	font-family: "Lato", Arial;
@@ -31,6 +34,9 @@ ul {
 hr {
   border-color: #ccc;
 }
+.fa {
+  color: #5d9907;
+}
 
 /****************/
 /*		BLOCKS		*/
@@ -42,8 +48,41 @@ hr {
   color: #777;
   padding: 0 10px;
 }
+#block-cart {
+  color: #5d9907;
+}
 #block-cart a {
+  color: #5d9907;
   margin-left: 15px;
+}
+#block-informations .fa {
+  margin-right: 15px;
+}
+#block-informations #site-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+#block-informations,
+#block-map img,
+#block-sitemap {
+  height: 249px;
+}
+#block-informations h2,
+#block-map h2,
+#block-sitemap h2 {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+#block-informations,
+#block-sitemap {
+  padding: 20px;
+}
+#block-informations h2,
+#block-sitemap h2 {
+  color: #5d9907;
+}
+#block-sitemap .row {
+  height: 25%;
 }
 
 /****************/
@@ -98,27 +137,5 @@ nav ul li .logo h1 {
 /*    FOOTER     */
 /*****************/
 footer {
-  background-color: #777;
   margin-bottom: 40px;
-}
-footer .container {
-  background-color: #fff;
-}
-footer #block-informations,
-footer #block-map img,
-footer #block-sitemap {
-  height: 249px;
-}
-footer #block-informations h2,
-footer #block-map h2,
-footer #block-sitemap h2 {
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-footer #block-informations,
-footer #block-sitemap {
-  padding: 20px;
-}
-footer #block-sitemap .row {
-  height: 25%;
 }
