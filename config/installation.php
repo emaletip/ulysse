@@ -43,8 +43,6 @@
 
             try {
                 
-                $roles = array("root", "administrateur", "inscrit");
-
                 $db = new PDO('mysql:host='.$host, $user, $mdp);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -65,6 +63,12 @@
                       `emplacement_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `category` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
 
                     'CREATE TABLE IF NOT EXISTS `config` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -85,6 +89,13 @@
                       `created_user` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `content_tag` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `content_id` int(11) NOT NULL,
+                      `tag_id` int(11) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
 
                     'CREATE TABLE IF NOT EXISTS `content_type` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -94,11 +105,11 @@
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `emplacement` (
-                      `id` int(11) NOT NULL,
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(45) NOT NULL,
                       `nb_column` int(11) DEFAULT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12',
 
                     'CREATE TABLE IF NOT EXISTS `field` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -107,21 +118,93 @@
                       `size_min` int(11) DEFAULT \'0\',
                       `size_max` int(11) DEFAULT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_body` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_body` text NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_caption` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_caption` varchar(255) NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_category` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `category_id` int(11) NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_contenu` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_contenu` text NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `field_description` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
                       `content_description` text NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_link` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_link` varchar(255) NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_path` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_path` int(11) NOT NULL,
+                      `content_type_name` int(11) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=\'Image slider\' AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_prix` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_prix` decimal(10,2) NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `field_title` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
                       `content_title` varchar(255) NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `menu` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `content_id` int(11) NOT NULL,
+                      `label` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
@@ -152,6 +235,12 @@
                       `role_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `tags` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(255) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
 
                     'CREATE TABLE IF NOT EXISTS `user` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -175,20 +264,98 @@
                       `user_id` int(11) NOT NULL,
                       `role_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1'
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    
+                    
+                    'INSERT INTO `block` (`id`, `name`, `is_active`, `is_editable`, `content_blok`, `emplacement_id`) VALUES
+                    (1, \'block_logo\', 1, 0, \'\', 4),
+                    (2, \'block_connect\', 1, 0, \'\', 1),
+                    (3, \'block_cart\', 1, 0, \'\', 2),
+                    (4, \'block_search\', 1, 0, \'\', 2),
+                    (5, \'block_principal_menu\', 1, 0, \'\', 4),
+                    (6, \'block_content\', 1, 0, \'\', 5),
+                    (7, \'block_top_sell\', 0, 0, \'\', 7),
+                    (8, \'block_informations\', 1, 1, \'Contenu bloc informations\', 10),
+                    (9, \'block_secondary_menu\', 1, 0, \'\', 4),
+                    (10, \'block_copyright\', 1, 1, \'Contenu bloc copyright\', 11)',
+                    
+                    'INSERT INTO `category` (`id`, `name`) VALUES
+                    (1, \'Mobilier\'),
+                    (2, \'Nourriture\'),
+                    (3, \'Informatique\')',
+                    
+                    'INSERT INTO `emplacement` (`id`, `name`, `nb_column`) VALUES
+                    (1, \'Header Left\', 1),
+                    (2, \'Header Right\', 1),
+                    (3, \'Header Center\', 1),
+                    (4, \'Menu\', 1),
+                    (5, \'Slider\', 1),
+                    (6, \'Before Content\', 1),
+                    (7, \'Sidebar\', 1),
+                    (8, \'Content\', 1),
+                    (9, \'Pre Footer\', 1),
+                    (10, \'Footer\', 1),
+                    (11, \'Copyright\', 1)',
+                    
+                    'INSERT INTO content (`content_type_name`, `created_user`) VALUES
+                    (\'page\', 1),
+                    (\'article\', 1),
+                    (\'product\', 1),
+                    (\'product\', 1)',
+                    
+                    'INSERT INTO `content_tag` (`id`, `content_id`, `tag_id`) VALUES
+                    (1, 3, 1),
+                    (2, 4, 1),
+                    (3, 4, 2)',
+                
+                    'INSERT INTO content_type (`name`) VALUES
+                    (\'page\'),
+                    (\'article\'),
+                    (\'slider\'),
+                    (\'product\')',
+
+                    'INSERT INTO `field` (`id`, `label`, `type`, `size_min`, `size_max`) VALUES
+                    (1, \'Titre\', \'input_text\', 10, 200),
+                    (2, \'Contenu\', \'textarea\', 0, NULL),
+                    (3, \'Description\', \'textarea\', 0, NULL),
+                    (4, \'Catégorie\', \'select\', 0, NULL),
+                    (5, \'Prix\', \'input_decimal\', 3, NULL),
+                    (6, \'Sous-titre\', \'input_text\', 0, NULL),
+                    (7, \'Image (Slider)\', \'input_file\', 0, NULL),
+                    (8, \'Lien (Slider)\', \'input_text\', 0, NULL)',
+
+                    'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
+                    (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
+                    (2, 2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\'),
+                    (3, 2, 3, \'Vente de LA Banane bleue !\', \'product\'),
+                    (4, 2, 4, \'Vente de LA Poire rouge !\', \'product\')',
+
+                    'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
+                    (1, 4, 3, \'10.50\', \'product\'),
+                    (2, 4, 4, \'13.25\', \'product\')',
+
+                    'INSERT INTO `field_title` (`id`, `field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
+                    (1, 1, 1, \'Page de base\', \'page\'),
+                    (2, 1, 2, \'Nouvelle !\', \'article\'),
+                    (3, 1, 3, \'Premier produit\', \'product\'),
+                    (4, 1, 4, \'Second produit\', \'product\')',
+                    
+                    'INSERT INTO role (`name`) VALUES
+                    (\'root\'),
+                    (\'administrateur\'),
+                    (\'inscrit\')',
+                    
+                    'INSERT INTO `tags` (`id`, `name`) VALUES
+                    (1, \'Chaise\'),
+                    (2, \'Table\'),
+                    (3, \'Fruit\')',
 
                 );
 
-                foreach($tables as $table)
-                {
+                foreach($tables as $table) {
                     $create_table = $db->prepare($table);
                     $create_table->execute();
-                }
-                
-                foreach($roles as $role)
-                {
-                    $query = 'INSERT INTO role (name) VALUES (\''.$role.'\')';
-                    $db->exec($query);
                 }
 
                 $ini = fopen("config/config.ini", "a+");
