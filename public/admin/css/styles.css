@@ -51,3 +51,14 @@
 .info-box .counter .glyphicon {
 	margin-right: 20px;
 }
+.info-box .info-box-stats {
+	float: none;
+	text-align: center;
+}
+
+/********************/
+/*		FOOTER		*/
+/********************/
+.page-footer p {
+	text-align: center;
+}
