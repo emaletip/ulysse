@@ -1,24 +1,5 @@
 <?php include_once("header.phtml"); ?>
-            <div class="page-title">
-                <h3>Dashboard</h3>
-                <div class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
-                </div>
-            </div>
-            <?php 
-				if (isset($_SESSION['flash'])) {
-					foreach($_SESSION['flash'] as $key => $flash) { ?>
-						<div role="alert" class="alert alert-<?= $key ?>">
-							<?= $flash ?>
-						</div>
-				<?php
-					unset($_SESSION['flash'][$key]);
-					}
-				}	
-			?>
+<?php include_once("breadcrumb.phtml"); ?>            
             <div id="main-wrapper">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
