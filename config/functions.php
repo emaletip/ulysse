@@ -10,7 +10,7 @@ function is_loged(){
 	
 	} else {
 		if(!isset($_SESSION['loged'])) {
-			$_SESSION['flash']['success'] = 'GG t’es co maggle';
+			$_SESSION['flash']['success'] = '<b>Félicitations ! </b> Vous êtes maintenant connecté(e).';
 			$_SESSION['loged'] = true;
 		}
 		return true;
