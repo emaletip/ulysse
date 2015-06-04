@@ -266,7 +266,21 @@ if (isset($_SESSION['flash'])) {
 				</div>
 				<ul class="menu accordion-menu">
 					<li class="active"><a href="index.html" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
-					<li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-envelope"></span><p>Messages</p><span class="arrow"></span></a>
+					<li class="droplink"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-user"></span><p>Utilisateurs</p><span class="arrow"></span></a>
+						<ul class="sub-menu dropdown-menu" role="menu">
+							<li><a href="#">Liste des utilisateurs</a></li>
+							<li><a href="#">Ajouter un utilisateur</a></li>
+						</ul>
+					</li>
+					<li class="droplink"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Contenus</p><span class="arrow"></span></a>
+						<ul class="sub-menu dropdown-menu" role="menu">
+							<li><a href="#">Les contenus</a></li>
+							<li><a href="#">Ajouter un contenu</a></li>
+							<li><a href="#">Les types de contenu</a></li>
+							<li><a href="#">Ajouter un type de contenu</a></li>
+						</ul>
+					</li>
+					<!--<li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-envelope"></span><p>Messages</p><span class="arrow"></span></a>
 						<ul class="sub-menu">
 							<li><a href="inbox.html">Boîte de réception</a></li>
 							<li><a href="message-view.html">Liste des messages</a></li>
@@ -288,7 +302,7 @@ if (isset($_SESSION['flash'])) {
 							<li><a href="maps-google.html">Google Maps</a></li>
 							<li><a href="maps-vector.html">Vector Maps</a></li>
 						</ul>
-					</li>
+					</li>-->
 				</ul>
 			</div><!-- Page Sidebar Inner -->
 		</div><!-- Page Sidebar -->
