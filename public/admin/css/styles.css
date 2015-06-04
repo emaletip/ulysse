@@ -1,13 +1,48 @@
+/********************/
+/*		GENERAL		*/
+/********************/
+
+
 /************************/
 /*		NAVBARSIDE		*/
 /************************/
 .page-header-fixed .page-sidebar {
 	background-color: #304050;
 }
-.page-header-fixed .page-inner {
-	padding-top: 0px !important;
+.page-header-fixed .page-sidebar .menu a {
+	color: #90a0b0;
+}
+.page-header-fixed .page-sidebar .menu a:hover,
+.page-header-fixed .page-sidebar .menu .active a {
+	color: #eeeeee;
+}
+.page-header-fixed .page-sidebar .menu li:hover,
+.page-header-fixed .page-sidebar .menu .active {
+	background-color: #203040;
+}
+.page-header-fixed .page-sidebar .dropdown-menu {
+	background-color: #203040;
+	border: none;
+	margin-bottom: 20px;
+	margin-top: 0;
+	position: relative !important;
+}
+.page-header-fixed .page-sidebar .dropdown-menu li:hover {
+	background-color: #304050;
+}
+.page-header-fixed .page-sidebar .dropdown-menu > li > a {
+	white-space: normal;
+}
+.page-header-fixed .page-sidebar .dropdown-menu::after {
+	content: none;
+}
+.page-header-fixed .page-sidebar .dropdown-menu::before {
+	content: none;
 }
 
 /********************/
-/*		ALERT		*/
+/*		CONTENT		*/
 /********************/
+.info-box .counter .glyphicon {
+	margin-right: 20px;
+}
