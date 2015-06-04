@@ -25,6 +25,12 @@ class database {
 		return true;
 	}
 	
+	public function getCmsConfig() {
+		$configcms = $this->pdo->query('SELECT * FROM config', \PDO::FETCH_OBJ);
+		return $configcms->fetch();
+		
+	}
+		
 	public function getInstall() {
 		return $this->install;
 	}
