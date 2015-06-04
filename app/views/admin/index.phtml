@@ -8,6 +8,17 @@
                     </ol>
                 </div>
             </div>
+            <?php 
+				if (isset($_SESSION['flash'])) {
+					foreach($_SESSION['flash'] as $key => $flash) { ?>
+						<div role="alert" class="alert alert-<?= $key ?>">
+							<?= $flash ?>
+						</div>
+				<?php
+					unset($_SESSION['flash'][$key]);
+					}
+				}	
+			?>
             <div id="main-wrapper">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">

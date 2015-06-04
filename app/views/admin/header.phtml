@@ -239,17 +239,6 @@
 				</div>
 			</div>
 		</div><!-- Navbar -->
-<?php 
-if (isset($_SESSION['flash'])) {
-	foreach($_SESSION['flash'] as $key => $flash) { ?>
-		<div role="alert" class="alert alert-<?= $key ?>">
-			<?= $flash ?>
-		</div>
-<?php
-	unset($_SESSION['flash'][$key]);
-	}
-}	
-?>
 		<div class="page-sidebar sidebar">
 			<div class="page-sidebar-inner slimscroll">
 				<div class="sidebar-header">
