@@ -4,3 +4,10 @@
 .page-header-fixed .page-sidebar {
 	background-color: #304050;
 }
+.page-header-fixed .page-inner {
+	padding-top: 0px !important;
+}
+
+/********************/
+/*		ALERT		*/
+/********************/
