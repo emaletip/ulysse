@@ -11,19 +11,14 @@
 		<script type="text/javascript" src="<?= VENDOR_PATH ?>js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?= VENDOR_PATH ?>js/npm.js"></script>
 	</head>
-</header>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="#" class="navbar-brand">Ulysse</a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/">Home</a></li>
-        <li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/">Users</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
-
+<?php 
+if (isset($_SESSION['flash'])) {
+	foreach($_SESSION['flash'] as $key => $flash) { ?>
+		<div role="alert" class="alert alert-success">
+			<strong>Well done!</strong> You successfully read <a class="alert-link" href="#">this important alert message</a>.
+		</div>
+<?php }
+	unset($_SESSION['flash']);
+}	
+?>

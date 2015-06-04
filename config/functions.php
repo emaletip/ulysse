@@ -6,10 +6,10 @@ function is_loged(){
 		if (strpos($_SERVER["REQUEST_URI"],'dashboard') !== false) {
 		    $location = 'dashboard/';
 		}
-
 		header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$location.'login');
 	
 	} else {
+		$_SESSION['flash']['success'] = 'GG t’es co maggle';
 		return true;
 	}
 }
