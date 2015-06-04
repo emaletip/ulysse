@@ -59,7 +59,7 @@
                       `name` varchar(45) NOT NULL,
                       `is_active` tinyint(1) NOT NULL,
                       `is_editable` tinyint(1) NOT NULL,
-                      `content_type_id` int(11) NOT NULL,
+                      `content_block` text NOT NULL,
                       `emplacement_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -68,7 +68,7 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `config` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -95,7 +95,7 @@
                       `content_id` int(11) NOT NULL,
                       `tag_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `content_type` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -109,7 +109,7 @@
                       `name` varchar(45) NOT NULL,
                       `nb_column` int(11) DEFAULT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `field` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -127,7 +127,7 @@
                       `content_body` text NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
                     'CREATE TABLE IF NOT EXISTS `field_caption` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -143,15 +143,6 @@
                       `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
                       `category_id` int(11) NOT NULL,
-                      `content_type_name` varchar(100) NOT NULL,
-                      PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
-                    
-                    'CREATE TABLE IF NOT EXISTS `field_contenu` (
-                      `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `field_id` int(11) NOT NULL,
-                      `content_id` int(11) NOT NULL,
-                      `content_contenu` text NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -183,11 +174,11 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=\'Image slider\' AUTO_INCREMENT=1',
                     
-                    'CREATE TABLE IF NOT EXISTS `field_prix` (
+                    'CREATE TABLE IF NOT EXISTS `field_price` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
-                      `content_prix` decimal(10,2) NOT NULL,
+                      `content_price` decimal(10,2) NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -240,7 +231,7 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(255) NOT NULL,
                       PRIMARY KEY (`id`)
-                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4',
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
 
                     'CREATE TABLE IF NOT EXISTS `user` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -268,7 +259,7 @@
                     
                     
                     
-                    'INSERT INTO `block` (`id`, `name`, `is_active`, `is_editable`, `content_blok`, `emplacement_id`) VALUES
+                    'INSERT INTO `block` (`id`, `name`, `is_active`, `is_editable`, `content_block`, `emplacement_id`) VALUES
                     (1, \'block_logo\', 1, 0, \'\', 4),
                     (2, \'block_connect\', 1, 0, \'\', 1),
                     (3, \'block_cart\', 1, 0, \'\', 2),
@@ -317,7 +308,7 @@
 
                     'INSERT INTO `field` (`id`, `label`, `type`, `size_min`, `size_max`) VALUES
                     (1, \'Titre\', \'input_text\', 10, 200),
-                    (2, \'Contenu\', \'textarea\', 0, NULL),
+                    (2, \'Body\', \'textarea\', 0, NULL),
                     (3, \'Description\', \'textarea\', 0, NULL),
                     (4, \'Catégorie\', \'select\', 0, NULL),
                     (5, \'Prix\', \'input_decimal\', 3, NULL),

@@ -35,7 +35,8 @@
         (!empty($_POST['sitename'])) ? $sitename = $_POST['sitename'] : $errors .= '<p>Veuillez renseigner le nom du site</p>';
         (!empty($_POST['slogan'])) ? $slogan = $_POST['slogan'] : $slogan = '';
         (!empty($_POST['copyright'])) ? $copyright = $_POST['copyright'] : $errors .= '<p>Veuillez renseigner le copyright</p>';
-        (!empty($_POST['user'])) ? $user = $_POST['user'] : $errors .= '<p>Veuillez renseigner l\'utilisateur</p>';
+        (!empty($_POST['login'])) ? $login = $_POST['login'] : $errors .= '<p>Veuillez renseigner le login</p>';
+        (!empty($_POST['email'])) ? $email = $_POST['email'] : $errors .= '<p>Veuillez renseigner l\'email</p>';
         (!empty($_POST['mdp'])) ? $mdp = sha1($_POST['mdp']) : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
         
         $logo = '';
@@ -57,8 +58,9 @@
                 $config->bindValue(':is_maintenance', 0);
                 $config->execute();
                 
-                $root = $db->prepare('INSERT INTO user (login, password) VALUES (:login, :password)');
-                $root->bindParam(':login', $user);
+                $root = $db->prepare('INSERT INTO user (login, email, password) VALUES (:login, :email, :password)');
+                $root->bindParam(':login', $login);
+                $root->bindParam(':email', $email);
                 $root->bindParam(':password', $mdp);
                 $root->execute();
                 
@@ -123,8 +125,13 @@
                 <p><em>Compte administrateur pour la gestion du site</em></p>
                 
                 <div class="form-group">
-                    <label for="user" class="col-sm-4 control-label">Login *</label>
-                    <div class="col-sm-8"><input type="text" class="form-control" name="user"></div>
+                    <label for="login" class="col-sm-4 control-label">Pseudonyme *</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="login"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="col-sm-4 control-label">Email *</label>
+                    <div class="col-sm-8"><input type="text" class="form-control" name="email"></div>
                 </div>
                 
                 <div class="form-group">
