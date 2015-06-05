@@ -12,7 +12,7 @@ class Block {
 	}
 	
 	public function getList() {
-		return 'block';
+		return $this->blockModel->getList();
 	}
 
 }	

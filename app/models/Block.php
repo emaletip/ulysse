@@ -9,6 +9,19 @@ class Block {
 	private $is_active;
 	private $is_editable;
 	private $content_block;
+	private $pdo; 
+	
+	public function __construct() {
+		$this->pdo = new \config\database();
+	}
+	
+	public function getPdo() {
+		return $this->pdo;	
+	}
+	
+	public function getList() {
+		return $this->pdo->query('SELECT * FROM block');
+	}	
  
  	public function getId() {
 		return $this->id;
