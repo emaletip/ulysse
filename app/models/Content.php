@@ -25,7 +25,7 @@ class Content {
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
-        WHERE c.`content_type_name` = \'product\' WHERE c.id = '.$id.'';
+        WHERE c.`content_type_name` = \'product\' AND c.id = '.$id.'';
         $results = $this->pdo->query($query);
         return $results;  
     }
