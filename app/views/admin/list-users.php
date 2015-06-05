@@ -22,17 +22,23 @@
 						<tbody>
 							<tr>
 								<th scope="row">1</th>
-								<td>Jean Aimarre</td>
+								<td>Serge le Lapin</td>
 								<td>42 rue du Pangolin</td>
 								<td>75004</td>
 								<td>Paris</td>
+								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-times"></span></a></td>
 							</tr>
 							<tr class="success">
-								<th scope="row"></th>
+								<th scope="row">2</th>
 								<td>Jessica Rembart</td>
 								<td>69 rue de la Margoulette</td>
 								<td>74003</td>
 								<td>Paris</td>
+								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-times"></span></a></td>
 							</tr>
 							<tr>
 								<th scope="row"></th>
@@ -40,6 +46,9 @@
 								<td>113 rue du Zouk</td>
 								<td>74012</td>
 								<td>Paris</td>
+								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-times"></span></a></td>
 							</tr>
 							<tr>
 								<th scope="row"></th>
@@ -47,6 +56,9 @@
 								<td>444 rue de la Truite</td>
 								<td>74001==11</td>
 								<td>Paris</td>
+								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-times"></span></a></td>
 							</tr>
 							<tr>
 								<th scope="row"></th>
@@ -54,6 +66,9 @@
 								<td>15 rue du Péteux</td>
 								<td>74001</td>
 								<td>Paris</td>
+								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
+								<td><a href="#"><span class="fa fa-times"></span></a></td>
 							</tr>
 						</tbody>
 					</table>
