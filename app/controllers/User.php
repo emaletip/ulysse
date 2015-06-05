@@ -34,4 +34,10 @@ class User {
 			return false;
 		}
 	}
+
+	public function getUser_list() {
+		die("lol");
+		// D'abords on crée le modèle^d'un utilisateur
+		// Puis on récupète les utilisateur avec le modèle listUser comme fonction
+	}
 }
