@@ -242,7 +242,7 @@
                       `first_name` varchar(100) NOT NULL,
                       `address1` varchar(255) NOT NULL,
                       `address2` varchar(255) NOT NULL,
-                      `postal_code` smallint(6) NOT NULL,
+                      `postal_code` int(11) NOT NULL,
                       `city` varchar(100) NOT NULL,
                       `country` varchar(100) NOT NULL,
                       `path` varchar(255) NOT NULL,
