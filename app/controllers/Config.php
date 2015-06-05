@@ -17,11 +17,10 @@ class Config {
 
 	public function postConfig_update() {
 		
-/*
-		$file = handleFile($_FILES['logo'], 'public/img/Config');
-		var_dump($file);
+		$file = handleFile($_FILES['logo'], 'Config');
+		//var_dump($file);
 		die;
-*/
+	
 		$this->configModel->updateConfig($_POST);
 		
 		$_SESSION['flash']['config']['key'] = 'success';

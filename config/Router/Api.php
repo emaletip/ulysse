@@ -117,6 +117,7 @@ class Api {
 					$controllerObjectName = $route['path'].'\controllers\\'.$controllerName;
 					
 					$controllerView = $route['view'];
+					
 					$$controllerName = new $controllerObjectName();
 					$$controllerActionResultName = $$controllerName->$controllerActionName();
 					
@@ -129,7 +130,7 @@ class Api {
 				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
 					$route = $_SESSION['routes'][$key];
-					echo 'id: '.$id.'<br>';
+
 					$controllerName = $route['controller'];
 					$controllerActionResultName = $route['controller'].'s';
 					$controllerActionName = $route['type'].$route['action'];
@@ -137,7 +138,7 @@ class Api {
 					$controllerView = $route['view'];
 	
 					$$controllerName = new $controllerObjectName();
-					$$controllerActionResultName = $$controllerName->$controllerActionName();
+					$$controllerActionResultName = $$controllerName->$controllerActionName($id);
 					
 					require_once FRONT_VIEWS_PATH . $controllerName . DS . $controllerView.'.phtml';
 

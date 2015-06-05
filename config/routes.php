@@ -45,6 +45,15 @@ $routes['dashboard/content'] = array(
 					  'view' => 'list',
 				   );			   
 				   
+$routes['dashboard/content/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Content',
+					  'view' => 'view',
+				   );	
+
 /* exemple route post			   
 $routes['add'] = array(
 					  'path' => 'app',
