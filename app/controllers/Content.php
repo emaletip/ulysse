@@ -11,11 +11,11 @@ class Content {
 		return $this;
 	}
 
-	public function getContent($id) {
-		return $this->contentModel->getContent($id);
+	public function getProduct($id) {
+		return $this->contentModel->getProduct($id);
 	}
 
-	public function getList() {
-        return $this->contentModel->getList();
+	public function getProductList() {
+        return $this->contentModel->getProductList();
     }
 }	

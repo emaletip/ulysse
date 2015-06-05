@@ -10,7 +10,7 @@ class Content {
 	private $content_type_name;
 	private $created_user;
     
-    public function getList(){
+    public function getProductList(){
         $query = 'SELECT c.*, ft.*, fp.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
@@ -20,7 +20,7 @@ class Content {
         return $results;
     }
     
-    public function getContent($id){
+    public function getProduct($id){
         $query = 'SELECT c.*, ft.*, fp.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id

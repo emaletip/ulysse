@@ -41,7 +41,7 @@ $routes['dashboard/content'] = array(
 					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'Content',
-					  'action' => 'List',
+					  'action' => 'ProductList',
 					  'view' => 'list',
 				   );			   
 				   
@@ -50,7 +50,7 @@ $routes['dashboard/content/([0-9]+)'] = array(
 					  'id' => true,
 					  'type' => 'get',
 					  'controller' => 'Content',
-					  'action' => 'Content',
+					  'action' => 'Product',
 					  'view' => 'view',
 				   );	
 
