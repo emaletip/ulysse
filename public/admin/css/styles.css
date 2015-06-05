@@ -59,6 +59,23 @@
 /************************/
 /*		LIST USER		*/
 /************************/
+.legend .legend-text {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 20px;
+	vertical-align: sub;
+}
+.legend .badge {
+	border : 1px solid #ddd;
+}
+.legend .badge-super-admin {
+	background-color: #dff0d8;
+	color: #dff0d8;
+}
+.legend .badge-admin {
+	background-color: #d9edf7;
+	color: #d9edf7;
+}
 .list-user .fa {
 	font-size: 25px;
 }
