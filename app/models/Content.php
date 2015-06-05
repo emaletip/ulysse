@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class User {
+class Content {
 
 	private $id;
 	private $created_date;

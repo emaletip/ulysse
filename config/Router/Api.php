@@ -115,8 +115,8 @@ class Api {
 					$controllerActionResultName = $route['controller'].'s';
 					$controllerActionName = $route['type'].$route['action'];
 					$controllerObjectName = $route['path'].'\controllers\\'.$controllerName;
+					
 					$controllerView = $route['view'];
-	
 					$$controllerName = new $controllerObjectName();
 					$$controllerActionResultName = $$controllerName->$controllerActionName();
 					
