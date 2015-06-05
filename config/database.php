@@ -45,7 +45,11 @@ class database {
     {   
     	if (empty($datas)) {    	
 			$req = $this->pdo->query($string);
+			if ($req) {	
 			$result = $req->fetchAll(\PDO::FETCH_OBJ);
+			} else {
+				$result = array();
+			}
     	} else {
     		$req = $this->pdo->prepare($string);
 			foreach($datas as $k => $v) {
