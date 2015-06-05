@@ -4,6 +4,7 @@ namespace app\models;
 
 class Config {
 
+	private $pdo; 
 	private $id;
 	private $sitename;
 	private $slogan;
@@ -14,12 +15,21 @@ class Config {
 	private $updated_date;
 	
 	public function __construct() {
-		$db = new \config\database();
-		$configdb = $db->pdo->query('SELECT * FROM config');
-		foreach( $configdb->fetch(\PDO::FETCH_OBJ) as $k => $v) {
+		$this->pdo = new \config\database();
+	}
+	
+	public function getPdo() {
+		return $this->pdo;	
+	}
+	
+	
+	public function getConfig() {
+		$configdb = $this->pdo->query('SELECT * FROM config');
+		foreach( current($configdb) as $k => $v) {
 			$key = 'set'.ucfirst($k);
 			$this->$key($v);
 		}
+		return $this;
 	}
 	
 	public function setId($id) {
