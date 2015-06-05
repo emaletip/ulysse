@@ -31,12 +31,9 @@ function redirect($path) {
 }
 
 function handleFile($file, $path) {
-	var_dump(__DIR__);
-	$path = is_dir('/public/img');
+	$path = __DIR__.'/../public/img'.$path;
+    var_dump($path);
     if (!empty($file) && $file["name"] != '') {
-    	var_dump($path);
-    	mkdir($path);
-        var_dump(is_dir($path));die;
         if (!is_dir($path)) {
             if (!mkdir($path, 0755)) {
                 exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');

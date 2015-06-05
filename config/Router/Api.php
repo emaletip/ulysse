@@ -117,6 +117,7 @@ class Api {
 					$controllerObjectName = $route['path'].'\controllers\\'.$controllerName;
 					
 					$controllerView = $route['view'];
+					
 					$$controllerName = new $controllerObjectName();
 					$$controllerActionResultName = $$controllerName->$controllerActionName();
 					
@@ -137,7 +138,7 @@ class Api {
 					$controllerView = $route['view'];
 	
 					$$controllerName = new $controllerObjectName();
-					$$controllerActionResultName = $$controllerName->$controllerActionName();
+					$$controllerActionResultName = $$controllerName->$controllerActionName($id);
 					
 					require_once FRONT_VIEWS_PATH . $controllerName . DS . $controllerView.'.phtml';
 
