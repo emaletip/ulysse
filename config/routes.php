@@ -20,7 +20,14 @@ $routes['dashboard/config'] = array(
 					  'view' => 'edit',
 				   );	
 				   
-				   
+$routes['dashboard/config/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Config',
+					  'action' => 'Config_update',
+					  'view' => 'edit',
+				   );			   
 				   
 /* exemple route post			   
 $routes['add'] = array(

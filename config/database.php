@@ -10,6 +10,7 @@ class database {
 	public function __construct() {
 		global $ini_array;
 		$this->dbConnect($ini_array['dsn'],$ini_array['user'],$ini_array['password']);
+		return $this;
 	}
 	
 	private function dbConnect($dsn, $user, $pass) {
@@ -39,4 +40,52 @@ class database {
 		$this->install = $install;
 		return $this;
 	}
+		
+    public function query($string, $datas = array())
+    {   
+    	if (empty($datas)) {    	
+			$req = $this->pdo->query($string);
+			$result = $req->fetchAll(\PDO::FETCH_OBJ);
+    	} else {
+    		$req = $this->pdo->prepare($string);
+			foreach($datas as $k => $v) {
+	        	$req->bindValue($k, $v);
+	        }          
+	        $req->execute();
+			$result = $req->fetchAll(\PDO::FETCH_OBJ);
+    	}
+        return($result);
+    }
+    
+    public function update($string, $datas = array())
+    {
+        $req = $this->pdo->prepare($string);
+        if (!empty($datas)) {
+	        foreach($datas as $k => $v) {
+	        	$req->bindValue($k, $v);
+	        }
+        }           		
+        $result = $req->execute();
+		
+        return($result);
+    }
+    
+    public function insert($string, $datas = array())
+    {
+        $req = $this->pdo->prepare($string);
+		if (!empty($datas)) {
+	        foreach($datas as $k => $v) {
+	        	$req->bindValue($k, $v);
+	        }
+        }           		
+        $result = $req->execute();
+        return($result);
+    }
+    
+    public function lastId()
+    {
+        return $this->pdo->lastInsertId();
+    }
+	
+	
 }

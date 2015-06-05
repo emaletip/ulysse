@@ -4,6 +4,8 @@ namespace app\models;
 
 class User {
 
+	private $pdo;
+
 	private $id;
 	private $email;
 	private $password;
@@ -17,17 +19,21 @@ class User {
 	private $path;
 	private $created_date;
 	
+	public function __construct() {
+		$this->pdo = new \config\database();
+	}
+	
+	public function getPdo() {
+		return $this->pdo;	
+	}
+	
 	public function connectUser($email, $password) {
 		$password = sha1($password);
-		$db = new \config\database();
-		$dbuser = $db->pdo->prepare('SELECT * FROM user WHERE password=:password AND email=:email');
-                
-        $dbuser->bindParam(':email', $email);
-        $dbuser->bindParam(':password', $password);
 		
-		$dbuser->execute();
-		$result = $dbuser->fetch();
-		return $result;
+        $datas = [':email' => $email, ':password' => $password ];
+		$dbuser = $this->pdo->query('SELECT * FROM user WHERE password=:password AND email=:email', $datas);
+		$user = current($dbuser);
+		return $user;
 	}
 	
 	public function getId() {

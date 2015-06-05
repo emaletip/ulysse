@@ -38,16 +38,17 @@ if ($fichier_ini == FALSE) {
 	define('BACK_IMG_PATH', PUBLIC_PATH . 'admin/img/' ); // Pauline (accès aux fichiers publiques d'admin)
 	define('BACK_JS_PATH', PUBLIC_PATH . 'admin/js/' ); // Pauline (accès aux fichiers publiques d'admin)
 
+	session_start();
 	require_once('functions.php');
 	
 	set_include_path(implode( PATH_SEPARATOR, array(FRONT_VIEWS_PATH, ROOT_PATH, PUBLIC_PATH, FRONT_CSS_PATH, FRONT_IMG_PATH, FRONT_JS_PATH,BACK_VIEWS_PATH,BACK_CSS_PATH,BACK_IMG_PATH,BACK_JS_PATH)));
 	
+
 	function myLoader($file){
 	    require_once str_replace('\\',DS,$file) . '.php' ;
 	}
 	spl_autoload_register('myLoader');
 
-	session_start();
 
 	require_once(ROOT_PATH.'/router/Api.php');
     require_once(ROOT_PATH.'/database.php');
