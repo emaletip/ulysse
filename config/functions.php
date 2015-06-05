@@ -30,6 +30,33 @@ function redirect($path) {
 	header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$path);
 }
 
-
-//enregistre image
+function handleFile($file, $path) {
+	var_dump(__DIR__);
+	$path = is_dir('/public/img');
+    if (!empty($file) && $file["name"] != '') {
+    	var_dump($path);
+    	mkdir($path);
+        var_dump(is_dir($path));die;
+        if (!is_dir($path)) {
+            if (!mkdir($path, 0755)) {
+                exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
+            }
+        } else {
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $name = md5(uniqid()) . '.' . $extension;
+            $image_path = str_replace('../', '', $path) . '/' . $name;
+            // Si c'est OK, on teste l'upload
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $path . '/' . $name)) {
+                $message = 'Upload réussi !';
+                return $image_path;
+            } else {
+                // Sinon on affiche une erreur systeme
+                $message = 'Problème lors de l\'upload !';
+                return $message;
+            }
+        }
+    } else {
+        return false;
+    }
+}
 

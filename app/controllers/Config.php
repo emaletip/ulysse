@@ -4,19 +4,25 @@ namespace app\controllers;
 
 class Config {
 
-	private $config;
+	private $configModel;
 
 	public function __construct() {
-		$this->config = new \app\models\Config();
+		$this->configModel = new \app\models\Config();
+		return $this;
 	}
 
 	public function getConfig() {
-		return $this->config->getConfig();
+		return $this->configModel->getConfig();
 	}
 
 	public function postConfig_update() {
 		
-		$this->config->updateConfig($_POST);
+/*
+		$file = handleFile($_FILES['logo'], 'public/img/Config');
+		var_dump($file);
+		die;
+*/
+		$this->configModel->updateConfig($_POST);
 		
 		$_SESSION['flash']['config']['key'] = 'success';
 		$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
