@@ -130,7 +130,7 @@ class Api {
 				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
 					$route = $_SESSION['routes'][$key];
-					echo 'id: '.$id.'<br>';
+
 					$controllerName = $route['controller'];
 					$controllerActionResultName = $route['controller'].'s';
 					$controllerActionName = $route['type'].$route['action'];
