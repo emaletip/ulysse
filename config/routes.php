@@ -53,6 +53,14 @@ $routes['dashboard/content/([0-9]+)'] = array(
 					  'action' => 'Product',
 					  'view' => 'view',
 				   );	
+$routes['dashboard/user/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User',
+					  'view' => 'view',
+				   );	
 
 /* exemple route post			   
 $routes['add'] = array(

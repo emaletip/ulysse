@@ -31,4 +31,9 @@ class User {
 		$users = $this->userModel->listUser();
 		return $users;
 	}
+
+	public function getUser($id) {
+		$user = $this->userModel->getUser($id);
+		return $user;
+	}
 }

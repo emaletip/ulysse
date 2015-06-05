@@ -40,6 +40,11 @@ class User {
 		$users = $this->pdo->query('SELECT * FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id ORDER BY ur.role_id ASC');
 		return $users;
 	}
+
+	public function getUser($id) {
+		$user = $this->pdo->query('SELECT * FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id WHERE u.id = ' . $id);
+		return $user;
+	}
 	
 	public function getId() {
 		return $this->id;
