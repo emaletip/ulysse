@@ -22,6 +22,16 @@ class Config {
 		return $this->pdo;	
 	}
 	
+	public function updateConfig($post) {
+		$sql ='UPDATE config SET ';
+		foreach($post as $k => $v) {
+			$sqldatas[] = $k.'=:'.$k;
+			$datas[':'.$k] = $v;
+		}
+		$sql .= implode(', ',$sqldatas);
+		$sql .= ' WHERE id=:id';
+		$dbuser = $this->getPdo()->update($sql, $datas);
+	}
 	
 	public function getConfig() {
 		$configdb = $this->pdo->query('SELECT * FROM config');
