@@ -23,61 +23,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Serge le Lapin</td>
-								<td>42 rue du Pangolin</td>
-								<td>75004</td>
-								<td>Paris</td>
-								<td>01/01/2015</td>
-								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-times"></span></a></td>
-							</tr>
-							<tr class="success">
-								<th scope="row">2</th>
-								<td>Jessica Rembart</td>
-								<td>69 rue de la Margoulette</td>
-								<td>74003</td>
-								<td>Paris</td>
-								<td>01/01/2015</td>
-								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-times"></span></a></td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Rolland Foiray</td>
-								<td>113 rue du Zouk</td>
-								<td>74012</td>
-								<td>Paris</td>
-								<td>01/01/2015</td>
-								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-times"></span></a></td>
-							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>Anna-Lize Durine</td>
-								<td>444 rue de la Truite</td>
-								<td>740011</td>
-								<td>Paris</td>
-								<td>01/01/2015</td>
-								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-times"></span></a></td>
-							</tr>
-							<tr>
-								<th scope="row">5</th>
-								<td>Terrence et Philippe</td>
-								<td>15 rue du Péteux</td>
-								<td>74001</td>
-								<td>Paris</td>
-								<td>01/01/2015</td>
-								<td><a href="#"><span class="fa fa-plus-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-pencil-square-o"></span></a></td>
-								<td><a href="#"><span class="fa fa-times"></span></a></td>
-							</tr>
+							<?php
+								foreach ($Users as $k => $v) {
+									if($v->role_id == 1) {
+										$row = "<tr class='success'>";
+									} else {
+										$row = "<tr>";
+									}
+									$row .= "<th>" . $v->id . "</th>";
+									$row .= "<td>" . $v->first_name . " " . $v->last_name."</td>";
+									$row .= "<td>" . $v->address1 . "</td>";
+									$row .= "<td>" . $v->postal_code . "</td>";
+									$row .= "<td>" . $v->city . "</td>";
+									$row .= "<td>".$v->created_date."</td>";
+									$row .= "<td><a href='#'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td><a href='#'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td><a href='#'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "</tr>";
+									echo $row;
+								}
+							?>
 						</tbody>
 					</table>
 				</div>

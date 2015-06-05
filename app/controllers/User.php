@@ -4,6 +4,13 @@ namespace app\controllers;
 
 class User {
 
+	private $userModel;
+
+	public function __construct() {
+		$this->userModel = new \app\models\User();
+		return $this->userModel;
+	}
+
 	public function postConnect() {
 		if(isset($_SESSION['user'])) {
 			unset($_SESSION['user']);
@@ -11,8 +18,7 @@ class User {
 		
 		$username = $_POST['user']['email'];
 		$password = $_POST['user']['password'];
-		$userModel = new \app\models\User();
-		$user = $userModel->connectUser($username, $password);
+		$user = $this->userModel->connectUser($username, $password);
 		if($user) {
 			$_SESSION['user'] = $user;
 			return true;
@@ -22,8 +28,7 @@ class User {
 	}
 
 	public function getUser_list() {
-		$userModel = new \app\models\User();
-		$users = $userModel->listUser();
+		$users = $this->userModel->listUser();
 		return $users;
 	}
 }
