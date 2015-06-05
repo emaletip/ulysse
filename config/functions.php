@@ -23,3 +23,6 @@ function is_admin() {
 		// verif si admin sinon jarté
 	}
 }
+
+//enregistre image
+

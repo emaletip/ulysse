@@ -1,4 +1,5 @@
-<?php $cms = new app\models\Config(); ?>
+<?php $cms = new app\models\Config();
+$cms = $cms->getConfig(); ?>
 <head>
 	<meta charset="utf-8">
 	<title> <?= $cms->getSitename(); ?> :: Dashboard </title>
