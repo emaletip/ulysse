@@ -19,7 +19,14 @@ $routes['dashboard/config'] = array(
 					  'action' => 'Config',
 					  'view' => 'edit',
 				   );	
-				   
+$routes['dashboard/user/list'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User_list',
+					  'view' => 'list',
+				   );				   
 $routes['dashboard/config/update'] = array(
 					  'path' => 'app',
 					  'id' => false,

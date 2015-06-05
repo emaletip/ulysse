@@ -22,8 +22,8 @@ class User {
 	}
 
 	public function getUser_list() {
-		die("lol");
-		// D'abords on crée le modèle^d'un utilisateur
-		// Puis on récupète les utilisateur avec le modèle listUser comme fonction
+		$userModel = new \app\models\User();
+		$users = $userModel->listUser();
+		return $users;
 	}
 }

@@ -56,6 +56,31 @@
 	text-align: center;
 }
 
+/************************/
+/*		LIST USER		*/
+/************************/
+.list-user .fa {
+	font-size: 25px;
+}
+.list-user .fa-plus-square-o {
+	color: #337ab7;
+}
+.list-user .fa-pencil-square-o {
+	color: #00af00;
+}
+.list-user .fa-times {
+	color: #cf1010;
+}
+.list-user .fa-plus-square-o:hover {
+	color: #135a97;
+}
+.list-user .fa-pencil-square-o:hover {
+	color: #108f10;
+}
+.list-user .fa-times:hover {
+	color: #af0000;
+}
+
 /********************/
 /*		FOOTER		*/
 /********************/

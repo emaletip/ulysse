@@ -35,6 +35,11 @@ class User {
 		$user = current($dbuser);
 		return $user;
 	}
+
+	public function listUser() {
+		$users = $this->pdo->query('SELECT * FROM user');
+		return $users;
+	}
 	
 	public function getId() {
 		return $this->id;
