@@ -101,18 +101,9 @@
 /****************************/
 /*		PROFILE USER		*/
 /****************************/
-.user-profile {
-	margin-top: 0;
+.profile-user .profile-cover {
+	background: rgba(0, 0, 0, 0) url("../img/abstract-q-c-1800-800-1.jpg") repeat scroll 0 0 / cover;
 }
-.user-profile .panel-heading {
-	height: 115px;
-}
-.user-profile .panel-heading img {
-	display: inline-block;
-	height: 70px;
-	margin-right: 20px;
-}
-
 /********************/
 /*		FOOTER		*/
 /********************/
