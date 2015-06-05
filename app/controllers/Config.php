@@ -23,9 +23,11 @@ class Config {
 		$sql .= implode(', ',$sqldatas);
 		$sql .= ' WHERE id=:id';
 		$dbuser = $this->config->getPdo()->update($sql, $datas);
-		$_SESSION['flash']['success'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+			$_SESSION['flash']['config']['key'] = 'success';
+			$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+			$_SESSION['flash']['config']['time'] = time() + 2;
 		
-		return $this->config->getConfig();
+		redirect('dashboard/config');
 	}
 	
 }	

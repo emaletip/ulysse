@@ -10,7 +10,9 @@ function is_loged(){
 	
 	} else {
 		if(!isset($_SESSION['loged'])) {
-			$_SESSION['flash']['success'] = '<b>Félicitations ! </b> Vous êtes maintenant connecté(e).';
+			$_SESSION['flash']['login']['key'] = 'success';
+			$_SESSION['flash']['login']['msg'] = '<b>Félicitations ! </b> Vous êtes maintenant connecté(e).';
+			$_SESSION['flash']['login']['time'] = time() + 2;
 			$_SESSION['loged'] = true;
 		}
 		return true;
@@ -23,6 +25,11 @@ function is_admin() {
 		// verif si admin sinon jarté
 	}
 }
+
+function redirect($path) {
+	header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$path);
+}
+
 
 //enregistre image
 

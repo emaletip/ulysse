@@ -9,12 +9,15 @@
 </div>
 <?php 
 	if (isset($_SESSION['flash'])) {
-		foreach($_SESSION['flash'] as $key => $flash) { ?>
-			<div role="alert" class="alert alert-<?= $key ?>">
-				<?= $flash ?>
+		foreach($_SESSION['flash'] as $msg) { 
+		?>
+			<div role="alert" class="alert alert-<?= $msg['key'] ?>">
+				<?= $msg['msg'] ?>
 			</div>
 	<?php
-		unset($_SESSION['flash'][$key]);
+			if($msg['time'] <= time()) {
+				unset($_SESSION['flash']);
+			}
 		}
 	}	
 ?>

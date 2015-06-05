@@ -45,7 +45,6 @@ class database {
     {   
     	if (empty($datas)) {    	
 			$req = $this->pdo->query($string);
-			var_dump($req);
 			if ($req) {	
 			$result = $req->fetchAll(\PDO::FETCH_OBJ);
 			} else {
