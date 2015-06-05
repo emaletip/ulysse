@@ -20,6 +20,16 @@ class Content {
         return $results;
     }
     
+    public function getContent($id){
+        $query = 'SELECT c.*, ft.*, fp.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_price` fp ON c.id = fp.content_id
+        WHERE c.`content_type_name` = \'product\' WHERE c.id = '.$id.'';
+        $results = $this->pdo->query($query);
+        return $results;  
+    }
+    
     public function __construct() {
 		$this->pdo = new \config\database();
 	}

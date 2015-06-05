@@ -12,7 +12,7 @@ class Content {
 	}
 
 	public function getContent($id) {
-		//return $this->contentModel->getConfig();
+		return $this->contentModel->getContent($id);
 	}
 
 	public function getList() {
