@@ -45,6 +45,18 @@ class User {
 		$user = $this->pdo->query('SELECT * FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id WHERE u.id = ' . $id);
 		return $user;
 	}
+
+	/*public function addUser() {
+		$result = $this->pdo->insert(
+			'INSERT INTO user (email, loginn password, last_name, first_name, address1, address2, postal_code, city, country)
+			VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)'
+		);
+		if($result) {
+			return "L'utilisateur a bien été enregistré.";
+		} else {
+			return "Une erreur est survenue.";
+		}
+	}*/
 	
 	public function getId() {
 		return $this->id;
