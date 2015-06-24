@@ -46,16 +46,32 @@ class User {
 		return $user;
 	}
 
-	/*public function addUser() {
+	/*public function addUser(array $data) {
 		$result = $this->pdo->insert(
-			'INSERT INTO user (email, loginn password, last_name, first_name, address1, address2, postal_code, city, country)
-			VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)'
+			'INSERT INTO user (email, login password, last_name, first_name, address1, address2, postal_code, city, country)
+			VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)',
+			array(	
+				':email' => $data['email'],
+				':login' => $data['login'],
+				':password' => $data['password'],
+				':last_name' => $data['last_name'],
+				':first_name' => $data['first_name'],
+				':address1' => $data['address1'],
+				':address2' => $data['address2'],
+				':postal_code' => $data['postal_code'],
+				':city' => $data['city'],
+				':country' => $data['country']
+			)
 		);
 		if($result) {
-			return "L'utilisateur a bien été enregistré.";
+			return true;
 		} else {
-			return "Une erreur est survenue.";
+			return false;
 		}
+	}
+
+	public function deleteUser() {
+		$result = $this->pdo->query();
 	}*/
 	
 	public function getId() {

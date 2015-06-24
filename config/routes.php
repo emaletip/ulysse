@@ -34,7 +34,25 @@ $routes['dashboard/user/list'] = array(
 					  'controller' => 'User',
 					  'action' => 'User_list',
 					  'view' => 'list',
-				   );				   
+				   );	
+// Pauline
+/*$routes['dashboard/user/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User_form',
+					  'view' => 'edit',
+				   );
+$routes['dashboard/user/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'User',
+					  'action' => 'User_add',
+					  'view' => 'edit',
+				   );*/   
+// Fin Pauline
 
 $routes['dashboard/config/update'] = array(
 					  'path' => 'app',
@@ -44,6 +62,7 @@ $routes['dashboard/config/update'] = array(
 					  'action' => 'Config_update',
 					  'view' => 'edit',
 				   );
+
 $routes['dashboard/content'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -68,7 +87,15 @@ $routes['dashboard/user/([0-9]+)'] = array(
 					  'controller' => 'User',
 					  'action' => 'User',
 					  'view' => 'view',
-				   );	
+				   );
+$routes['dashboard/user/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User',
+					  'view' => 'edit',
+				   );		
 
 /* exemple route post			   
 $routes['add'] = array(
