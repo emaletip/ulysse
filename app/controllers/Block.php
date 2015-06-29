@@ -27,6 +27,7 @@ class Block {
 		if(!isset($_POST['is_active'])) {
 			$_POST['is_active'] = 0;
 		}
+
 		$this->blockModel->updateBlock($_POST);
 
 		$_SESSION['flash']['config']['key'] = 'success';

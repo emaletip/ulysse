@@ -151,6 +151,7 @@ $routes['dashboard/user/delete/([0-9]+)'] = array(
 				   );
 // Fin Pauline	
 
+
 /* exemple route post			   
 $routes['add'] = array(
 					  'path' => 'app',
