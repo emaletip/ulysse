@@ -71,22 +71,30 @@ $routes['dashboard/user/list'] = array(
 					  'view' => 'list',
 				   );	
 // Pauline
-/*$routes['dashboard/user/add'] = array(
+$routes['dashboard/user/add'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'User',
-					  'action' => 'User_form',
-					  'view' => 'edit',
+					  'action' => 'User_add',
+					  'view' => 'add',
 				   );
-$routes['dashboard/user/add'] = array(
+$routes['dashboard/user/insert'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'post',
 					  'controller' => 'User',
 					  'action' => 'User_add',
+					  'view' => 'add',
+				   ); 
+$routes['dashboard/user/update'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'User',
+					  'action' => 'User_update',
 					  'view' => 'edit',
-				   );*/   
+				   ); 
 // Fin Pauline
 
 $routes['dashboard/config/update'] = array(
@@ -123,6 +131,8 @@ $routes['dashboard/user/([0-9]+)'] = array(
 					  'action' => 'User',
 					  'view' => 'view',
 				   );
+
+// Pauline
 $routes['dashboard/user/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -130,7 +140,8 @@ $routes['dashboard/user/edit/([0-9]+)'] = array(
 					  'controller' => 'User',
 					  'action' => 'User',
 					  'view' => 'edit',
-				   );		
+				   );
+// Fin Pauline	
 
 /* exemple route post			   
 $routes['add'] = array(

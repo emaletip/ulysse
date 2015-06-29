@@ -37,18 +37,20 @@ class User {
 	}
 
 	public function listUser() {
-		$users = $this->pdo->query('SELECT * FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id ORDER BY ur.role_id ASC');
+		$users = $this->pdo->query('SELECT u.*, ur.role_id FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id ORDER BY ur.role_id ASC');
 		return $users;
 	}
 
 	public function getUser($id) {
-		$user = $this->pdo->query('SELECT * FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id WHERE u.id = ' . $id);
+		$user = $this->pdo->query('SELECT u.*, ur.role_id FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id WHERE u.id = ' . $id);
 		return $user;
 	}
 
-	/*public function addUser(array $data) {
+	public function addUser(array $data) {
+		// Ajout des données de la table USER
+		$data['password'] = sha1($data['password']);
 		$result = $this->pdo->insert(
-			'INSERT INTO user (email, login password, last_name, first_name, address1, address2, postal_code, city, country)
+			'INSERT INTO user (email, login, password, last_name, first_name, address1, address2, postal_code, city, country)
 			VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)',
 			array(	
 				':email' => $data['email'],
@@ -63,14 +65,50 @@ class User {
 				':country' => $data['country']
 			)
 		);
-		if($result) {
+
+		// Ajout des données de la table USER_ROLE pour définbir le role de l'utilisateur
+		$lastId = $this->pdo->lastId();
+		$result2 = $this->pdo->insert(
+			'INSERT INTO user_role (user_id, role_id)
+			VALUES (:user_id, :role_id)',
+			array(
+				':user_id' => $lastId,
+				':role_id' => 3
+			)
+		);
+
+		if($result && $result2) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function deleteUser() {
+	public function updateUser(array $data) {
+		$req = 'UPDATE user SET ';
+
+		foreach ($data as $k => $v) {
+			if ($v != '') {
+				if($k == 'password') {
+					$v = sha1($v);
+				}
+				$reqtemp[] = $k."= :".$k;
+				$datas[':'.$k] = $v;
+			} else {
+				unset($data[$k]);
+			}
+		}
+
+		$req .= implode(', ', $reqtemp);
+		$req .= ' WHERE id = :id';
+
+		$result = $this->pdo->update(
+			$req,
+			$datas
+		);
+	}
+
+	/*public function deleteUser() {
 		$result = $this->pdo->query();
 	}*/
 	

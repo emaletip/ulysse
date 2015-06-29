@@ -36,4 +36,29 @@ class User {
 		$user = $this->userModel->getUser($id);
 		return $user;
 	}
+
+	public function getUser_add() {
+	}
+
+	public function postUser_add() {
+		unset($_POST['submit']);
+
+		$test = $this->userModel->addUser($_POST);
+
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+		$_SESSION['flash']['user']['time'] = time() + 2;
+	
+		redirect('dashboard/user/list');
+	}
+
+	public function postUser_update() {
+		$this->userModel->updateUser($_POST);
+
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+		$_SESSION['flash']['user']['time'] = time() + 2;
+	
+		redirect('dashboard/user/'.$_POST['id']);
+	}
 }
