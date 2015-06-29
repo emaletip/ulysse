@@ -10,6 +10,7 @@ class Block {
 	private $is_editable;
 	private $content_block;
 	private $emplacement_id;
+	private $position;
 	private $pdo; 
 	
 	public function __construct() {
@@ -28,12 +29,18 @@ class Block {
 	public function updateBlock($post) {
 		$sql ='UPDATE block SET ';
 		foreach($post as $k => $v) {
-			$sqldatas[] = $k.'=:'.$k;
+			if($k != 'id'){
+				$sqldatas[] = $k.'=:'.$k;
+			}
 			$datas[':'.$k] = $v;
 		}
-		$sql .= implode(', ',$sqldatas);
-		$sql .= ' WHERE id=:id';
+		$sql .= implode(', ', $sqldatas);
+		$sql .= ' WHERE id=:id;';
+		
+		
 		$dbuser = $this->getPdo()->update($sql, $datas);
+		var_dump($sql,$datas,$dbuser);die;
+
 	}
 	
 	public function getList() {
@@ -41,7 +48,7 @@ class Block {
 	}
 		
 	public function getEmplacements() {
-		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id');
+		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id ORDER BY block.position');
 	}	
 	
 	public function getPdo() {
@@ -99,6 +106,15 @@ class Block {
 	
 	public function setEmplacement_id($emplacement_id) {
 		$this->emplacement_id = $emplacement_id;
+		return $this;
+	}
+	
+	public function getPosition() {
+		return $this->position;
+	}
+	
+	public function setPosition($position) {
+		$this->position = $position;
 		return $this;
 	}
 }	

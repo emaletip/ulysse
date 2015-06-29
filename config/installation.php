@@ -61,6 +61,7 @@
                       `is_editable` tinyint(1) NOT NULL,
                       `content_block` text NOT NULL,
                       `emplacement_id` int(11) NOT NULL,
+                      `position` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
