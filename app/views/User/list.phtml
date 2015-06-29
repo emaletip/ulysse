@@ -26,8 +26,10 @@
 								<th>Ville</th>
 								<th>Date de création</th>
 								<th></th>
-								<th></th>
-								<th></th>
+								<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
+									<th></th>
+									<th></th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -52,8 +54,10 @@
 									$row .= "<td>" . $v->city . "</td>";
 									$row .= "<td>".$v->created_date."</td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/user/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
-									$row .= "<td><a onclick='myFunction(".$v->id.")'><span class='fa fa-times'></span></a></td></tr>";
+									if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) {
+										$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/user/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+										$row .= "<td><a onclick='myFunction(".$v->id.")'><span class='fa fa-times'></span></a></td></tr>";
+									}
 									$row .= "</tr>";
 									echo $row;
 
