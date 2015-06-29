@@ -1,0 +1,76 @@
+<?php include_once("header.phtml"); ?>
+<?php include_once("breadcrumb.phtml"); ?>
+<?php
+	$u = $Users[0];
+?>
+<div id="main-wrapper">
+	<div class="panel-body">
+		<form action="/<?= PROJECT_DIRECTORY ?>dashboard/user/insert" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<!-- email -->
+			<div class="form-group">
+				<label for="email">E-mail</label>
+				<input type="text" id="email" name="email" class="form-control" placeholder="E-mail">
+			</div>
+			
+			<!-- login -->
+			<div class="form-group">
+				<label for="login">Login</label>
+				<input type="text" id="login" name="login" class="form-control" placeholder="Login">
+			</div>
+			
+			<!-- password -->
+			<div class="form-group">
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe">
+			</div>
+			
+			<!-- first-name -->
+			<div class="form-group">
+				<label for="first_name">Prénom</label>
+				<input type="text" id="first_name" name="first_name" class="form-control" placeholder="Prénom">
+			</div>
+			
+			<!-- last-name -->
+			<div class="form-group">
+				<label for="last_name">Nom</label>
+				<input type="text" id="last_name" name="last_name" class="form-control" placeholder="Nom">
+			</div>
+			
+			<!-- address-1 -->
+			<div class="form-group">
+				<label for="address1">Adresse</label>
+				<input type="text" id="address1" name="address1" class="form-control" placeholder="Adresse">
+			</div>
+			
+			<!-- address-2 -->
+			<div class="form-group">
+				<label for="address2">Complément</label>
+				<input type="text" id="address2" name="address2" class="form-control" placeholder="Complément de l'adresse">
+			</div>
+			
+			<!-- postal-code -->
+			<div class="form-group">
+				<label for="postal_code">Code postal</label>
+				<input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="Code postal">
+			</div>
+			
+			<!-- city -->
+			<div class="form-group">
+				<label for="city">Ville</label>
+				<input type="text" id="city" name="city" class="form-control" placeholder="Ville">
+			</div>
+			
+			<!-- country -->
+			<div class="form-group">
+				<label for="country">Pays</label>
+				<input type="text" id="country" name="country" class="form-control" placeholder="Pays">
+			</div>
+			
+			<!-- submit -->
+			<div class="form-group">
+				<input type="submit" id="submit" name="submit" class="form-control" value="Enregistrer">
+			</div>
+		</form>
+	</div>
+</div><!-- Main Wrapper -->
+<?php include_once("footer.phtml"); ?>

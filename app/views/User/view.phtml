@@ -24,6 +24,7 @@
 	                        	<?= $u->address1 . "<br>" . $u->postal_code . " " . $u->city . ", " . $u->country ?></p>
 	                        </li>
 	                        <li><p><i class="fa fa-envelope m-r-xs"></i><a href="mailto:<?= $u->email ?>"><?= $u->email ?></a></p></li>
+	                        <li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/edit/<?= $u->id ?>">Modifier cet utilisateur</a></li>
 	                    </ul>
 	                </div>
 	                <div class="col-md-6 m-t-lg">
