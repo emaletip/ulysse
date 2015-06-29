@@ -94,7 +94,7 @@ $routes['dashboard/user/update'] = array(
 					  'controller' => 'User',
 					  'action' => 'User_update',
 					  'view' => 'edit',
-				   ); 
+				   );
 // Fin Pauline
 
 $routes['dashboard/config/update'] = array(
@@ -140,6 +140,14 @@ $routes['dashboard/user/edit/([0-9]+)'] = array(
 					  'controller' => 'User',
 					  'action' => 'User',
 					  'view' => 'edit',
+				   );
+$routes['dashboard/user/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User_delete',
+					  'view' => 'list',
 				   );
 // Fin Pauline	
 

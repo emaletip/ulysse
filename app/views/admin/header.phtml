@@ -128,11 +128,11 @@
 							</li>-->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-									<span class="user-name">Serge<i class="fa fa-angle-down"></i></span>
+									<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><i class="fa fa-angle-down"></i></span>
 									<img class="img-circle avatar" src="<?= BACK_IMG_PATH . "lapin-metro.png" ?>" width="40" height="40" alt="">
 								</a>
 								<ul class="dropdown-menu dropdown-list" role="menu">
-									<li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
+									<li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>"><i class="fa fa-user"></i>Profile</a></li>
 									<li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendrier</a></li>
 									<li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Boîte de réception<span class="badge badge-success pull-right">4</span></a></li>
 									<li role="presentation" class="divider"></li>
@@ -159,12 +159,12 @@
 			<div class="page-sidebar-inner slimscroll">
 				<div class="sidebar-header">
 					<div class="sidebar-profile">
-						<a href="javascript:void(0);" id="profile-menu-link">
+						<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/user/<?= $_SESSION['user']->id ?>" id="profile-menu-link">
 							<div class="sidebar-profile-image">
 								<img src="<?= BACK_IMG_PATH . "lapin-metro.png" ?>" class="img-circle img-responsive" alt="">
 							</div>
 							<div class="sidebar-profile-details">
-								<span>Serge le Lapin<br><small>50 Nuances de Grey</small></span>
+								<span><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><br><small><?= $_SESSION['user']->login ?></small></span>
 							</div>
 						</a>
 					</div>
@@ -174,23 +174,27 @@
 					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-user"></span><p>Utilisateurs</p><span class="arrow"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/list">Les utilisateurs</a></li>
-							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/add">Ajouter un utilisateur</a></li>
+							<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
+								<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/add">Ajouter un utilisateur</a></li>
+							<?php } ?>
 						</ul>
 					</li>
-					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Contenus</p><span class="arrow"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Les contenus</a></li>
-							<li><a href="#">Ajouter un contenu</a></li>
-							<li><a href="#">Les types de contenu</a></li>
-							<li><a href="#">Ajouter un type de contenu</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon fa fa-server"></span><p>Blocks</p><span class="arrow"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/block">Les blocks</a></li>
-							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/emplacement">Emplacements des blocks</a></li>
-						</ul>
-					</li>
+					<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
+						<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Contenus</p><span class="arrow"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Les contenus</a></li>
+								<li><a href="#">Ajouter un contenu</a></li>
+								<li><a href="#">Les types de contenu</a></li>
+								<li><a href="#">Ajouter un type de contenu</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon fa fa-server"></span><p>Blocks</p><span class="arrow"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/block">Les blocks</a></li>
+								<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/emplacement">Emplacements des blocks</a></li>
+							</ul>
+						</li>
+					<?php } ?>
 				</ul>
 			</div><!-- Page Sidebar Inner -->
 		</div><!-- Page Sidebar -->

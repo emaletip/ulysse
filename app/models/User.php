@@ -31,7 +31,7 @@ class User {
 		$password = sha1($password);
 		
         $datas = [':email' => $email, ':password' => $password ];
-		$dbuser = $this->pdo->query('SELECT * FROM user WHERE password=:password AND email=:email', $datas);
+		$dbuser = $this->pdo->query('SELECT u.*, ur.role_id FROM user AS u LEFT JOIN user_role AS ur ON u.id = ur.user_id WHERE u.password=:password AND u.email=:email', $datas);
 		$user = current($dbuser);
 		return $user;
 	}
@@ -108,9 +108,9 @@ class User {
 		);
 	}
 
-	/*public function deleteUser() {
-		$result = $this->pdo->query();
-	}*/
+	public function deleteUser($id) {
+		$result = $this->pdo->delete('user', $id);
+	}
 	
 	public function getId() {
 		return $this->id;

@@ -88,7 +88,7 @@ class database {
     
     public function delete($table, $id)
     {
-        $req = $this->pdo->prepare('SELECT * FROM '.$table.' WHERE id='.$id);          		
+        $req = $this->pdo->prepare('DELETE FROM '.$table.' WHERE id='.$id);          		
         $result = $req->execute();
         return($result);
     }
@@ -96,7 +96,6 @@ class database {
     public function lastId()
     {
         return $this->pdo->lastInsertId();
-    }
-	
+    }	
 	
 }
