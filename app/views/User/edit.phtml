@@ -68,6 +68,26 @@
 				<input type="text" id="country" name="country" class="form-control" placeholder="Pays" value = "<?= $u ? $u->country : '' ?>">
 			</div>
 
+			<!-- user role -->
+			<div class="form-group">
+				<label>Role de l'utilisateur</label>
+				<?php
+					$req = new \config\database();
+					$result = $req->pdo->query("SELECT * FROM role")->fetchAll(\PDO::FETCH_OBJ);
+				?>
+				<select class="form-control">
+					<?php
+						foreach ($result as $v) {
+							if($v->id == 1) {
+								echo "<option value='" . $v->id . "'>Super Administrateur</option>";
+							} else {
+								echo "<option value='" . $v->id . "'>" . ucfirst($v->name) . "</option>";
+							}
+						}
+					?>
+				</select>
+			</div>
+
 			<!-- submit -->
 			<div class="form-group">
 				<input type="submit" id="submit" class="form-control" value = "Enregistrer">
