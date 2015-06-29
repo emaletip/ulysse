@@ -108,9 +108,9 @@ class User {
 		);
 	}
 
-	/*public function deleteUser() {
-		$result = $this->pdo->query();
-	}*/
+	public function deleteUser($id) {
+		$result = $this->pdo->delete('user', $id);
+	}
 	
 	public function getId() {
 		return $this->id;

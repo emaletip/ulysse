@@ -61,4 +61,14 @@ class User {
 	
 		redirect('dashboard/user/'.$_POST['id']);
 	}
+
+	public function getUser_delete($id) {
+		$this->userModel->deleteUser($id);
+
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre utilisateur a bien été supprimé.';
+		$_SESSION['flash']['user']['time'] = time() + 2;
+
+		redirect('dashboard/user/list');
+	}
 }

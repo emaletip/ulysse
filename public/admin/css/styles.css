@@ -97,6 +97,9 @@
 .list-user .fa-times:hover {
 	color: #af0000;
 }
+.list-user a {
+	cursor: pointer;
+}
 
 /****************************/
 /*		PROFILE USER		*/
