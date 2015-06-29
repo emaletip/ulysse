@@ -96,7 +96,6 @@ class database {
     public function lastId()
     {
         return $this->pdo->lastInsertId();
-    }
-	
+    }	
 	
 }
