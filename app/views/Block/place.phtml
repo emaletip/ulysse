@@ -1,0 +1,310 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>            
+<?php
+	foreach($Blocks as $Block) {
+		$emplacement[strtolower(str_replace(' ','_',$Block->emplacement_name))][]['name'] = $Block->name;
+	}
+?>
+	<div id="main-wrapper">
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+<!--					<ul id="sortable1" class="connectedSortable">
+					  <li class="ui-state-default">Item 1</li>
+					  <li class="ui-state-default">Item 2</li>
+					  <li class="ui-state-default">Item 3</li>
+					  <li class="ui-state-default">Item 4</li>
+					  <li class="ui-state-default">Item 5</li>
+					</ul>
+ 
+
+<ul id="sortable2" class="connectedSortable">
+  <li class="ui-state-highlight">Item 1</li>
+  <li class="ui-state-highlight">Item 2</li>
+  <li class="ui-state-highlight">Item 3</li>
+  <li class="ui-state-highlight">Item 4</li>
+  <li class="ui-state-highlight">Item 5</li>
+</ul>
+-->
+ 
+                
+				    <div class="col-xs-4 col-md-4">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Header Left</h4>
+							</div>
+				            <div class="panel-body">
+								<ul id="sortable1" class="connectedSortable">
+										<?php 
+									if(isset($emplacement['header_left'])) {
+										foreach($emplacement['header_left'] as $header_left_block) { 
+										?>
+                                        <li data-id="1" class="ui-state-highlight">
+											<?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                </ul>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-xs-4 col-md-4">
+				        <div class="panel">
+				        <div class="panel-heading clearfix">
+								<h4 class="panel-title">Header Center</h4>
+							</div>
+				            <div class="panel-body">
+								<ul id="sortable2" class="connectedSortable">
+										<?php if(isset($emplacement['header_center'])) {
+										foreach($emplacement['header_center'] as $header_left_block) { ?>
+                                        <li data-id="1" class="ui-state-highlight">
+                                           <?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>                                           
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                </ul>
+                                				          
+                            </div>
+				        </div>
+				    </div>
+				    <div class="col-xs-4 col-md-4">
+				        <div class="panel">
+							<div class="panel-heading clearfix">
+								<h4 class="panel-title">Header Right</h4>
+							</div>				            
+							<div class="panel-body">
+								<ul id="sortable3" class="connectedSortable">
+										<?php 
+									if(isset($emplacement['header_right'])) {
+										foreach($emplacement['header_right'] as $header_left_block) { ?>
+                                        <li data-id="1" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_cart' ? 'ui-state-disabled' : '' ?>">
+											<?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                </ul>
+								
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Menu</h4>
+							</div>
+				            <div class="panel-body">
+								<div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['menu'])) {
+										foreach($emplacement['menu'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Diaporama</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['slider'])) {
+										foreach($emplacement['slider'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Before content</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['before_content'])) {
+										foreach($emplacement['before_content'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-4 col-md-4">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Sidebar</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['sidebar'])) {
+										foreach($emplacement['sidebar'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="col-xs-4 col-md-8">
+				        <div class="panel">
+				        <div class="panel-heading clearfix">
+								<h4 class="panel-title">Content</h4>
+							</div>
+				            <div class="panel-body">
+				               <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['content'])) {
+										foreach($emplacement['content'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Pre-footer</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['pre_footer'])) {
+										foreach($emplacement['pre_footer'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Footer</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['footer'])) {
+										foreach($emplacement['footer'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+                <div class="panel panel-white">
+				    <div class="col-xs-12 col-md-12">
+				        <div class="panel">
+				        	<div class="panel-heading clearfix">
+								<h4 class="panel-title">Copyright</h4>
+							</div>
+				            <div class="panel-body">
+				                <div id="nestable" class="dd">
+                                    <ol class="dd-list">
+									<?php 
+									if(isset($emplacement['copyright'])) {
+										foreach($emplacement['copyright'] as $header_left_block) { ?>
+                                        <li data-id="1" class="dd-item">
+                                            <div class="dd-handle"><?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?></div>
+                                        </li>
+                                    <?php }
+                                    } ?>
+                                    </ol>
+                                </div>
+				            </div>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+<?php include_once("footer.phtml"); ?>

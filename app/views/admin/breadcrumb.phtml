@@ -3,21 +3,20 @@
     <div class="page-breadcrumb">
         <ol class="breadcrumb">
             <li><a href="index.html">Home</a></li>
-            <li class="active">Dashboard</li>
+            <?php $name = explode('/',$_SERVER['REQUEST_URI']); ?>
+            <li class="active"><?= isset($name[3]) ? ucfirst($name[3]) : '' ?></li>
         </ol>
     </div>
 </div>
 <?php 
-	if (isset($_SESSION['flash'])) {
-		foreach($_SESSION['flash'] as $msg) { 
-		?>
-			<div role="alert" class="alert alert-<?= $msg['key'] ?>">
-				<?= $msg['msg'] ?>
-			</div>
-	<?php
-			if($msg['time'] <= time()) {
-				unset($_SESSION['flash']);
-			}
+if (isset($_SESSION['flash'])) {
+	foreach($_SESSION['flash'] as $msg) { ?>
+		<div role="alert" class="alert alert-<?= $msg['key'] ?>">
+			<?= $msg['msg'] ?>
+		</div>
+<?php
+		if($msg['time'] <= time()) {
+			unset($_SESSION['flash']);
 		}
-	}	
-?>
+	}
+} ?>

@@ -11,9 +11,9 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Identifiant</th>
 								<th>Nom</th>
-								<th>Actif</th>
+								<th>Contenu Editable</th>
+								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>
@@ -25,16 +25,14 @@
 
 									// Vérifie si l'utilisateur est Super administrateur (1) ou administrateur (2)
 									$row = "<tr>";
+									$row .= "<th>" . ucfirst(str_replace('_',' ',str_replace('block_','',$v->name))) ."</th>";
+									$row .= "<td>".($v->is_editable == 1 ? 'Oui' : 'Non')." </td>";
+									$row .= "<td style='text-align:center'>".($v->is_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
 
-									$row .= "<th>" . $v->id . "</th>";
-									$row .= "<td>" . str_replace('block_','',$v->name) ."</td>";
-									$row .= "<td>".$v->is_active = 1 ? 'Oui' : 'Non'."</td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='#'><span class='fa fa-pencil-square-o'></span></a></td>";
-									$row .= "<td><a href='#'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
 									$row .= "</tr>";
 									echo $row;
-
 								}
 							?>
 						</tbody>

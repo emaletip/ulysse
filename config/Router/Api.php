@@ -66,6 +66,10 @@ class Api {
 		
 		$this->get(ROUTE_PATH . 'dashboard/index', function () {
 			is_admin();
+			$content = new \app\controllers\Content();
+			$nbProduct = count($content->getProductList());
+			$user = new \app\controllers\User();
+			$nbUser = count($user->getUser_list());
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
@@ -73,6 +77,11 @@ class Api {
 		
 		$this->get(ROUTE_PATH . 'dashboard/', function () {
 			is_admin();
+			$content = new \app\controllers\Content();
+			$nbProduct = count($content->getProductList());
+			$user = new \app\controllers\User();
+			$nbUser = count($user->getUser_list());
+
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;

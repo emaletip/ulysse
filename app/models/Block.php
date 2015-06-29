@@ -9,19 +9,44 @@ class Block {
 	private $is_active;
 	private $is_editable;
 	private $content_block;
+	private $emplacement_id;
 	private $pdo; 
 	
 	public function __construct() {
 		$this->pdo = new \config\database();
 	}
 	
-	public function getPdo() {
-		return $this->pdo;	
+	public function getblock($id) {
+		$block = $this->pdo->query('SELECT * FROM block WHERE id=:id;', array(':id' => $id));
+		foreach( current($block) as $k => $v) {
+			$key = 'set'.ucfirst($k);
+			$this->$key($v);
+		}
+		return $this;
+	}
+
+	public function updateBlock($post) {
+		$sql ='UPDATE block SET ';
+		foreach($post as $k => $v) {
+			$sqldatas[] = $k.'=:'.$k;
+			$datas[':'.$k] = $v;
+		}
+		$sql .= implode(', ',$sqldatas);
+		$sql .= ' WHERE id=:id';
+		$dbuser = $this->getPdo()->update($sql, $datas);
 	}
 	
 	public function getList() {
-		return $this->pdo->query('SELECT * FROM block');
+		return $this->pdo->query('SELECT * FROM block WHERE name!="block_content" AND name!="block_connect" AND name!="block_cart";');
+	}
+		
+	public function getEmplacements() {
+		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id');
 	}	
+	
+	public function getPdo() {
+		return $this->pdo;	
+	}
  
  	public function getId() {
 		return $this->id;
@@ -65,6 +90,15 @@ class Block {
 	
 	public function setContent_block($content_block) {
 		$this->content_block = $content_block;
+		return $this;
+	}
+	
+	public function getEmplacement_id() {
+		return $this->emplacement_id;
+	}
+	
+	public function setEmplacement_id($emplacement_id) {
+		$this->emplacement_id = $emplacement_id;
 		return $this;
 	}
 }	

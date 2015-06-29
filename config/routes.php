@@ -26,7 +26,42 @@ $routes['dashboard/block'] = array(
 					  'controller' => 'Block',
 					  'action' => 'List',
 					  'view' => 'list',
-				   );	
+				   );
+$routes['dashboard/block/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'View',
+					  'view' => 'view',
+				   );
+$routes['dashboard/block/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Edit',
+					  'view' => 'edit',
+				   );
+
+$routes['dashboard/block/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Block',
+					  'action' => 'Edit',
+					  'view' => 'edit',
+				   );
+
+$routes['dashboard/emplacement'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Emplacement',
+					  'view' => 'place',
+				   );
+
 $routes['dashboard/user/list'] = array(
 					  'path' => 'app',
 					  'id' => false,

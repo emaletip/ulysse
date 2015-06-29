@@ -110,3 +110,43 @@
 .page-footer p {
 	text-align: center;
 }
+/**********************/
+/*		SORTABLE      */
+/**********************/
+
+  .connectedSortable {
+    border: 1px dashed #eee;
+  //  background: #fafafa;
+    width: 100%;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0;
+    float: left;
+    margin-right: 10px;
+  }
+  .connectedSortable li {
+	 background: #fafafa none repeat scroll 0 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    width: calc(100% - 10px);
+  }
+  
+.ui-state-default {background: #fafafa none repeat scroll 0 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    font-weight: bold;
+    margin: 5px 0;
+    padding: 8px 15px;
+    text-decoration: none;
+}
