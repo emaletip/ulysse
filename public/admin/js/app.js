@@ -1,4 +1,5 @@
 $(function() {
+
 	$( ".sortable" ).sortable({
 		connectWith: ".connectedSortable",
 		cancel: ".ui-state-disabled",
@@ -20,7 +21,6 @@ $(function() {
 			    });
 			});	
 			ui.item.css('width','calc(100% - 10px)');
-				
 		},
 		start:function(e,ui) {
 			ui.item.css('width','300px');

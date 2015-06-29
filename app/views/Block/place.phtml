@@ -3,21 +3,30 @@
 <?php
 	foreach($Blocks as $Block) {
 		if ($Block->is_active){
-			
 			$emplacement[strtolower(str_replace(' ','_',$Block->emplacement_name))][$Block->id]['name'] = $Block->name;
 			$emplacement[strtolower(str_replace(' ','_',$Block->emplacement_name))][$Block->id]['id']   = $Block->id;
+			$emplacement[$Block->emplacement_id]['nb_column'] = $Block->nb_column;
 		}
 	}
 ?>
 	<input id="action" type="hidden" value="/<?= PROJECT_DIRECTORY ?>dashboard/block/update" />
-	<div id="main-wrapper">
+	<div id="main-wrapper" class="emplacement">
 		<div class="row">
 			<div class="col-md-12">
                 <div class="panel panel-white">
 				    <div class="col-xs-4 col-md-4">
 				        <div class="panel">
 				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Header Left</h4>
+								<h4 class="panel-title">Header Left 
+								<div class="columns pull-right">
+									<i class="fa fa-columns"></i>
+									<ul class="nb-columns" style="display:none;">
+										<li><input type="radio" name="nb_column" value="1" <?= $emplacement[1]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
+										<li><input type="radio" name="nb_column" value="2" <?= $emplacement[1]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
+										<li><input type="radio" name="nb_column" value="3" <?= $emplacement[1]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
+									</ul>
+								</div>
+								</h4> 
 							</div>
 				            <div class="panel-body">
 								<ul id="sortable1" class="sortable connectedSortable" data-id="1">
@@ -25,7 +34,7 @@
 									if(isset($emplacement['header_left'])) {
 										foreach($emplacement['header_left'] as $header_left_block) { 
 										?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
+                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_connect' ? 'ui-state-disabled' : '' ?>">
 											<?= ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
                                         </li>
                                     <?php }
@@ -292,4 +301,33 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	
+	$(document).ready(function(){
+		$('.columns').click(function(){
+			$(this).find('.nb-columns').toggle();
+		});
+	});
+	
+	/*
+
+	function rowHeigh() {
+		
+		$('.row').each(function(){
+			height = 0;
+			$(this).find('.col-md-12 .col-md-4').each(function(){
+				if ($(this).height() > height) {
+					height = $(this).height()
+				}
+	
+			});
+			if(height > 0) {
+				$(this).find('.col-xs-4 .panel').css('min-height', height+'px');		
+			}
+		});
+	}
+	rowHeigh();
+	
+*/
+</script>
 <?php include_once("footer.phtml"); ?>

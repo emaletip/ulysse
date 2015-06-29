@@ -48,7 +48,7 @@ class Block {
 	}
 		
 	public function getEmplacements() {
-		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id ORDER BY block.position');
+		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name, emplacement.id as emplacement_id, emplacement.nb_column  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id ORDER BY block.position');
 	}	
 	
 	public function getPdo() {
