@@ -102,6 +102,9 @@ class User {
 				}
 				$reqtemp[] = $k."= :".$k;
 				$datas[':'.$k] = $v;
+				if ($data['id'] == $_SESSION['user']->id) {
+					$_SESSION['user']->$k = $v;
+				}
 			} else {
 				unset($data[$k]);
 			}
