@@ -79,6 +79,14 @@
 	background-color: #d9edf7;
 	color: #d9edf7;
 }
+.list-user .img-circle {
+	height: 60px;
+	width: 60px;
+}
+.list-user th,
+.list-user td {
+	vertical-align: middle !important;
+}
 .list-user .fa {
 	font-size: 25px;
 }
