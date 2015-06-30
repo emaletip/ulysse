@@ -46,7 +46,7 @@
 									}
 
 									$row .= "<th>" . $v->id . "</th>";
-									$row .= "<th>" . $v->login . "</th>";
+									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'>" . $v->login . "</a></th>";
 									$row .= "<th>" . $v->email . "</th>";
 									$row .= "<td>" . $v->first_name . " " . $v->last_name."</td>";
 									$row .= "<td>" . $v->address1 . "</td>";
