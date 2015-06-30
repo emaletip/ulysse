@@ -107,6 +107,9 @@
 .profile-user .profile-cover {
 	background: rgba(0, 0, 0, 0) url("../img/abstract-q-c-1800-800-1.jpg") repeat scroll 0 0 / cover;
 }
+.profile-image img {
+  height: 150px;
+}
 /********************/
 /*		FOOTER		*/
 /********************/

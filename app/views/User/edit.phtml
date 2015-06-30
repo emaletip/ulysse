@@ -26,6 +26,16 @@
 				<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe">
 			</div>
 
+			<!-- avatar -->
+			<?php if ($u->avatar != '' && !is_null($u->avatar) ) { ?>
+				<input type="hidden" value="<?= $u->avatar ?>" name="old_avt" > 
+			<?php } ?>
+
+			<div class="form-group">
+				<label for="avatar">Avatar</label>
+				<input type="file" placeholder="Avatar" name="avatar" id="avatar" class="form-control">
+			</div> 
+
 			<!-- first-name -->
 			<div class="form-group">
 				<label for="first_name">Prénom</label>
