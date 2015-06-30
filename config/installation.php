@@ -144,7 +144,7 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
-                      `category_id` int(11) NOT NULL,
+                      `content_category` int(11) NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -154,6 +154,15 @@
                       `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
                       `content_description` text NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
+                    'CREATE TABLE IF NOT EXISTS `field_image` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_image` varchar(255) NOT NULL,
                       `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -171,8 +180,8 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `field_id` int(11) NOT NULL,
                       `content_id` int(11) NOT NULL,
-                      `content_path` int(11) NOT NULL,
-                      `content_type_name` int(11) NOT NULL,
+                      `content_path` varchar(255) NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=\'Image slider\' AUTO_INCREMENT=1',
                     
@@ -317,7 +326,9 @@
                     (5, \'field_price\', \'Prix\', \'input_decimal\', 3, NULL),
                     (6, \'field_caption\', \'Sous-titre\', \'input_text\', 0, NULL),
                     (7, \'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL),
-                    (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL)',
+                    (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL),
+                    (9, \'field_stock\', \'Stock\', \'input_text\', 0, NULL),
+                    (10, \'field_image\', \'Image\', \'input_text\', 0, NULL)',
 
                     'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
                     (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
