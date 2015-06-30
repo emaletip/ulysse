@@ -85,6 +85,12 @@ class User {
 	}
 
 	public function updateUser(array $data) {
+
+		$role[':id'] = $data['id'];
+		$role[':role_id'] = $data['role_id'];
+		unset($data['role_id']);
+
+		// Mises à jour de l'utilisateur
 		$req = 'UPDATE user SET ';
 
 		foreach ($data as $k => $v) {
@@ -105,6 +111,12 @@ class User {
 		$result = $this->pdo->update(
 			$req,
 			$datas
+		);
+
+		// Mise à jour du role de l'utilisateur
+		$result2 = $this->pdo->update(
+			'UPDATE user_role SET role_id = :role_id WHERE user_id = :id',
+			$role
 		);
 	}
 
