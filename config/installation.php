@@ -307,21 +307,21 @@
                     (\'slider\'),
                     (\'product\')',
 
-                    'INSERT INTO `field` (`id`, `label`, `type`, `size_min`, `size_max`) VALUES
-                    (1, \'Titre\', \'input_text\', 10, 200),
-                    (2, \'Body\', \'textarea\', 0, NULL),
-                    (3, \'Description\', \'textarea\', 0, NULL),
-                    (4, \'Catégorie\', \'select\', 0, NULL),
-                    (5, \'Prix\', \'input_decimal\', 3, NULL),
-                    (6, \'Sous-titre\', \'input_text\', 0, NULL),
-                    (7, \'Image (Slider)\', \'input_file\', 0, NULL),
-                    (8, \'Lien (Slider)\', \'input_text\', 0, NULL)',
+                    'INSERT INTO `field` (`id`, `name`, `label`, `type`, `size_min`, `size_max`) VALUES
+                    (1, \'field_title\', \'Titre\', \'input_text\', 10, 200),
+                    (2, \'field_body\', \'Body\', \'textarea\', 0, NULL),
+                    (3, \'field_description\', \'Description\', \'textarea\', 0, NULL),
+                    (4, \'field_category\', \'Catégorie\', \'select\', 0, NULL),
+                    (5, \'field_price\', \'Prix\', \'input_decimal\', 3, NULL),
+                    (6, \'field_caption\', \'Sous-titre\', \'input_text\', 0, NULL),
+                    (7, \'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL),
+                    (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL)',
 
                     'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
                     (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
                     (2, 2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\'),
-                    (3, 2, 3, \'Vente de LA Banane bleue !\', \'product\'),
-                    (4, 2, 4, \'Vente de LA Poire rouge !\', \'product\')',
+                    (3, 2, 3, \'Premier produit !\', \'product\'),
+                    (4, 2, 4, \'Second produit !\', \'product\')',
 
                     'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (1, 4, 3, \'10.50\', \'product\'),

@@ -10,24 +10,39 @@ class Content {
 	private $content_type_name;
 	private $created_user;
     
+    public function getFields($id) {
+        //$content_type = $this->pdo->query('SELECT id, content_type_name FROM content WHERE id = '.$id.'');
+    }
+    
     public function getProductList(){
-        $query = 'SELECT c.*, ft.*, fp.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
+        JOIN `field_stock` fs ON c.id = fs.content_id
+        JOIN `field_category` fc ON c.id = fc.content_id
         WHERE c.`content_type_name` = \'product\'';
         $results = $this->pdo->query($query);
         return $results;
     }
     
     public function getProduct($id){
-        $query = 'SELECT c.*, ft.*, fp.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_description` fd ON c.id = fd.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
+        JOIN `field_stock` fs ON c.id = fs.content_id
+        JOIN `field_category` fc ON c.id = fc.content_id
         WHERE c.`content_type_name` = \'product\' AND c.id = '.$id.'';
         $results = $this->pdo->query($query);
         return $results;  
+    }
+    
+    public function getCategory($id){
+        $query = 'SELECT * FROM category WHERE id = '.$id.'';
+        $results = $this->pdo->query($query);
+        return $results;
     }
     
     public function __construct() {
