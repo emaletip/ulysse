@@ -24,5 +24,9 @@ class Content_type {
 		$this->name = $name;
 		return $this;
 	}
+    
+    public function returnFields($name) {
+        
+    }
 		 
 }	

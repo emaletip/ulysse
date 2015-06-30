@@ -26,6 +26,16 @@
 				<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe">
 			</div>
 
+			<!-- avatar -->
+			<?php if ($u->avatar != '' && !is_null($u->avatar) ) { ?>
+				<input type="hidden" value="<?= $u->avatar ?>" name="old_avt" > 
+			<?php } ?>
+
+			<div class="form-group">
+				<label for="avatar">Avatar</label>
+				<input type="file" placeholder="Avatar" name="avatar" id="avatar" class="form-control">
+			</div> 
+
 			<!-- first-name -->
 			<div class="form-group">
 				<label for="first_name">Prénom</label>
@@ -66,6 +76,33 @@
 			<div class="form-group">
 				<label for="country">Pays</label>
 				<input type="text" id="country" name="country" class="form-control" placeholder="Pays" value = "<?= $u ? $u->country : '' ?>">
+			</div>
+
+			<!-- user role -->
+			<div class="form-group">
+				<label>Role de l'utilisateur</label>
+				<?php
+					$req = new \config\database();
+					$result = $req->pdo->query("SELECT * FROM role")->fetchAll(\PDO::FETCH_OBJ);
+				?>
+				<select class="form-control" id="role_id" name="role_id">
+					<?php
+						foreach ($result as $v) {
+							$opt = "<option value='" . $v->id . "' ";
+							if($u->role_id == $v->id) {
+								$opt .= "selected='selected'";
+							}
+							$opt .= ">";
+							if($v->id == 1) {
+								$opt .= "Super administrateur";
+							} else {
+								$opt .= ucfirst($v->name);
+							}
+							$opt .= "</option>";
+							echo $opt;
+						}
+					?>
+				</select>
 			</div>
 
 			<!-- submit -->

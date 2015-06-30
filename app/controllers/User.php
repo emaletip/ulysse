@@ -53,6 +53,23 @@ class User {
 	}
 
 	public function postUser_update() {
+		$dirimg = "User";
+		if(isset($_FILES) && $_FILES['avatar']['name'] != '') {
+			if(isset($_POST['old_avt'])) {
+				$old_avt = __DIR__.'/../../'.$_POST['old_avt'];
+				if(file_exists($old_avt)) {
+					unlink($old_avt);
+				}
+				unset($_POST['old_avt']);
+			}
+			$_POST['avatar'] = handleFile($_FILES['avatar'], $dirimg);
+		} else {
+			if(isset($_POST['old_avt'])) {
+				unset($_POST['old_avt']);
+			}
+			unset($_POST['avatar']);
+		}
+
 		$this->userModel->updateUser($_POST);
 
 		$_SESSION['flash']['user']['key'] = 'success';

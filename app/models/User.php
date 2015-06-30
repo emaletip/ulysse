@@ -9,6 +9,7 @@ class User {
 	private $id;
 	private $email;
 	private $password;
+	private $avatar;
 	private $last_name;
 	private $first_name;
 	private $address1;
@@ -73,7 +74,7 @@ class User {
 			VALUES (:user_id, :role_id)',
 			array(
 				':user_id' => $lastId,
-				':role_id' => 3
+				':role_id' => $data['role_id']
 			)
 		);
 
@@ -85,6 +86,13 @@ class User {
 	}
 
 	public function updateUser(array $data) {
+
+		$role[':id'] = $data['id'];
+		$role[':role_id'] = $data['role_id'];
+		unset($data['role_id']);
+
+
+		// Mises à jour de l'utilisateur
 		$req = 'UPDATE user SET ';
 
 		foreach ($data as $k => $v) {
@@ -94,6 +102,9 @@ class User {
 				}
 				$reqtemp[] = $k."= :".$k;
 				$datas[':'.$k] = $v;
+				if ($data['id'] == $_SESSION['user']->id) {
+					$_SESSION['user']->$k = $v;
+				}
 			} else {
 				unset($data[$k]);
 			}
@@ -105,6 +116,12 @@ class User {
 		$result = $this->pdo->update(
 			$req,
 			$datas
+		);
+
+		// Mise à jour du role de l'utilisateur
+		$result2 = $this->pdo->update(
+			'UPDATE user_role SET role_id = :role_id WHERE user_id = :id',
+			$role
 		);
 	}
 
@@ -136,6 +153,15 @@ class User {
 	
 	public function setPassword($password) {
 		$this->password = $password;
+		return $this;
+	}
+
+	public function getAvatar() {
+		return $this->avatar;
+	}
+	
+	public function setAvatar($avatar) {
+		$this->avatar = $avatar;
 		return $this;
 	}
 	

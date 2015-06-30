@@ -1,0 +1,37 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>
+<?php $c = $Contents[0]; ?>
+<div id="main-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Supprimer un produit</h3>
+            <hr>
+            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/content/remove" method="post" class="form-horizontal">
+                
+                <p>Produit : <?php print $c->content_title; ?></p>
+                
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="1">
+                        Confirmer la suppression
+                    </label>
+                </div>
+                
+                <input type="hidden" name="content_id" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="title" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="category" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="description" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="stock" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="price" value="<?php print $c->content_id; ?>">
+                <input type="hidden" name="image" value="<?php print $c->content_id; ?>">
+                
+                <hr>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Supprimer le produit</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php include_once("footer.phtml"); ?>

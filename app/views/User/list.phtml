@@ -17,7 +17,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Identifiant</th>
+								<th></th>
 								<th>Login</th>
 								<th>E-mail</th>
 								<th>Nom</th>
@@ -45,8 +45,10 @@
 										$row = "<tr>";
 									}
 
-									$row .= "<th>" . $v->id . "</th>";
-									$row .= "<th>" . $v->login . "</th>";
+									$avatar = $v->avatar ? "/" . PROJECT_DIRECTORY . $v->avatar : FRONT_IMG_PATH . "default_avatar.gif";
+
+									$row .= "<th><img class='img-circle img-responsive' alt='' src='" . $avatar . "'></th>";
+									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'>" . $v->login . "</a></th>";
 									$row .= "<th>" . $v->email . "</th>";
 									$row .= "<td>" . $v->first_name . " " . $v->last_name."</td>";
 									$row .= "<td>" . $v->address1 . "</td>";

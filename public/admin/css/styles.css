@@ -46,6 +46,9 @@
 .page-header-fixed .page-sidebar .dropdown-menu::before {
 	content: none;
 }
+.page-header-fixed .page-sidebar .sidebar-profile img {
+	height: 60px;
+}
 
 /********************/
 /*		CONTENT		*/
@@ -78,6 +81,14 @@
 	background-color: #d9edf7;
 	color: #d9edf7;
 }
+.list-user .img-circle {
+	height: 60px;
+	width: 60px;
+}
+.list-user th,
+.list-user td {
+	vertical-align: middle !important;
+}
 .list-user .fa {
 	font-size: 25px;
 }
@@ -108,6 +119,9 @@
 /****************************/
 .profile-user .profile-cover {
 	background: rgba(0, 0, 0, 0) url("../img/abstract-q-c-1800-800-1.jpg") repeat scroll 0 0 / cover;
+}
+.profile-image img {
+  height: 150px;
 }
 /********************/
 /*		FOOTER		*/

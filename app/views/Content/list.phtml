@@ -1,11 +1,55 @@
 <?php include_once("admin/header.phtml"); ?>
 <?php include_once("admin/breadcrumb.phtml"); ?>            
 <div id="main-wrapper">
-    <div class="row">
-        <div class="col-md-12">
-            <p>C'EST LA LISTE !</p>
-            <?php print_r($Contents); ?>
-        </div>
-    </div>
+    <div class="col-lg-12 col-md-12">
+		<div class="panel panel-white">
+			<div class="panel-heading">
+				<h4 class="panel-title">Les produits</h4>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive list-user">  
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Titre</th>
+								<th>Catégorie</th>
+								<th>Prix</th>
+								<th>Stock</th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								foreach ($Contents as $Product) {
+
+									if($Product->content_stock == 0) {
+										$row = "<tr class=\"danger\">";
+									} else {
+										$row = "<tr>";
+									}
+                                    
+                                    $category = $Content->contentModel->getCategory($Product->category_id);
+
+									$row .= "<th>" . $Product->content_title . "</th>";
+                                    $row .= "<td>" . $category[0]->name . "</td>";
+									$row .= "<td>" . $Product->content_price. " €</td>";
+									$row .= "<td>" . $Product->content_stock . "</td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/delete/".$Product->content_id."'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "</tr>";
+									echo $row;
+
+								}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
 <?php include_once("footer.phtml"); ?>
