@@ -18,15 +18,6 @@
 				<div class="topmenu-outer">
 					<div class="top-menu">
 						<ul class="nav navbar-nav navbar-left">
-							<!--<li>		
-								<a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
-							</li>
-							<li>
-								<a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-diamond"></i></a>
-							</li>
-							<li>		
-								<a href="javascript:void(0);" class="waves-effect waves-button waves-classic toggle-fullscreen"><i class="fa fa-expand"></i></a>
-							</li>-->
 							<li>
 								<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/config" class="waves-effect waves-button waves-classic"><i class="fa fa-cogs m-r-xs"></i>Configuration</a>
 							</li>
@@ -94,42 +85,10 @@
 									<li class="drop-all"><a href="#" class="text-center">All Messages</a></li>
 								</ul>
 							</li>
-							<!--<li class="dropdown">
-								<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">3</span></a>
-								<ul class="dropdown-menu title-caret dropdown-lg" role="menu">
-									<li><p class="drop-title">You have 3 pending tasks !</p></li>
-									<li class="dropdown-menu-list slimscroll tasks">
-										<ul class="list-unstyled">
-											<li>
-												<a href="#">
-													<div class="task-icon badge badge-success"><i class="icon-user"></i></div>
-													<span class="badge badge-roundless badge-default pull-right">1min ago</span>
-													<p class="task-details">New user registered.</p>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<div class="task-icon badge badge-danger"><i class="icon-energy"></i></div>
-													<span class="badge badge-roundless badge-default pull-right">24min ago</span>
-													<p class="task-details">Database error.</p>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<div class="task-icon badge badge-info"><i class="icon-heart"></i></div>
-													<span class="badge badge-roundless badge-default pull-right">1h ago</span>
-													<p class="task-details">Reached 24k likes</p>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li class="drop-all"><a href="#" class="text-center">All Tasks</a></li>
-								</ul>
-							</li>-->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
 									<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><i class="fa fa-angle-down"></i></span>
-									<img class="img-circle avatar" src="<?= BACK_IMG_PATH . "lapin-metro.png" ?>" width="40" height="40" alt="">
+									<img class="img-circle avatar" src="<?= $_SESSION['user']->avatar ? PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" width="40" height="40" alt="">
 								</a>
 								<ul class="dropdown-menu dropdown-list" role="menu">
 									<li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>"><i class="fa fa-user"></i>Profile</a></li>
@@ -161,7 +120,7 @@
 					<div class="sidebar-profile">
 						<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/user/<?= $_SESSION['user']->id ?>" id="profile-menu-link">
 							<div class="sidebar-profile-image">
-								<img src="<?= BACK_IMG_PATH . "lapin-metro.png" ?>" class="img-circle img-responsive" alt="">
+								<img src="<?= $_SESSION['user']->avatar ? PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" class="img-circle img-responsive" alt="">
 							</div>
 							<div class="sidebar-profile-details">
 								<span><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><br><small><?= $_SESSION['user']->login ?></small></span>

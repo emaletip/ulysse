@@ -61,7 +61,7 @@
                       `is_editable` tinyint(1) NOT NULL,
                       `content_block` text NOT NULL,
                       `emplacement_id` int(11) NOT NULL,
-                      `position` int(11) NOT NULL,
+                      `position` int(11) NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
@@ -114,6 +114,7 @@
 
                     'CREATE TABLE IF NOT EXISTS `field` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(255) NOT NULL,
                       `label` varchar(255) NOT NULL,
                       `type` varchar(100) NOT NULL,
                       `size_min` int(11) DEFAULT \'0\',
@@ -248,6 +249,7 @@
                       `email` varchar(255) NOT NULL,
                       `login` varchar(255) NOT NULL,
                       `password` varchar(255) NOT NULL,
+                      `avatar` varchar(255) NOT NULL,
                       `last_name` varchar(100) NOT NULL,
                       `first_name` varchar(100) NOT NULL,
                       `address1` varchar(255) NOT NULL,
