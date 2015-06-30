@@ -27,10 +27,11 @@ class Content {
     }
     
     public function getProduct($id){
-        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*, fd.*, fi.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_description` fd ON c.id = fd.content_id
+        JOIN `field_image` fi ON c.id = fi.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
         JOIN `field_stock` fs ON c.id = fs.content_id
         JOIN `field_category` fc ON c.id = fc.content_id
@@ -38,6 +39,98 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;  
     }
+    
+    public function addProduct(array $data) {
+        
+		$query_content = $this->pdo->insert(
+        'INSERT INTO content (content_type_name, created_date, created_user)
+        VALUES (:content_type_name, :created_date, :created_user)', array(
+            ':content_type_name' => 'product',
+            ':created_date' => date('Y-m-d H:i:s'),
+            ':created_user' => '1'
+            )
+        );
+        
+		$lastId = $this->pdo->lastId();
+        
+        foreach($data as $key => $value) {
+            $query = $this->pdo->insert(
+            'INSERT INTO field_'.$key.' (field_id, content_id, content_title, content_type_name)
+            VALUES (:field_id, :content_id, :content_'.$key.', :content_type_name)', array(
+                ':field_id' => '1',
+                ':content_id' => $lastId,
+                ':content_'.$key.'' => $value,
+                ':content_type_name' => 'product'
+                )
+            );
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
+            }
+        }
+
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function editProduct(array $data) {
+        
+		foreach($data as $key => $value) {
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'UPDATE field_'.$key.' SET content_'.$key.' = :content_'.$key.' WHERE content_id = :content_id', array(
+                    ':content_id' => $data['content_id'],
+                    ':content_'.$key.'' => $value
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+            
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+    
+    public function deleteProduct(array $data) {
+        
+        $query = $this->pdo->update(
+        'DELETE FROM content WHERE id = :id', array(
+            ':id' => $data['content_id']
+            )
+        );
+        
+		foreach($data as $key => $value) {
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'DELETE FROM field_'.$key.' WHERE content_id = :content_id', array(
+                    ':content_id' => $data['content_id']
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+            
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
     
     public function getCategory($id){
         $query = 'SELECT * FROM category WHERE id = '.$id.'';
