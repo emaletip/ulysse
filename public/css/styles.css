@@ -49,6 +49,28 @@ h2{
 	font-size: 18px;
 	text-transform: uppercase		
 }
+h5 {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+a.btn {
+	background: #ffffff none repeat scroll 0 0;
+    border: 2px solid #5d9907;
+    color: #5d9907;
+    font-size: 14px;
+    font-weight: 700;
+    height: 35px;
+    line-height: 15px;
+    margin-left: 5px;
+    margin-top: -3px;
+    padding: 1px;
+    text-align: center;
+    width: 80px;
+    text-transform: uppercase;
+    display: inline-block;
+    border-radius: 0;
+}
 
 /****************/
 /*		BLOCKS		*/
@@ -75,26 +97,39 @@ h2{
   font-weight: bold;
 }
 #block-informations,
+#block-article,
 #block-map img,
 #block-sitemap {
   height: 219px;
 }
+#block-article h2,
 #block-informations h2,
 #block-map h2,
 #block-sitemap h2 {
   margin-bottom: 20px;
   margin-top: 0;
 }
+#block-article,
 #block-informations,
 #block-sitemap {
   padding: 20px;
 }
 #block-informations h2,
+#block-article h2,
 #block-sitemap h2 {
   color: #5d9907;
 }
 #block-sitemap .row {
   height: 25%;
+}
+
+#block-article .btn {
+	line-height: 12px;
+	font-size: 12px;
+	padding: 7px 5px;
+	height: 30px;
+	width: 50px;
+	margin-left: 0;
 }
 
 /****************/

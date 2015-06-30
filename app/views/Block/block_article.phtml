@@ -1,4 +1,25 @@
-<div class="block" id="block-map">
-	<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>map.png">
+<div class="block" id="block-article">
+	<h2><?= $emp->title; ?></h2>
+	<hr>
+	<?php 
+	
+	$articles = $contentModel->getArticleList();
+	foreach($articles as $article) { 
+		$user = $userModel->getUser($article->created_user);
+		$user = current($user);
+	?>
+	<p>
+
+		<h5>
+		 <?= $article->content_title; ?>
+		</h5>
+		<p><small> <?= date('d/m/Y', strtotime($article->created_date)); ?> par <?= $user->first_name.' '.$user->last_name; ?></small>
+		</p>
+		<div>
+			<a class="btn" href="/<?= PROJECT_DIRECTORY ?>article/<?= $article->id; ?>"> Voir </a>
+		</div>
+	</p>
+	<?php } ?>
 </div>
+
 
