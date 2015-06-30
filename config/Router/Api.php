@@ -24,6 +24,10 @@ class Api {
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
 
+		if(!isset($_SESSION['user'])) {
+			require_once BACK_VIEWS_PATH . 'login.phtml';
+		}
+
 		$this->get(ROUTE_PATH . 'dashboard/login', function () {
 			if(isset($_SESSION['user'])) {
 				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'dashboard');

@@ -10,7 +10,21 @@ class Block {
 		$this->blockModel = new \app\models\Block();
 		return $this;
 	}
+/*
 	
+	public function displayBlock($name) {
+		
+		$block = $this->blockModel->getBlock_by_name($name);
+		
+		switch ($name) {
+		case 'block_informations':
+			$html = '';
+			
+			break;
+		}
+	}
+	
+*/
 	public function getList() {
 		return $this->blockModel->getList();
 	}
@@ -29,16 +43,22 @@ class Block {
 		}
 
 		$this->blockModel->updateBlock($_POST);
+		
+		if(!strstr($_SERVER['HTTP_REFERER'], 'emplacement')) {		
+			$_SESSION['flash']['config']['key'] = 'success';
+			$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+			$_SESSION['flash']['config']['time'] = time() + 2;				
+		}
 
-		$_SESSION['flash']['config']['key'] = 'success';
-		$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['config']['time'] = time() + 2;
-
-		redirect('dashboard/block');
+		redirect('dashboard/block/'.($_POST['id'] ? $_POST['id'] : ''));
 	}
 
 	public function getEmplacement() {
 		return $this->blockModel->getEmplacements();
+	}
+	
+	public function listEmplacement() {
+		return $this->blockModel->getList_emplacements();
 	}
 	
 

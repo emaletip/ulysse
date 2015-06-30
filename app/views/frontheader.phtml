@@ -1,0 +1,73 @@
+<html>
+<?php include_once("fronthead.phtml"); ?>
+<body>
+	<!-- HEADER -->
+	<header class="clearfix">
+	
+		<div class="container">
+			<!-- Connection, inscription and cart -->
+			<div class="row">
+				<div class="col-md-3 left">
+				<?php
+				if ( isset($emplacement_block[1]) ) {
+					foreach($emplacement_block[1]['blocks'] as $emp) {
+						include_once('Block/'.$emp->name.'.phtml');
+					}	
+				}	
+				 ?>
+				</div>
+				<div class="col-md-4 col-md-offset-1 middle">
+				<?php
+				if(isset($emplacement_block[3])) {
+
+					foreach($emplacement_block[3]['blocks'] as $emp) {
+						include_once('Block/'.$emp->name.'.phtml');
+					}		
+				}
+				 ?>
+				</div>
+				<div class="col-md-3 col-md-offset-1 right">
+				<?php
+				if(isset($emplacement_block[2])) {
+					foreach($emplacement_block[2]['blocks'] as $emp) {
+						include_once('Block/'.$emp->name.'.phtml');
+					}	
+				}	
+				 ?>
+				</div>
+			</div>
+	
+			<!-- Navigation -->		
+			<div class="row">
+				<div class="col-md-12">
+					
+					<nav class="navbar navbar-default">
+						<ul id="navigation" class="nav navbar-nav">								
+							<?php
+							if(isset($emplacement_block[4])) {
+								foreach($emplacement_block[4]['blocks'] as $emp) {
+									include_once('Block/'.$emp->name.'.phtml');
+								}	
+							}	
+							 ?>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	
+		<div class="container-fluid">
+			<!-- Slideshow -->
+			<div class="row">
+				<div class="col-md-12 slideshow">
+					<?php
+						foreach($emplacement_block[5]['blocks'] as $emp) {
+							include_once('Block/'.$emp->name.'.phtml');
+						}		
+					 ?>
+				</div>
+			</div>
+		</div>
+	
+	</header>
+	<!-- END HEADER -->

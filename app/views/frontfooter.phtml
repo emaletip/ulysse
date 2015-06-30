@@ -1,0 +1,19 @@
+<!-- FOOTER -->
+		<footer>
+			<div class="container">
+				<div class="row">
+				<?php
+				if(isset($emplacement_block[10])) {
+					foreach($emplacement_block[10]['blocks'] as $emp) {
+						echo '<div class="col-md-'.(12/$emplacement_block[10]['nb_column']).'">';
+						include_once('Block/'.$emp->name.'.phtml');
+						echo '</div>';
+					}	
+				}	
+				 ?>
+				</div>
+			</div>
+		</footer>
+		<!-- END FOOTER -->
+	</body>
+</html>

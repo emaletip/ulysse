@@ -8,6 +8,14 @@ html,
 body {
 	font-family: "Lato", Arial;
 }
+
+.pull-left {
+	float:left;
+}
+.pull-right {
+	float:right;
+}
+
 .left,
 .middle,
 .right {
@@ -37,6 +45,10 @@ hr {
 .fa {
   color: #5d9907;
 }
+h2{
+	font-size: 18px;
+	text-transform: uppercase		
+}
 
 /****************/
 /*		BLOCKS		*/
@@ -65,7 +77,7 @@ hr {
 #block-informations,
 #block-map img,
 #block-sitemap {
-  height: 249px;
+  height: 219px;
 }
 #block-informations h2,
 #block-map h2,
@@ -94,28 +106,41 @@ header {
 nav {
   background-color: #fff !important;
   border: none !important;
+  text-align: center;
+  padding-top: 30px;	
 }
 nav ul {
+  display: inline-block;
   float: none !important;
   text-align: center;
 }
+.first-ul{
+  list-style: none;
+
+} 
 nav ul .first-ul {
   display: inline-block;
 }
 nav ul li {
+  height: 100px;
   float: none !important;
 }
 nav ul li .list-title {
   color: #000 !important;
   font-weight: bold;
   text-transform: uppercase;
+  padding-top: 45px;
 }
 nav ul li .list-title:hover {
   text-decoration: underline;
 }
 nav ul li .logo {
+  height:80px;
   font-size: 30px;
   text-transform: uppercase;
+}
+nav ul li .logo img {
+  height:80px;
 }
 nav ul li .logo h1 {
   margin: 0;
@@ -139,5 +164,3 @@ nav ul li .logo h1 {
 footer {
   margin-bottom: 40px;
 }
-
-

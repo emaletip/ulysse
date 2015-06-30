@@ -57,11 +57,12 @@
                     'CREATE TABLE IF NOT EXISTS `block` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(45) NOT NULL,
+                      `title` varchar(255) NULL,
                       `is_active` tinyint(1) NOT NULL,
                       `is_editable` tinyint(1) NOT NULL,
                       `content_block` text NOT NULL,
                       `emplacement_id` int(11) NOT NULL,
-                      `position` int(11) NOT NULL,
+                      `position` int(11) NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
@@ -257,7 +258,6 @@
                       `role_id` int(11) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
-                    
                     
                     
                     'INSERT INTO `block` (`id`, `name`, `is_active`, `is_editable`, `content_block`, `emplacement_id`) VALUES

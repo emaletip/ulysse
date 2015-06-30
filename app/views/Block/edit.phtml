@@ -11,6 +11,13 @@
                         <form class="form-horizontal" action="/<?= PROJECT_DIRECTORY ?>dashboard/block/update" method="post" enctype="multipart/form-data">
                          	<input type="hidden" value="<?= $Blocks->getId(); ?>" name="id" > 
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input name="title" type="text" value="<?= $Blocks->getTitle(); ?>" >
+                                </div>
+                            </div>
+                            <?php if( $Blocks->getName() != "block_content" && $Blocks->getName() != "block_connect" && $Blocks->getName() != "block_cart") { ?>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Activer</label>
                                 <div class="col-sm-10">
                                     <div class="checkbox">
@@ -24,11 +31,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php } ?>
                             <?php if ($Blocks->getIs_editable()) { ?>
 							<div class="form-group">
                                 <label class="col-sm-2 control-label">Contenu</label>
                                 <div class="col-sm-10">
-                                	<textarea width="100%" name="content_block"><?= $Blocks->getContent_block() ?></textarea>
+                                	<textarea class="editor" width="100%" name="content_block"><?= $Blocks->getContent_block() ?></textarea>
                                 </div>
 							</div>             
 							<?php } ?>               

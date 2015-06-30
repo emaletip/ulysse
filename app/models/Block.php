@@ -6,6 +6,7 @@ class Block {
 
 	private $id;
 	private $name;
+	private $title;
 	private $is_active;
 	private $is_editable;
 	private $content_block;
@@ -39,16 +40,19 @@ class Block {
 		
 		
 		$dbuser = $this->getPdo()->update($sql, $datas);
-		var_dump($sql,$datas,$dbuser);die;
-
+		return $dbuser;
 	}
 	
 	public function getList() {
-		return $this->pdo->query('SELECT * FROM block WHERE name!="block_content" AND name!="block_connect" AND name!="block_cart";');
+		return $this->pdo->query('SELECT * FROM block;');
 	}
 		
 	public function getEmplacements() {
-		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name, emplacement.id as emplacement_id, emplacement.nb_column  FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id ORDER BY block.position');
+		return $this->pdo->query('SELECT block.*, emplacement.name as emplacement_name, emplacement.id as emplacement_id, emplacement.nb_column as nb_column FROM block INNER JOIN emplacement ON emplacement.id=block.emplacement_id ORDER BY block.position');
+	}	
+	
+	public function getList_emplacements() {
+		return $this->pdo->query('SELECT * FROM emplacement');
 	}	
 	
 	public function getPdo() {
@@ -70,6 +74,15 @@ class Block {
 	
 	public function setName($name) {
 		$this->name = $name;
+		return $this;
+	}
+	
+	public function getTitle() {
+		return $this->title;
+	}
+	
+	public function setTitle($title) {
+		$this->title = $title;
 		return $this;
 	}
 	

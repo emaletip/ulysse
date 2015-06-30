@@ -1,3 +1,9 @@
+$(document).ready(function() {
+	$('.editor').each(function(){	
+		CKEDITOR.replace( $(this).attr('name') );
+	});
+});
+
 $(function() {
 
 	$( ".sortable" ).sortable({
@@ -26,6 +32,30 @@ $(function() {
 			ui.item.css('width','300px');
 		}
 	}).disableSelection();
+    
+    $('input[name*="nb_column"]').change(function(){
+    	var column = $(this).parents('.columns:first');
+    	var emplacement_id = $(this).parents('ul:first').attr('data-id');
+    	var nb_column = $(this).val();
+		var data = {id:emplacement_id, nb_column:nb_column };
+		var url = $('#emplacement_action').val();
+	    $.ajax({
+	       url : url, // La ressource ciblée
+	       type : 'POST', // Le type de la requête HTTP.
+	       data : data,
+	       success: function(data) {
+	       		column.prepend('<i class="fa fa-check green" style="display:none;"></i>');	
+	       		$('.fa-check').fadeIn(function(){
+				    setTimeout(function(){
+				        $('.fa-check').fadeOut(function(){
+				            $('.fa-check').remove();
+				        });
+				    },2000);
+				});
+			    $('.nb-columns').hide();
+	       }
+	    });
+    });
     
     $( ".sortable li" ).disableSelection();
     

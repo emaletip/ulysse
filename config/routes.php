@@ -1,6 +1,16 @@
 <?php
 $routes = array();
 
+/*************/
+/*   FRONT   */
+/*************/
+
+
+
+/************/
+/*   BACK   */
+/************/
+
 /* exemple route simple */
 
 $routes['layout'] = array(
@@ -11,14 +21,9 @@ $routes['layout'] = array(
 					  'action' => 'Layout',
 					  'view' => 'maquette',
 				   );	
-$routes['dashboard/config'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'get',
-					  'controller' => 'Config',
-					  'action' => 'Config',
-					  'view' => 'edit',
-				   );	
+				   				   
+/* Block */		
+				   	
 $routes['dashboard/block'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -61,6 +66,16 @@ $routes['dashboard/emplacement'] = array(
 					  'action' => 'Emplacement',
 					  'view' => 'place',
 				   );
+$routes['dashboard/emplacement/update'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'Emplacement',
+					  'action' => 'update',
+					  'view' => 'edit',
+				   );
+				   
+/* User */				   
 
 $routes['dashboard/user/list'] = array(
 					  'path' => 'app',
@@ -95,7 +110,28 @@ $routes['dashboard/user/update'] = array(
 					  'action' => 'User_update',
 					  'view' => 'edit',
 				   );
-// Fin Pauline
+
+/* Order */
+
+$routes['dashboard/order'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Order',
+					  'action' => 'List',
+					  'view' => 'list',
+				   );
+
+/* Config */
+
+$routes['dashboard/config'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Config',
+					  'action' => 'Config',
+					  'view' => 'edit',
+				   );
 
 $routes['dashboard/config/update'] = array(
 					  'path' => 'app',

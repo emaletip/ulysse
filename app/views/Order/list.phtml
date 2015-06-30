@@ -1,0 +1,48 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>            
+<div id="main-wrapper">
+	<div class="col-lg-12 col-md-12">
+		<div class="panel panel-white">
+			<div class="panel-heading">
+				<h4 class="panel-title">Les commandes</h4>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive list-user">  
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Utilisateur</th>
+								<th>Prix total</th>
+								<th>Date</th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								foreach ($Orders as $k => $v) {
+									$user = $Order->orderModel->getUser($v->user_id);
+
+									// Vérifie si l'utilisateur est Super administrateur (1) ou administrateur (2)
+									$row = "<tr>";
+									$row .= "<th>" . $user->first_name . ' '. $user->last_name ."</th>";
+									$row .= "<td>" . $v->total_price ."</td>";
+									$row .= "<td>" . $v->created_date . " </td>";
+									$row .= "<td style='text-align:center'>".($v->is_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
+
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "</tr>";
+									echo $row;
+								}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- Main Wrapper -->
+<?php include_once("footer.phtml"); ?>

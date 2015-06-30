@@ -1,0 +1,25 @@
+<?php 
+$cmsModel = new app\models\Config();
+$cms = $cmsModel->getConfig(); 
+$blockModel = new app\models\Block();
+$blockController = new app\controllers\Block();
+$blocks = $blockModel->getEmplacements(); 
+
+foreach($blocks as $block) {
+	$emplacement_block[$block->emplacement_id]['blocks'][] = $block;
+	$emplacement_block[$block->emplacement_id]['nb_column'] = $block->nb_column;
+}
+?>
+
+<head>
+	<meta charset="utf-8">
+	<title><?= $cms->getSitename() . ' :: ' . $cms->getSlogan(); ?></title>
+	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH . "css/bootstrap.min.css" ?>">
+	<link rel="stylesheet" type="text/css" href="<?= VENDOR_PATH . "css/font-awesome.min.css" ?>">
+	<link rel="stylesheet" type="text/css" href="<?= FRONT_CSS_PATH . "styles.css" ?>">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="<?= VENDOR_PATH . "js/jquery-2.1.4.min.js" ?>"></script>
+	<script type="text/javascript" src="<?= VENDOR_PATH . "js/bootstrap.min.js" ?>"></script>
+	<script type="text/javascript" src="<?= VENDOR_PATH . "js/npm.js" ?>"></script>
+	<script type="text/javascript" src="<?= FRONT_JS_PATH . "app.js" ?>"></script>
+</head>

@@ -4,6 +4,9 @@
 .page-content {
 	background-color: #304050;
 }
+.green {
+	color:#22baa0;
+}
 
 /************************/
 /*		NAVBARSIDE		*/
@@ -122,6 +125,7 @@
 }
 .nb-columns {
 	position: absolute;
+	right: 35px;
 	margin: 0;
 	padding: 0;
 	width: 120px;
@@ -136,8 +140,20 @@
 	margin: 0;
 	font-size: 13px;
 }
-input[name="nb_column"] {
+input[name*="nb_column"] {
 	margin-right: 5px;	
+}
+.columns .fa{
+	font-size: 14px;
+	display: inline-block;
+	height: 14px;
+}
+.columns .fa-check{
+	position: absolute;
+	right: 55px;
+}
+.fa-columns {
+	cursor: pointer;
 }
 
 /**********************/

@@ -4,7 +4,7 @@ namespace app\controllers;
 
 class Content {
     
-	 private $contentModel;
+	private $contentModel;
 
 	public function __construct() {
 		$this->contentModel = new \app\models\Content();
