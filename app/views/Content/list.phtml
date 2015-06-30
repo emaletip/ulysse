@@ -30,7 +30,7 @@
 										$row = "<tr>";
 									}
                                     
-                                    $category = $Content->contentModel->getCategory($Product->category_id);
+                                    $category = $Content->contentModel->getCategory($Product->content_category);
 
 									$row .= "<th>" . $Product->content_title . "</th>";
                                     $row .= "<td>" . $category[0]->name . "</td>";

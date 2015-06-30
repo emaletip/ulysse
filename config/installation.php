@@ -204,6 +204,15 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `field_stock` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `field_id` int(11) NOT NULL,
+                      `content_id` int(11) NOT NULL,
+                      `content_stock` int(11) NOT NULL,
+                      `content_type_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     'CREATE TABLE IF NOT EXISTS `menu` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `content_id` int(11) NOT NULL,
@@ -332,13 +341,27 @@
 
                     'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
                     (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
-                    (2, 2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\'),
-                    (3, 2, 3, \'Premier produit !\', \'product\'),
-                    (4, 2, 4, \'Second produit !\', \'product\')',
-
+                    (2, 2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\')',
+                    
+                    'INSERT INTO `field_description` (`id`, `field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
+                    (1, 4, 3, \'La nucléarité des rollers\', \'product\'),
+                    (2, 4, 4, \'Mais oui cest clair !\', \'product\')',
+                    
                     'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (1, 4, 3, \'10.50\', \'product\'),
                     (2, 4, 4, \'13.25\', \'product\')',
+                    
+                    'INSERT INTO `field_stock` (`id`, `field_id`, `content_id`, `content_stock`, `content_type_name`) VALUES
+                    (1, 4, 3, \'10\', \'product\'),
+                    (2, 4, 4, \'13\', \'product\')',
+                    
+                    'INSERT INTO `field_category` (`id`, `field_id`, `content_id`, `content_category`, `content_type_name`) VALUES
+                    (1, 4, 3, \'1\', \'product\'),
+                    (2, 4, 4, \'2\', \'product\')',
+                    
+                    'INSERT INTO `field_image` (`id`, `field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
+                    (1, 4, 3, \'\', \'product\'),
+                    (2, 4, 4, \'\', \'product\')',
 
                     'INSERT INTO `field_title` (`id`, `field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
                     (1, 1, 1, \'Page de base\', \'page\'),
