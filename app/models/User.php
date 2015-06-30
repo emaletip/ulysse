@@ -73,7 +73,7 @@ class User {
 			VALUES (:user_id, :role_id)',
 			array(
 				':user_id' => $lastId,
-				':role_id' => 3
+				':role_id' => $data['role_id']
 			)
 		);
 

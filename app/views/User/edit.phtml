@@ -69,33 +69,31 @@
 			</div>
 
 			<!-- user role -->
-			<?php if($_SESSION['user']->role_id == 1) { ?>
-				<div class="form-group">
-					<label>Role de l'utilisateur</label>
+			<div class="form-group">
+				<label>Role de l'utilisateur</label>
+				<?php
+					$req = new \config\database();
+					$result = $req->pdo->query("SELECT * FROM role")->fetchAll(\PDO::FETCH_OBJ);
+				?>
+				<select class="form-control" id="role_id" name="role_id">
 					<?php
-						$req = new \config\database();
-						$result = $req->pdo->query("SELECT * FROM role")->fetchAll(\PDO::FETCH_OBJ);
-					?>
-					<select class="form-control" id="role_id" name="role_id">
-						<?php
-							foreach ($result as $v) {
-								$opt = "<option value='" . $v->id . "' ";
-								if($u->role_id == $v->id) {
-									$opt .= "selected='selected'";
-								}
-								$opt .= ">";
-								if($v->id == 1) {
-									$opt .= "Super administrateur";
-								} else {
-									$opt .= ucfirst($v->name);
-								}
-								$opt .= "</option>";
-								echo $opt;
+						foreach ($result as $v) {
+							$opt = "<option value='" . $v->id . "' ";
+							if($u->role_id == $v->id) {
+								$opt .= "selected='selected'";
 							}
-						?>
-					</select>
-				</div>
-			<?php } ?>
+							$opt .= ">";
+							if($v->id == 1) {
+								$opt .= "Super administrateur";
+							} else {
+								$opt .= ucfirst($v->name);
+							}
+							$opt .= "</option>";
+							echo $opt;
+						}
+					?>
+				</select>
+			</div>
 
 			<!-- submit -->
 			<div class="form-group">
