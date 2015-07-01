@@ -5,8 +5,6 @@ $routes = array();
 /*   FRONT   */
 /*************/
 
-
-
 /************/
 /*   BACK   */
 /************/
@@ -142,7 +140,7 @@ $routes['dashboard/config/update'] = array(
 					  'view' => 'edit',
 				   );
 
-$routes['dashboard/content'] = array(
+$routes['dashboard/product'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
@@ -151,7 +149,7 @@ $routes['dashboard/content'] = array(
 					  'view' => 'list',
 				   );			   
 				   
-$routes['dashboard/content/([0-9]+)'] = array(
+$routes['dashboard/product/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
@@ -160,7 +158,7 @@ $routes['dashboard/content/([0-9]+)'] = array(
 					  'view' => 'view',
 				   );
 
-$routes['dashboard/content/add'] = array(
+$routes['dashboard/product/add'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
@@ -168,7 +166,7 @@ $routes['dashboard/content/add'] = array(
 					  'action' => 'Product_add',
 					  'view' => 'add',
 				   );
-$routes['dashboard/content/insert'] = array(
+$routes['dashboard/product/insert'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'post',
@@ -177,7 +175,7 @@ $routes['dashboard/content/insert'] = array(
 					  'view' => 'add',
 				   );
 
-$routes['dashboard/content/edit/([0-9]+)'] = array(
+$routes['dashboard/product/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
@@ -185,7 +183,7 @@ $routes['dashboard/content/edit/([0-9]+)'] = array(
 					  'action' => 'Product_edit',
 					  'view' => 'edit',
 				   );
-$routes['dashboard/content/update'] = array(
+$routes['dashboard/product/update'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'post',
@@ -194,7 +192,7 @@ $routes['dashboard/content/update'] = array(
 					  'view' => 'edit',
 				   );
 
-$routes['dashboard/content/delete/([0-9]+)'] = array(
+$routes['dashboard/product/delete/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
@@ -202,7 +200,7 @@ $routes['dashboard/content/delete/([0-9]+)'] = array(
 					  'action' => 'Product_delete',
 					  'view' => 'delete',
 				   );
-$routes['dashboard/content/remove'] = array(
+$routes['dashboard/product/remove'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'post',

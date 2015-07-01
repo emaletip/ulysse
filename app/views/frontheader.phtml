@@ -1,5 +1,9 @@
 <html>
-<?php include_once("fronthead.phtml"); ?>
+<?php include_once("fronthead.phtml"); 
+	if(isset($_SESSION['user'])) {
+		include_once("navbar.phtml");
+	}
+?>
 <body>
 	<!-- HEADER -->
 	<header class="clearfix">
