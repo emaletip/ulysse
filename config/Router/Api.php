@@ -23,8 +23,9 @@ class Api {
 		$this->setResponse(new Response())
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
-
-		if(!isset($_SESSION['user'])) {
+		
+		
+		if(!isset($_SESSION['user']) && strstr('dashboard',$_SERVER['REQUEST_URI'])) {
 			require_once BACK_VIEWS_PATH . 'login.phtml';
 		}
 
@@ -113,6 +114,7 @@ class Api {
         });
         
         $this->get(ROUTE_PATH . 'dashboard/logout', function () {
+        	
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
                 session_destroy();
@@ -166,7 +168,11 @@ class Api {
 					return $result;
 				});
 			}
+			
+			
         }    
+/* 		var_dump('<pre>',$this->getRouter()->getRoutes());die; */
+
     }
 
     public function serve() {

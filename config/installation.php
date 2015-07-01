@@ -92,6 +92,11 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `content_field` (
+                      `content_type_id` int(11) NOT NULL,
+                      `field_id` int(11) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8',
+                    
                     'CREATE TABLE IF NOT EXISTS `content_tag` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `content_id` int(11) NOT NULL,
@@ -315,6 +320,14 @@
                     (\'article\', 1),
                     (\'product\', 1),
                     (\'product\', 1)',
+                    
+                    'INSERT INTO `content_field` (`content_type_id`, `field_id`) VALUES
+                    (4, 1),
+                    (4, 3),
+                    (4, 4),
+                    (4, 5),
+                    (4, 9),
+                    (4, 10)',
                     
                     'INSERT INTO `content_tag` (`id`, `content_id`, `tag_id`) VALUES
                     (1, 3, 1),
