@@ -1,7 +1,11 @@
 /********************/
 /*		GENERAL		*/
 /********************/
+body {
+	background-color: #304050;
+}
 .page-content {
+	box-shadow: none;
 	background-color: #304050;
 }
 .green {
@@ -17,7 +21,9 @@
 	font-weight: 500;
 	padding-left:15px;
 }
-
+.table {
+	font-size: 14px;
+}
 /************************/
 /*		NAVBARSIDE		*/
 /************************/
