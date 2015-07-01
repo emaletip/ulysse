@@ -120,7 +120,7 @@ class Content {
         );
         
 		$lastId = $this->pdo->lastId();
-        
+
         foreach($data as $key => $value) {
         	
         	switch ($key) {
@@ -135,7 +135,7 @@ class Content {
 	        		break;
         	}
             $query = $this->pdo->insert(
-            'INSERT INTO field_'.$key.' (field_id, content_id, content_title, content_type_name)
+            'INSERT INTO field_'.$key.' (field_id, content_id, content_'.$key.', content_type_name)
             VALUES (:field_id, :content_id, :content_'.$key.', :content_type_name)', array(
                 ':field_id' => $field_id,
                 ':content_id' => $lastId,
