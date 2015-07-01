@@ -2,69 +2,84 @@
 <?php include_once("admin/breadcrumb.phtml"); ?>            
 	<div id="main-wrapper">
 		<div class="row">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-                    <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Informations principales</h4>
-                    </div>
-					<?php 
-						if ($Configs->getLogo() != '' && !is_null($Configs->getLogo()) ) { ?>
-					<div class="row">
-						<div class="col-md-12 col-sm-offset-2">
-	                    	<img style="max-height:100px;" src="/<?= PROJECT_DIRECTORY.$Configs->getLogo(); ?>" />
-						</div>
+			<div class="panel panel-white">
+				<div class="panel-heading clearfix">
+                    <h4 class="panel-title">Configuration du site</h4>
+               </div>
+               <div class="panel-body">
+					<div role="tabpanel">
+		                <!-- Nav tabs -->
+		                <ul role="tablist" class="nav nav-tabs nav-justified">
+                            <li class="active" role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/config">Informations principales</a></li>
+                            <li role="presentation"><a data-toggle="tab" role="tab" href="#tab22">Menu</a></li>
+                            <li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/emplacement">Emplacement</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+						<div class="tab-content">
+							<div id="tab" class="tab-pane active fade in" role="tabpanel">
+								<?php 
+									if ($Configs->getLogo() != '' && !is_null($Configs->getLogo()) ) { ?>
+								<div class="row">
+									<div class="col-md-12 col-sm-offset-2">
+				                    	<img style="max-height:100px;" src="/<?= PROJECT_DIRECTORY.$Configs->getLogo(); ?>" />
+									</div>
+								</div>
+								<br><br>
+				                <?php } ?>
+								<div class="row">
+				                <form class="form-horizontal" action="/<?= PROJECT_DIRECTORY ?>dashboard/config/update" method="post" enctype="multipart/form-data">
+									<?php if ($Configs->getLogo() != '' && !is_null($Configs->getLogo()) ) { ?>
+										<input type="hidden" value="<?= $Configs->getLogo() ?>" name="old_img" > 
+									<?php } ?>
+				
+				                 	<input type="hidden" value="<?= $Configs->getId() ?>" name="id"> 
+				                 	<div class="form-group">
+				                        <label class="col-sm-2 control-label" for="input-placeholder">Logo</label>
+				                        <div class="col-sm-10">
+				                            <input type="file" placeholder="Logo" name="logo" id="input-placeholder" class="form-control">
+				                        </div>
+				                    </div> 
+				                    <div class="form-group">
+				                        <label class="col-sm-2 control-label" for="input-Default">Nom du site</label>
+				                        <div class="col-sm-10">
+				                            <input type="text" id="input-Default" class="form-control" placeholder="Sitename" name="sitename" value="<?= $Configs->getSitename() ?>" required>
+				                        </div>
+				                    </div>
+				                    <div class="form-group">
+				                        <label class="col-sm-2 control-label" for="input-Default">Slogan</label>
+				                        <div class="col-sm-10">
+				                            <input type="text" id="input-Default" class="form-control" placeholder="Slogan" name="slogan" value="<?= $Configs->getSlogan() ?>">
+				                        </div>
+				                    </div>
+				                    <div class="form-group">
+				                        <label class="col-sm-2 control-label" for="input-placeholder">Copyright</label>
+				                        <div class="col-sm-10">
+				                            <input type="text" placeholder="Copyright" name="copyright" id="input-placeholder" class="form-control" value="<?= $Configs->getCopyright() ?>">
+				                        </div>
+				                    </div> 
+				                    <div class="form-group">
+				                        <label class="col-sm-2 control-label">Activer la maintenance</label>
+				                        <div class="col-sm-10">
+				                            <div class="checkbox">
+				                                <label>
+				                                    <div class="checker"><span><input  name="is_maintenance" type="checkbox" <?= $Configs->getIs_maintenance() ? 'checked' : '' ?> value="1" ></span></div>
+				                                </label>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="row">
+										<div class="col-md-12 col-sm-offset-2">
+											<button class="btn btn-primary" type="submit">Sauvegarder</button>
+								   		</div>
+									</div>
+				                </form>
+								</div>
+				            </div>                
+                        </div>
+                                        
 					</div>
-                    <?php } ?>
-                    <div class="panel-body">
-                        <form class="form-horizontal" action="/<?= PROJECT_DIRECTORY ?>dashboard/config/update" method="post" enctype="multipart/form-data">
-							<?php if ($Configs->getLogo() != '' && !is_null($Configs->getLogo()) ) { ?>
-								<input type="hidden" value="<?= $Configs->getLogo() ?>" name="old_img" > 
-							<?php } ?>
-
-                         	<input type="hidden" value="<?= $Configs->getId() ?>" name="id"> 
-                         	<div class="form-group">
-                                <label class="col-sm-2 control-label" for="input-placeholder">Logo</label>
-                                <div class="col-sm-10">
-                                    <input type="file" placeholder="Logo" name="logo" id="input-placeholder" class="form-control">
-                                </div>
-                            </div> 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="input-Default">Nom du site</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="input-Default" class="form-control" placeholder="Sitename" name="sitename" value="<?= $Configs->getSitename() ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="input-Default">Slogan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="input-Default" class="form-control" placeholder="Slogan" name="slogan" value="<?= $Configs->getSlogan() ?>">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="input-placeholder">Copyright</label>
-                                <div class="col-sm-10">
-                                    <input type="text" placeholder="Copyright" name="copyright" id="input-placeholder" class="form-control" value="<?= $Configs->getCopyright() ?>">
-                                </div>
-                            </div> 
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Activer la maintenance</label>
-                                <div class="col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <div class="checker"><span><input  name="is_maintenance" type="checkbox" <?= $Configs->getIs_maintenance() ? 'checked' : '' ?> value="1" ></span></div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-								<div class="col-md-12 col-sm-offset-2">
-									<button class="btn btn-primary" type="submit">Sauvegarder</button>
-						   		</div>
-							</div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+				</div>
+			 </div>
         </div>
    </div>
    <?php include_once("footer.phtml"); ?>
