@@ -107,6 +107,7 @@ class Api {
             
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
+                session_destroy();
             }
             $this->getResponse()->redirect('index');
         });
@@ -114,6 +115,7 @@ class Api {
         $this->get(ROUTE_PATH . 'dashboard/logout', function () {
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
+                session_destroy();
             }
             unset($_SESSION['loged']);
             $this->getResponse()->redirect('index');

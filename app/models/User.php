@@ -95,7 +95,7 @@ class User {
 		// Mises à jour de l'utilisateur
 		$req = 'UPDATE user SET ';
 
-		foreach ($data as $k => $v) {
+		/*foreach ($data as $k => $v) {
 			if ($v != '') {
 				if($k == 'password') {
 					$v = sha1($v);
@@ -107,6 +107,29 @@ class User {
 				}
 			} else {
 				unset($data[$k]);
+			}
+		}*/
+
+		if ($data['password'] != '') {
+			$data['password'] = sha1($data['password']);
+		} else {
+			unset($data['password']);
+		}
+
+		if($data['email'] == '' || $data['login'] == '') {
+			unset($data['email']);
+			unset($data['login']);
+			$_SESSION['flash']['user']['key'] = 'error';
+			$_SESSION['flash']['user']['msg'] = '<b>Attion </b> Votre utilisateur a bien été supprimé.';
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		}
+
+		foreach ($data as $k => $v) {
+			$reqtemp[] = $k."= :".$k;
+			$datas[':'.$k] = $v;
+			
+			if ($data['id'] == $_SESSION['user']->id) {
+				$_SESSION['user']->$k = $v;
 			}
 		}
 

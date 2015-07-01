@@ -9,6 +9,10 @@ class Content {
 	private $created_date;
 	private $content_type_name;
 	private $created_user;
+
+    public function __construct() {
+        $this->pdo = new \config\database();
+    }
     
     public function getFields($id) {
         //$content_type = $this->pdo->query('SELECT id, content_type_name FROM content WHERE id = '.$id.'');
@@ -147,10 +151,65 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;
     }
+
+    /*      ARTICLES       */
+
+    public function editArticle(array $data) {
+        
+        foreach($data as $key => $value) {
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'UPDATE field_'.$key.' SET content_'.$key.' = :content_'.$key.' WHERE content_id = :content_id', array(
+                    ':content_id' => $data['content_id'],
+                    ':content_'.$key.'' => $value
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+            
+        if($error == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteArticle(array $data) {
+        
+        $query = $this->pdo->update(
+        'DELETE FROM content WHERE id = :id', array(
+            ':id' => $data['content_id']
+            )
+        );
+        
+        foreach($data as $key => $value) {
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'DELETE FROM field_'.$key.' WHERE content_id = :content_id', array(
+                    ':content_id' => $data['content_id']
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+            
+        if($error == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
-    public function __construct() {
-		$this->pdo = new \config\database();
-	}
+    /*      FIN ARTICLES       */
 	
 	public function getPdo() {
 		return $this->pdo;	

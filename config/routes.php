@@ -149,8 +149,8 @@ $routes['dashboard/content'] = array(
 					  'controller' => 'Content',
 					  'action' => 'ProductList',
 					  'view' => 'list',
-				   );			   
-				   
+				   );	
+
 $routes['dashboard/content/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -175,6 +175,24 @@ $routes['dashboard/content/insert'] = array(
 					  'controller' => 'Content',
 					  'action' => 'Product_add',
 					  'view' => 'add',
+				   );
+
+$routes['dashboard/content/add/article'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article_add',
+					  'view' => 'addArticle',
+				   );
+
+$routes['dashboard/content/insert/article'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Article_add',
+					  'view' => 'addArticle',
 				   );
 
 $routes['dashboard/content/edit/([0-9]+)'] = array(
