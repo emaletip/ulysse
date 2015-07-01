@@ -1,0 +1,58 @@
+<html>
+<?php include_once("head.phtml"); ?>
+<body class="page-header-fixed pace-done">
+	<main class="page-content content-wrap">
+	<?php include_once("navbar.phtml"); ?>
+	    <div class="page-sidebar sidebar">
+			<div class="page-sidebar-inner slimscroll">
+				<div class="sidebar-header">
+					<div class="sidebar-profile">
+						<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/user/<?= $_SESSION['user']->id ?>" id="profile-menu-link">
+							<div class="sidebar-profile-image">
+								<img src="<?= $_SESSION['user']->avatar ? "/" . PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" class="img-circle img-responsive" alt="">
+							</div>
+							<div class="sidebar-profile-details">
+								<span><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><br><small><?= $_SESSION['user']->login ?></small></span>
+							</div>
+						</a>
+					</div>
+				</div>
+	
+	<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
+				<ul class="menu accordion-menu">
+					<li class="active"><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/index" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-user"></span><p>Utilisateurs</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/list">Les utilisateurs</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/add">Ajouter un utilisateur</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-barcode"></i><p>Produits</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/product">Les produits</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/product/add">Ajouter un produit</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-newspaper-o"></i><p>Actualités</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/article">Les articles</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/article/add">Ajouter un article</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-file-text"></i><p>Pages</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/page">Les pages</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/page/add">Ajouter une page	</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon fa fa-server"></span><p>Blocks</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/block">Les blocks</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/emplacement">Emplacements des blocks</a></li>
+						</ul>
+					</li>
+				</ul>
+			<?php } ?>
+		</div><!-- Page Sidebar Inner -->
+	</div><!-- Page Sidebar -->    
+	<div class="page-inner">
