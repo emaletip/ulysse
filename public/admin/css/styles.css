@@ -24,6 +24,9 @@ body {
 .table {
 	font-size: 14px;
 }
+.tab-content {
+	padding: 50px 30px;
+}
 /************************/
 /*		NAVBARSIDE		*/
 /************************/
