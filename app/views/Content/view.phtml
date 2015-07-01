@@ -3,17 +3,17 @@
 <div id="main-wrapper">
     <div class="row">
         <div class="col-md-6">
-            <h2><?php print $Contents[0]->content_title; ?></h2>
-            <h3><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <?php print $Contents[0]->content_price; ?></h3>
-            <?php if($Contents[0]->content_stock > 0): ?>
-                <h3><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php print $Contents[0]->content_stock; ?></h3>
+            <h2><?php print $Contents['results'][0]->content_title; ?></h2>
+            <h3><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> <?php print $Contents['results'][0]->content_price; ?></h3>
+            <?php if($Contents['results'][0]->content_stock > 0): ?>
+                <h3><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <?php print $Contents['results'][0]->content_stock; ?></h3>
             <?php else: ?>
-                <h3><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="text-danger"><?php print $Contents[0]->content_stock; ?></span></h3>
+                <h3><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="text-danger"><?php print $Contents['results'][0]->content_stock; ?></span></h3>
             <?php endif; ?>
         </div>
         <div class="col-md-6">
             <h2>Description</h2>
-            <p><?php print $Contents[0]->content_description; ?></p>
+            <p><?php print $Contents['results'][0]->content_description; ?></p>
         </div>
     </div>
 </div>

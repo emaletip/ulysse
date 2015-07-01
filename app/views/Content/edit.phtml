@@ -1,42 +1,27 @@
 <?php include_once("admin/header.phtml"); ?>
 <?php include_once("admin/breadcrumb.phtml"); ?>
-<?php $c = $Contents[0]; ?>
+<?php $c = $Contents['results'][0]; ?>
+<pre><?php print_r($c); ?></pre>
 <div id="main-wrapper">
     <div class="row">
         <div class="col-md-12">
             <h3>Editer un produit</h3>
             <hr>
             <form action="/<?= PROJECT_DIRECTORY ?>dashboard/content/update" method="post" class="form-horizontal">
+                
+                <?php foreach($Contents['fields'] as $fields): ?>
+                
+                <?php
+                    $type = $fields[0]->type;
+                    $name = substr(strstr($fields[0]->name, '_'), 1);
+                ?>
+                
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">Titre</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_title; ?>" type="text" class="form-control" name="title"></div>
+                    <label for="title" class="col-sm-2 control-label"><?php print $fields[0]->label; ?></label>
+                    <div class="col-sm-10"><?php print $Content->contentModel->printField($type, $name, $c->{'content_'.$name}, 10, 100); ?></div>
                 </div>
-                <div class="form-group">
-                    <label for="category" class="col-sm-2 control-label">Catégorie</label>
-                    <div class="col-sm-10">
-                    <select name="category" class="form-control">
-                        <option value="1">Mobilier</option>
-                        <option value="2">Nourriture</option>
-                        <option value="3">Informatique</option>
-                    </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-10"><textarea name="description" class="form-control" rows="5"><?php print $c->content_description; ?></textarea></div>
-                </div>
-                <div class="form-group">
-                    <label for="stock" class="col-sm-2 control-label">Stock</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_stock; ?>" type="text" class="form-control" name="stock"></div>
-                </div>
-                <div class="form-group">
-                    <label for="price" class="col-sm-2 control-label">Prix</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_price; ?>" type="text" class="form-control" name="price"></div>
-                </div>
-                <div class="form-group">
-                    <label for="image" class="col-sm-2 control-label">Image</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_image; ?>" type="text" class="form-control" name="image"></div>
-                </div>
+                
+                <?php endforeach; ?>
                 
                 <input type="hidden" name="content_id" value="<?php print $c->content_id; ?>">
                 
