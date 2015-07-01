@@ -176,7 +176,7 @@ $routes['dashboard/product'] = array(
 					  'action' => 'ProductList',
 					  'view' => 'list',	
 					);
-							   
+
 $routes['dashboard/product/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -308,6 +308,62 @@ $routes['dashboard/page/update'] = array(
 					  'action' => 'Page_edit',
 					  'view' => 'editPage',
 				   );
+
+/* articles */
+
+$routes['dashboard/article'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ArticleList',
+					  'view' => 'listArticle',
+				   );			   
+				   
+$routes['dashboard/article/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article',
+					  'view' => 'viewArticle',
+				   );
+
+$routes['dashboard/article/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article_add',
+					  'view' => 'addArticle',
+				   );
+$routes['dashboard/article/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Article_add',
+					  'view' => 'addArticle',
+				   );
+
+$routes['dashboard/article/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article_edit',
+					  'view' => 'editArticle',
+				   );
+$routes['dashboard/article/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Article_edit',
+					  'view' => 'editArticle',
+				   );
+
+
 
 /* exemple route post			   
 $routes['add'] = array(

@@ -1,0 +1,48 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>          
+<div id="main-wrapper">
+    <div class="col-lg-12 col-md-12">
+		<div class="panel panel-white">
+			<div class="panel-heading">
+				<h4 class="panel-title">Les articles</h4>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive list-user">  
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Titre</th>
+								<th>Contenu</th>
+								<th>Date de création</th>
+								<th>Créé par</th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								foreach ($Contents as $Article) {
+									$row = "<tr>";
+									$row .= "<td>" . $Article->content_title . "</td>";
+									$row .= "<td>" . $Article->content_body . "</td>";
+									$row .= "<td>" . $Article->created_date . "</td>";
+									// Penser à prendre le nom de l'utilisateur
+									$row .= "<td>" . $Article->created_user . "</td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/article/".$Article->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/article/edit/".$Article->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/article/delete/".$Article->content_id."'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "</tr>";
+									echo $row;
+
+								}
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php include_once("footer.phtml"); ?>

@@ -124,7 +124,7 @@ class Content {
 			unset($_POST['image']);
 		}
 
-		$add = $this->contentModel->addArticle($_POST);
+		$add = $this->contentModel->addContent($_POST, 'article');
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
