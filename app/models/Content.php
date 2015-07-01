@@ -301,6 +301,8 @@ class Content {
         } else {
             return false;
         }
+
+    }
     
     /*      FIN ARTICLES       */
 
