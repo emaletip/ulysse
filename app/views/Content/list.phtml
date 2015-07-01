@@ -36,9 +36,9 @@
                                     $row .= "<td>" . $category[0]->name . "</td>";
 									$row .= "<td>" . $Product->content_price. " €</td>";
 									$row .= "<td>" . $Product->content_stock . "</td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/content/delete/".$Product->content_id."'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/delete/".$Product->content_id."'><span class='fa fa-times'></span></a></td></tr>";
 									$row .= "</tr>";
 									echo $row;
 

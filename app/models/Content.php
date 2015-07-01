@@ -60,6 +60,17 @@ class Content {
         return $results;
     }
     
+    public function getPageList(){
+        $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_body` fb ON c.id = fb.content_id
+        WHERE c.`content_type_name` = \'page\'';
+        $results = $this->pdo->query($query);
+        return $results;
+    }
+    
+    
     public function getProduct($id){
         $fields = $this->getFields($id);
         $results['fields'] = $fields;
@@ -73,6 +84,16 @@ class Content {
         return($results);
     }
     
+	public function getPage($id){
+        $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_body` fb ON c.id = fb.content_id
+        WHERE c.`content_type_name` = \'page\'  AND c.id = '.$id.'';
+        $results = $this->pdo->query($query);
+        return $results;  
+    }
+
     public function addProduct(array $data) {
         
 		$query_content = $this->pdo->insert(
@@ -109,8 +130,58 @@ class Content {
 			return false;
 		}
 	}
+    
+    public function addContent(array $data, $type) {
+        
+		$query_content = $this->pdo->insert(
+        'INSERT INTO content (content_type_name, created_date, created_user)
+        VALUES (:content_type_name, :created_date, :created_user)', array(
+            ':content_type_name' => $type,
+            ':created_date' => date('Y-m-d H:i:s'),
+            ':created_user' => $_SESSION['user']->id
+            )
+        );
+        
+		$lastId = $this->pdo->lastId();
 
-	public function editProduct(array $data) {
+        foreach($data as $key => $value) {
+        	
+        	switch ($key) {
+	        	case 'title':
+	        		$field_id = 1;
+	        		break;
+	        	case 'body':
+	        		$field_id = 2;
+	        		break;
+	        	default: 
+	        		$field_id = 1;
+	        		break;
+        	}
+            $query = $this->pdo->insert(
+            'INSERT INTO field_'.$key.' (field_id, content_id, content_'.$key.', content_type_name)
+            VALUES (:field_id, :content_id, :content_'.$key.', :content_type_name)', array(
+                ':field_id' => $field_id,
+                ':content_id' => $lastId,
+                ':content_'.$key.'' => $value,
+                ':content_type_name' => 'product'
+                )
+            );
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
+            }
+        }
+
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+
+	public function editContent(array $data) {
         
 		foreach($data as $key => $value) {
             if($key != 'content_id'){
