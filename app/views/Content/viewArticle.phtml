@@ -8,11 +8,12 @@
         <div class="panel panel-white">
             <div class="panel-heading">
                 <h4><?= $c->content_title ?></h4>
-                <small><?= $c->created_date ?></small>
+                <small><?= "Le " . $c->created_date . " par " . $c->login ?></small>
             </div>
             <div class="panel-body">
-                <img alt="<?= $c->content_title ?>" src="<?= "/" . PROJECT_DIRECTORY . $c->content_image ?>">
+                <img alt="<?= $c->content_title ?>" src="<?= '/' . PROJECT_DIRECTORY . $c->content_image ?>">
                 <p><?= $c->content_body ?></p>
+                <small><?= str_replace(',', ', ', $c->tags); ?></small>
             </div>
         </div>
     </div>

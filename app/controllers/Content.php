@@ -169,7 +169,7 @@ class Content {
         return $this->contentModel->getArticle($id);
 	}
     
-    public function postArticle_delete() {
+    /*public function postArticle_delete() {
 		unset($_POST['submit']);
 
 		$edit = $this->contentModel->deleteArticle($_POST);
@@ -179,10 +179,16 @@ class Content {
 		$_SESSION['flash']['user']['time'] = time() + 2;
 	
 		redirect('dashboard/article');
-	}
+	}*/
     
     public function getArticle_delete($id) {
-        return $this->contentModel->getArticle($id);
+    	$this->contentModel->deleteArticle($id);
+
+    	$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre utilisateur a bien été supprimé.';
+		$_SESSION['flash']['user']['time'] = time() + 2;
+
+		redirect('dashboard/article');
 	}
 
 	public function getArticle($id) {

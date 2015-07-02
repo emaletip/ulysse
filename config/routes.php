@@ -344,6 +344,14 @@ $routes['dashboard/article/update'] = array(
 					  'action' => 'Article_edit',
 					  'view' => 'editArticle',
 				   );
+$routes['dashboard/article/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article_delete',
+					  'view' => 'listArticle',
+				   );
 
 
 

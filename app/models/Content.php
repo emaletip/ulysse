@@ -55,10 +55,11 @@ class Content {
     }
     
     public function getArticleList(){
-        $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fb.*, u.login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id
+        JOIN `user` u ON c.created_user = u.id
         WHERE c.`content_type_name` = \'article\'';
         $results = $this->pdo->query($query);
         return $results;
@@ -99,13 +100,27 @@ class Content {
     }
 
     public function getArticle($id){
-        $query = 'SELECT c.*, ft.*, fb.*, fi.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fb.*, fi.*, u.login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id
         JOIN `field_image` fi ON c.id = fi.content_id
+        JOIN `user` u ON c.created_user = u.id
         WHERE c.`content_type_name` = \'article\'  AND c.id = '.$id.'';
         $results = $this->pdo->query($query);
+
+        $query2 = 'SELECT ct.*, t.* FROM `content_tag` ct
+        JOIN `tags` t ON ct.tag_id = t.id
+        WHERE ct.content_id = '.$id.'';
+        $results2 = $this->pdo->query($query2);
+
+        foreach ($results2 as $v) {
+            $tagtemp[] = $v->name;
+        }
+        $string = implode(',', $tagtemp);
+
+        $results[0]->tags = $string;
+
         return $results;  
     }
 
@@ -192,7 +207,7 @@ class Content {
         }
 
         if ($type == 'article') {
-            $error = $this->addTags($data);
+            $error = $this->addTags($data, $lastId);
         }
 
 		if($error == 0) {
@@ -200,8 +215,7 @@ class Content {
 		} else {
 			return false;
 		}
-	}
-	
+	}	
 
 	public function editContent(array $data) {
         
@@ -291,7 +305,7 @@ class Content {
         }
     }
 
-    public function addTags(array $data) {
+    public function addTags(array $data, $id) {
         // Enlever tous les espaces de la chaine
         $string_tags = str_replace(' ', '', $data['tag']);
 
@@ -307,8 +321,18 @@ class Content {
                 )
             ); 
 
+            $last_tag_id = $this->pdo->lastId();
+
+            $query2 = $this->pdo->insert(
+                'INSERT INTO content_tag (content_id, tag_id)
+                VALUES (:content_id, :tag_id)', array(
+                    ':content_id' => $id,
+                    ':tag_id' => $last_tag_id
+                )
+            );
+
             // Vérifie si à chaque fois la requête s'effectue correctement
-            if($query){
+            if($query && $query2){
                 $error = 0;
             } else {
                 $error = 1;
