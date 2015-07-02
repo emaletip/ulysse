@@ -43,7 +43,7 @@ class Content {
             case "select":
                 $input = '<select name="'.$name.'" class="form-control">';
                 foreach($value as $val){
-                    $input .= '<option value="'.$val.'">'.$val.'</option>';
+                    $input .= '<option value="'.$val->id.'">'.$val->name.'</option>';
                 }
                 $input .= '</select>';
                 return($input);
