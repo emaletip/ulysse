@@ -99,10 +99,11 @@ class Content {
     }
 
     public function getArticle($id){
-        $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fb.*, fi.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id
+        JOIN `field_image` fi ON c.id = fi.content_id
         WHERE c.`content_type_name` = \'article\'  AND c.id = '.$id.'';
         $results = $this->pdo->query($query);
         return $results;  
@@ -167,6 +168,9 @@ class Content {
 	        	case 'body':
 	        		$field_id = 2;
 	        		break;
+                case 'image':
+                    $field_id = 10;
+                    break;
 	        	default: 
 	        		$field_id = 1;
 	        		break;
@@ -177,7 +181,7 @@ class Content {
                 ':field_id' => $field_id,
                 ':content_id' => $lastId,
                 ':content_'.$key.'' => $value,
-                ':content_type_name' => 'product'
+                ':content_type_name' => $type
                 )
             );
             if($query){
@@ -185,6 +189,10 @@ class Content {
             } else {
                 $error = 1;
             }
+        }
+
+        if ($type == 'article') {
+            $error = $this->addTags($data);
         }
 
 		if($error == 0) {
@@ -281,6 +289,33 @@ class Content {
         } else {
             return false;
         }
+    }
+
+    public function addTags(array $data) {
+        // Enlever tous les espaces de la chaine
+        $string_tags = str_replace(' ', '', $data['tag']);
+
+        // Récupération de la chaine de tag du formulaire pour en faire un tableau
+        $tags = explode(',', $string_tags);
+
+        // Pour chaque tag, l'ajouter à la table
+        foreach ($tags as $v) {
+            $query = $this->pdo->insert(
+                'INSERT INTO tags (name)
+                VALUES (:name)', array(
+                    ':name' => $v
+                )
+            ); 
+
+            // Vérifie si à chaque fois la requête s'effectue correctement
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
+            }
+        }
+
+        return $error;
     }
 
     public function deleteArticle(array $data) {

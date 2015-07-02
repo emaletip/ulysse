@@ -203,24 +203,6 @@ $routes['dashboard/product/insert'] = array(
 					  'view' => 'add',
 				   );
 
-$routes['dashboard/content/add/article'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'get',
-					  'controller' => 'Content',
-					  'action' => 'Article_add',
-					  'view' => 'addArticle',
-				   );
-
-$routes['dashboard/content/insert/article'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'post',
-					  'controller' => 'Content',
-					  'action' => 'Article_add',
-					  'view' => 'addArticle',
-				   );
-
 $routes['dashboard/product/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,

@@ -130,7 +130,7 @@ class Content {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 2;
 	
-		redirect('dashboard/content');
+		redirect('dashboard/article');
 	}
     
     public function getArticle_add() {
@@ -162,7 +162,7 @@ class Content {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 2;
 	
-		redirect('dashboard/content');
+		redirect('dashboard/article/$_POST["id"]');
 	}
     
     public function getArticle_edit($id) {
@@ -178,7 +178,7 @@ class Content {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été supprimées.';
 		$_SESSION['flash']['user']['time'] = time() + 2;
 	
-		redirect('dashboard/content');
+		redirect('dashboard/article');
 	}
     
     public function getArticle_delete($id) {
