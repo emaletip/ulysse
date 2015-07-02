@@ -23,6 +23,14 @@ class Content {
         }
         return($fields);
     }
+    public function getFieldsName($name) {
+        $content_type_id = $this->pdo->query('SELECT * FROM content_type WHERE name = \''.$name.'\'');
+        $content_fields = $this->pdo->query('SELECT * FROM content_field WHERE content_type_id = '.$content_type_id[0]->id.'');
+        foreach($content_fields as $id) {
+            $fields[] = $this->pdo->query('SELECT * FROM field WHERE id = '.$id->field_id.'');
+        }
+        return($fields);
+    }
     
     public function printField($type, $name, $value, $min = 0, $max = 255) {
         switch ($type) {
