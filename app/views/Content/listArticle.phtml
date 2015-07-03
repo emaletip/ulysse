@@ -24,7 +24,7 @@
 							<?php
 								foreach ($Contents as $Article) {
 									$row = "<tr>";
-									$row .= "<td>" . $Article->content_title . "</td>";
+									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/article/".$Article->content_id."'>" . $Article->content_title . "</a></td>";
 									$row .= "<td>" . $Article->content_body . "</td>";
 									$row .= "<td>" . $Article->created_date . "</td>";
 									$row .= "<td>" . $Article->login . "</td>";

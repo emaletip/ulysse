@@ -1,47 +1,38 @@
 <?php include_once("admin/header.phtml"); ?>
 <?php include_once("admin/breadcrumb.phtml"); ?>
-<?php $c = $Contents[0]; ?>
+<?php 
+    $c = $Contents[0];
+    $tags_exists = array_key_exists('tags', $c);
+?>
 <div id="main-wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h3>Editer un produit</h3>
+            <h3>Enregistrer un nouvel article</h3>
             <hr>
-            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/content/update" method="post" class="form-horizontal">
+            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/article/update" method="post" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="<?= $c->content_id ?>">
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label">Titre</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_title; ?>" type="text" class="form-control" name="title"></div>
+                    <div class="col-sm-10"><input type="text" class="form-control" name="title" value="<?= $c->content_title ?>"></div>
                 </div>
                 <div class="form-group">
-                    <label for="category" class="col-sm-2 control-label">Catégorie</label>
-                    <div class="col-sm-10">
-                    <select name="category" class="form-control">
-                        <option value="1">Mobilier</option>
-                        <option value="2">Nourriture</option>
-                        <option value="3">Informatique</option>
-                    </select>
-                    </div>
+                    <label for="body" class="col-sm-2 control-label">Contenu</label>
+                    <div class="col-sm-10"><textarea name="body" class="form-control ckeditor" rows="5"><?= $c->content_body ?></textarea></div>
                 </div>
-                <div class="form-group">
-                    <label for="description" class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-10"><textarea name="description" class="form-control" rows="5"><?php print $c->content_description; ?></textarea></div>
-                </div>
-                <div class="form-group">
-                    <label for="stock" class="col-sm-2 control-label">Stock</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_stock; ?>" type="text" class="form-control" name="stock"></div>
-                </div>
-                <div class="form-group">
-                    <label for="price" class="col-sm-2 control-label">Prix</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_price; ?>" type="text" class="form-control" name="price"></div>
-                </div>
+                <?php if ($c->content_image != '' && !is_null($c->content_image) ) { ?>
+                    <input type="hidden" value="<?= $c->content_image ?>" name="old_img" > 
+                <?php } ?>
                 <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Image</label>
-                    <div class="col-sm-10"><input value="<?php print $c->content_image; ?>" type="text" class="form-control" name="image"></div>
+                    <div class="col-sm-10"><input type="file" name="image" class="form-control" rows="5"></div>
                 </div>
-                
-                <input type="hidden" name="content_id" value="<?php print $c->content_id; ?>">
-                
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Modifier le produit</button></div>
+                    <label for="tag" class="col-sm-2 control-label">Tags</label>
+                    <div class="col-sm-10"><input name="tag" class="form-control" row="5" value="<?= $tags_exists ? str_replace(",", ", ", $c->tags) : '' ?>"></div>
+                    <small>Les tags doivent être séparés par des virgules.</small>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Ajouter l'article</button></div>
                 </div>
             </form>
         </div>

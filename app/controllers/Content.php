@@ -162,7 +162,7 @@ class Content {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 2;
 	
-		redirect('dashboard/article/$_POST["id"]');
+		redirect('dashboard/article/'.$_POST["id"]);
 	}
     
     public function getArticle_edit($id) {

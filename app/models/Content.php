@@ -112,7 +112,7 @@ class Content {
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id
-        JOIN `field_image` fi ON c.id = fi.content_id
+        LEFT JOIN `field_image` fi ON c.id = fi.content_id
         JOIN `user` u ON c.created_user = u.id
         WHERE c.`content_type_name` = \'article\'  AND c.id = '.$id.'';
         $results = $this->pdo->query($query);
@@ -122,12 +122,14 @@ class Content {
         WHERE ct.content_id = '.$id.'';
         $results2 = $this->pdo->query($query2);
 
-        foreach ($results2 as $v) {
-            $tagtemp[] = $v->name;
-        }
-        $string = implode(',', $tagtemp);
+        if ($results2 != null) {
+            foreach ($results2 as $v) {
+                $tagtemp[] = $v->name;
+            }
+            $string = implode(',', $tagtemp);
 
-        $results[0]->tags = $string;
+            $results[0]->tags = $string;
+        }
 
         return $results;  
     }
@@ -289,22 +291,30 @@ class Content {
     /*      ARTICLES       */
 
     public function editArticle(array $data) {
-        
-        foreach($data as $key => $value) {
-            if($key != 'content_id'){
-                $query = $this->pdo->update(
-                'UPDATE field_'.$key.' SET content_'.$key.' = :content_'.$key.' WHERE content_id = :content_id', array(
-                    ':content_id' => $data['content_id'],
-                    ':content_'.$key.'' => $value
-                    )
-                );
-                if($query){
-                    $error = 0;
-                } else {
-                    $error = 1;
-                }
+
+        $keys[] = 'title';
+        $keys[] = 'body';
+        if (array_key_exists('image', $data)) {
+            $keys[] = 'image';
+        }
+
+        foreach ($keys as $v) {
+
+            $query = $this->pdo->update(
+                'UPDATE field_' . $v . ' SET content_' . $v . ' = :content_' . $v . ' WHERE content_id = :content_id', array(
+                    ':content_id' => $data['id'],
+                    ':content_' . $v . '' => $data[$v]
+                )
+            );
+
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
             }
         }
+
+        $error = $this->addTags($data, $data['id']);
             
         if($error == 0) {
             return true;
@@ -317,17 +327,26 @@ class Content {
         // Enlever tous les espaces de la chaine
         $string_tags = str_replace(' ', '', $data['tag']);
 
+        // Sélectionne tous les tags existants
+        /*$selected_tags = $this->pdo->query(
+            'SELECT name FROM tags'
+        );*/
+
         // Récupération de la chaine de tag du formulaire pour en faire un tableau
         $tags = explode(',', $string_tags);
 
         // Pour chaque tag, l'ajouter à la table
         foreach ($tags as $v) {
+
+            var_dump($selected_tags);
+            die;
+
             $query = $this->pdo->insert(
                 'INSERT INTO tags (name)
                 VALUES (:name)', array(
                     ':name' => $v
                 )
-            ); 
+            );
 
             $last_tag_id = $this->pdo->lastId();
 
