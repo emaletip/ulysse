@@ -14,6 +14,73 @@ class Content {
         $this->pdo = new \config\database();
     }
     
+    public function getFieldList() {
+        return $this->pdo->query('SELECT * FROM field WHERE custom = 1'); 
+    }
+    public function getFieldAdd() {
+    }
+    public function postFieldAdd() {
+        
+        if(!empty($_POST['label']) && !empty($_POST['name'])) {
+            
+            $insert = $this->pdo->insert(
+            'INSERT INTO field (name, label, type, size_min, size_max, custom)
+            VALUES (:name, :label, :type, :size_min, :size_max, :custom)', array(
+                ':name' => 'field_'.$_POST['name'],
+                ':label' => $_POST['label'],
+                ':type' => $_POST['type'],
+                ':size_min' => '0',
+                ':size_max' => '100',
+                ':custom' => '1'
+                )
+            );
+            $lastId = $this->pdo->lastId();
+            $insert = $this->pdo->insert(
+            'INSERT INTO content_field (content_type_id, field_id)
+            VALUES (:content_type_id, :field_id)', array(
+                ':content_type_id' => '4',
+                ':field_id' => $lastId
+                )
+            );
+            $table = $this->pdo->query(
+            'CREATE TABLE IF NOT EXISTS `field_'.$_POST['name'].'` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `field_id` int(11) NOT NULL,
+                  `content_id` int(11) NOT NULL,
+                  `content_'.$_POST['name'].'` varchar(255) NOT NULL,
+                  `content_type_name` varchar(100) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1'
+            );
+            
+            $list_id = $this->getProductList();
+            foreach($list_id as $id) {
+                $insert = $this->pdo->insert(
+                'INSERT INTO field_'.$_POST['name'].' (field_id, content_id, content_'.$_POST['name'].', content_type_name)
+                VALUES (:field_id, :content_id, :content_'.$_POST['name'].', :content_type_name)', array(
+                    ':field_id' => $lastId,
+                    ':content_id' => $id->content_id,
+                    ':content_'.$_POST['name'].'' => '',
+                    ':content_type_name' => 'produit'
+                    )
+                );
+            }
+        
+            if(!empty($_POST['contenuselect']) && $_POST['type'] == 'select'){
+                $ligne = explode("\n", $_POST['contenuselect']);
+                foreach($ligne as $l){
+                   $tab[] = explode("|", $l); 
+                }
+            }
+
+            die();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     public function getFields($id) {
         $content_type_id = $this->pdo->query('SELECT c.id, c.content_type_name, ct.name, ct.id AS content_type_id FROM content c
         LEFT JOIN content_type ct ON c.content_type_name = ct.name WHERE c.id = '.$id.'');

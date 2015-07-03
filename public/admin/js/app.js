@@ -1,3 +1,12 @@
+function selectshow(obj) {
+    var select = obj.value;
+    if (select == "select") {
+        document.getElementById("contenu-select").style.display = "block";
+    } else {
+        document.getElementById("contenu-select").style.display = "none";
+    }
+}
+
 $(document).ready(function() {
 	$('.editor').each(function(){	
 		CKEDITOR.replace( $(this).attr('name') );

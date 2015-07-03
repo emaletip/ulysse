@@ -237,6 +237,33 @@ $routes['dashboard/product/remove'] = array(
 					  'view' => 'delete',
 				   );
 
+/* Fields */
+
+$routes['dashboard/fields'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'FieldList',
+					  'view' => 'listField',	
+					);
+$routes['dashboard/fields/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'FieldAdd',
+					  'view' => 'addField',	
+					);
+$routes['dashboard/fields/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'FieldAdd',
+					  'view' => 'addField',	
+					);
+
 /* pages */
 
 $routes['dashboard/page'] = array(

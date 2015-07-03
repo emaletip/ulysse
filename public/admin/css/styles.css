@@ -242,3 +242,6 @@ input[name*="nb_column"] {
 .ui-state-highlight {
 	cursor: move;
 }
+#contenu-select {
+    display: none;
+}

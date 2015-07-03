@@ -101,6 +101,15 @@ class Content {
 	public function getProductList() {
         return $this->contentModel->getProductList();
     }
+    
+    public function getFieldList() {
+        return $this->contentModel->getFieldList();
+    }
+    public function getFieldAdd() {
+    }
+    public function postFieldAdd() {
+        return $this->contentModel->postFieldAdd();
+	}
 
     /*		ARTICLES 	*/
 
