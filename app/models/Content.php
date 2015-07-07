@@ -395,9 +395,16 @@ class Content {
         $string_tags = str_replace(' ', '', $data['tag']);
 
         // Sélectionne tous les tags existants
-        /*$selected_tags = $this->pdo->query(
-            'SELECT name FROM tags'
-        );*/
+        $st = $this->pdo->query(
+            'SELECT * FROM tags'
+        );
+
+        // Placer l'id des tags en guise d'identifiant
+        $selected_tags = array();
+
+        foreach ($st as $t) {
+            $selected_tags[$t->id] = $t->name;
+        }
 
         // Récupération de la chaine de tag du formulaire pour en faire un tableau
         $tags = explode(',', $string_tags);
@@ -405,25 +412,53 @@ class Content {
         // Pour chaque tag, l'ajouter à la table
         foreach ($tags as $v) {
 
-            var_dump($selected_tags);
-            die;
+            // Si le tag n'est pas dans la liste des tags déjà présent dans la base ...
+            if (!in_array($v, $selected_tags)) {
 
-            $query = $this->pdo->insert(
-                'INSERT INTO tags (name)
-                VALUES (:name)', array(
-                    ':name' => $v
-                )
-            );
+                // ... L'ajouter à la base.
+                $query = $this->pdo->insert(
+                    'INSERT INTO tags (name)
+                    VALUES (:name)', array(
+                        ':name' => $v
+                    )
+                );
 
-            $last_tag_id = $this->pdo->lastId();
+                // Récupérer l'id du précédent ajout
+                $last_tag_id = $this->pdo->lastId();
 
-            $query2 = $this->pdo->insert(
-                'INSERT INTO content_tag (content_id, tag_id)
-                VALUES (:content_id, :tag_id)', array(
-                    ':content_id' => $id,
-                    ':tag_id' => $last_tag_id
-                )
-            );
+                // Relier le nouveau tag ajouté au contenu actuel
+                $query2 = $this->pdo->insert(
+                    'INSERT INTO content_tag (content_id, tag_id)
+                    VALUES (:content_id, :tag_id)', array(
+                        ':content_id' => $id,
+                        ':tag_id' => $last_tag_id
+                    )
+                );
+
+            } else {
+
+                // Rechercher le 
+                $tag_id = array_search($v, $selected_tags);
+
+                // ... Pour pouvoir ensuite le relier au contenu
+                $query2 = $this->pdo->insert(
+                    /*'INSERT INTO content_tag (content_id, tag_id)
+                    VALUES (:content_id, :tag_id)'*/
+                    'INSERT INTO content_tag (content_id, tag_id)
+                    SELECT :content_id, :tag_id
+                    WHERE NOT EXISTS (
+                        SELECT * FROM content_tag 
+                        WHERE content_id = :content_id 
+                        AND tag_id = :tag_id)', array(
+                        ':content_id' => $id,
+                        ':tag_id' => $tag_id
+                    )
+                );
+
+                var_dump($query2);
+                die;
+
+            }
 
             // Vérifie si à chaque fois la requête s'effectue correctement
             if($query && $query2){
