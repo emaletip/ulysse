@@ -391,23 +391,27 @@ class Content {
     }
 
     public function addTags(array $data, $id) {
+
+        // Afin d'être sûr en attendant une autre solution plus efficace ...
+        
+
         // Enlever tous les espaces de la chaine
         $string_tags = str_replace(' ', '', $data['tag']);
 
-        // Sélectionne tous les tags existants
+        // Récupération de la chaine de tag du formulaire pour en faire un tableau
+        $tags = explode(',', $string_tags);
+
+        // Sélectionne tous les tags existants dans la base de données
         $st = $this->pdo->query(
             'SELECT * FROM tags'
         );
 
-        // Placer l'id des tags en guise d'identifiant
+        // Placer l'id des tags de la base en guise d'identifiant
         $selected_tags = array();
 
         foreach ($st as $t) {
             $selected_tags[$t->id] = $t->name;
         }
-
-        // Récupération de la chaine de tag du formulaire pour en faire un tableau
-        $tags = explode(',', $string_tags);
 
         // Pour chaque tag, l'ajouter à la table
         foreach ($tags as $v) {
@@ -437,26 +441,26 @@ class Content {
 
             } else {
 
-                // Rechercher le 
+                // Rechercher l'id du tag à ajouter déjà existant en base ...
                 $tag_id = array_search($v, $selected_tags);
 
-                // ... Pour pouvoir ensuite le relier au contenu
-                $query2 = $this->pdo->insert(
-                    /*'INSERT INTO content_tag (content_id, tag_id)
-                    VALUES (:content_id, :tag_id)'*/
-                    'INSERT INTO content_tag (content_id, tag_id)
-                    SELECT :content_id, :tag_id
-                    WHERE NOT EXISTS (
-                        SELECT * FROM content_tag 
-                        WHERE content_id = :content_id 
-                        AND tag_id = :tag_id)', array(
-                        ':content_id' => $id,
-                        ':tag_id' => $tag_id
-                    )
+                $content_tags = $this->pdo->query(
+                    'SELECT * FROM content_tag'
                 );
 
-                var_dump($query2);
-                die;
+                foreach ($content_tags as $ct) {
+
+                    if($ct->content_id == $id && $ct->tag_id == $tag_id) {
+                        // ... Pour pouvoir ensuite le relier au contenu
+                        $query2 = $this->pdo->insert(
+                            'INSERT INTO content_tag (content_id, tag_id)
+                            VALUES (:content_id, :tag_id)', array(
+                                ':content_id' => $id,
+                                ':tag_id' => $tag_id
+                            )
+                        );
+                    }
+                }
 
             }
 
