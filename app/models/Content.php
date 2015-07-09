@@ -393,6 +393,7 @@ class Content {
     public function addTags(array $data, $id) {
 
         // Afin d'être sûr en attendant une autre solution plus efficace ...
+        // Nottamment si l'utilisateur n'efface qu'un seul des tags déjà présent !
         $delete_query = $this->pdo->deleteWithColumn('content_tag', 'content_id', $id);
 
         // Enlever tous les espaces de la chaine
