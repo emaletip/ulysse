@@ -38,7 +38,7 @@ class Config {
 
 		$_SESSION['flash']['config']['key'] = 'success';
 		$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['config']['time'] = time() + 2;
+		$_SESSION['flash']['config']['time'] = time() + 1;
 	
 		redirect('dashboard/config');
 	}

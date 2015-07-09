@@ -47,7 +47,7 @@ class Block {
 		if(!strstr($_SERVER['HTTP_REFERER'], 'emplacement')) {		
 			$_SESSION['flash']['config']['key'] = 'success';
 			$_SESSION['flash']['config']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-			$_SESSION['flash']['config']['time'] = time() + 2;				
+			$_SESSION['flash']['config']['time'] = time() + 1;				
 		}
 
 		redirect('dashboard/block/'.($_POST['id'] ? $_POST['id'] : ''));

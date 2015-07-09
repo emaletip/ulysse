@@ -8,9 +8,132 @@ function selectshow(obj) {
 }
 
 $(document).ready(function() {
+
 	$('.editor').each(function(){	
 		CKEDITOR.replace( $(this).attr('name') );
 	});
+	var options = {
+		placeholderCss: {'background-color': '#ff8', 'border': '1px dashed #eee', 'background': '#f8f8f8'},
+		maxDepth: 2,
+		hintCss: {'border': '1px dashed #eee', 'background-color': '#fff'},
+		isAllowed: function(cEl, hint, target)
+		{
+			// Be carefull if you test some ul/ol elements here.
+			// Sometimes ul/ols are dynamically generated and so they have not some attributes as natural ul/ols.
+			// Be careful also if the hint is not visible. It has only display none so it is at the previouse place where it was before(excluding first moves before showing).
+			if(hint.parents('li').first().data('module') === 'c' && cEl.data('module') !== 'c')
+			{
+				hint.css({'background-color': '#fff'});
+				return false;
+			}
+			else
+			{
+				hint.css('background-color', '#fff');
+				return true;
+			}
+		},
+		opener: {
+			 active: true,
+			 close: './imgs/Remove2.png',
+			 open: './imgs/Add2.png',
+			 openerCss: {
+				 'display': 'inline-block',
+				 'width': '18px',
+				 'height': '18px',
+				 'float': 'left',
+				 'margin-left': '-35px',
+				 'margin-right': '5px',
+				 'background-position': 'center center',
+				 'background-repeat': 'no-repeat'
+			 },
+			 openerClass: ''
+		},
+		ignoreClass: 'clickable',
+		complete: function(e, el) {
+			var position_compteur = 1;
+			var data = {};
+			var url = e.parents('.myList:first').data('update');
+			
+			var li = e;
+			var parent_id = li.parents('.myList:first');
+
+			if(e.parents('ul').length <= 3) {			
+			
+			e.parents('ul:first').find('li').each( function() {
+				var li = $(this);
+				var parent_id = $(this).parents('li.list:first').data('id');
+				if(parent_id == undefined) {
+					parent_id = 'NULL';
+				}
+				
+				var id = $(this).data('id');
+				var position = position_compteur++;
+					data[position] = {id:id, parent_id:parent_id,position,position};
+				});
+				
+				$.ajax({
+					url : url, 
+					type : 'POST', 
+					data : {data:data},
+					success: function(data) {
+						li.find('div:first').append('<i class="fa fa-check pull-right green success-check"></i>')
+						setTimeout(function(){
+							$('.success-check').fadeOut();
+						}, 2000);					
+					}
+			    });
+	
+			} else {
+				/*msg erreur*/
+				$('.principal .alert').fadeIn();
+				setTimeout(function(){
+					$('.principal .alert').fadeOut();
+				}, 5000);					
+
+				parent_id.append(li);
+			}
+		}
+		
+	};
+	
+	$('#myList').sortableLists(options);
+	
+	
+	var oldContainer;
+	$("#myList").sortable({
+	  group: 'nested',
+	  afterMove: function (placeholder, container) {
+	    if(oldContainer != container){
+	      if(oldContainer)
+	        oldContainer.el.removeClass("active");
+	      container.el.addClass("active");
+	
+	      oldContainer = container;
+	    }
+	  },
+	  onDrop: function ($item, container, _super) {
+	  }
+	});
+	
+	$(".switch-container").on("click", ".switch", function  (e) {
+	  var method = $(this).hasClass("active") ? "enable" : "disable";
+	  $(e.delegateTarget).next().sortable(method);
+	});
+	
+	
+	$('.ullist').show();
+	
+	$('.edit-menu-item').unbind().bind('click',function(){
+		var id = $(this).parents('li:first').data('id');
+	});
+	
+	$('.delete-menu-item').unbind().bind('click',function(){
+		var id = $(this).parents('li:first').data('id');
+		var url = $(this).parents('li:first').data('delete');
+		if(confirm('Êtes-vous sûre de vouloir supprimer cet élément ? ')) {
+			window.location.href = url;
+		}
+	});	
 });
 
 $(function() {

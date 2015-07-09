@@ -146,7 +146,62 @@ $routes['dashboard/order'] = array(
 					  'action' => 'List',
 					  'view' => 'list',
 				   );
+/* Menu */
 
+$routes['dashboard/menu'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Menu',
+					  'action' => 'List',
+					  'view' => 'list',
+				   );
+
+$routes['dashboard/menu/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Menu',
+					  'action' => 'Delete',
+					  'view' => 'list',
+				   );
+				   
+$routes['dashboard/menu/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Menu',
+					  'action' => 'Add',
+					  'view' => 'add',
+				   );
+				   
+$routes['dashboard/menu/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Menu',
+					  'action' => 'Update',
+					  'view' => 'edit',
+				   );				  				   
+				   			   
+$routes['dashboard/menu/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Menu',
+					  'action' => 'Add',
+					  'view' => 'add',
+				   );
+
+$routes['dashboard/menu/type'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Menu',
+					  'action' => 'Type',
+					  'view' => 'add',
+				   );
+						   
 /* Config */
 
 $routes['dashboard/config'] = array(

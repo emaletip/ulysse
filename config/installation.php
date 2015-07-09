@@ -97,6 +97,18 @@
                       `field_id` int(11) NOT NULL
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8',
                     
+                    'CREATE TABLE IF NOT EXISTS `content_menu` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `content_id` int(11) NOT NULL,
+                      `menu_id` int(11) NOT NULL,
+                      `parent_id` int(11) NOT NULL,
+                      `position` int(11) NOT NULL,
+                      `path` varchar(255) NOT NULL,
+                      `type` varchar(255) NOT NULL,
+                      `label` varchar(255) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     'CREATE TABLE IF NOT EXISTS `content_tag` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `content_id` int(11) NOT NULL,
@@ -221,7 +233,6 @@
                     
                     'CREATE TABLE IF NOT EXISTS `menu` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
-                      `content_id` int(11) NOT NULL,
                       `label` varchar(100) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
@@ -254,7 +265,7 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
-                    'CREATE TABLE IF NOT EXISTS `tags` (
+                    'CREATE TABLE IF NOT EXISTS `tag` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(255) NOT NULL,
                       PRIMARY KEY (`id`)
@@ -322,6 +333,10 @@
                     (\'product\', 1),
                     (\'product\', 1)',
                     
+                    'INSERT INTO menu (`label`) VALUES
+                    (\'principal\'),
+                    (\'secondaire\')',
+                    
                     'INSERT INTO `content_field` (`content_type_id`, `field_id`) VALUES
                     (4, 1),
                     (4, 3),
@@ -388,7 +403,7 @@
                     (\'administrateur\'),
                     (\'inscrit\')',
                     
-                    'INSERT INTO `tags` (`id`, `name`) VALUES
+                    'INSERT INTO `tag` (`id`, `name`) VALUES
                     (1, \'Chaise\'),
                     (2, \'Table\'),
                     (3, \'Fruit\')',

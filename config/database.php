@@ -66,9 +66,13 @@ class database {
         $req = $this->pdo->prepare($string);
         if (!empty($datas)) {
 	        foreach($datas as $k => $v) {
+				if($v == 'NULL'){
+					$v = null;
+				}	
 	        	$req->bindValue($k, $v);
 	        }
         }           		
+				
         $result = $req->execute();
 		
         return($result);

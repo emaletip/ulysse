@@ -202,28 +202,59 @@ class Content {
     }
 
     public function addProduct(array $data) {
-        
+   
 		$query_content = $this->pdo->insert(
         'INSERT INTO content (content_type_name, created_date, created_user)
         VALUES (:content_type_name, :created_date, :created_user)', array(
             ':content_type_name' => 'product',
             ':created_date' => date('Y-m-d H:i:s'),
-            ':created_user' => '1'
+            ':created_user' => $_SESSION['user']->id
             )
         );
         
-		$lastId = $this->pdo->lastId();
+        $lastId = $this->pdo->lastId();
         
-        foreach($data as $key => $value) {
+        foreach($data as $key => $value) {	
+	          switch ($key) {
+	        	case 'title':
+	        		$field_id = 1;
+	        		break;
+	        	case 'body':
+	        		$field_id = 2;
+	        		break;
+	        	case 'description':
+	        		$field_id = 3;
+	        		break;
+				case 'category':
+	        		$field_id = 4;
+	        		break;
+				case 'price':
+	        		$field_id = 5;
+	        		break;
+				case 'caption':
+	        		$field_id = 6;
+	        		break;
+				case 'path':
+	        		$field_id = 7;
+	        		break;
+				case 'link':
+	        		$field_id = 8;
+	        		break;
+				default: 
+	        		$field_id = 1;
+	        		break;
+			}
+
             $query = $this->pdo->insert(
-            'INSERT INTO field_'.$key.' (field_id, content_id, content_title, content_type_name)
+            'INSERT INTO field_'.$key.' (field_id, content_id, content_'.$key.', content_type_name)
             VALUES (:field_id, :content_id, :content_'.$key.', :content_type_name)', array(
-                ':field_id' => '1',
+                ':field_id' => $field_id,
                 ':content_id' => $lastId,
                 ':content_'.$key.'' => $value,
                 ':content_type_name' => 'product'
                 )
             );
+            var_dump($query.'<br>');
             if($query){
                 $error = 0;
             } else {

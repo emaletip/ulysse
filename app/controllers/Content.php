@@ -14,11 +14,11 @@ class Content {
     public function postProduct_add() {
 		unset($_POST['submit']);
 		
-		$add = $this->contentModel->addContent($_POST);
+		$add = $this->contentModel->addProduct($_POST);
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/product');
 	}
@@ -30,7 +30,7 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/page');
 	}
@@ -50,18 +50,17 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/product/'.$_POST['content_id']);
 	}
        
     public function postPage_edit() {
 		$edit = $this->contentModel->editContent($_POST);
-		
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/page/'.$_POST['content_id']);
 	}
@@ -81,7 +80,7 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été supprimées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/content');
 	}
@@ -137,7 +136,7 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/article');
 	}
@@ -169,7 +168,7 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/article/'.$_POST["id"]);
 	}
@@ -185,7 +184,7 @@ class Content {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été supprimées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/article');
 	}*/

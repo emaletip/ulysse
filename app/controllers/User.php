@@ -47,7 +47,7 @@ class User {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/user/list');
 	}
@@ -74,7 +74,7 @@ class User {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 	
 		redirect('dashboard/user/'.$_POST['id']);
 	}
@@ -84,7 +84,7 @@ class User {
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre utilisateur a bien été supprimé.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 
 		redirect('dashboard/user/list');
 	}

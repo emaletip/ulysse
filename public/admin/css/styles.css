@@ -11,12 +11,16 @@ body {
 .green {
 	color:#22baa0;
 }
-#main-wrapper > .row > .col-md-12 > .panel .panel-heading{
+.red {
+	color:#f25656;
+}
+
+#main-wrapper .panel:first-child .panel-heading{
 	height: 60px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #eee !important;
 }
-#main-wrapper > .row > .col-md-12 > .panel .panel-title {
+#main-wrapper .panel:first-child .panel-title {
 	font-size: 17px;
 	font-weight: 500;
 	padding-left:15px;
@@ -166,6 +170,16 @@ body {
 	display: block;
 	width: 100%;
 }
+
+.emplacement .place .panel-white .panel{
+	background: #f9f9f9 !important;	
+	box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.emplacement .place > .col-md-12 {
+	padding-left: 15px !important;
+}
+
 .nb-columns {
 	position: absolute;
 	right: 35px;
@@ -202,10 +216,9 @@ input[name*="nb_column"] {
 /**********************/
 /*		SORTABLE      */
 /**********************/
-
 .connectedSortable {
 	border: 1px dashed #eee;
-	//  background: #fafafa;
+	background: #fff;
 	width: 100%;
 	min-height: 20px;
 	list-style-type: none;
@@ -213,34 +226,85 @@ input[name*="nb_column"] {
 	padding: 5px 0;
 	float: left;
 	margin-right: 10px;
+	box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.1) inset;
+
 }
 .connectedSortable li {
-	 background: #fafafa none repeat scroll 0 0;
+	background: #fff none repeat scroll 0 0;
 	border: 1px solid #e7e7e7;
 	border-radius: 3px;
 	box-sizing: border-box;
-	color: #333;
+//	color: #333;
 	display: block;
 	font-weight: bold;
 	margin: 5px;
 	padding: 10px 15px;
 	text-decoration: none;
 	width: calc(100% - 10px);
+	
 }
-.ui-state-default {
+.connectedSortable .ui-state-highlight {
+	background: #5b94c5 none repeat scroll 0 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    margin: 5px auto;
+    padding: 8px 15px;
+    text-decoration: none;
+	cursor: move;
+}
+.connectedSortable .ui-state-disabled {
+	background: #ccc none repeat scroll 0 0;
+    color: #555;
+}
+
+/******************/
+/*		MENU      */
+/******************/
+.edit-menu-item, .delete-menu-item {
+	 cursor: pointer;
+	 position: inherit;
+}
+#myList {
+	padding: 0;
+}
+.list{
+	cursor: move;
 	background: #fafafa none repeat scroll 0 0;
     border: 1px solid #e7e7e7;
     border-radius: 3px;
     box-sizing: border-box;
-    color: #333;
+    //color: #333;
     display: block;
     font-weight: bold;
     margin: 5px 0;
     padding: 8px 15px;
     text-decoration: none;
 }
-.ui-state-highlight {
-	cursor: move;
+.list a{
+    color: #4e5e6a;
+}
+.list a:hover{
+	text-decoration: none;
+}
+.list .delete-menu-item {
+	margin-left: 10px;
+}
+.list .fa {
+	font-size: 14px;
+}
+.ullist{
+	margin-top:8px
+}
+/*******************/
+/*		MODAL      */
+/*******************/
+.modal-header {
+	border-bottom: 1px solid #e5e5e5 !important;
+	margin-bottom: 35px;
 }
 #contenu-select {
     display: none;
