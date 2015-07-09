@@ -393,7 +393,7 @@ class Content {
     public function addTags(array $data, $id) {
 
         // Afin d'être sûr en attendant une autre solution plus efficace ...
-        
+        $delete_query = $this->pdo->deleteWithColumn('content_tag', 'content_id', $id);
 
         // Enlever tous les espaces de la chaine
         $string_tags = str_replace(' ', '', $data['tag']);
@@ -439,37 +439,48 @@ class Content {
                     )
                 );
 
+                if ($query && $query2) {
+                    $error = 1;
+                } else {
+                    $error = 0;
+                }
+
             } else {
 
                 // Rechercher l'id du tag à ajouter déjà existant en base ...
                 $tag_id = array_search($v, $selected_tags);
 
+                // Selectionner toutes les éventuelles liaisons entre le contenu et le tag
                 $content_tags = $this->pdo->query(
-                    'SELECT * FROM content_tag'
+                    'SELECT * FROM content_tag 
+                    WHERE content_id = :content_id 
+                    AND tag_id = :tag_id', array(
+                        ':content_id' => $id,
+                        ':tag_id' => $tag_id
+                    )
                 );
 
-                foreach ($content_tags as $ct) {
+                // S'il n'existe pas de liaison entre le contenu et le tag concerné
+                if(empty($content_tags)) {
 
-                    if($ct->content_id == $id && $ct->tag_id == $tag_id) {
-                        // ... Pour pouvoir ensuite le relier au contenu
-                        $query2 = $this->pdo->insert(
-                            'INSERT INTO content_tag (content_id, tag_id)
-                            VALUES (:content_id, :tag_id)', array(
-                                ':content_id' => $id,
-                                ':tag_id' => $tag_id
-                            )
-                        );
-                    }
+                    // ... Créer cette liaison
+                    $query = $this->pdo->insert(
+                        'INSERT INTO content_tag (content_id, tag_id)
+                        VALUES (:content_id, :tag_id)', array(
+                            ':content_id' => $id,
+                            ':tag_id' => $tag_id
+                        )
+                    );
+                }
+
+                if ($query) {
+                    $error = 1;
+                } else {
+                    $error = 0;
                 }
 
             }
 
-            // Vérifie si à chaque fois la requête s'effectue correctement
-            if($query && $query2){
-                $error = 0;
-            } else {
-                $error = 1;
-            }
         }
 
         return $error;

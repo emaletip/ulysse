@@ -92,6 +92,15 @@ class database {
         $result = $req->execute();
         return($result);
     }
+
+    // Pauline
+    public function deleteWithColumn($table, $column, $id)
+    {
+        $req = $this->pdo->prepare('DELETE FROM '.$table.' WHERE '.$column.'='.$id);          		
+        $result = $req->execute();
+        return($result);
+    }
+    // Fin Pauline
     
     public function lastId()
     {
