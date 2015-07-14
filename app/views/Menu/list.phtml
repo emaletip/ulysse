@@ -1,6 +1,72 @@
 <?php include_once("admin/header.phtml"); ?>
-<?php include_once("admin/breadcrumb.phtml"); ?>         
-<div id="main-wrapper">
+<?php include_once("admin/breadcrumb.phtml"); ?>
+<?php 
+function RecursiveWrite($array, $t, &$i, $menuModel) {
+ 	if(!$t)
+ 		echo '<ul class="ullist" id="item_'.$i++.'">';
+
+    foreach ($array as $vals) {
+        echo '<li data-module="a" class="list" data-id="'.$vals['item']->id .'" data-delete="/'.PROJECT_DIRECTORY .'dashboard/menu/delete/'.$vals['item']->id .'" >';
+        echo '<div>'.$vals['item']->label.'
+			<i class="red delete-menu-item clickable fa fa-trash pull-right"></i>
+			<i data-toggle="modal" data-target="#modal_'.$vals['item']->type .'_'.$vals['item']->id.'" class="edit-menu-item clickable fa fa-pencil pull-right"></i>
+			</div>';
+		if (isset($vals['children'])){	
+			RecursiveWrite($vals['children'], false, $i,$menuModel);	
+		}
+		
+		echo '<div id="modal_'. $vals['item']->type .'_'.$vals['item']->id.'" class="clickable modal fade">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+<form action="/'. PROJECT_DIRECTORY .'dashboard/menu/update" method="post" enctype="multipart/form-data" class="form-horizontal">
+		      <div class="modal-header">
+		        <button type="button" class="clickable close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Modifier l\'élément de menu</h4>
+		      </div>
+		      <div class="modal-body">
+				<input type="hidden" value="'.$vals['item']->id .'" name="id" >
+				<div class="form-group">
+					<label class="col-md-2 control-label" for="label">Label</label>
+	                <div class="col-md-10">
+						<input type="text" id="label" name="label" class="clickable form-control" placeholder="Label" value="'.$vals['item']->label.'">
+					</div>
+				</div>';
+				
+				if( $vals['item']->type == 'link') {
+				echo '<div class="form-group" id="path">
+					<label class="col-md-2 control-label">Lien</label>
+	                <div class="col-md-10" id="path_item">
+	                	<input type="text" class="clickable form-control" name="path" value="'.$vals['item']->path.'">
+	                </div>
+				</div>';
+				 } else {
+					$item = $menuModel->getItem($vals['item']->type, $vals['item']->content_id);
+					if (!empty($item)) {
+						$item = current($item);
+						$name = isset($item->name) ? $item->name : $item->content_title;
+					} else {
+						$name = '';
+					}
+					echo '<div class="col-md-offset-2"> Lien vers la '. ($vals['item']->type == 'page' ? 'page' : 'catégorie' ). ' : '. $name .'</div>';
+				} 
+		      echo '</div>
+		      <div class="modal-footer">
+		        <button type="button" class="clickable btn btn-default" data-dismiss="modal">Fermer</button>
+		        <button type="submit" class="clickable btn btn-primary">Sauvegarder</button>
+		      </div>
+</form>
+		    </div>
+		  </div>
+		</div>';
+		
+		echo '</li>';
+    }
+	if(!$t)
+    	echo '</ul>';
+}
+
+?>         
+<div id="main-wrapper" class="config-menu">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-white">
@@ -19,10 +85,15 @@
 						<div class="tab-content">
 							<div id="tab" class="tab-pane active fade in" role="tabpanel">
 								<div class="row">
+									<div class="col-md-12">
+<a class="btn btn-success m-b-xs"  href="/<?= PROJECT_DIRECTORY ?>dashboard/menu/add">Ajouter un item</a>
+									</div>
+								</div>
+								<div class="row">
 									<div class="col-md-6">
 					                	<form class="form-horizontal" action="/<?= PROJECT_DIRECTORY ?>dashboard/menu/update" method="post" enctype="multipart/form-data">
-						                	<div class="panel panel-default">
-				                                <div class="panel-heading">
+						                	<div class="panel panel-white menu">
+				                                <div class="panel-heading2">
 				                                    <h3 class="panel-title">Menu principal</h3>
 				                                </div>
 				                                <div class="panel-body principal">
@@ -30,213 +101,20 @@
 													<b>Attention ! </b> Impossible de placer l'élément ici .		
 													</div>
 			
-													<li data-module="a" id="item_a" class="list" style=" background:#90dccf; border-color:#64cebc">
-														<a href="/<?= PROJECT_DIRECTORY ?>dashboard/menu/add"><i class="fa fa-plus" style="margin-right:10px;"></i> Nouveau</a>
-													</li>
 													<ul id="myList" class="myList ullist listsClass" data-update="/<?=PROJECT_DIRECTORY ?>dashboard/menu/update">
 														
 													<?php
-													$principal = $Menu->menuModel->getPrincipal();
+													$principal = $Menu->menuModel->getMenu(1);
+													$secondaire = $Menu->menuModel->getMenu(2);
+
 													$menuModel = $Menu->menuModel;
+													
 													if (!empty($principal)) {
 														$i = 1;
-														 function RecursiveWrite($array, $t, &$i, $menuModel) {
-														 	if(!$t)
-														 		echo '<ul class="ullist" id="item_'.$i++.'">';
-
-														    foreach ($array as $vals) {
-														        echo '<li data-module="a" class="list" data-id="'.$vals['item']->id .'" data-delete="/'.PROJECT_DIRECTORY .'dashboard/menu/delete/'.$vals['item']->id .'" >';
-														        echo '<div>'.$vals['item']->label.'
-																	<i class="red delete-menu-item clickable fa fa-trash pull-right"></i>
-																	<i data-toggle="modal" data-target="#modal_'.$vals['item']->type .'_'.$vals['item']->id.'" class="edit-menu-item clickable fa fa-pencil pull-right"></i>
-																	</div>';
-																if (isset($vals['children'])){	
-																	RecursiveWrite($vals['children'], false, $i,$menuModel);	
-																}
-																
-																echo '<div id="modal_'. $vals['item']->type .'_'.$vals['item']->id.'" class="clickable modal fade">
-																  <div class="modal-dialog">
-																    <div class="modal-content">
-<form action="/'. PROJECT_DIRECTORY .'dashboard/menu/update" method="post" enctype="multipart/form-data" class="form-horizontal">
-																      <div class="modal-header">
-																        <button type="button" class="clickable close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																        <h4 class="modal-title">Modifier l\'élément de menu</h4>
-																      </div>
-																      <div class="modal-body">
-																		<input type="hidden" value="'.$vals['item']->id .'" name="id" >
-																		<div class="form-group">
-																			<label class="col-md-2 control-label" for="label">Label</label>
-															                <div class="col-md-10">
-																				<input type="text" id="label" name="label" class="clickable form-control" placeholder="Label" value="'.$vals['item']->label.'">
-																			</div>
-																		</div>';
-																		
-																		if( $vals['item']->type == 'link') {
-																		echo '<div class="form-group" id="path">
-																			<label class="col-md-2 control-label">Lien</label>
-															                <div class="col-md-10" id="path_item">
-															                	<input type="text" class="clickable form-control" name="path" value="'.$vals['item']->path.'">
-															                </div>
-																		</div>';
-																		 } else {
-																			$item = $menuModel->getItem($vals['item']->type, $vals['item']->content_id);
-																			if (!empty($item)) {
-																				$item = current($item);
-																				$name = isset($item->name) ? $item->name : $item->content_title;
-																			} else {
-																				$name = '';
-																			}
-																			echo '<div class="col-md-offset-2"> Lien vers la '. ($vals['item']->type == 'page' ? 'page' : 'catégorie' ). ' : '. $name .'</div>';
-																		} 
-																      echo '</div>
-																      <div class="modal-footer">
-																        <button type="button" class="clickable btn btn-default" data-dismiss="modal">Fermer</button>
-																        <button type="submit" class="clickable btn btn-primary">Sauvegarder</button>
-																      </div>
-				</form>
-																    </div>
-																  </div>
-																</div>';
-																
-																echo '</li>';
-														    }
-															if(!$t)
-														    	echo '</ul>';
-														}
-														
 														RecursiveWrite($principal, true, $i,$menuModel);
-														
-														?>
-														 
-														 
-															<!--
-<li data-module="a" class="list" data-id="<?= $MenuItem->id ?>" data-delete="/<?= PROJECT_DIRECTORY ?>dashboard/menu/delete/<?= $MenuItem['parent']->id ?>" data-update="/<?= PROJECT_DIRECTORY ?>dashboard/menu/update">
-																<div><?= $MenuItem['parent']->label?> 
-																	<i class="red delete-menu-item clickable fa fa-trash pull-right"></i>
-																	<i data-toggle="modal" data-target="#modal_<?=$MenuItem['parent']->type ?>_<?=$MenuItem->id?>" class="edit-menu-item clickable fa fa-pencilr  pull-right"></i>
-																</div>
-																
-																<div id="modal_<?= $MenuItem['parent']->type ?>_<?=$MenuItem['parent']->id?>" class="clickable modal fade">
-																  <div class="modal-dialog">
-																    <div class="modal-content">
-<form action="/<?= PROJECT_DIRECTORY ?>dashboard/menu/update" method="post" enctype="multipart/form-data" class="form-horizontal">
-																      <div class="modal-header">
-																        <button type="button" class="clickable close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																        <h4 class="modal-title">Modifier l'élément de menu</h4>
-																      </div>
-																      <div class="modal-body">
-																		<input type='hidden' value="<?= $MenuItem->id ?>" name="id" >
-																		<div class="form-group">
-																			<label class="col-md-2 control-label" for="label">Label</label>
-															                <div class="col-md-10">
-																				<input type="text" id="label" name="label" class="clickable form-control" placeholder="Label" value="<?= $MenuItem->label ?>">
-																			</div>
-																		</div>
-																		<?php if( $MenuItem->type == 'link') { ?>
-																		<div class="form-group" id="path">
-																			<label class="col-md-2 control-label">Lien</label>
-															                <div class="col-md-10" id="path_item">
-															                	<input type="text" class="clickable form-control" name="path" value="<?= $MenuItem->path ?>">
-															                </div>
-																		</div>
-																		<?php } else {
-																			$item = $Menu->menuModel->getItem($MenuItem->type, $MenuItem->content_id);
-
-																			if (!empty($item)) {
-																				$name = isset($item[0]->name) ? $item[0]->name : $item[0]->content_title;
-																			} else {
-																				$name = '';
-																			}
-																			echo '<div class="col-md-offset-2"> Lien vers la '. ($MenuItem->type == 'page' ? 'page' : 'catégorie' ). ' : '. $name .'</div>';
-																		} ?>
-																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="clickable btn btn-default" data-dismiss="modal">Fermer</button>
-																        <button type="submit" class="clickable btn btn-primary">Sauvegarder</button>
-																      </div>
-				</form>
-																    </div>
-																  </div>
-																</div>
-																
-															</li>
--->
-	
-													<?php
-																}
+													}
 													?>
 														
-														<!--
-<li data-module="a" id="item_a" class="list">
-															<div>Item a</div>
-														</li>
-														<li data-module="b" id="item_b" class="sortableListsOpen list">
-															<div><span class="sortableListsOpener" style="background-image: url(&quot;./imgs/Remove2.png&quot;); float: left; display: inline-block; background-position: center center; background-repeat: no-repeat; width: 18px; height: 18px; margin-left: -35px; margin-right: 5px;"></span>Item b</div>
-															<ul class="">
-																<li data-module="b" id="item_b1" class="list">
-																	<div>Item b1</div>
-																</li>
-																<li data-module="b" id="item_b2" class="list">
-																	<div><span class="clickable">Item b2 - clickable text</span></div>
-																</li>
-																<li data-module="b" id="item_b3" class="list">
-																	<div>Item b3</div>
-																</li>
-																<li data-module="b" id="item_b4" class="list">
-																	<div>Item b4</div>
-																</li>
-																<li data-module="b" id="item_b5" class="list">
-																	<div>Item b5</div>
-																</li>
-															</ul>
-														</li>
-														<li data-module="c" id="item_c" class="sortableListsClosed list">
-															<div><span class="sortableListsOpener" style="background-image: url(&quot;./imgs/Add2.png&quot;); float: left; display: inline-block; background-position: center center; background-repeat: no-repeat; width: 18px; height: 18px; margin-left: -35px; margin-right: 5px;"></span>Item c - c block disallows inserting items from other blocks</div>
-															<ul class="" style="display: none;">
-																<li data-module="c" id="item_c1" class="list">
-																	<div>Item c1</div>
-																</li>
-																<li data-module="c" id="item_c2" class="list">
-																	<div>Item c2</div>
-																</li>
-																<li data-module="c" id="item_c3" class="list">
-																	<div>Item c3</div>
-																</li>
-																<li data-module="c" id="item_c4" class="list">
-																	<div>Item c4</div>
-																</li>
-																<li data-module="c" id="item_c5" class="list">
-																	<div>Item c5</div>
-																</li>
-															</ul>
-														</li>
-														<li data-module="d" id="item_d" class="sortableListsClosed list">
-															<div><span class="sortableListsOpener" style="background-image: url(&quot;./imgs/Add2.png&quot;); float: left; display: inline-block; background-position: center center; background-repeat: no-repeat; width: 18px; height: 18px; margin-left: -35px; margin-right: 5px;"></span>Item d</div>
-															<ul class="" style="display: none;">
-																<li data-module="d" id="item_d1" class="list">
-																	<div>Item d1</div>
-																</li>
-																<li data-module="d" id="item_d2" class="list">
-																	<div>Item d2</div>
-																</li>
-																<li data-module="d" id="item_d3" class="list">
-																	<div>Item d3</div>
-																</li>
-																<li data-module="d" id="item_d4" class="list">
-																	<div>Item d4</div>
-																</li>
-																<li data-module="d" id="item_d5" class="list">
-																	<div>Item d5</div>
-																</li>
-															</ul>
-														</li>
-														<li data-module="e" id="item_e" class="list">
-															<div>Item e</div>
-														</li>
-														<li data-module="f" id="item_f" class="list">
-															<div>Item f</div>
-														</li>
--->
 													</ul>
 				                                </div>
 				                            </div>
@@ -244,11 +122,25 @@
 									</div>
 									<div class="col-md-6">
 					                	<form class="form-horizontal" action="/<?= PROJECT_DIRECTORY ?>dashboard/menu/update" method="post" enctype="multipart/form-data">
-											<div class="panel panel-default">
-				                                <div class="panel-heading">
+											<div class="panel panel-default menu">
+				                                <div class="panel-heading2">
 				                                    <h3 class="panel-title">Menu secondaire</h3>
 				                                </div>
 				                                <div class="panel-body">
+				                                <div class="alert alert-danger" role="alert" style="display:none">
+													<b>Attention ! </b> Impossible de placer l'élément ici .		
+													</div>
+			
+													<ul id="myList2" class="myList ullist listsClass" data-update="/<?=PROJECT_DIRECTORY ?>dashboard/menu/update">
+
+				                                <?php 
+				                                
+													if (!empty($secondaire)) {
+														$i = 1;
+														RecursiveWrite($secondaire, true, $i,$menuModel);
+													}
+				                                ?>
+													</ul>
 				                                </div>
 				                            </div>
 										</form>

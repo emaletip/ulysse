@@ -97,6 +97,7 @@ $(document).ready(function() {
 	};
 	
 	$('#myList').sortableLists(options);
+	$('#myList2').sortableLists(options);
 	
 	
 	var oldContainer;

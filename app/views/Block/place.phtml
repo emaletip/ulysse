@@ -35,320 +35,325 @@
 							<div class="tab-content">
 								<div id="tab" class="tab-pane active fade in" role="tabpanel">
 									<div class="row place">
-						<div class="col-md-12">
-			                <div class="panel panel-white">
-				    <div class="col-xs-4 col-md-4">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Header Left</h4> 
-							</div>
-				            <div class="panel-body">
-								<ul id="sortable1" class="sortable connectedSortable" data-id="1">
-										<?php 
-									if(isset($emplacement['header_left'])) {
-										foreach($emplacement['header_left'] as $header_left_block) { 
-										?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_connect' ? 'ui-state-disabled' : '' ?>">
-											<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                </ul>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-xs-4 col-md-4">
-				        <div class="panel">
-				        <div class="panel-heading clearfix">
-								<h4 class="panel-title">Header Center</h4>
-							</div>
-				            <div class="panel-body">
-								<ul id="sortable2" class="sortable connectedSortable" data-id="3">
-										<?php if(isset($emplacement['header_center'])) {
-										foreach($emplacement['header_center'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
-                                           <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>                                           
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                </ul>
-                            </div>
-				        </div>
-				    </div>
-				    <div class="col-xs-4 col-md-4">
-				        <div class="panel">
-							<div class="panel-heading clearfix">
-								<h4 class="panel-title">Header Right</h4>
-							</div>				            
-							<div class="panel-body">
-								<ul id="sortable3" class="sortable connectedSortable" data-id="2">
-										<?php 
-									if(isset($emplacement['header_right'])) {
-										foreach($emplacement['header_right'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_cart' ? 'ui-state-disabled' : '' ?>">
-											<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                </ul>
-								
-				            </div>
-				        </div>
-				    </div>
-				</div>
-						</div>
-					</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Menu</h4>
-							</div>
-				            <div class="panel-body">
-								<div id="nestable" class="dd">
-									<ul id="sortable4" class="sortable connectedSortable" data-id="4">
-									<?php 
-									if(isset($emplacement['menu'])) {
-										foreach($emplacement['menu'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_principal_menu' ? 'ui-state-disabled' : '' ?>" >
-                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Diaporama</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-					                <ul id="sortable5" class="sortable connectedSortable"  data-id="5">
-										<?php 
-										if(isset($emplacement['slider'])) {
-											foreach($emplacement['slider'] as $header_left_block) { ?>
-	                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight" >
-	                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-	                                        </li>
-	                                    <?php }
-	                                    } ?>
-	                                </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Before content
-									<div class="columns pull-right">
-										<i class="fa fa-columns"></i>
-										<ul class="nb-columns" style="display:none;" data-id="6">
-											<li><input type="radio" name="nb_column6" value="1" <?= $emps[6]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
-											<li><input type="radio" name="nb_column6" value="2" <?= $emps[6]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
-											<li><input type="radio" name="nb_column6" value="3" <?= $emps[6]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
-										</ul>
+										<div class="col-md-12">
+											<div class="panel panel-white">
+									    <div class="col-xs-4 col-md-4">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Header Left</h4> 
+												</div>
+									            <div class="panel-body">
+													<ul id="sortable1" class="sortable connectedSortable" data-id="1">
+															<?php 
+														if(isset($emplacement['header_left'])) {
+															foreach($emplacement['header_left'] as $header_left_block) { 
+															?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_connect' ? 'ui-state-disabled' : '' ?>">
+																<?= $header_left_block['name'] ==  'block_connect' ? '<i class="fa fa-ban"></i>' : '' ?>
+																<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                </ul>
+									            </div>
+									        </div>
+									    </div>
+									    <div class="col-xs-4 col-md-4">
+									        <div class="panel">
+									        <div class="panel-heading clearfix">
+													<h4 class="panel-title">Header Center</h4>
+												</div>
+									            <div class="panel-body">
+													<ul id="sortable2" class="sortable connectedSortable" data-id="3">
+															<?php if(isset($emplacement['header_center'])) {
+															foreach($emplacement['header_center'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
+					                                           <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>                                           
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                </ul>
+					                            </div>
+									        </div>
+									    </div>
+									    <div class="col-xs-4 col-md-4">
+									        <div class="panel">
+												<div class="panel-heading clearfix">
+													<h4 class="panel-title">Header Right</h4>
+												</div>				            
+												<div class="panel-body">
+													<ul id="sortable3" class="sortable connectedSortable" data-id="2">
+															<?php 
+														if(isset($emplacement['header_right'])) {
+															foreach($emplacement['header_right'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_cart' ? 'ui-state-disabled' : '' ?>">
+															<?= $header_left_block['name'] ==  'block_cart' ? '<i class="fa fa-ban"></i>' : '' ?>
+					
+																<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                </ul>
+													
+									            </div>
+									        </div>
+									    </div>
 									</div>
-								</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-					                <ul id="sortable6" class="sortable connectedSortable" data-id="6">
-									<?php 
-									if(isset($emplacement['before_content'])) {
-										foreach($emplacement['before_content'] as $header_left_block) { ?>
-	                                    <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight" >
-                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-4 col-md-4">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Sidebar</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-					                <ul id="sortable6" class="sortable connectedSortable" data-id="7">
-									<?php 
-									if(isset($emplacement['sidebar'])) {
-										foreach($emplacement['sidebar'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
-                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-				    <div class="col-xs-4 col-md-8">
-				        <div class="panel">
-				        <div class="panel-heading clearfix">
-								<h4 class="panel-title">Content</h4>
-							</div>
-				            <div class="panel-body">
-				               <div id="nestable" class="dd">
-                                    <ul id="sortable7" class="sortable connectedSortable" data-id="8">
-									<?php 
-									if(isset($emplacement['content'])) {
-										foreach($emplacement['content'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_content' ? 'ui-state-disabled' : '' ?>">
-                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Pre-footer
-									<div class="columns pull-right">
-										<i class="fa fa-columns"></i>
-										<ul class="nb-columns" style="display:none;" data-id="9">
-											<li><input type="radio" name="nb_column9" value="1" <?= $emps[9]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
-											<li><input type="radio" name="nb_column9" value="2" <?= $emps[9]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
-											<li><input type="radio" name="nb_column9" value="3" <?= $emps[9]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
-										</ul>
-									</div>
-								</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-                                    <ul id="sortable8" class="sortable connectedSortable" data-id="9">
-									<?php 
-									if(isset($emplacement['pre_footer'])) {
-										foreach($emplacement['pre_footer'] as $header_left_block) { ?>
-                                        <li data-id="<?=$header_left_block['id']?>" class="ui-state-highlight">
-                                           <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Footer
-									<div class="columns pull-right">
-										<i class="fa fa-columns"></i>
-										<ul class="nb-columns" style="display:none;" data-id="10">
-											<li><input type="radio" name="nb_column10" value="1" <?= $emps[10]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
-											<li><input type="radio" name="nb_column10" value="2" <?= $emps[10]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
-											<li><input type="radio" name="nb_column10" value="3" <?= $emps[10]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
-										</ul>
-									</div>
-								</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-                                    <ul id="sortable9" class="sortable connectedSortable" data-id="10">
-									<?php 
-									if(isset($emplacement['footer'])) {
-										foreach($emplacement['footer'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
-                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
-									<div class="row place">
-			<div class="col-md-12">
-                <div class="panel panel-white">
-				    <div class="col-xs-12 col-md-12">
-				        <div class="panel">
-				        	<div class="panel-heading clearfix">
-								<h4 class="panel-title">Copyright</h4>
-							</div>
-				            <div class="panel-body">
-				                <div id="nestable" class="dd">
-                                    <ul id="sortable10" class="sortable connectedSortable" data-id="11">
-									<?php 
-									if(isset($emplacement['copyright'])) {
-										foreach($emplacement['copyright'] as $header_left_block) { ?>
-                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_copyright' ? 'ui-state-disabled' : '' ?>">
-											<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
-                                        </li>
-                                    <?php }
-                                    } ?>
-                                    </ul>
-                                </div>
-				            </div>
-				        </div>
-				    </div>
-
-				</div>
-			</div>
-		</div>
 								</div>
 							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Menu</h4>
+												</div>
+									            <div class="panel-body">
+													<div id="nestable" class="dd">
+														<ul id="sortable4" class="sortable connectedSortable" data-id="4">
+														<?php 
+														if(isset($emplacement['menu'])) {
+															foreach($emplacement['menu'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_principal_menu' ? 'ui-state-disabled' : '' ?>" >
+															<?= $header_left_block['name'] ==  'block_principal_menu' ? '<i class="fa fa-ban"></i>' : '' ?>
+					                                        <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+					
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Diaporama</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+										                <ul id="sortable5" class="sortable connectedSortable"  data-id="5">
+															<?php 
+															if(isset($emplacement['slider'])) {
+																foreach($emplacement['slider'] as $header_left_block) { ?>
+						                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight" >
+						                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+						                                        </li>
+						                                    <?php }
+						                                    } ?>
+						                                </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+					
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Before content
+														<div class="columns pull-right">
+															<i class="fa fa-columns"></i>
+															<ul class="nb-columns" style="display:none;" data-id="6">
+																<li><input type="radio" name="nb_column6" value="1" <?= $emps[6]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
+																<li><input type="radio" name="nb_column6" value="2" <?= $emps[6]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
+																<li><input type="radio" name="nb_column6" value="3" <?= $emps[6]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
+															</ul>
+														</div>
+													</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+										                <ul id="sortable6" class="sortable connectedSortable" data-id="6">
+														<?php 
+														if(isset($emplacement['before_content'])) {
+															foreach($emplacement['before_content'] as $header_left_block) { ?>
+						                                    <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight" >
+					                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+					
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-4 col-md-4">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Sidebar</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+										                <ul id="sortable6" class="sortable connectedSortable" data-id="7">
+														<?php 
+														if(isset($emplacement['sidebar'])) {
+															foreach($emplacement['sidebar'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
+					                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+									    <div class="col-xs-4 col-md-8">
+									        <div class="panel">
+									        <div class="panel-heading clearfix">
+													<h4 class="panel-title">Content</h4>
+												</div>
+									            <div class="panel-body">
+									               <div id="nestable" class="dd">
+					                                    <ul id="sortable7" class="sortable connectedSortable" data-id="8">
+														<?php 
+														if(isset($emplacement['content'])) {
+															foreach($emplacement['content'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_content' ? 'ui-state-disabled' : '' ?>">
+																<?= $header_left_block['name'] ==  'block_content' ? '<i class="fa fa-ban"></i>' : '' ?>
+					                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Pre-footer
+														<div class="columns pull-right">
+															<i class="fa fa-columns"></i>
+															<ul class="nb-columns" style="display:none;" data-id="9">
+																<li><input type="radio" name="nb_column9" value="1" <?= $emps[9]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
+																<li><input type="radio" name="nb_column9" value="2" <?= $emps[9]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
+																<li><input type="radio" name="nb_column9" value="3" <?= $emps[9]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
+															</ul>
+														</div>
+													</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+					                                    <ul id="sortable8" class="sortable connectedSortable" data-id="9">
+														<?php 
+														if(isset($emplacement['pre_footer'])) {
+															foreach($emplacement['pre_footer'] as $header_left_block) { ?>
+					                                        <li data-id="<?=$header_left_block['id']?>" class="ui-state-highlight">
+					                                           <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Footer
+														<div class="columns pull-right">
+															<i class="fa fa-columns"></i>
+															<ul class="nb-columns" style="display:none;" data-id="10">
+																<li><input type="radio" name="nb_column10" value="1" <?= $emps[10]['nb_column'] == 1 ? 'checked' : '' ?>> 1 Colonne</input></li>
+																<li><input type="radio" name="nb_column10" value="2" <?= $emps[10]['nb_column'] == 2 ? 'checked' : '' ?>> 2 Colonnes</input></li>
+																<li><input type="radio" name="nb_column10" value="3" <?= $emps[10]['nb_column'] == 3 ? 'checked' : '' ?>> 3 Colonnes</input></li>
+															</ul>
+														</div>
+													</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+					                                    <ul id="sortable9" class="sortable connectedSortable" data-id="10">
+														<?php 
+														if(isset($emplacement['footer'])) {
+															foreach($emplacement['footer'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight">
+					                                            <?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+					
+									</div>
+								</div>
+							</div>
+							<div class="row place">
+								<div class="col-md-12">
+					                <div class="panel panel-white">
+									    <div class="col-xs-12 col-md-12">
+									        <div class="panel">
+									        	<div class="panel-heading clearfix">
+													<h4 class="panel-title">Copyright</h4>
+												</div>
+									            <div class="panel-body">
+									                <div id="nestable" class="dd">
+					                                    <ul id="sortable10" class="sortable connectedSortable" data-id="11">
+														<?php 
+														if(isset($emplacement['copyright'])) {
+															foreach($emplacement['copyright'] as $header_left_block) { ?>
+					                                        <li data-id="<?= $header_left_block['id'] ?>" class="ui-state-highlight <?= $header_left_block['name'] ==  'block_copyright' ? 'ui-state-disabled' : '' ?>">
+																<?= $header_left_block['name'] ==  'block_copyright' ? '<i class="fa fa-ban"></i>' : '' ?>
+																<?= $header_left_block['title'] != '' ? $header_left_block['title'] : ucfirst(str_replace('_',' ',$header_left_block['name'])) ?>
+					                                        </li>
+					                                    <?php }
+					                                    } ?>
+					                                    </ul>
+					                                </div>
+									            </div>
+									        </div>
+									    </div>
+					
+									</div>
+								</div>
+							</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>			
-	</div>
+	</div>			
+</div>
 	<script>
 	
 	$(document).ready(function(){		

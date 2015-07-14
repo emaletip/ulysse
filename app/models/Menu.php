@@ -24,12 +24,10 @@ class Menu {
 				$categoryModel = new \app\models\Category();
 				$categorys = $categoryModel->getList();
 				foreach ($categorys as $category) {
-					if($category->parent_id == NULL) {
 						$array[$i]['title'] = $category->name;
 						$array[$i]['id'] = $category->id;
 						$array[$i]['type'] = 'Catégorie';
 						$array[$i]['table'] = 'category';
-					} 
 					$i ++;
 				}
 				break;
@@ -74,7 +72,6 @@ class Menu {
 			$datas[':'.$k] = $v;
 		}
 	
-	// bindValue
 		$sql .= implode(', ',$sqldatas);
 		$sql .= ' WHERE id=:id';
 		return $this->getPdo()->update($sql, $datas);
@@ -152,8 +149,8 @@ public function RecursiveWrite($array) {
 	}
 */
 			
-	public function	getPrincipal() {	
-		$parents = $this->pdo->query('SELECT * FROM content_menu WHERE menu_id=1 AND parent_id IS NULL ORDER BY position ASC;');
+	public function	getMenu($id) {	
+		$parents = $this->pdo->query('SELECT * FROM content_menu WHERE menu_id='.$id.' AND parent_id IS NULL ORDER BY position ASC;');
 		$order = array();
 		
 		

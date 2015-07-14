@@ -33,8 +33,9 @@ class Menu {
 	}	
 
 	public function postUpdate() {
-			$this->menuModel->getUpdate_item($_POST);
-
+		foreach($_POST['data'] as $post) {
+		$this->menuModel->getUpdate_item($post);
+		}
 		redirect('dashboard/menu');
 	}	
 	

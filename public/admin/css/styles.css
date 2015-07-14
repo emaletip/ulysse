@@ -31,6 +31,9 @@ body {
 .tab-content {
 	padding: 50px 30px;
 }
+.panel{
+	box-shadow: none;
+}
 .panel-heading {
 	height: auto !important;
 }
@@ -226,7 +229,7 @@ input[name*="nb_column"] {
 	padding: 5px 0;
 	float: left;
 	margin-right: 10px;
-	box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.1) inset;
+	//box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.1) inset;
 
 }
 .connectedSortable li {
@@ -244,17 +247,16 @@ input[name*="nb_column"] {
 	
 }
 .connectedSortable .ui-state-highlight {
-	background: #5b94c5 none repeat scroll 0 0;
+	background: #fafafa none repeat scroll 0 0;
     border: 1px solid #e7e7e7;
     border-radius: 3px;
     box-sizing: border-box;
-    color: #fff;
+    cursor: move;
     display: block;
     font-weight: bold;
     margin: 5px auto;
     padding: 8px 15px;
     text-decoration: none;
-	cursor: move;
 }
 .connectedSortable .ui-state-disabled {
 	background: #ccc none repeat scroll 0 0;
@@ -308,4 +310,37 @@ input[name*="nb_column"] {
 }
 #contenu-select {
     display: none;
+}
+/********************/
+/*		MENU		*/
+/********************/
+#main-wrapper.config-menu .panel-heading2 {
+	border: 0 none !important;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+    height: 55px;
+    overflow: hidden;
+    padding: 20px 0;
+    margin: 15px 0;
+     border-bottom: 1px solid #eee !important;
+    height: 60px;
+    margin-bottom: 20px;
+}
+#main-wrapper.config-menu .menu .panel-body {
+    padding: 0 20px;
+
+}
+#main-wrapper.config-menu .myList{
+    padding: 20px;
+	border: 1px dashed #eee;
+    background: #fff;	
+}
+#main-wrapper.config-menu .menu {
+	background: #f9f9f9 none repeat scroll 0 0 !important;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.add-menu{
+	cursor: pointer;
 }
