@@ -427,6 +427,21 @@ class Content {
         // Nottamment si l'utilisateur n'efface qu'un seul des tags déjà présent !
         $delete_query = $this->pdo->deleteWithColumn('content_tag', 'content_id', $id);
 
+        // Tentative désespérée de sélectionner les tags déjà reliés au contenu
+        /*$tags_content = $this->pdo->query(
+            'SELECT * FROM tags AS t
+            JOIN content_tag AS ct ON t.id = ct.tag_id
+            WHERE ct.content_id = :content_id', array(
+                ':content_id' => $id
+            )
+        );
+
+        $tc = array();
+
+        foreach ($tags_content as $t_c) {
+            $tc[$t_c->id] = $t_c->name;
+        }*/
+
         // Enlever tous les espaces de la chaine
         $string_tags = str_replace(' ', '', $data['tag']);
 
@@ -447,6 +462,14 @@ class Content {
 
         // Pour chaque tag, l'ajouter à la table
         foreach ($tags as $v) {
+
+            // Tentative désespérée de supprimer le tag de la base de donnée si le tag en court ne fait pas partit de la liste $tc
+            /*if (!in_array($v, $tc)) {
+                $delete_query = $this->pdo->deleteWithColumn('content_id', array(
+                    'content_id' => $id,
+                    'tag_id' => array_search($v, $selected_tags)
+                ));
+            }*/
 
             // Si le tag n'est pas dans la liste des tags déjà présent dans la base ...
             if (!in_array($v, $selected_tags)) {
