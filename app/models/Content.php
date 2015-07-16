@@ -390,14 +390,36 @@ class Content {
 
     public function editArticle(array $data) {
 
+        // Récupération des éventuels noms de champs qui nous seront nécessaire pour la mise à jour
         $keys[] = 'title';
         $keys[] = 'body';
         if (array_key_exists('image', $data)) {
             $keys[] = 'image';
+
+            // Recherche si une image était déjà relié à ce contenu
+            $image_query = $this->pdo->query(
+                'SELECT * FROM field_image
+                WHERE content_id = :content_id', array(
+                    ':content_id' => $data['id']
+                )
+            );
+
+            // Si le contenu ne possédait pas d'image à la base, alors on lui ajoute celle qui a été ajouté dans le formulaire
+            if (!$image_query) {
+                $image_insert = $this->pdo->insert(
+                    'INSERT INTO field_image (field_id, content_id, content_image, content_type_name)
+                    VALUES (10, :content_id, :content_image, "article")', array(
+                        ':content_id' => $data['id'],
+                        ':content_image' => $data['image']
+                    )
+                );
+            }
         }
 
+        // Pour chacun de ces champs ...
         foreach ($keys as $v) {
 
+            // ... la table de ce champs (image, titre, body, ...) est mise à jour
             $query = $this->pdo->update(
                 'UPDATE field_' . $v . ' SET content_' . $v . ' = :content_' . $v . ' WHERE content_id = :content_id', array(
                     ':content_id' => $data['id'],
@@ -410,6 +432,7 @@ class Content {
             } else {
                 $error = 1;
             }
+
         }
 
         $error = $this->addTags($data, $data['id']);
@@ -423,12 +446,26 @@ class Content {
 
     public function addTags(array $data, $id) {
 
-        // Afin d'être sûr en attendant une autre solution plus efficace ...
-        // Nottamment si l'utilisateur n'efface qu'un seul des tags déjà présent !
-        $delete_query = $this->pdo->deleteWithColumn('content_tag', 'content_id', $id);
+        /* Liste des tags inscrit dans le formulaire : $tags */
+        // Récupération des données du formulaire
+        $string_tags = str_replace(' ', '', $data['tag']);
+        $tags = explode(',', $string_tags);
 
-        // Tentative désespérée de sélectionner les tags déjà reliés au contenu
-        /*$tags_content = $this->pdo->query(
+        /* Liste complète des tags : $selected_tags */
+        // Requête
+        $st = $this->pdo->query(
+            'SELECT * FROM tags'
+        );
+
+        // Rangement au propre dans un tableau
+        $selected_tags = array();
+        foreach ($st as $t) {
+            $selected_tags[$t->id] = $t->name;
+        }
+
+        /* Liste complète des tags relié au contenu $id : $tags_content */
+        // Requête
+        $t_c = $this->pdo->query(
             'SELECT * FROM tags AS t
             JOIN content_tag AS ct ON t.id = ct.tag_id
             WHERE ct.content_id = :content_id', array(
@@ -436,42 +473,34 @@ class Content {
             )
         );
 
-        $tc = array();
+        // Rangement au propre dans un tableau
+        $tags_content = array();
+        foreach ($t_c as $tc) {
+            $tags_content[$tc->id] = $tc->name;
+        }
+        
 
-        foreach ($tags_content as $t_c) {
-            $tc[$t_c->id] = $t_c->name;
-        }*/
+        /* Gestion au cas ou l'un des tags souhaite être supprimer */
+        // Pour chaque tags relié au contenu ...
+        foreach ($tags_content as $key => $val) {
 
-        // Enlever tous les espaces de la chaine
-        $string_tags = str_replace(' ', '', $data['tag']);
+            // Si le tags relié au contenu ne fait pas partit des tags envoyé par le formulaire ...
+            if (!in_array($val, $tags)) {
 
-        // Récupération de la chaine de tag du formulaire pour en faire un tableau
-        $tags = explode(',', $string_tags);
+                // ... alors on supprime sa liaison avec le contenu
+                $delete_query = $this->pdo->delete('content_tag', $key);
+            }
 
-        // Sélectionne tous les tags existants dans la base de données
-        $st = $this->pdo->query(
-            'SELECT * FROM tags'
-        );
-
-        // Placer l'id des tags de la base en guise d'identifiant
-        $selected_tags = array();
-
-        foreach ($st as $t) {
-            $selected_tags[$t->id] = $t->name;
         }
 
-        // Pour chaque tag, l'ajouter à la table
+        /* Gestion des ajout à effectuer dans la base de données */
+        // Par chaque tag récupéré dans le champs du formulaire : 
+        // 1 : Si le tag n'est pas enregistré dans la table "tags", il est alors ajouté à cette table et relié au contenu dans la table "content_tag"
+        // 2 : Sinon, une vérification est faite pour savoir si le tag n'est pas déjà relié au contenu. Si ce n'est pas le cas, il est relié dans la table "content_table"
+
         foreach ($tags as $v) {
 
-            // Tentative désespérée de supprimer le tag de la base de donnée si le tag en court ne fait pas partit de la liste $tc
-            /*if (!in_array($v, $tc)) {
-                $delete_query = $this->pdo->deleteWithColumn('content_id', array(
-                    'content_id' => $id,
-                    'tag_id' => array_search($v, $selected_tags)
-                ));
-            }*/
-
-            // Si le tag n'est pas dans la liste des tags déjà présent dans la base ...
+            // CF 1
             if (!in_array($v, $selected_tags)) {
 
                 // ... L'ajouter à la base.
@@ -500,6 +529,7 @@ class Content {
                     $error = 0;
                 }
 
+            // CF 2
             } else {
 
                 // Rechercher l'id du tag à ajouter déjà existant en base ...
@@ -515,10 +545,10 @@ class Content {
                     )
                 );
 
-                // S'il n'existe pas de liaison entre le contenu et le tag concerné
+                // S'il n'existe pas de liaison entre le contenu et le tag concerné ...
                 if(empty($content_tags)) {
 
-                    // ... Créer cette liaison
+                    // ... créer cette liaison
                     $query = $this->pdo->insert(
                         'INSERT INTO content_tag (content_id, tag_id)
                         VALUES (:content_id, :tag_id)', array(
@@ -526,12 +556,13 @@ class Content {
                             ':tag_id' => $tag_id
                         )
                     );
-                }
 
-                if ($query) {
-                    $error = 1;
-                } else {
-                    $error = 0;
+                    if ($query) {
+                        $error = 1;
+                    } else {
+                        $error = 0;
+                    }
+
                 }
 
             }
@@ -541,27 +572,43 @@ class Content {
         return $error;
     }
 
-    public function deleteArticle(array $data) {
-        
+    public function deleteArticle($id) {
+
+        // Suppression du contenu dans la table regroupant tous les contenus        
         $query = $this->pdo->update(
         'DELETE FROM content WHERE id = :id', array(
-            ':id' => $data['content_id']
+            ':id' => $id
             )
         );
-        
-        foreach($data as $key => $value) {
-            if($key != 'content_id'){
-                $query = $this->pdo->update(
-                'DELETE FROM field_'.$key.' WHERE content_id = :content_id', array(
-                    ':content_id' => $data['content_id']
-                    )
-                );
-                if($query){
-                    $error = 0;
-                } else {
-                    $error = 1;
-                }
+
+        // Suppression des liaisons entre ce contenu et les tags
+        $query = $this->pdo->update(
+            'DELETE FROM content_id WHERE content_id = :content_id', array(
+                ':content_id' => $id
+            )
+        );
+
+        // Récupération des éventuels noms de champs qui nous seront nécessaire pour la suppression
+        $keys[] = 'title';
+        $keys[] = 'body';
+        $keys[] = 'image';
+
+        // Pour chacun de ces champs ...
+        foreach ($keys as $v) {
+
+            // ... la table de ce champs (image, titre, body, ...) est mise à jour
+            $query = $this->pdo->update(
+                'DELETE FROM field_'.$v.' WHERE content_id = :content_id', array(
+                ':content_id' => $id
+                )
+            );
+
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
             }
+
         }
             
         if($error == 0) {
