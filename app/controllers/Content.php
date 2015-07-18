@@ -84,6 +84,13 @@ class Content {
 	
 		redirect('dashboard/content');
 	}
+	public function getContact() {
+		/* elodie: Affiche la page contact */
+	}
+	
+	public function getCategory($id) {
+        return $this->contentModel->getCategory($id);
+	}
     
     public function getProduct_delete($id) {
         return $this->contentModel->getProduct($id);
@@ -190,13 +197,33 @@ class Content {
 	}*/
     
     public function getArticle_delete($id) {
-    	$this->contentModel->deleteArticle($id);
+    	$r = $this->contentModel->deleteArticle($id);
 
+    	if ($r) {
     	$_SESSION['flash']['user']['key'] = 'success';
-		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre utilisateur a bien été supprimé.';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre article a bien été supprimé.';
 		$_SESSION['flash']['user']['time'] = time() + 2;
-
+		} else {
+    	$_SESSION['flash']['user']['key'] = 'danger';
+		$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre article n\'a pas été supprimé.';
+		$_SESSION['flash']['user']['time'] = time() + 2;
+		}
 		redirect('dashboard/article');
+	}
+
+	public function getPage_delete($id) {
+    	$this->contentModel->deletePage($id);
+
+		if ($r) {
+	    	$_SESSION['flash']['user']['key'] = 'success';
+			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre page a bien été supprimé.';
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		} else {
+	    	$_SESSION['flash']['user']['key'] = 'danger';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre page n\'a pas été supprimé.';
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		}
+		redirect('dashboard/page');
 	}
 
 	public function getArticle($id) {

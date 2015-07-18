@@ -173,12 +173,36 @@ body {
 	display: block;
 	width: 100%;
 }
+.emplacement .panel .place .panel-white .panel {
+	background: #e2e4e6 none repeat scroll 0 0 !important;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+}
 
+.emplacement .panel .panel-heading{
+		border: 0 none !important;
+    font-size: 14px;
+    font-weight: 600;
+    height: 55px;
+    overflow: hidden;
+    padding: 20px 0;
+    margin-top: 15px;
+    height: 60px;
+   // margin-bottom: 20px;
+
+}
 .emplacement .place .panel-white .panel{
 	background: #f9f9f9 !important;	
 	box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.1);
 }
-
+.emplacement .panel-heading2{
+	border: 0 none !important;
+    font-size: 14px;
+    font-weight: 600;
+    height: 60px;
+    margin-top: 15px;
+    overflow: hidden;
+    padding: 20px 0;
+}
 .emplacement .place > .col-md-12 {
 	padding-left: 15px !important;
 }
@@ -203,6 +227,9 @@ body {
 input[name*="nb_column"] {
 	margin-right: 5px;	
 }
+.columns{
+	margin-right:10px;
+}
 .columns .fa{
 	font-size: 14px;
 	display: inline-block;
@@ -220,13 +247,11 @@ input[name*="nb_column"] {
 /*		SORTABLE      */
 /**********************/
 .connectedSortable {
-	border: 1px dashed #eee;
-	background: #fff;
 	width: 100%;
 	min-height: 20px;
 	list-style-type: none;
 	margin: 0;
-	padding: 5px 0;
+	padding: 0;
 	float: left;
 	margin-right: 10px;
 	//box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.1) inset;
@@ -234,21 +259,19 @@ input[name*="nb_column"] {
 }
 .connectedSortable li {
 	background: #fff none repeat scroll 0 0;
-	border: 1px solid #e7e7e7;
+	border:0;
+	border-bottom: 1px solid #ccc;
 	border-radius: 3px;
 	box-sizing: border-box;
-//	color: #333;
+	color: #4e5e6a;
 	display: block;
 	font-weight: bold;
 	margin: 5px;
 	padding: 10px 15px;
 	text-decoration: none;
-	width: calc(100% - 10px);
-	
 }
 .connectedSortable .ui-state-highlight {
-	background: #fafafa none repeat scroll 0 0;
-    border: 1px solid #e7e7e7;
+	background: #fff none repeat scroll 0 0;
     border-radius: 3px;
     box-sizing: border-box;
     cursor: move;
@@ -259,13 +282,22 @@ input[name*="nb_column"] {
     text-decoration: none;
 }
 .connectedSortable .ui-state-disabled {
-	background: #ccc none repeat scroll 0 0;
-    color: #555;
+	background: #fff none repeat scroll 0 0;
+	opacity:0.6;
 }
-
-/******************/
-/*		MENU      */
-/******************/
+/*******************/
+/*		MODAL      */
+/*******************/
+.modal-header {
+	border-bottom: 1px solid #e5e5e5 !important;
+	margin-bottom: 35px;
+}
+#contenu-select {
+    display: none;
+}
+/********************/
+/*		MENU		*/
+/********************/
 .edit-menu-item, .delete-menu-item {
 	 cursor: pointer;
 	 position: inherit;
@@ -275,10 +307,12 @@ input[name*="nb_column"] {
 }
 .list{
 	cursor: move;
-	background: #fafafa none repeat scroll 0 0;
+	background: #fff none repeat scroll 0 0;
     border: 1px solid #e7e7e7;
     border-radius: 3px;
     box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    border-radius: 3px;
     //color: #333;
     display: block;
     font-weight: bold;
@@ -301,46 +335,41 @@ input[name*="nb_column"] {
 .ullist{
 	margin-top:8px
 }
-/*******************/
-/*		MODAL      */
-/*******************/
-.modal-header {
-	border-bottom: 1px solid #e5e5e5 !important;
-	margin-bottom: 35px;
-}
-#contenu-select {
-    display: none;
-}
-/********************/
-/*		MENU		*/
-/********************/
 #main-wrapper.config-menu .panel-heading2 {
 	border: 0 none !important;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
     font-size: 14px;
     font-weight: 600;
     height: 55px;
     overflow: hidden;
     padding: 20px 0;
-    margin: 15px 0;
-     border-bottom: 1px solid #eee !important;
+    margin-top: 15px;
     height: 60px;
-    margin-bottom: 20px;
+   // margin-bottom: 20px;
 }
 #main-wrapper.config-menu .menu .panel-body {
     padding: 0 20px;
 
 }
 #main-wrapper.config-menu .myList{
-    padding: 20px;
-	border: 1px dashed #eee;
-    background: #fff;	
+    border-radius: 3px;
 }
 #main-wrapper.config-menu .menu {
-	background: #f9f9f9 none repeat scroll 0 0 !important;
+	background: #e2e4e6 none repeat scroll 0 0 !important;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .add-menu{
 	cursor: pointer;
+}
+
+/****************/
+/*    Slider    */
+/****************/
+
+.miniature {
+	max-width:200px; 
+	max-height:100px;
+	overflow: hidden;
+}
+.miniature img{
+	max-height: 100px;
 }

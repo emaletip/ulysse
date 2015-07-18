@@ -1,3 +1,89 @@
+<?php 
+$principal = $menuModel->getMenu(1);
+			
+			
+function RecursiveWrite($array, $first, $ul, $menuModel, $pos) {
+    foreach ($array as $vals) {
+    
+    	$url = '#';
+    	switch ($vals['item']->type) {
+	    	case 'link' :
+	    		$dir = trim(PROJECT_DIRECTORY,'/');
+	    	 	$url = '/'.$dir.$vals['item']->path;
+	    		break;
+	    	case 'page' :
+	    		$dir = trim(PROJECT_DIRECTORY,'/');
+	    	 	$url = '/'.$dir.'/page/'.$vals['item']->content_id;
+	    		break;
+	    	case 'category' :
+	    		$dir = trim(PROJECT_DIRECTORY,'/');
+	    	 	$url = '/'.$dir.'/category/'.$vals['item']->content_id;
+	    		break;
+
+    	}
+    	
+     	if($ul) {
+		 	echo '<ul class="dropdown-menu" role="menu">';
+     	}
+     	if($first) {
+     		echo '<li class="first-ul pull-'.$pos.' ';
+
+	 		/* dropdown menu */
+	 		if (isset($vals['children'])){	
+     			echo ' dropdown">';
+	 			echo '<a href="'.$url.'" class="list-title dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$vals['item']->label.'<span class="caret"></span></a>';
+       		} else {
+		   		echo '"><a class="list-title" href="'.$url.'">'.$vals['item']->label.'</a>';
+       		}
+     	} else {
+		 	echo '<li class="li-sub-mega"><a class="list-title" href="'.$url.'">'.$vals['item']->label.'</a>';
+     	}
+
+   //     echo ';
+		
+		/*
+		Afficher sous menu
+		*/
+		if (isset($vals['children'])){	
+			RecursiveWrite($vals['children'], false,true, $menuModel, null);	
+		}
+		
+
+		echo '</li>';
+		if($ul) {
+		 	echo '</ul>';
+     	}
+
+    }
+
+}
+?>
+
+<?php 
+	if (!empty($principal)) {
+		$i = 1;
+		
+		/* Séparer le menu en deux */
+		$middle_principal = round(count($principal)/2);	
+		$reindexed_array = array_values($principal);
+		for ($i=0; $i<$middle_principal; $i++) {
+
+			$principal_left[$i] = $reindexed_array[$i];
+			unset($reindexed_array[$i]);
+		}
+		$principal_right = array_reverse($reindexed_array);
+		
+		/* Affichage du menu à gauche du logo */
+		RecursiveWrite($principal_left, true, false, $menuModel,'left');
+		/* Affichage du menu à droite du logo */
+		RecursiveWrite($principal_right, true, false, $menuModel,'right');
+
+	}
+
+?>
+<!--
+
+
 <li class="first-ul pull-left">
 	<a class="list-title" href="#">Home</a>
 </li>
@@ -35,3 +121,4 @@
 </li>
 <li class="first-ul pull-right"><a class="list-title" href="#">About</a></li>
 <li class="first-ul pull-right"><a class="list-title" href="#">Contact</a></li>
+-->

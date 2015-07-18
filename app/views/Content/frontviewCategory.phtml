@@ -1,0 +1,17 @@
+<?php include_once("frontheader.phtml"); 
+$page = $Contents[0]; 
+?>
+	  <!-- CONTENT -->
+		<div id="content-wrapper" class="page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<h1><?= $page->name ?></h1>
+					<p>
+						<?php var_dump($page->products) ?>
+					</p>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php include_once("frontfooter.phtml"); ?>

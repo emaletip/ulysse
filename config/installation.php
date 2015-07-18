@@ -138,6 +138,7 @@
                       `size_min` int(11) DEFAULT \'0\',
                       `size_max` int(11) DEFAULT NULL,
                       `is_active` tinyint(1) NOT NULL,
+                      `custom` tinyint(1) NOT NULL,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
@@ -331,11 +332,21 @@
                     (\'page\', 1),
                     (\'article\', 1),
                     (\'product\', 1),
-                    (\'product\', 1)',
+                    (\'product\', 1),
+                    (\'slider\', 1),
+                    (\'slider\', 1);',
                     
                     'INSERT INTO menu (`label`) VALUES
                     (\'principal\'),
                     (\'secondaire\')',
+                    
+                    'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
+					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
+					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
+					(5, 22, 1, 2, NULL, \'page\', \'Salon\', 1),
+					(8, 1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
+					(9, 1, 2, 8, NULL, \'page\', \'Test\', 1),
+					(10, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
                     
                     'INSERT INTO `content_field` (`content_type_id`, `field_id`) VALUES
                     (4, 1),
@@ -343,7 +354,12 @@
                     (4, 4),
                     (4, 5),
                     (4, 9),
-                    (4, 10)',
+                    (4, 10),
+                    (3, 1),
+                    (3, 3),
+                    (3, 6),
+                    (3, 7),
+                    (3, 8)',
                     
                     'INSERT INTO `content_tag` (`id`, `content_id`, `tag_id`) VALUES
                     (1, 3, 1),
@@ -374,7 +390,9 @@
                     
                     'INSERT INTO `field_description` (`id`, `field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
                     (1, 4, 3, \'La nucléarité des rollers\', \'product\'),
-                    (2, 4, 4, \'Mais oui cest clair !\', \'product\')',
+                    (2, 4, 4, \'Mais oui cest clair !\', \'product\'),
+					(3, 3, 5, \'\', \'slider\'),
+					(4, 3, 6, \'\', \'slider\');',
                     
                     'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (1, 4, 3, \'10.50\', \'product\'),
@@ -396,7 +414,21 @@
                     (1, 1, 1, \'Page de base\', \'page\'),
                     (2, 1, 2, \'Nouvelle !\', \'article\'),
                     (3, 1, 3, \'Premier produit\', \'product\'),
-                    (4, 1, 4, \'Second produit\', \'product\')',
+                    (4, 1, 4, \'Second produit\', \'product\'),
+					(6, 1, 5,\'Le chat\',\'slider\'),
+					(7, 1, 6,\'Un chat 2\',\'slider\'),',
+                    
+                    'INSERT INTO `field_caption` (`id`,`field_id`,`content_id`,`content_caption`,`content_type_name`) VALUES 
+					(1,6,5,\'Joli chat\',\'slider\'),
+					(2,6,6,\'Piti piti\',\'slider\');',
+                    
+                    'INSERT INTO `field_link` (`id`,`field_id`,`content_id`,`content_link`,`content_type_name`) VALUES 
+					(1,8,5,\'index\',\'slider\'),
+					(2,8,6,\'page/21\',\'slider\');',
+                    
+                    'INSERT INTO `field_path` (`id`,`field_id`,`content_id`,`content_path`,`content_type_name`) VALUES 
+					(1,1,5,\'public/img/Slider/be954d3f236da02e970314e2e1852e65.jpg\',\'slider\'),
+					(2,1,6,\'public/img/Slider/5ed2bd8ac95739929f6699a68aac38fc.jpg\',\'slider\');',
                     
                     'INSERT INTO role (`name`) VALUES
                     (\'root\'),

@@ -93,6 +93,7 @@ class Content {
     public function getFieldsName($name) {
         $content_type_id = $this->pdo->query('SELECT * FROM content_type WHERE name = \''.$name.'\'');
         $content_fields = $this->pdo->query('SELECT * FROM content_field WHERE content_type_id = '.$content_type_id[0]->id.'');
+		$fields = array();
         foreach($content_fields as $id) {
             $fields[] = $this->pdo->query('SELECT * FROM field WHERE id = '.$id->field_id.'');
         }
@@ -101,12 +102,14 @@ class Content {
     
     public function printField($type, $name, $value, $min = 0, $max = 255) {
         switch ($type) {
+            case "input_file":
+                return '<input type="file" name="'.$name.'" value="'.$value.'" min="'.$min.'" max="'.$max.'" class="form-control">';
             case "input_text":
                 return '<input type="text" name="'.$name.'" value="'.$value.'" min="'.$min.'" max="'.$max.'" class="form-control">';
             case "input_decimal":
                 return '<input type="number" name="'.$name.'" value="'.$value.'" class="form-control">';
             case "textarea":
-                return '<textarea name="'.$name.'" class="form-control" rows="3">'.$value.'</textarea>';
+                return '<textarea name="'.$name.'" class="form-control ckeditor" rows="3">'.$value.'</textarea>';
             case "select":
                 $input = '<select name="'.$name.'" class="form-control">';
                 foreach($value as $val){
@@ -125,6 +128,19 @@ class Content {
         JOIN `field_stock` fs ON c.id = fs.content_id
         JOIN `field_category` fc ON c.id = fc.content_id
         WHERE c.`content_type_name` = \'product\'';
+        $results = $this->pdo->query($query);
+        return $results;
+    }
+    
+     public function getSliderList(){
+        $query = 'SELECT c.*, ft.*, fi.*, fd.*, fc.*, fl.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_path` fi ON c.id = fi.content_id
+        JOIN `field_description` fd ON c.id = fd.content_id
+        JOIN `field_link` fl ON c.id = fl.content_id
+        JOIN `field_caption` fc ON c.id = fc.content_id
+        WHERE c.`content_type_name` = \'slider\'';
         $results = $this->pdo->query($query);
         return $results;
     }
@@ -199,6 +215,20 @@ class Content {
         }
 
         return $results;  
+    }
+
+	public function getSlider($id){
+        $query = 'SELECT c.*, ft.*, fi.*, fd.*, fc.*, fl.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_path` fi ON c.id = fi.content_id
+        JOIN `field_description` fd ON c.id = fd.content_id
+        JOIN `field_link` fl ON c.id = fl.content_id
+        JOIN `field_caption` fc ON c.id = fc.content_id
+        WHERE c.`content_type_name` = \'slider\'
+        AND c.id='.$id;
+        $results = $this->pdo->query($query);
+        return $results;
     }
 
     public function addProduct(array $data) {
@@ -323,6 +353,65 @@ class Content {
 		} else {
 			return false;
 		}
+	}
+	
+	 public function addSlider(array $data) {
+                
+		$query_content = $this->pdo->insert(
+        'INSERT INTO content (content_type_name, created_date, created_user)
+        VALUES (:content_type_name, :created_date, :created_user)', array(
+            ':content_type_name' => 'slider',
+            ':created_date' => date('Y-m-d H:i:s'),
+            ':created_user' => $_SESSION['user']->id
+            )
+        );
+        
+		$lastId = $this->pdo->lastId();
+
+        foreach($data as $key => $value) {
+        	
+        	switch ($key) {
+	        	case 'title':
+	        		$field_id = 1;
+	        		break;
+                case 'description':
+	        		$field_id = 3;
+	        		break;
+				case 'caption':
+	        		$field_id = 6;
+	        		break;
+				case 'link':
+	        		$field_id = 8;
+	        		break;
+                case 'image':
+                    $field_id = 10;
+                    break;
+	        	default: 
+	        		$field_id = 1;
+	        		break;
+        	}
+            $query = $this->pdo->insert(
+            'INSERT INTO field_'.$key.' (field_id, content_id, content_'.$key.', content_type_name)
+            VALUES (:field_id, :content_id, :content_'.$key.', :content_type_name)', array(
+                ':field_id' => $field_id,
+                ':content_id' => $lastId,
+                ':content_'.$key.'' => $value,
+                ':content_type_name' => 'slider'
+                )
+            );
+
+            if($query){
+                $error = 0;
+            } else {
+                $error = 1;
+            }
+        }
+
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}	
 
 	public function editContent(array $data) {
@@ -379,10 +468,104 @@ class Content {
 			return false;
 		}
 	}
+	
+	public function deletePage($id) {
+       
+        $query = $this->pdo->update(
+        'DELETE FROM content WHERE id = :id', array(
+            ':id' => $id
+            )
+        );
+        
+        $query2 = $this->pdo->update(
+        'DELETE FROM field_title WHERE content_id = :id', array(
+            ':id' => $id
+            )
+        );
+
+		$query3 = $this->pdo->update(
+        
+        'DELETE FROM field_body WHERE content_id = :id', array(
+            ':id' => $id
+            )
+        );
+        
+        if($error == 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    
+    public function deleteSlider($id) {
+       
+        $query = $this->pdo->update(
+        'DELETE FROM content WHERE id = :id', array(
+            ':id' => $id
+            )
+        );
+        
+        $data = ['field_title','field_path','field_description','field_link','field_caption'];
+		foreach($data as $key) {
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'DELETE FROM '.$key.' WHERE content_id=:content_id', array(
+                    ':content_id' => $id
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function updateSlider($data) { 
+		$id = (int) $data['id'];    
+		unset($data['id']);
+
+		foreach($data as $key=> $val) {
+			$tb = str_replace('content', 'field', $key);
+			$valname = ':'.$key;
+            if($key != 'content_id'){
+                $query = $this->pdo->update(
+                'UPDATE '.$tb.' SET '.$key.'=:'.$key.' WHERE content_id=:content_id', array(
+                    ':content_id' => $id,
+                    $valname => $val
+                    )
+                );
+                if($query){
+                    $error = 0;
+                } else {
+                    $error = 1;
+                }
+            }
+        }
+		if($error == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
     
     public function getCategory($id){
         $query = 'SELECT * FROM category WHERE id = '.$id.'';
         $results = $this->pdo->query($query);
+        
+        /* get products from the current category */
+        $queryproducts = 'SELECT * FROM product WHERE category_id = '.$id.'';
+        $resultsproducts = $this->pdo->query($queryproducts);
+        $results[0]->products = $resultsproducts;
+        
         return $results;
     }
 
@@ -618,8 +801,8 @@ class Content {
         }
 
     }
-    
-    /*      FIN ARTICLES       */
+	
+	/*      FIN ARTICLES       */   
 
     public function AllCategory(){
         $query = 'SELECT * FROM category';

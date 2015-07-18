@@ -5,6 +5,42 @@ $routes = array();
 /*   FRONT   */
 /*************/
 
+$routes['page/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Page',
+					  'view' => 'frontviewPage',
+				   );
+
+$routes['category/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Category',
+					  'view' => 'frontviewCategory',
+				   );
+				   
+$routes['article/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Article',
+					  'view' => 'frontviewArticle',
+				   );
+				   				   
+$routes['contact'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Contact',
+					  'view' => 'frontviewContact',
+				   );
+				   
 /************/
 /*   BACK   */
 /************/
@@ -20,7 +56,82 @@ $routes['layout'] = array(
 					  'view' => 'maquette',
 				   );	
 				   				   
-/* Block */		
+/*	Slider	*/
+
+$routes['dashboard/slider'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_list',
+					  'view' => 'listSlider',
+				   );
+$routes['dashboard/slider/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_view',
+					  'view' => 'viewSlider',
+				   );
+$routes['dashboard/slider/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_edit',
+					  'view' => 'editSlider',
+				   );
+
+$routes['dashboard/slider/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Block',
+					  'action' => 'Slider_edit',
+					  'view' => 'editSlider',
+				   );	
+$routes['dashboard/slider/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_add',
+					  'view' => 'addSlider',
+				   );
+$routes['dashboard/slider/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Block',
+					  'action' => 'Slider_add',
+					  'view' => 'addSlider',
+				   ); 
+$routes['dashboard/slider/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Block',
+					  'action' => 'Slider_update',
+					  'view' => 'addSlider',
+				   ); 
+$routes['dashboard/slider/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_edit',
+					  'view' => 'editSlider',
+				   );
+$routes['dashboard/slider/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Block',
+					  'action' => 'Slider_delete',
+					  'view' => 'list',
+				   );
+/*	Block	*/		
 				   	
 $routes['dashboard/block'] = array(
 					  'path' => 'app',
@@ -29,7 +140,7 @@ $routes['dashboard/block'] = array(
 					  'controller' => 'Block',
 					  'action' => 'List',
 					  'view' => 'list',
-				   );
+				   );				   	
 $routes['dashboard/block/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -372,7 +483,14 @@ $routes['dashboard/page/update'] = array(
 					  'action' => 'Page_edit',
 					  'view' => 'editPage',
 				   );
-
+$routes['dashboard/page/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Page_delete',
+					  'view' => 'listPage',
+				   );
 /* articles */
 
 $routes['dashboard/article'] = array(
@@ -434,30 +552,3 @@ $routes['dashboard/article/delete/([0-9]+)'] = array(
 					  'action' => 'Article_delete',
 					  'view' => 'listArticle',
 				   );
-
-
-
-/* exemple route post			   
-$routes['add'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'post',
-					  'controller' => 'controllertest',
-					  'action' => 'Add',
-					  'view' => 'list',
-				   );
-
-
-				   	
-/* exemple route avec ID 	   	
-
-$routes['test/([0-9]+)'] = array(
-						  'path' => 'app',
-						  'id' => true,
-						  'type' => 'get',
-						  'controller' => 'controllertest',
-						  'action' => 'Test',
-						  'view' => 'list',
-					   );	
-
-*/

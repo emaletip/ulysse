@@ -18,8 +18,12 @@ class Result404 extends Result
     
     public $data;
     
-    public function __construct() {
-         $this->data = @file_get_contents(FRONT_VIEWS_PATH . '404.phtml');
+    public function __construct() {		
+		$this->data = '';
+	}
+	
+	public function redirect404() {
+		include_once('404.phtml');	
 	}
     
     

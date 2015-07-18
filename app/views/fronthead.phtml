@@ -8,9 +8,8 @@ $contentModel = new app\models\Content();
 $contentController = new app\controllers\Content();
 $userModel = new app\models\User();
 $userController = new app\controllers\User();
-
-
-
+$menuModel = new app\models\Menu();
+$menuController = new app\controllers\Menu();
 
 foreach($blocks as $block) {
 	$emplacement_block[$block->emplacement_id]['blocks'][] = $block;

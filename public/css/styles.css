@@ -8,7 +8,13 @@ html,
 body {
 	font-family: "Lato", Arial;
 }
-
+.page{
+	padding: 40px 0;
+}
+.page404{
+	padding: 80px 0;
+	text-align: center
+}
 .pull-left {
 	float:left;
 }
@@ -53,7 +59,9 @@ h5 {
 	font-weight: bold;
 	text-transform: uppercase;
 }
-
+.page h1, .page h2 {
+margin-bottom: 50px;
+}
 a.btn {
 	background: #ffffff none repeat scroll 0 0;
     border: 2px solid #5d9907;
@@ -61,17 +69,22 @@ a.btn {
     font-size: 14px;
     font-weight: 700;
     height: 35px;
-    line-height: 15px;
+    line-height: 31px;
     margin-left: 5px;
     margin-top: -3px;
-    padding: 1px;
+    padding: 1px 10px;
     text-align: center;
-    width: 80px;
+    //width: 80px;
     text-transform: uppercase;
     display: inline-block;
     border-radius: 0;
 }
-
+.carousel-inner a.btn{
+	background: transparent none repeat scroll 0 0;
+	border: 2px solid #fff;
+    color:#fff;	
+    margin:10px
+}
 /****************/
 /*		BLOCKS		*/
 /****************/
@@ -164,7 +177,16 @@ nav ul li .list-title {
   color: #000 !important;
   font-weight: bold;
   text-transform: uppercase;
-  padding-top: 45px;
+  margin-top: 30px;
+}
+nav ul li ul li {
+  height: auto;
+}
+nav ul li ul li .list-title {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #5a5a5a !important;
+  font-weight:normal;	
 }
 nav ul li .list-title:hover {
   text-decoration: underline;
@@ -494,7 +516,7 @@ color: #337ab7;
 .navbar .open .dropdown-menu {
 	visibility:visible;
 	opacity:1;
-	margin-top:25px!important;
+	margin-top: -13px !important;
 }
 
 .navbar .dropdown {

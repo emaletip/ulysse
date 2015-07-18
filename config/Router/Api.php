@@ -183,11 +183,13 @@ class Api {
 				$route->getAction(), $this->getRequest()->getParams()
             );
             if (!($result instanceof Result)) {
-                $result = $error404;
+                 $error404->redirect404();
+				 $result = $error404;
             }
             
         } else {
-            $result = $error404;
+             $error404->redirect404();
+             $result = $error404;
         }
 
         if ($this->render($result)) {

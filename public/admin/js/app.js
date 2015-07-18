@@ -15,7 +15,7 @@ $(document).ready(function() {
 	var options = {
 		placeholderCss: {'background-color': '#ff8', 'border': '1px dashed #eee', 'background': '#f8f8f8'},
 		maxDepth: 2,
-		hintCss: {'border': '1px dashed #eee', 'background-color': '#fff'},
+		hintCss: {'border': '1px dashed #eee', 'background-color': '#eee'},
 		isAllowed: function(cEl, hint, target)
 		{
 			// Be carefull if you test some ul/ol elements here.
@@ -57,7 +57,7 @@ $(document).ready(function() {
 			var li = e;
 			var parent_id = li.parents('.myList:first');
 
-			if(e.parents('ul').length <= 3) {			
+			if(e.parents('ul').length <= 2) {			
 			
 			e.parents('ul:first').find('li').each( function() {
 				var li = $(this);
