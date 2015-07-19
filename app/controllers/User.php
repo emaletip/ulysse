@@ -43,13 +43,25 @@ class User {
 	public function postUser_add() {
 		unset($_POST['submit']);
 
-		$test = $this->userModel->addUser($_POST);
+		$add = $this->userModel->addUser($_POST);
 
-		$_SESSION['flash']['user']['key'] = 'success';
-		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 1;
-	
-		redirect('dashboard/user/list');
+		if ($add === true) {
+			$_SESSION['flash']['user']['key'] = 'success';
+			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		
+			redirect('dashboard/user/list');
+		} else {
+			$_SESSION['flash']['user']['key'] = 'danger';
+
+			foreach ($add as $v) {
+				$_SESSION['flash']['user']['msg'] .= $v.'<br>';
+			}
+
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		
+			redirect('dashboard/user/add');
+		}
 	}
 
 	public function postUser_update() {

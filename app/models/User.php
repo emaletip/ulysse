@@ -47,41 +47,66 @@ class User {
 		return $user;
 	}
 
-	public function addUser(array $data) {
-		// Ajout des données de la table USER
-		$data['password'] = sha1($data['password']);
-		$result = $this->pdo->insert(
-			'INSERT INTO user (email, login, password, last_name, first_name, address1, address2, postal_code, city, country)
-			VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)',
-			array(	
-				':email' => $data['email'],
-				':login' => $data['login'],
-				':password' => $data['password'],
-				':last_name' => $data['last_name'],
-				':first_name' => $data['first_name'],
-				':address1' => $data['address1'],
-				':address2' => $data['address2'],
-				':postal_code' => $data['postal_code'],
-				':city' => $data['city'],
-				':country' => $data['country']
-			)
-		);
+	// Pauline
+	public function existUser($login, $email) {
+		$datas = [':login' => $login, ':email' => $email];
+		$exist = $this->pdo->query('SELECT u.* FROM user AS u WHERE u.login = :login OR u.email = :email', $datas);
 
-		// Ajout des données de la table USER_ROLE pour définbir le role de l'utilisateur
-		$lastId = $this->pdo->lastId();
-		$result2 = $this->pdo->insert(
-			'INSERT INTO user_role (user_id, role_id)
-			VALUES (:user_id, :role_id)',
-			array(
-				':user_id' => $lastId,
-				':role_id' => $data['role_id']
-			)
-		);
-
-		if($result && $result2) {
+		if($exist) {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	// Fin Pauline
+
+	public function addUser(array $data) {
+
+		$exist = $this->existUser($data['login'], $data['email']);
+		$errors = array();
+
+		if ($exist) {
+			$errors['login/email'] = '<b>Attention ! </b> Ce login et/ou cette adresse e-mail est déjà utilisé par un utilisateur.';
+		} else {
+			// Ajout des données de la table USER
+			$data['password'] = sha1($data['password']);
+			$result = $this->pdo->insert(
+				'INSERT INTO user (email, login, password, last_name, first_name, address1, address2, postal_code, city, country)
+				VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)',
+				array(	
+					':email' => $data['email'],
+					':login' => $data['login'],
+					':password' => $data['password'],
+					':last_name' => $data['last_name'],
+					':first_name' => $data['first_name'],
+					':address1' => $data['address1'],
+					':address2' => $data['address2'],
+					':postal_code' => $data['postal_code'],
+					':city' => $data['city'],
+					':country' => $data['country']
+				)
+			);
+
+			// Ajout des données de la table USER_ROLE pour définir le role de l'utilisateur
+			$lastId = $this->pdo->lastId();
+			$result2 = $this->pdo->insert(
+				'INSERT INTO user_role (user_id, role_id)
+				VALUES (:user_id, :role_id)',
+				array(
+					':user_id' => $lastId,
+					':role_id' => $data['role_id']
+				)
+			);
+
+			if(!($result && $result2)) {
+				$errors['request'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
+			}
+		}
+
+		if (empty($errors)) {
+			return true;
+		} else {
+			return $errors;
 		}
 	}
 
