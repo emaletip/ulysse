@@ -14,8 +14,7 @@ $(document).ready(function() {
 	});
 	var options = {
 		placeholderCss: {'background-color': '#ff8', 'border': '1px dashed #eee', 'background': '#f8f8f8'},
-		maxDepth: 2,
-		hintCss: {'border': '1px dashed #eee', 'background-color': '#eee'},
+		hintCss: {'border': '1px dashed #eee', 'background-color': '#fff'},
 		isAllowed: function(cEl, hint, target)
 		{
 			// Be carefull if you test some ul/ol elements here.
@@ -28,9 +27,10 @@ $(document).ready(function() {
 			}
 			else
 			{
-				hint.css('background-color', '#fff');
+				hint.css({'background-color': '#fff' });
 				return true;
 			}
+			
 		},
 		opener: {
 			 active: true,
@@ -95,8 +95,8 @@ $(document).ready(function() {
 		}
 		
 	};
-	
-	$('#myList').sortableLists(options);
+
+	$('#myList1').sortableLists(options);
 	$('#myList2').sortableLists(options);
 	
 	

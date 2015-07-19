@@ -62,9 +62,16 @@ class User {
 
 	public function addUser(array $data) {
 
+		if(!isset($data['role_id'])) {
+			$data['role_id'] = 3;
+		}
+
+		// Vérifie si un utilisateur possède déjà le login OU l'e-mail envoyé
 		$exist = $this->existUser($data['login'], $data['email']);
 		$errors = array();
 
+		// Si c'est le cas, le tableau d'erreurs possède l'erreur "login/email"
+		// Et l'utilisateur n'est pas ajouté
 		if ($exist) {
 			$errors['login/email'] = '<b>Attention ! </b> Ce login et/ou cette adresse e-mail est déjà utilisé par un utilisateur.';
 		} else {
@@ -98,17 +105,20 @@ class User {
 				)
 			);
 
+			// Si les requêtes ne se sont pas correctement effectuées, alors le tableau d'erreurs possède l'erreur "request"
 			if(!($result && $result2)) {
 				$errors['request'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
 			}
 		}
 
+		// Renvoi true en cas de succès, sinon renvoi le tableau d'erreurs
 		if (empty($errors)) {
 			return true;
 		} else {
 			return $errors;
 		}
 	}
+	
 
 	public function updateUser(array $data) {
 

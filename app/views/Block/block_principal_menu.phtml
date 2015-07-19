@@ -4,7 +4,7 @@ $principal = $menuModel->getMenu(1);
 			
 function RecursiveWrite($array, $first, $ul, $menuModel, $pos) {
     foreach ($array as $vals) {
-    
+    	$lastul = count($array);
     	$url = '#';
     	switch ($vals['item']->type) {
 	    	case 'link' :
@@ -19,12 +19,8 @@ function RecursiveWrite($array, $first, $ul, $menuModel, $pos) {
 	    		$dir = trim(PROJECT_DIRECTORY,'/');
 	    	 	$url = '/'.$dir.'/category/'.$vals['item']->content_id;
 	    		break;
-
     	}
-    	
-     	if($ul) {
-		 	echo '<ul class="dropdown-menu" role="menu">';
-     	}
+     	
      	if($first) {
      		echo '<li class="first-ul pull-'.$pos.' ';
 
@@ -39,20 +35,17 @@ function RecursiveWrite($array, $first, $ul, $menuModel, $pos) {
 		 	echo '<li class="li-sub-mega"><a class="list-title" href="'.$url.'">'.$vals['item']->label.'</a>';
      	}
 
-   //     echo ';
 		
 		/*
 		Afficher sous menu
 		*/
 		if (isset($vals['children'])){	
-			RecursiveWrite($vals['children'], false,true, $menuModel, null);	
+			echo '<ul class="dropdown-menu" role="menu">';
+			RecursiveWrite($vals['children'], false,1, $menuModel, null);	
+			echo '</ul>';
 		}
 		
-
 		echo '</li>';
-		if($ul) {
-		 	echo '</ul>';
-     	}
 
     }
 

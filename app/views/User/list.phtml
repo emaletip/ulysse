@@ -22,9 +22,7 @@
 								<th>E-mail</th>
 								<th>Nom</th>
 								<th>Adresse</th>
-								<th>Code postal</th>
-								<th>Ville</th>
-								<th>Date de création</th>
+								<th>Inscription</th>
 								<th></th>
 								<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
 									<th></th>
@@ -51,9 +49,7 @@
 									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'>" . $v->login . "</a></th>";
 									$row .= "<th>" . $v->email . "</th>";
 									$row .= "<td>" . $v->first_name . " " . $v->last_name."</td>";
-									$row .= "<td>" . $v->address1 . "</td>";
-									$row .= "<td>" . $v->postal_code . "</td>";
-									$row .= "<td>" . $v->city . "</td>";
+									$row .= "<td>" . $v->address1 . ' ' . $v->postal_code . ' '  . $v->city . "</td>";
 									$row .= "<td>".$v->created_date."</td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
 									if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) {

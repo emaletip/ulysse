@@ -153,7 +153,6 @@ public function RecursiveWrite($array) {
 		$parents = $this->pdo->query('SELECT * FROM content_menu WHERE menu_id='.$id.' AND parent_id IS NULL ORDER BY position ASC;');
 		$order = array();
 		
-		
 		if(!empty($parents)) {
 			foreach($parents as $parent) {
 				$order[$parent->id]['item'] = $parent;
