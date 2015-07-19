@@ -5,6 +5,22 @@ $routes = array();
 /*   FRONT   */
 /*************/
 
+$routes['register'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User_add',
+					  'view' => 'frontadd',
+				   );
+$routes['register/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'User',
+					  'action' => 'User_add',
+					  'view' => 'add',
+				   ); 				   
 $routes['page/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,

@@ -27,7 +27,25 @@ class Api {
 		if(!isset($_SESSION['user']) && strstr( $_SERVER['REQUEST_URI'],'dashboard') && !strstr( $_SERVER['REQUEST_URI'],'login')) {
 			header('Location: ' . HTTP_PATH . 'dashboard/login');
 		}
+		
+		$this->post(ROUTE_PATH . 'connect', function () {
+			
+			if(isset($_COOKIE['user']) && $_COOKIE['user'] != '') {
+				$_SESSION['user'] = json_decode($_COOKIE['user']);
+				$result = new Result();
+				return $result;	
+			} 
+			
+			$userObj = new User();
+			$user = $userObj->postConnectFront();
+			
+			header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'');
 
+			
+			$result = new Result();
+			return $result;
+		});
+		
 		$this->get(ROUTE_PATH . 'dashboard/login', function () {
 			if(isset($_SESSION['user'])) {
 				header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'dashboard');
@@ -39,6 +57,7 @@ class Api {
 		});
 		
 		$this->post(ROUTE_PATH . 'dashboard/connect', function () {
+			
 			$userObj = new User();
 			$user = $userObj->postConnect();
 			if($user) {
@@ -49,7 +68,7 @@ class Api {
 			$result = new Result();
 			return $result;
 		});
-
+		
 		$this->get(ROUTE_PATH, function () {
 			header('Location: ' . HTTP_PATH . 'index');
 		});
@@ -109,6 +128,9 @@ class Api {
                 unset($_SESSION['user']);
                 session_destroy();
             }
+            setcookie('userloged');
+            setcookie('user');
+
             $this->getResponse()->redirect('index');
         });
         
@@ -118,6 +140,7 @@ class Api {
                 unset($_SESSION['user']);
                 session_destroy();
             }
+            setcookie('userinfo');
             unset($_SESSION['loged']);
             $this->getResponse()->redirect('index');
         });

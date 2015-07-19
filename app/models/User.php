@@ -48,6 +48,11 @@ class User {
 	}
 
 	public function addUser(array $data) {
+		
+		if(!isset($data['role_id'])) {
+			$data['role_id'] = 3;
+		}
+		
 		// Ajout des données de la table USER
 		$data['password'] = sha1($data['password']);
 		$result = $this->pdo->insert(
@@ -84,6 +89,7 @@ class User {
 			return false;
 		}
 	}
+	
 
 	public function updateUser(array $data) {
 

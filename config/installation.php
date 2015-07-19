@@ -101,7 +101,7 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `content_id` int(11) NOT NULL,
                       `menu_id` int(11) NOT NULL,
-                      `parent_id` int(11) NOT NULL,
+                      `parent_id` int(11) DEFAULT NULL,
                       `position` int(11) NOT NULL,
                       `path` varchar(255) NOT NULL,
                       `type` varchar(255) NOT NULL,
@@ -298,17 +298,21 @@
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
                     
-                    'INSERT INTO `block` (`id`, `name`, `is_active`, `is_editable`, `content_block`, `emplacement_id`) VALUES
-                    (1, \'block_logo\', 1, 0, \'\', 4),
-                    (2, \'block_connect\', 1, 0, \'\', 1),
-                    (3, \'block_cart\', 1, 0, \'\', 2),
-                    (4, \'block_search\', 1, 0, \'\', 2),
-                    (5, \'block_principal_menu\', 1, 0, \'\', 4),
-                    (6, \'block_content\', 1, 0, \'\', 5),
-                    (7, \'block_top_sell\', 0, 0, \'\', 7),
-                    (8, \'block_informations\', 1, 1, \'Contenu bloc informations\', 10),
-                    (9, \'block_secondary_menu\', 1, 0, \'\', 4),
-                    (10, \'block_copyright\', 1, 1, \'Contenu bloc copyright\', 11)',
+                    'INSERT INTO `block` (`id`, `name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
+                    (1, \'block_logo\', \'Logo\', 1, 0, \'\', 4, 1),
+					(2, \'block_connect\', \'Connection\', 1, 0, \'\', 1, 1),
+					(3, \'block_cart\', \'Panier\', 1, 0, \'\', 2, 1),
+					(4, \'block_search\', \'Rechercher\', 1, 0, \'\', 3, 1),
+					(5, \'block_principal_menu\', \'Menu principal\', 1, 0, \'\', 4, 2),
+					(6, \'block_content\', \'Contenu\', 1, 0, \'\', 8, 0),
+					(7, \'block_top_sell\', \'Meilleures ventes\', 0, 0, \'\', 7, 0),
+					(8, \'block_informations\', \'A propos\', 1, 1, \'<div class="Texte" id="TheTexte">\r\n<p><strong>Sed tamen haec cum ita tutius observentur, </strong></p>\r\n\r\n<p>quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.</p>\r\n</div>\r\n\', 10, 2),
+					(9, \'block_secondary_menu\', \'Menu secondaire\', 0, 0, \'\', 4, 0),
+					(10, \'block_copyright\', \'\', 1, 1, \'Copyright 2015 - Contenu bloc copyright\', 11, 2),
+					(11, \'block_slider\', \'Slider\', 1, 0, \'\', 5, 2),
+					(12, \'block_article\', \'Derniers articles\', 1, 0, \'\', 10, 1),
+					(13, \'block_contact\', \'CoordonnÃ©es\', 1, 1, \'<p><strong>Tel.</strong> +33(0) 606 060 606</p>\r\n\r\n<p><strong>Mobile.</strong> +33(0) 606 060 606</p>\r\n\r\n<p>Adresse rue<br />\r\n00000 Ville</p>\r\n\', 10, 3),
+					(14, \'block_filter\', \'Recherche filtrÃ©e\', 1, 0, \'\', 7, 1)',
                     
                     'INSERT INTO `category` (`id`, `name`) VALUES
                     (1, \'Mobilier\'),
@@ -392,7 +396,7 @@
                     (1, 4, 3, \'La nucléarité des rollers\', \'product\'),
                     (2, 4, 4, \'Mais oui cest clair !\', \'product\'),
 					(3, 3, 5, \'\', \'slider\'),
-					(4, 3, 6, \'\', \'slider\');',
+					(4, 3, 6, \'\', \'slider\')',
                     
                     'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (1, 4, 3, \'10.50\', \'product\'),
@@ -416,19 +420,19 @@
                     (3, 1, 3, \'Premier produit\', \'product\'),
                     (4, 1, 4, \'Second produit\', \'product\'),
 					(6, 1, 5,\'Le chat\',\'slider\'),
-					(7, 1, 6,\'Un chat 2\',\'slider\'),',
+					(7, 1, 6,\'Un chat 2\',\'slider\')',
                     
                     'INSERT INTO `field_caption` (`id`,`field_id`,`content_id`,`content_caption`,`content_type_name`) VALUES 
 					(1,6,5,\'Joli chat\',\'slider\'),
-					(2,6,6,\'Piti piti\',\'slider\');',
+					(2,6,6,\'Piti piti\',\'slider\')',
                     
                     'INSERT INTO `field_link` (`id`,`field_id`,`content_id`,`content_link`,`content_type_name`) VALUES 
 					(1,8,5,\'index\',\'slider\'),
-					(2,8,6,\'page/21\',\'slider\');',
+					(2,8,6,\'page/21\',\'slider\')',
                     
                     'INSERT INTO `field_path` (`id`,`field_id`,`content_id`,`content_path`,`content_type_name`) VALUES 
 					(1,1,5,\'public/img/Slider/be954d3f236da02e970314e2e1852e65.jpg\',\'slider\'),
-					(2,1,6,\'public/img/Slider/5ed2bd8ac95739929f6699a68aac38fc.jpg\',\'slider\');',
+					(2,1,6,\'public/img/Slider/5ed2bd8ac95739929f6699a68aac38fc.jpg\',\'slider\')',
                     
                     'INSERT INTO role (`name`) VALUES
                     (\'root\'),

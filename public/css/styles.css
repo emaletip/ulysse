@@ -7,9 +7,11 @@
 html,
 body {
 	font-family: "Lato", Arial;
+	font-family: "Open Sans",sans-serif;
+	font-size: 13px;
 }
 .page{
-	padding: 40px 0;
+	padding-bottom: 30px;
 }
 .page404{
 	padding: 80px 0;
@@ -60,7 +62,12 @@ h5 {
 	text-transform: uppercase;
 }
 .page h1, .page h2 {
-margin-bottom: 50px;
+	margin-bottom: 50px;
+	color: #1e1e1e;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    text-transform: uppercase;
 }
 a.btn {
 	background: #ffffff none repeat scroll 0 0;
@@ -157,10 +164,11 @@ nav {
   text-align: center;
   padding-top: 30px;	
 }
-nav ul {
+nav > ul {
   display: inline-block;
   float: none !important;
   text-align: center;
+  height:150px;
 }
 .first-ul{
   list-style: none;
@@ -170,10 +178,20 @@ nav ul .first-ul {
   display: inline-block;
 }
 nav ul li {
-  height: 100px;
+  height: 100%;
+  max-height:150px;
   float: none !important;
+
 }
-nav ul li .list-title {
+nav ul li a{
+  min-height: 100%;
+  max-height:100px;
+  padding-bottom:0 !important;
+}
+nav > ul > li > .list-title {
+  display: table-cell !important;
+  height: 100px;
+  vertical-align: bottom;
   color: #000 !important;
   font-weight: bold;
   text-transform: uppercase;
@@ -192,12 +210,13 @@ nav ul li .list-title:hover {
   text-decoration: underline;
 }
 nav ul li .logo {
-  height:80px;
+  max-height:100px;
   font-size: 30px;
   text-transform: uppercase;
 }
 nav ul li .logo img {
-  height:80px;
+  min-height: 100px;
+  max-height:100px;
 }
 nav ul li .logo h1 {
   margin: 0;
@@ -333,6 +352,10 @@ color: #337ab7;
 	line-height:20px;
 }
 
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #fff;
+}
+
 @media (max-width: 991px) {
 	.top-menu .navbar-nav > li > a > .user-name {
 		display:none;
@@ -387,6 +410,7 @@ color: #337ab7;
 	margin-top:25px!important;
 }
 
+/*
 .dropdown-menu:before {
 	position:absolute;
 	top:-8px;
@@ -411,6 +435,7 @@ color: #337ab7;
 	content:'';
 }
 
+*/
 .dropdown.dropup > .dropdown-menu:after,.dropdown.dropup > .dropdown-menu:before,.btn-group.dropup > .dropdown-menu:after,.btn-group.dropup > .dropdown-menu:before,.dropdown-toggle.dropup > .dropdown-menu:after,.dropdown-toggle.dropup > .dropdown-menu:before {
 	display:none!important;
 }
@@ -478,7 +503,7 @@ color: #337ab7;
 }
 
 .dropdown-menu li a {
-	padding:7px 10px;
+	//padding:7px 10px;
 	color:#5f5f5f;
 	font-size:13px;
 }
@@ -516,7 +541,7 @@ color: #337ab7;
 .navbar .open .dropdown-menu {
 	visibility:visible;
 	opacity:1;
-	margin-top: -13px !important;
+	margin-top: -30px !important;
 }
 
 .navbar .dropdown {
@@ -682,4 +707,75 @@ color: #337ab7;
 
 #adminbar ~ header{
 	margin-top: 90px;
+}
+
+/***************/
+/*    login    */
+/***************/
+.loginblock {
+	border: 1px solid #ccc;
+	margin-top:10px;
+	background: white;
+	position: absolute;
+	width: 200px;
+	padding:20px;
+	z-index: 999;
+	font-size: 12px;
+}
+.loginblock .form-signin {
+	margin: 0;
+}
+.form-control {
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #dedede;
+    border-radius: 0;
+    box-shadow: none;
+    color: #828282;
+    display: block;
+    font-size: 12px;
+    line-height: 1.42857;
+    margin-bottom: 20px;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+    width: 100%;
+   }
+.control-label {
+    color: #828282;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+}
+.loginblock::before {
+    border-bottom: 8px solid #d8dee4;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    content: "";
+    display: inline-block !important;
+    left: 9px;
+    position: absolute;
+    right: auto;
+    top: -8px;
+}
+.loginblock::after {
+    border-bottom: 7px solid #fff;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    content: "";
+    display: inline-block !important;
+    left: 10px;
+    position: absolute;
+    right: auto;
+    top: -7px;
+}
+.loginblock input {
+font-size: 12px;
+	margin-bottom: 5px;
+}
+.loginblock .btn {
+font-size: 12px;
+}
+.input-group-btn .btn{
+	height: 34px;
 }

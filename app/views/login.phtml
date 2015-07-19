@@ -1,18 +1,24 @@
-    <div class="container">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
+<?php include_once('frontheader.phtml');?>
+<div class="container login">
+     <form class="form-signin">
+        <h2 class="form-signin-heading">Merci de vous connecter</h2>
+        <label for="inputFirstname" class="sr-only">Prénom </label>
+        <input id="inputFirstname" class="form-control" placeholder="Prénom" required="" autofocus="" name="last_name" type="text">
+        
+        <label for="inputLastname" class="sr-only">Email </label>
+        <input id="inputLastname" class="form-control" placeholder="Nom" required="" autofocus=""  name="first_name"  type="test">
+
+        <label for="inputEmail" class="sr-only">Email </label>
         <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only">Mot de passe</label>
         <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
         <div class="checkbox">
           <label>
-            <input value="remember-me" type="checkbox"> Remember me
+            <input value="remember-me" type="checkbox"> Se rappeler de moi
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+        <button class="btn btn-primary" type="submit">Connection</button>
+    </form>
 
-    </div> <!-- /container -->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</div> <!-- /container -->
+<?php include_once('frontfooter.phtml');?>

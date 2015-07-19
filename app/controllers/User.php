@@ -12,6 +12,7 @@ class User {
 	}
 
 	public function postConnect() {
+		
 		if(isset($_SESSION['user'])) {
 			unset($_SESSION['user']);
 		}
@@ -21,6 +22,31 @@ class User {
 		$user = $this->userModel->connectUser($username, $password);
 		if($user) {
 			$_SESSION['user'] = $user;
+			setcookie('userinfo', json_encode($user), (time() + 3600));
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function postConnectFront() {
+		
+		if(isset($_SESSION['user'])) {
+			unset($_SESSION['user']);
+		}
+		
+		$username = $_POST['user']['email'];
+		$password = $_POST['user']['password'];
+		$user = $this->userModel->connectUser($username, $password);
+		if($user) {
+			$_SESSION['user'] = $user;
+			
+			if (isset($_POST['user']['remember']) && $_POST['user']['remember'] == 1) {
+				setcookie('user',json_encode($user), (time() + 3600));
+				setcookie('userloged',1, (time() + 3600));
+			}
+			
+			/* set new cart or get old one */
+			setcookie('cart',1, (time() + 3600));
 			return true;
 		} else {
 			return false;
@@ -39,12 +65,20 @@ class User {
 
 	public function getUser_add() {
 	}
-
+	
 	public function postUser_add() {
 		unset($_POST['submit']);
-
+		if(!isset($_POST['login'])) {
+			$_POST['login'] = '';
+			$_POST['address1'] = '';
+			$_POST['address2'] = '';
+			$_POST['postal_code'] = '';
+			$_POST['city'] = '';
+			$_POST['country'] = '';
+		} 
+		
 		$test = $this->userModel->addUser($_POST);
-
+		
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 1;

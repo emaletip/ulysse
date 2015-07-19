@@ -1,3 +1,31 @@
 <div id="block-login" class="block">
-	<a href="#">Connexion</a> ou <a href="#">Inscription</a>
+	<?php 	if (isset($_SESSION['user'])) {?>
+	<a href="/<?= PROJECT_DIRECTORY ?>logout" >Déconnexion</a>
+	<?php }  else { ?>
+	<a href="#" class="connect">Connexion</a>
+	<?php } ?>
+	 ou <a href="/<?= PROJECT_DIRECTORY ?>register">Inscription</a>
+	<div class="container loginblock" style="display:none;">
+     <form class="form-signin" method="POST" action="/<?= PROJECT_DIRECTORY ?>connect">
+        <label for="inputEmail" class="sr-only">Email </label>
+        <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email" name="user[email]">
+        <label for="inputPassword" class="sr-only">Mot de passe</label>
+        <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="user[password]">
+        <div class="checkbox">
+          <label>
+            <input value="remember-me" type="checkbox" name="user[remember]"> Se rappeler de moi
+          </label>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Connection</button>
+    </form>
+
+	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		$('.connect').click(function(e){
+			e.preventDefault();
+			$('.loginblock').toggle();
+		});
+	});
+</script>
