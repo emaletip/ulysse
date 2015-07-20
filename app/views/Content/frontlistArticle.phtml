@@ -1,0 +1,28 @@
+<?php include_once("frontheader.phtml"); ?>
+	  <!-- CONTENT -->
+		<div id="content-wrapper" class="article">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="article_list">
+						<h1>Les articles</h1>
+						<?php
+							end($Contents);
+							$last = key($Contents);
+
+							foreach ($Contents as $k => $a) {
+								$row = "<div class='article_row'>";
+								$row .= "<h2><a href='/" . PROJECT_DIRECTORY . "article/".$a->content_id."'>" . $a->content_title . "</a></h2>";
+								$row .= "<small>Posté par " . $a->login . " le " . $a->created_date . "</small>";
+								$row .= "<p>" . $a->content_body . "</p>";
+								if (!($k == $last)) {
+									$row .= "<hr>";
+								}
+								$row .= "</div>";
+								echo $row;
+							}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php include_once("frontfooter.phtml"); ?>

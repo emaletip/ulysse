@@ -1,14 +1,20 @@
 <?php include_once("frontheader.phtml"); 
-$page = $Contents[0]; ?>
+$a = $Contents[0]; ?>
 	  <!-- CONTENT -->
-		<div id="content-wrapper" class="page">
+		<div id="content-wrapper" class="article">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-					<h1><?= $page->content_title ?></h1>
-					<p>
-						<?= $page->content_body ?>
-					</p>
+					<div class="col-md-12 article_view">
+						<h1><?= $a->content_title ?></h1>
+						<small>Posté par <?= $a->login ?> le <?= $a->created_date ?></small>
+						<div class="article_content">
+							<img src="<?= '/' . PROJECT_DIRECTORY . $a->content_image ?>" alt="<?= $a->content_title ?>">
+							<p>
+								<?= $a->content_body ?>
+							</p>
+							<small><?= str_replace(',', ', ', $a->tags) ?></small>
+						</div>
+						<a href="<?= '/' . PROJECT_DIRECTORY . 'article' ?>">Retourner à la liste des articles</a>
 					</div>
 				</div>
 			</div>

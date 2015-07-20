@@ -779,3 +779,40 @@ font-size: 12px;
 .input-group-btn .btn{
 	height: 34px;
 }
+
+/************************/
+/*		ARTICLES		*/
+/************************/
+
+/*		LIST		*/
+#article_list .article_row {
+	padding: 10px;
+}
+#article_list .article_row h2 a {
+	color: #5d9907;
+}
+#article_list .article_row small {
+	color: #777;
+}
+#article_list .article_row hr {
+	margin-bottom: 0;
+	margin-top: 40px;
+}
+
+/*		VIEW		*/
+.article_view h1 {
+	margin-bottom: 0;
+}
+.article_view small {
+	color: #777;
+	display: block;
+	margin-bottom: 30px;
+}
+.article_view img,
+.article_view p {
+	display: inline-block;
+	vertical-align: top;
+}
+.article_view p {
+	margin: 0 10px;
+}

@@ -20,7 +20,17 @@ $routes['register/insert'] = array(
 					  'controller' => 'User',
 					  'action' => 'User_add',
 					  'view' => 'add',
-				   ); 				   
+				   ); 	
+// Pauline
+$routes['article'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ArticleList',
+					  'view' => 'frontlistArticle',
+				   );
+// Fin Pauline			   
 $routes['page/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
