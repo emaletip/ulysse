@@ -208,10 +208,13 @@ class Content {
         if ($results2 != null) {
             foreach ($results2 as $v) {
                 $tagtemp[] = $v->name;
+                $tagtemp2[] = '<a href="/'.PROJECT_DIRECTORY.'tag/'.$v->tag_id.'">'.$v->name.'</a>';
             }
             $string = implode(',', $tagtemp);
+            $string2 = implode(',', $tagtemp2);
 
             $results[0]->tags = $string;
+            $results[0]->tagsView = $string2;
         }
 
         return $results;  
@@ -627,11 +630,38 @@ class Content {
         }
     }
 
+    public function getContentsByTag($tag_id) {
+        $query = $this->pdo->query(
+            'SELECT * FROM field_title AS ft
+            JOIN content_tag AS ct ON ft.content_id = ct.content_id
+            JOIN tags AS t ON ct.tag_id = t.id
+            WHERE ct.tag_id = :tag_id', array(
+                ':tag_id' => $tag_id
+            )
+        );
+
+        foreach ($query as $k => $q) {
+            if ($q->content_type_name == 'product') {
+                $r = $this->pdo->query('SELECT content_description FROM field_description WHERE content_id = :content_id', array(':content_id' => $q->content_id));
+                $query[$k]->description = $r[0]->content_description;
+            } else {
+                $r = $this->pdo->query('SELECT content_body FROM field_body WHERE content_id = :content_id', array(':content_id' => $q->content_id));
+                $query[$k]->body = $r[0]->content_body;
+            }
+        }
+
+        if($query) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
     public function addTags(array $data, $id) {
 
         /* Liste des tags inscrit dans le formulaire : $tags */
         // Récupération des données du formulaire
-        $string_tags = str_replace(' ', '', $data['tag']);
+        $string_tags = str_replace(' ', '', strtolower($data['tag']));
         $tags = explode(',', $string_tags);
 
         /* Liste complète des tags : $selected_tags */

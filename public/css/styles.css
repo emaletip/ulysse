@@ -780,23 +780,31 @@ font-size: 12px;
 	height: 34px;
 }
 
-/************************/
-/*		ARTICLES		*/
-/************************/
+/********************/
+/*		LIST		*/
+/********************/
 
 /*		LIST		*/
-#article_list .article_row {
+.article_row,
+.content_row {
 	padding: 10px;
 }
-#article_list .article_row h2 a {
+.article_row h2 a,
+.content_row h2 a {
 	color: #5d9907;
 }
-#article_list .article_row small {
+.article_row small,
+.content_row small {
 	color: #777;
 }
-#article_list .article_row hr {
+.article_row hr,
+.content_row hr {
 	margin-bottom: 0;
 	margin-top: 40px;
+}
+
+.content_row p {
+	margin-top: 20px;
 }
 
 /*		VIEW		*/

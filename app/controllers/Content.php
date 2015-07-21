@@ -239,4 +239,9 @@ class Content {
 	public function getPageList() {
         return $this->contentModel->getPageList();
     }    
+
+    public function getContentByTagList($tag_id) {
+    	return $this->contentModel->getContentsByTag($tag_id);
+    }
+
 }	

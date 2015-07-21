@@ -30,6 +30,14 @@ $routes['article'] = array(
 					  'action' => 'ArticleList',
 					  'view' => 'frontlistArticle',
 				   );
+$routes['tag/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ContentByTagList',
+					  'view' => 'frontlistByTag',
+				   );
 // Fin Pauline			   
 $routes['page/([0-9]+)'] = array(
 					  'path' => 'app',
