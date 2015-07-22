@@ -1,0 +1,113 @@
+<?php include_once("frontheader.phtml"); ?>
+	<style type="text/css">
+		.p_row {
+			border: 1px solid #000;
+			display: inline-block;
+			height: 150px;
+			margin: 35px;
+			position: relative;
+			width: 150px;
+		}
+		.p_row p {
+			left: 50%;
+			margin-left: -35px;
+			position: absolute;
+			width: 70px;
+			text-align: center;
+			top: 45%;
+		}
+		.nourriture {
+			background-color: #00ff00;
+		}
+		.informatique {
+			background-color: #ff0000;
+		}
+		.mobilier {
+			background-color: #0000ff;
+			color: #fff;
+		}
+	</style>
+	  	<!-- CONTENT -->
+		<div id="content-wrapper" class="article">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="product_list">
+						<h1>Les produits</h1>
+
+						<div class="button-group filters-button-group">
+						  <button class="button is-checked" data-filter="*">Tous</button>
+						  <button class="button" data-filter=".nourriture">Nourriture</button>
+						  <button class="button" data-filter=".informatique">Informatique</button>
+						  <button class="button" data-filter=".mobilier">Mobilier</button>
+						</div>
+
+						<div class="grid">
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
+						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
+						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
+						</div>
+
+
+						<?php
+							/*end($Contents);
+							$last = key($Contents);
+
+							foreach ($Contents as $k => $p) {
+								$row = "<div class='article_row'>";
+								$row .= "<h2><a href='/" . PROJECT_DIRECTORY . "article/".$p->content_id."'>" . $p->content_title . "</a></h2>";
+								$row .= "<small>Posté par " . $p->login . " le " . $p->created_date . "</small>";
+								$row .= "<p>" . $p->content_body . "</p>";
+								if (!($k == $last)) {
+									$row .= "<hr>";
+								}
+								$row .= "</div>";
+								echo $row;
+							}*/
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$( function() {
+
+			  // init Isotope
+			  var $grid = $('.grid').isotope({
+			    itemSelector: '.p_row',
+			    layoutMode: 'fitRows'
+			  });
+
+			  // bind filter button click
+			  $('.filters-button-group').on( 'click', 'button', function() {
+			    var filterValue = $( this ).attr('data-filter');
+			    $grid.isotope({ filter: filterValue });
+			  });
+
+			  // change is-checked class on buttons
+			  $('.button-group').each( function( i, buttonGroup ) {
+			    var $buttonGroup = $( buttonGroup );
+			    $buttonGroup.on( 'click', 'button', function() {
+			      $buttonGroup.find('.is-checked').removeClass('is-checked');
+			      $( this ).addClass('is-checked');
+			    });
+			  });
+			  
+			});
+
+		</script>
+<?php include_once("frontfooter.phtml"); ?>

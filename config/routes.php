@@ -13,6 +13,7 @@ $routes['register'] = array(
 					  'action' => 'User_add',
 					  'view' => 'frontadd',
 				   );
+
 $routes['register/insert'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -30,6 +31,16 @@ $routes['article'] = array(
 					  'action' => 'ArticleList',
 					  'view' => 'frontlistArticle',
 				   );
+
+$routes['product'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'FrontProductList',
+					  'view' => 'frontlistProduct',
+				   );
+
 $routes['tag/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
