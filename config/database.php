@@ -74,7 +74,6 @@ class database {
         }           		
 				
         $result = $req->execute();
-		
         return($result);
     }
     
@@ -85,7 +84,7 @@ class database {
 	        foreach($datas as $k => $v) {
 	        	$req->bindValue($k, $v);
 	        }
-        }           		
+        }
         $result = $req->execute();
         return($result);
     }

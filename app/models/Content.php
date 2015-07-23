@@ -67,13 +67,27 @@ class Content {
             }
         
             if(!empty($_POST['contenuselect']) && $_POST['type'] == 'select'){
+                $req = $this->pdo->query('SELECT * FROM content_select GROUP BY id_select');
+                if($req == null){
+                    $id = 1;   
+                } else {
+                    $id = $req[0]->id_select+1;
+                }
                 $ligne = explode("\n", $_POST['contenuselect']);
                 foreach($ligne as $l){
                    $tab[] = explode("|", $l); 
                 }
+                foreach($tab as $val){
+                    $insert = $this->pdo->insert(
+                    'INSERT INTO content_select (id_select, cle, val)
+                    VALUES (:id_select, :cle, :val)', array(
+                        ':id_select' => $id,
+                        ':cle' => $val[0],
+                        ':val' => $val[1]
+                        )
+                    );
+                }
             }
-
-            die();
             return true;
         }
         else {
@@ -111,6 +125,11 @@ class Content {
             case "textarea":
                 return '<textarea name="'.$name.'" class="form-control ckeditor" rows="3">'.$value.'</textarea>';
             case "select":
+                /*$query = 'SELECT * FROM `field_'.$name.'`';
+                $results = $this->pdo->query($query);
+                $var = '$query[0]->content_'.$name;
+                $query = 'SELECT * FROM `content_select` WHERE id_select = '.$$var.'';*/
+                
                 $input = '<select name="'.$name.'" class="form-control">';
                 foreach($value as $val){
                     $input .= '<option value="'.$val->id.'">'.$val->name.'</option>';
