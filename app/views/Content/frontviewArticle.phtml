@@ -12,7 +12,15 @@ $a = $Contents[0]; ?>
 							<p>
 								<?= $a->content_body ?>
 							</p>
-							<small><?= str_replace(',', ', ', $a->tagsView) ?></small>
+							<small>
+								<?php 
+									if (isset($a->tagsView)) {
+										echo str_replace(',', ', ', $a->tagsView);
+									} else {
+										echo "Pas de tag associés";
+									}
+								?>
+							</small>
 						</div>
 						<a href="<?= '/' . PROJECT_DIRECTORY . 'article' ?>">Retourner à la liste des articles</a>
 					</div>

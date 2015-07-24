@@ -8,27 +8,24 @@
 			position: relative;
 			width: 150px;
 		}
-		.p_row p {
-			left: 50%;
-			margin-left: -35px;
+		.p_row .product_photo,
+		.p_row .product_details,
+		.p_row .product_details a {
+			height: 100%;
 			position: absolute;
-			width: 70px;
-			text-align: center;
-			top: 45%;
+			width: 100%;
 		}
-		.nourriture {
-			background-color: #00ff00;
+		.p_row .product_details {
+			opacity: 0;
+			transition: all 300ms ease;
 		}
-		.informatique {
-			background-color: #ff0000;
-		}
-		.mobilier {
-			background-color: #0000ff;
-			color: #fff;
+		.p_row .product_details:hover {
+			background-color: rgba(255, 255, 255, 0.8);
+			opacity: 1;
 		}
 	</style>
 	  	<!-- CONTENT -->
-		<div id="content-wrapper" class="article">
+		<div id="content-wrapper" class="product">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12" id="product_list">
@@ -39,46 +36,28 @@
 						  <button class="button" data-filter=".nourriture">Nourriture</button>
 						  <button class="button" data-filter=".informatique">Informatique</button>
 						  <button class="button" data-filter=".mobilier">Mobilier</button>
+						  <!-- PENSER A FAIRE UNE REQUETE POUR OBTENIR TOUTES LES CATEGORIES -->
 						</div>
 
 						<div class="grid">
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						  <div class="p_row informatique" data-category="informatique"><p>Informatique</p></div>
-						  <div class="p_row nourriture" data-category="nourriture"><p>Nourriture</p></div>
-						  <div class="p_row mobilier" data-category="mobilier"><p>Mobilier</p></div>
-						</div>
-
-
 						<?php
-							/*end($Contents);
-							$last = key($Contents);
-
 							foreach ($Contents as $k => $p) {
-								$row = "<div class='article_row'>";
-								$row .= "<h2><a href='/" . PROJECT_DIRECTORY . "article/".$p->content_id."'>" . $p->content_title . "</a></h2>";
-								$row .= "<small>Posté par " . $p->login . " le " . $p->created_date . "</small>";
-								$row .= "<p>" . $p->content_body . "</p>";
-								if (!($k == $last)) {
-									$row .= "<hr>";
-								}
+								$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+								$row .= "<div class='product_photo'>";
+								$row .= "<img src='' alt=''>";
+								$row .= "</div>";
+								$row .= "<div class='product_details'>";
+								$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
+								$row .= "<h2>" . $p->content_title . "</h2>";
+								$row .= "<small>Proposé par : " . $p->user_login . "</small>";
+								$row .= "<div>Prix : " . $p->content_price . " €</div>";
+								$row .= "<div>Stock : " . $p->content_stock . "</div>";
+								$row .= "</div>";
 								$row .= "</div>";
 								echo $row;
-							}*/
+							}
 						?>
+						</div>
 					</div>
 				</div>
 			</div>

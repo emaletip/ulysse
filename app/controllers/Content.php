@@ -244,7 +244,4 @@ class Content {
     	return $this->contentModel->getContentsByTag($tag_id);
     }
 
-    public function getFrontProductList() {
-    }
-
 }	

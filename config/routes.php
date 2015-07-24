@@ -37,7 +37,7 @@ $routes['product'] = array(
 					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'Content',
-					  'action' => 'FrontProductList',
+					  'action' => 'ProductList',
 					  'view' => 'frontlistProduct',
 				   );
 
