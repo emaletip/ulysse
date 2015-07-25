@@ -297,6 +297,15 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `cart` (
+					  `id` INT NOT NULL,
+					  `user_id` INT NULL,
+					  `product_id` INT NULL,
+					  `quantity` INT NULL,
+					  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+					  PRIMARY KEY (`id`)
+					  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     
                     'INSERT INTO `block` (`id`, `name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
                     (1, \'block_logo\', \'Logo\', 1, 0, \'\', 4, 1),

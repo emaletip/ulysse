@@ -11,6 +11,8 @@ $userController = new app\controllers\User();
 $menuModel = new app\models\Menu();
 $menuController = new app\controllers\Menu();
 
+$Cart = new app\controllers\Cart();
+
 foreach($blocks as $block) {
 	$emplacement_block[$block->emplacement_id]['blocks'][] = $block;
 	$emplacement_block[$block->emplacement_id]['nb_column'] = $block->nb_column;

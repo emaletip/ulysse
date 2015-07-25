@@ -5,9 +5,11 @@ namespace app\controllers;
 class User {
 
 	private $userModel;
+	private $userCart;
 
 	public function __construct() {
 		$this->userModel = new \app\models\User();
+		$this->userCart = new \app\controllers\Cart();
 		return $this->userModel;
 	}
 
@@ -23,6 +25,7 @@ class User {
 		if($user) {
 			$_SESSION['user'] = $user;
 			setcookie('userinfo', json_encode($user), (time() + 3600));
+			
 			return true;
 		} else {
 			return false;
@@ -39,14 +42,14 @@ class User {
 		$user = $this->userModel->connectUser($username, $password);
 		if($user) {
 			$_SESSION['user'] = $user;
-			
 			if (isset($_POST['user']['remember']) && $_POST['user']['remember'] == 1) {
 				setcookie('user',json_encode($user), (time() + 3600));
 				setcookie('userloged',1, (time() + 3600));
 			}
 			
 			/* set new cart or get old one */
-			setcookie('cart',1, (time() + 3600));
+			$this->userCart->initCart($user);
+			
 			return true;
 		} else {
 			return false;

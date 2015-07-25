@@ -13,6 +13,14 @@ $routes['register'] = array(
 					  'action' => 'User_add',
 					  'view' => 'frontadd',
 				   );
+$routes['order'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Cart',
+					  'action' => 'Step1',
+					  'view' => 'viewStep1',
+				   );
 
 $routes['register/insert'] = array(
 					  'path' => 'app',
@@ -22,6 +30,24 @@ $routes['register/insert'] = array(
 					  'action' => 'User_add',
 					  'view' => 'add',
 				   ); 	
+
+$routes['product/add/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'Cart',
+					  'action' => 'AddProduct',
+					  'view' => 'frontlistArticle',
+				   );
+
+$routes['product/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'Cart',
+					  'action' => 'DeleteProduct',
+					  'view' => 'frontlistArticle',
+				   );
 // Pauline
 $routes['article'] = array(
 					  'path' => 'app',
