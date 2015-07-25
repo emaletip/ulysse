@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <h3>Editer un produit</h3>
             <hr>
-            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/product/update" method="post" class="form-horizontal">
+            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/product/update" method="post" class="form-horizontal" enctype="multipart/form-data">
                 
                 <?php foreach($Contents['fields'] as $fields): ?>
                 
@@ -17,6 +17,9 @@
                         $value = $Content->contentModel->AllCategory();
                     } else {
                         $value = $c->{'content_'.$name};
+                    }
+                    if ($name == 'image' && $value != '') {
+	                    echo '<div class="miniature col-sm-offset-2"><img src="/'.PROJECT_DIRECTORY.$c->{'content_'.$name}.'"></div><input type="hidden" name="old_image" value="'.$c->{'content_'.$name}.'">';
                     }
                 ?>
                 

@@ -32,14 +32,14 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        (!empty($_POST['sitename'])) ? $sitename = $_POST['sitename'] : $errors .= '<p>Veuillez renseigner le nom du site</p>';
-        (!empty($_POST['slogan'])) ? $slogan = $_POST['slogan'] : $slogan = '';
-        (!empty($_POST['copyright'])) ? $copyright = $_POST['copyright'] : $errors .= '<p>Veuillez renseigner le copyright</p>';
-        (!empty($_POST['login'])) ? $login = $_POST['login'] : $errors .= '<p>Veuillez renseigner le login</p>';
-        (!empty($_POST['email'])) ? $email = $_POST['email'] : $errors .= '<p>Veuillez renseigner l\'email</p>';
-        (!empty($_POST['mdp'])) ? $mdp = sha1($_POST['mdp']) : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
+		(!empty($_POST['sitename'])) ? $sitename = $_POST['sitename'] : $errors .= '<p>Veuillez renseigner le nom du site</p>';
+		(!empty($_POST['slogan'])) ? $slogan = $_POST['slogan'] : $slogan = '';
+		(!empty($_POST['copyright'])) ? $copyright = $_POST['copyright'] : $errors .= '<p>Veuillez renseigner le copyright</p>';
+		(!empty($_POST['login'])) ? $login = $_POST['login'] : $errors .= '<p>Veuillez renseigner le login</p>';
+		(!empty($_POST['email'])) ? $email = $_POST['email'] : $errors .= '<p>Veuillez renseigner l\'email</p>';
+		(!empty($_POST['mdp'])) ? $mdp = sha1($_POST['mdp']) : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
         
-        $logo = '';
+		$logo =  handleFile($_FILES['logo'],'Config');
 
         if($errors == ''){
             
@@ -100,7 +100,7 @@
             Veuillez renseigner les champs pour continuer.
             </p>
         
-            <form class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="sitename" class="col-sm-4 control-label">Nom du site *</label>
@@ -162,6 +162,34 @@
         </div>';
         
     }
+    
+    function handleFile($file, $path) {
+	$img_path = 'public/img/'.$path;
+	$path = __DIR__.'/../public/img/'.$path;
+    if (!empty($file) && $file["name"] != '') {
+        if (!is_dir($path)) {
+            if (!mkdir($path, 0755)) {
+                exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
+            }
+        } else {
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $name = md5(uniqid()) . '.' . $extension;
+            $image_path = str_replace('../', '', $path) . '/' . $name;			
+
+            if (move_uploaded_file($file['tmp_name'], $path . '/' . $name)) {
+                $message = 'Upload réussi !';
+                return $img_path. '/' .$name;
+            } else {
+                // Sinon on affiche une erreur systeme
+                $message = 'Problème lors de l\'upload !';
+                return $message;
+            }
+        }
+    } else {
+        return false;
+    }
+}
+
     ?>
 
     </div>
