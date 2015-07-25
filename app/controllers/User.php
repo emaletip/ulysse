@@ -111,6 +111,8 @@ class User {
 			$_SESSION['flash']['user']['time'] = time() + 2;
 		
 			redirect('dashboard/user/list');
+		} else {
+			return $user;
 		}
 	}
 
