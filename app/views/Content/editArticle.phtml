@@ -3,6 +3,7 @@
 <?php 
     $c = $Contents[0];
     $tags_exists = array_key_exists('tags', $c);
+    var_dump($c);
 ?>
 <div id="main-wrapper">
     <div class="row">
@@ -21,8 +22,13 @@
                 </div>
                 <?php if ($c->content_image != '' && !is_null($c->content_image) ) { ?>
                     <input type="hidden" value="<?= $c->content_image ?>" name="old_img" > 
-                <?php } ?>
+                <?php }  ?>
                 <div class="form-group">
+                    <?php
+                        if($c->content_image != null) { 
+                            echo '<div class="col-sm-12"><img class="col-sm-offset-2" src="/'.PROJECT_DIRECTORY.$c->content_image.'" style="max-width:20%; max-height:400px"></div>';
+                        }
+                    ?>
                     <label for="image" class="col-sm-2 control-label">Image</label>
                     <div class="col-sm-10"><input type="file" name="image" class="form-control" rows="5"></div>
                 </div>
