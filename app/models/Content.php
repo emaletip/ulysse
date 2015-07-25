@@ -114,7 +114,7 @@ class Content {
         return($fields);
     }
     
-    public function printField($type, $name, $value, $min = 0, $max = 255) {
+    public function printField($type, $name, $value, $min = 0, $max = 255, $options = array()) {
         switch ($type) {
             case "input_file":
                 return '<input type="file" name="'.$name.'" value="'.$value.'" min="'.$min.'" max="'.$max.'" class="form-control">';
@@ -133,8 +133,10 @@ class Content {
                 $query = 'SELECT * FROM `content_select` WHERE id_select = '.$$var.'';*/
                 
             $input = '<select name="'.$name.'" class="form-control">';
-            foreach($value as $val){
-                $input .= '<option value="'.$val->id.'">'.$val->name.'</option>';
+			if(!empty($options)) {
+	            foreach($options as $val){
+	                $input .= '<option value="'.$val->id.'" '.($val->id == $value ? 'selected' : '') .'>'.$val->name.'</option>';
+	            }
             }
             $input .= '</select>';
             return($input);
@@ -591,12 +593,24 @@ class Content {
     
     public function getCategory($id){
         $query = 'SELECT * FROM category WHERE id = '.$id.'';
+        
         $results = $this->pdo->query($query);
         
         /* get products from the current category */
-        $queryproducts = 'SELECT * FROM product WHERE category_id = '.$id.'';
-        $resultsproducts = $this->pdo->query($queryproducts);
-        $results[0]->products = $resultsproducts;
+		$query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_price` fp ON c.id = fp.content_id
+        JOIN `field_stock` fs ON c.id = fs.content_id
+        JOIN `field_category` fc ON c.id = fc.content_id
+        JOIN `field_active` fa ON c.id = fa.content_id
+        JOIN `category` cy ON cy.id = fc.content_category
+        JOIN `user` u ON u.id = c.created_user
+        WHERE c.`content_type_name` = \'product\'
+        AND fc.id='.$id;
+        $res = $this->pdo->query($query);
+
+        $results[0]->products = $res;
         
         return $results;
     }
