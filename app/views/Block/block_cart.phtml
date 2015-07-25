@@ -24,7 +24,7 @@
 
 ?>
 <div id="block-cart" class="block">
-	<?= $nb ?> <i class="fa fa-shopping-cart"></i>
+	(<?= $nb == 0 ? 'vide' : $nb ?>) <i class="fa fa-shopping-cart"></i>
 	<a class="show_cart pointer"> Voir le panier </a>
 	<div id="cart" style="display:none;">
 		<?php 
