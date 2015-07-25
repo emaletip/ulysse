@@ -1,15 +1,30 @@
 <?php include_once("frontheader.phtml"); 
-$page = $Contents[0]; 
+	$page = $Contents[0]; 
 ?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="page">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					<h1><?= $page->name ?></h1>
-					<p>
-						<?php var_dump($page->products) ?>
-					</p>
+						<h1><?= $page->name ?></h1>
+						<div class="grid">
+
+						<?php foreach($page->products as $p) {
+							$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+							$row .= "<div class='product_photo'>";
+							$row .= "<img src='' alt=''>";
+							$row .= "</div>";
+							$row .= "<div class='product_details'>";
+							$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
+							$row .= "<h2>" . $p->content_title . "</h2>";
+							$row .= "<small>Proposé par : " . $p->user_login . "</small>";
+							$row .= "<div>Prix : " . $p->content_price . " €</div>";
+							$row .= "<div>Stock : " . $p->content_stock . "</div>";
+							$row .= "</div>";
+							$row .= "</div>";
+							echo $row;
+						} ?>
+					</div>
 					</div>
 				</div>
 			</div>
