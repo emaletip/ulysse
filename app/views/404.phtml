@@ -1,4 +1,6 @@
-<?php if(strstr( $_SERVER['REQUEST_URI'],'dashboard')) {
+<?php 
+
+if(is_url_dashboard()) {
 include_once("header.phtml");  
 } else {
 include_once("frontheader.phtml");  

@@ -24,7 +24,7 @@ class Api {
 		->setRouter(new Router())
 		->setRequest($this->getRouter()->getRequest());
 
-		if(!isset($_SESSION['user']) && strstr( $_SERVER['REQUEST_URI'],'dashboard') && !strstr( $_SERVER['REQUEST_URI'],'login')) {
+		if(!isset($_SESSION['user']) && is_url_dashboard() && !strstr( $_SERVER['REQUEST_URI'],'login')) {
 			header('Location: ' . HTTP_PATH . 'dashboard/login');
 		}
 		
@@ -152,6 +152,7 @@ class Api {
 			$id = $route['id'];
 			if (!$id) {
 				$this->$route['type'](ROUTE_PATH . $key, function () {
+					is_admin();
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getUri()); 
 					$route = $_SESSION['routes'][$key];
 
@@ -172,6 +173,7 @@ class Api {
 				});
 			} else {
 				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
+					is_admin();
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
 					$route = $_SESSION['routes'][$key];
 

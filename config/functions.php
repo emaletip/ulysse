@@ -19,10 +19,21 @@ function is_loged(){
 	}
 }
 
+function is_url_dashboard() {
+	$url = str_replace('/'.PROJECT_DIRECTORY,'',$_SERVER['REQUEST_URI']);
+	$url_arr = explode('/', $url);
+	if($url_arr[0] == 'dashboard' ) {
+		return true;
+	} 
+	return false;	
+}
+
 function is_admin() {
 	$logged = is_loged();
 	if($logged) {
-		// verif si admin sinon jarté
+		if($_SESSION['user']->role_id == 3 && is_url_dashboard()){
+			redirect('index');
+		}
 	}
 }
 
