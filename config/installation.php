@@ -334,11 +334,11 @@
                     (3, \'Header Center\', 1),
                     (4, \'Menu\', 1),
                     (5, \'Slider\', 1),
-                    (6, \'Before Content\', 1),
+                    (6, \'Before Content\', 3),
                     (7, \'Sidebar\', 1),
                     (8, \'Content\', 1),
-                    (9, \'Pre Footer\', 1),
-                    (10, \'Footer\', 1),
+                    (9, \'Pre Footer\', 3),
+                    (10, \'Footer\', 3),
                     (11, \'Copyright\', 1)',
                     
                     'INSERT INTO content (`content_type_name`, `created_user`) VALUES
@@ -356,7 +356,7 @@
                     'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
 					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
 					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
-					(5, 22, 1, 2, NULL, \'page\', \'Salon\', 1),
+					(5, 1, 1, 2, NULL, \'page\', \'Salon\', 1),
 					(8, 1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
 					(9, 1, 2, 8, NULL, \'page\', \'Test\', 1),
 					(10, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
@@ -395,7 +395,7 @@
                     (7, \'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL, 0),
                     (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL, 0),
                     (9, \'field_stock\', \'Stock\', \'input_text\', 0, NULL, 0),
-                    (10, \'field_image\', \'Image\', \'input_text\', 0, NULL, 0)',
+                    (10, \'field_image\', \'Image\', \'input_file\', 0, NULL, 0)',
 
                     'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
                     (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),

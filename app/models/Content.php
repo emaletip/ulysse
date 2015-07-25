@@ -256,7 +256,7 @@ class Content {
     }
 
     public function addProduct(array $data) {
-   
+			
 		$query_content = $this->pdo->insert(
         'INSERT INTO content (content_type_name, created_date, created_user)
         VALUES (:content_type_name, :created_date, :created_user)', array(
@@ -311,14 +311,12 @@ class Content {
                 ':content_type_name' => 'product'
                 )
             );
-            var_dump($query.'<br>');
             if($query){
                 $error = 0;
             } else {
                 $error = 1;
             }
         }
-
 		if($error == 0) {
 			return true;
 		} else {
@@ -466,28 +464,28 @@ class Content {
 		}
 	}
     
-    public function deleteProduct(array $data) {
+    public function deleteProduct($id) {
+        
+        $product = $this->getProduct($id);        
+        
+       	foreach ($product['fields'] as $field){
+       		$query2 = $this->pdo->update(
+	        'DELETE FROM '.($field[0]->name).' WHERE content_id = :id', array(
+	            ':id' => $id
+	            )
+	        );
+	         if($query2){
+                $error = 0;
+            } else {
+                $error = 1;
+            }
+       	}       
         
         $query = $this->pdo->update(
         'DELETE FROM content WHERE id = :id', array(
-            ':id' => $data['content_id']
+            ':id' => $id
             )
         );
-        
-		foreach($data as $key => $value) {
-            if($key != 'content_id'){
-                $query = $this->pdo->update(
-                'DELETE FROM field_'.$key.' WHERE content_id = :content_id', array(
-                    ':content_id' => $data['content_id']
-                    )
-                );
-                if($query){
-                    $error = 0;
-                } else {
-                    $error = 1;
-                }
-            }
-        }
             
 		if($error == 0) {
 			return true;

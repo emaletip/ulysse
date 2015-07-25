@@ -12,7 +12,9 @@ class Content {
 	}
     
     public function postProduct_add() {
-		unset($_POST['submit']);
+		unset($_POST['submit']);	
+		$path = 'Content';
+		$_POST['image'] = handleFile($_FILES['image'], $path);
 		
 		$add = $this->contentModel->addProduct($_POST);
 
@@ -62,6 +64,23 @@ class Content {
     
     public function postProduct_edit() {
 		unset($_POST['submit']);
+		$dirimg = 'Content';
+		
+		if(isset($_FILES) && $_FILES['image']['name'] != '') {
+			if(isset($_POST['old_img'])) {
+				$old_img = __DIR__.'/../../'.$_POST['old_img'];
+				if(file_exists($old_img)) {
+					unlink($old_img);
+				}
+				unset($_POST['old_img']);
+			}
+			$_POST['image'] = handleFile($_FILES['image'], $dirimg);
+		} else {
+			if(isset($_POST['old_img'])) {
+				unset($_POST['old_img']);
+			}
+			unset($_POST['image']);
+		}
 
 		$edit = $this->contentModel->editContent($_POST);
 
@@ -90,27 +109,23 @@ class Content {
         return $this->contentModel->getPage($id);
 	}
     
-    public function postProduct_delete() {
-		unset($_POST['submit']);
+    public function getProduct_delete($id) {
 
-		$edit = $this->contentModel->deleteProduct($_POST);
+		$edit = $this->contentModel->deleteProduct($id);
 
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été supprimées.';
 		$_SESSION['flash']['user']['time'] = time() + 1;
 	
-		redirect('dashboard/content');
+		redirect('dashboard/product');
 	}
+	
 	public function getContact() {
 		/* elodie: Affiche la page contact */
 	}
 	
 	public function getCategory($id) {
         return $this->contentModel->getCategory($id);
-	}
-    
-    public function getProduct_delete($id) {
-        return $this->contentModel->getProduct($id);
 	}
 
 	public function getProduct($id) {
