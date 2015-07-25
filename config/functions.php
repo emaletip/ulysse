@@ -3,11 +3,13 @@
 function is_loged(){
 	$location = '';
 	if(!isset($_SESSION) || !isset($_SESSION['user'])){
+		if(!is_url_dashboard()){
+			return false;
+		}
 		if (strpos($_SERVER["REQUEST_URI"],'dashboard') !== false) {
 		    $location = 'dashboard/';
 		}
 		header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$location.'login');
-	
 	} else {
 		if(!isset($_SESSION['loged'])) {
 			$_SESSION['flash']['login']['key'] = 'success';
@@ -30,7 +32,7 @@ function is_url_dashboard() {
 
 function is_admin() {
 	$logged = is_loged();
-	if($logged) {
+	if($logged && is_url_dashboard()) {
 		if($_SESSION['user']->role_id == 3 && is_url_dashboard()){
 			redirect('index');
 		}
