@@ -155,8 +155,8 @@ class User {
 			unset($data['email']);
 			unset($data['login']);
 			$_SESSION['flash']['user']['key'] = 'error';
-			$_SESSION['flash']['user']['msg'] = '<b>Attion </b> Votre utilisateur a bien été supprimé.';
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['msg'] = '<b>Attention </b> Vous n\'avez indiqué aucun email/login.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		}
 
 		foreach ($data as $k => $v) {

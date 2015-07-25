@@ -15,7 +15,9 @@ class Content {
 		unset($_POST['submit']);	
 		$path = 'Content';
 		$_POST['image'] = handleFile($_FILES['image'], $path);
-		
+		if(!isset($_POST['active'])) {
+			$_POST['active'] = 0;
+		}
 		$add = $this->contentModel->addProduct($_POST);
 
 		$_SESSION['flash']['user']['key'] = 'success';
@@ -84,11 +86,8 @@ class Content {
 
 		$edit = $this->contentModel->editContent($_POST);
 
-		$_SESSION['flash']['user']['key'] = 'success';
-		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-		$_SESSION['flash']['user']['time'] = time() + 1;
-	
-		redirect('dashboard/product/'.$_POST['content_id']);
+		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'dashboard/product/'.$_POST['content_id'],'dashboard/product/edit/'.$_POST['content_id']);
+
 	}
        
     public function postPage_edit() {
@@ -234,11 +233,11 @@ class Content {
     	if ($r) {
     	$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre article a bien été supprimé.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 		} else {
     	$_SESSION['flash']['user']['key'] = 'danger';
 		$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre article n\'a pas été supprimé.';
-		$_SESSION['flash']['user']['time'] = time() + 2;
+		$_SESSION['flash']['user']['time'] = time() + 1;
 		}
 		redirect('dashboard/article');
 	}
@@ -249,11 +248,11 @@ class Content {
 		if ($r) {
 	    	$_SESSION['flash']['user']['key'] = 'success';
 			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre page a bien été supprimé.';
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		} else {
 	    	$_SESSION['flash']['user']['key'] = 'danger';
 			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre page n\'a pas été supprimé.';
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		}
 		redirect('dashboard/page');
 	}

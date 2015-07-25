@@ -223,6 +223,15 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `field_active` (
+					  `id` INT NOT NULL AUTO_INCREMENT,
+					  `field_id` INT NOT NULL,
+					  `content_id` INT NOT NULL,
+					  `content_active` TINYINT NOT NULL,
+					  `content_type_name` VARCHAR(100) NOT NULL,
+					  PRIMARY KEY (`id`)
+					  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     'CREATE TABLE IF NOT EXISTS `field_stock` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `field_id` int(11) NOT NULL,
@@ -305,6 +314,16 @@
 					  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 					  PRIMARY KEY (`id`)
 					  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+					  
+					  'CREATE TABLE IF NOT EXISTS `user_content` (
+					  `id` INT NOT NULL AUTO_INCREMENT,
+					  `user_id` INT NOT NULL,
+					  `content_id` INT NOT NULL,
+					  `content_description` TEXT NULL,
+					  `content_price` DECIMAL(10,2) NULL,
+					  `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+					  PRIMARY KEY (`id`)
+					  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
                     
                     'INSERT INTO `block` (`id`, `name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
@@ -368,6 +387,7 @@
                     (4, 5),
                     (4, 9),
                     (4, 10),
+                    (4, 11),
                     (3, 1),
                     (3, 3),
                     (3, 6),
@@ -395,7 +415,8 @@
                     (7, \'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL, 0),
                     (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL, 0),
                     (9, \'field_stock\', \'Stock\', \'input_text\', 0, NULL, 0),
-                    (10, \'field_image\', \'Image\', \'input_file\', 0, NULL, 0)',
+                    (10, \'field_image\', \'Image\', \'input_file\', 0, NULL, 0),
+                    (11, \'field_active\', \'Actif\', \'input_checkbox\', 0, NULL, 0)',
 
                     'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
                     (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),

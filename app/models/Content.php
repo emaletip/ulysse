@@ -122,6 +122,8 @@ class Content {
                 return '<input type="text" name="'.$name.'" value="'.$value.'" min="'.$min.'" max="'.$max.'" class="form-control">';
             case "input_decimal":
                 return '<input type="number" name="'.$name.'" value="'.$value.'" class="form-control">';
+             case "input_checkbox":
+                return '<input type="checkbox" value="1" name="'.$name.'" '.($value == 1 ? 'checked' : '').' class="checkbox ">';    
             case "textarea":
                 return '<textarea name="'.$name.'" class="form-control ckeditor" rows="3">'.$value.'</textarea>';
             case "select":
@@ -130,22 +132,23 @@ class Content {
                 $var = '$query[0]->content_'.$name;
                 $query = 'SELECT * FROM `content_select` WHERE id_select = '.$$var.'';*/
                 
-                $input = '<select name="'.$name.'" class="form-control">';
-                foreach($value as $val){
-                    $input .= '<option value="'.$val->id.'">'.$val->name.'</option>';
-                }
-                $input .= '</select>';
-                return($input);
+            $input = '<select name="'.$name.'" class="form-control">';
+            foreach($value as $val){
+                $input .= '<option value="'.$val->id.'">'.$val->name.'</option>';
+            }
+            $input .= '</select>';
+            return($input);
         }   
     }
     
     public function getProductList(){
-        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
         JOIN `field_stock` fs ON c.id = fs.content_id
         JOIN `field_category` fc ON c.id = fc.content_id
+        JOIN `field_active` fa ON c.id = fa.content_id
         JOIN `category` cy ON cy.id = fc.content_category
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'';
@@ -296,6 +299,9 @@ class Content {
 	        		break;
                 case 'image':
                     $field_id = 10;
+                    break;
+                case 'active':
+                    $field_id = 11;
                     break;
 				default: 
 	        		$field_id = 1;

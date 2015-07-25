@@ -86,17 +86,15 @@ class User {
 		if ($add === true) {
 			$_SESSION['flash']['user']['key'] = 'success';
 			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		
 			redirect('dashboard/user/list');
 		} else {
 			$_SESSION['flash']['user']['key'] = 'danger';
-
 			foreach ($add as $v) {
 				$_SESSION['flash']['user']['msg'] .= $v.'<br>';
 			}
-
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		
 			redirect('dashboard/user/add');
 		}
@@ -108,7 +106,7 @@ class User {
 		if($_SESSION['user']->role_id != 1 && $user[0]->role_id == 1) {
 			$_SESSION['flash']['user']['key'] = 'warning';
 			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à modifier le Superadmin.';
-			$_SESSION['flash']['user']['time'] = time() + 2;
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		
 			redirect('dashboard/user/list');
 		} else {
