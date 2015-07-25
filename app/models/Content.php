@@ -294,6 +294,9 @@ class Content {
 				case 'link':
 	        		$field_id = 8;
 	        		break;
+                case 'image':
+                    $field_id = 10;
+                    break;
 				default: 
 	        		$field_id = 1;
 	        		break;

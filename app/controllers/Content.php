@@ -25,6 +25,23 @@ class Content {
     
     public function postPage_add() {
 		unset($_POST['submit']);
+
+		$dirimg = "Product";
+		if(isset($_FILES) && $_FILES['image']['name'] != '') {
+			if(isset($_POST['old_img'])) {
+				$old_img = __DIR__.'/../../'.$_POST['old_img'];
+				if(file_exists($old_img)) {
+					unlink($old_img);
+				}
+				unset($_POST['old_img']);
+			}
+			$_POST['image'] = handleFile($_FILES['image'], $dirimg);
+		} else {
+			if(isset($_POST['old_img'])) {
+				unset($_POST['old_img']);
+			}
+			unset($_POST['image']);
+		}
 		
 		$add = $this->contentModel->addContent($_POST, 'page');
 
@@ -212,7 +229,7 @@ class Content {
 	}
 
 	public function getPage_delete($id) {
-    	$this->contentModel->deletePage($id);
+    	$r = $this->contentModel->deletePage($id);
 
 		if ($r) {
 	    	$_SESSION['flash']['user']['key'] = 'success';

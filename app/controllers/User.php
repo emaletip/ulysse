@@ -102,6 +102,18 @@ class User {
 		}
 	}
 
+	public function getUser_edit($id) {
+		$user = $this->userModel->getUser($id);
+
+		if($_SESSION['user']->role_id != 1 && $user[0]->role_id == 1) {
+			$_SESSION['flash']['user']['key'] = 'warning';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à modifier le Superadmin.';
+			$_SESSION['flash']['user']['time'] = time() + 2;
+		
+			redirect('dashboard/user/list');
+		}
+	}
+
 	public function postUser_update() {
 		$dirimg = "User";
 		if(isset($_FILES) && $_FILES['avatar']['name'] != '') {

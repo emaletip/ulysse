@@ -273,14 +273,12 @@ $routes['dashboard/user/([0-9]+)'] = array(
 					  'action' => 'User',
 					  'view' => 'view',
 				   );
-
-// Pauline
 $routes['dashboard/user/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
 					  'controller' => 'User',
-					  'action' => 'User',
+					  'action' => 'User_edit',
 					  'view' => 'edit',
 				   );
 $routes['dashboard/user/delete/([0-9]+)'] = array(
@@ -291,8 +289,6 @@ $routes['dashboard/user/delete/([0-9]+)'] = array(
 					  'action' => 'User_delete',
 					  'view' => 'list',
 				   );
-// Fin Pauline	
-
 $routes['dashboard/user/add'] = array(
 					  'path' => 'app',
 					  'id' => false,

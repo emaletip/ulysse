@@ -71,7 +71,7 @@
 				<label>Role de l'utilisateur</label>
 				<?php
 					$req = new \config\database();
-					$result = $req->pdo->query("SELECT * FROM role")->fetchAll(\PDO::FETCH_OBJ);
+					$result = $req->pdo->query("SELECT * FROM role ORDER BY id DESC")->fetchAll(\PDO::FETCH_OBJ);
 				?>
 				<select class="form-control" id="role_id" name="role_id">
 					<?php

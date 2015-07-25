@@ -18,8 +18,8 @@
 					</div>
 				</div>
 	
-	<?php if ($_SESSION['user']->role_id == 1 || $_SESSION['user']->role_id == 2) { ?>
 				<ul class="menu accordion-menu">
+					<?php if ($_SESSION['user']->role_id != 3) { ?>
 					<li class="active"><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/index" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
 					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><span class="menu-icon glyphicon glyphicon-user"></span><p>Utilisateurs</p><span class="arrow"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -27,13 +27,17 @@
 							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/add">Ajouter un utilisateur</a></li>
 						</ul>
 					</li>
+					<?php } ?>
 					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-barcode"></i><p>Produits</p><span class="arrow"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/product">Les produits</a></li>
+							<?php if ($_SESSION['user']->role_id != 3) { ?>
 							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/product/add">Ajouter un produit</a></li>
 							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/fields">Champs supplémentaires</a></li>
+							<?php } ?>
 						</ul>
 					</li>
+					<?php if ($_SESSION['user']->role_id != 3) { ?>
 					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-newspaper-o"></i><p>Actualités</p><span class="arrow"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/article">Les articles</a></li>
@@ -53,8 +57,8 @@
 							<li><a href="/<?= PROJECT_DIRECTORY ?>dashboard/slider">Le Slider</a></li>
 						</ul>
 					</li>
+					<?php } ?>
 				</ul>
-			<?php } ?>
 		</div><!-- Page Sidebar Inner -->
 	</div><!-- Page Sidebar -->    
 	<div class="page-inner">
