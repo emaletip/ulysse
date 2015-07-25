@@ -31,7 +31,51 @@ $routes['register/insert'] = array(
 					  'view' => 'add',
 				   ); 	
 
-$routes['product/add/([0-9]+)'] = array(
+$routes['product'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ProductList',
+					  'view' => 'frontlistProduct',
+				   );
+
+$routes['product/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Product',
+					  'view' => 'frontviewProduct',
+				   );
+
+$routes['user/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User',
+					  'view' => 'frontview',
+				   );
+
+$routes['product/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Product_add',
+					  'view' => 'frontaddProduct',
+				   );
+$routes['product/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Product_add',
+					  'view' => 'frontaddProduct',
+				   );
+
+$routes['cart/add/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'post',
@@ -40,7 +84,7 @@ $routes['product/add/([0-9]+)'] = array(
 					  'view' => 'frontlistArticle',
 				   );
 
-$routes['product/delete/([0-9]+)'] = array(
+$routes['cart/delete/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'post',
@@ -56,15 +100,6 @@ $routes['article'] = array(
 					  'controller' => 'Content',
 					  'action' => 'ArticleList',
 					  'view' => 'frontlistArticle',
-				   );
-
-$routes['product'] = array(
-					  'path' => 'app',
-					  'id' => false,
-					  'type' => 'get',
-					  'controller' => 'Content',
-					  'action' => 'ProductList',
-					  'view' => 'frontlistProduct',
 				   );
 
 $routes['tag/([0-9]+)'] = array(

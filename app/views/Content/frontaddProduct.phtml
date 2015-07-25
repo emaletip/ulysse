@@ -1,0 +1,39 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php $fields = $Content->contentModel->getFieldsName("product"); ?>
+	  <!-- CONTENT -->
+		<div id="content-wrapper" class="article">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="article_list">
+						<h3>Enregistrer un nouveau produit</h3>
+			            <hr>
+			            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/product/insert" method="post" class="form-horizontal" enctype="multipart/form-data">
+			                
+			                <?php foreach($fields as $field): ?>
+			                
+			                <?php
+			                    $type = $field[0]->type;
+			                    $name = substr(strstr($field[0]->name, '_'), 1);
+			                    if($name == 'category'){
+			                        $value = $Content->contentModel->AllCategory();
+			                    } else {
+			                        $value = "";
+			                    }
+			                ?>
+			                
+			                <div class="form-group">
+			                    <label for="title" class="col-sm-2 control-label"><?php print $field[0]->label; ?></label>
+			                    <div class="col-sm-10"><?php print $Content->contentModel->printField($type, $name, $value, 10, 100); ?></div>
+			                </div>
+			                
+			                <?php endforeach; ?>
+			                
+			                <div class="form-group">
+			                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Ajouter le produit</button></div>
+			                </div>
+			            </form>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php include_once("frontfooter.phtml"); ?>

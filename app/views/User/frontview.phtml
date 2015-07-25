@@ -1,0 +1,33 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php
+	$u = $Users[0];
+?>
+<!-- CONTENT -->
+	<div id="content-wrapper" class="user">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" id="article_list">
+					<div class="profile-image">
+                        <img src="<?= $u->avatar ? "/" . PROJECT_DIRECTORY . $u->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" alt="">
+                    </div>
+                    <h3 class="text-center"><?= $u->first_name && $u->last_name ? $u->first_name . " " . $u->last_name : $u->login ?></h3>
+                    <ul class="list-unstyled text-center">
+                        <li><p><i class="fa fa-map-marker m-r-xs"></i>
+                        	<?php 
+                        		$completAddress = $u->address1 && $u->address2 ? $u->address1 . " / " . $u->address2 : "Adresse non renseignée";
+                        		$completAddress .= "<br>";
+                        		$completAddress .= $u->postal_code && $u->city ? $u->postal_code . " " . $u->city : "";
+                        		$completAddress .= $u->postal_code && $u->city && $u->country ? ", " : "";
+                        		$completAddress .= $u->country ? $u->country : "";
+                        		echo $completAddress;
+                        	?>
+                        </p>
+                        </li>
+                        <li><p><i class="fa fa-envelope m-r-xs"></i><a href="mailto:<?= $u->email ?>"><?= $u->email ?></a></p></li>
+                        <hr>
+                    </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php include_once("frontfooter.phtml"); ?>

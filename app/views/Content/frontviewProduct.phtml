@@ -1,0 +1,16 @@
+<?php include_once("frontheader.phtml"); 
+	$p = $Contents['results'][0]; 
+	var_dump($p);
+?>
+	  <!-- CONTENT -->
+		<div id="content-wrapper" class="product">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="article_list">
+						<h1><?= $p->content_title ?></h1>
+						<small></small>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php include_once("frontfooter.phtml"); ?>

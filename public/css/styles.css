@@ -967,3 +967,19 @@ font-size: 12px;
 	background: #5d9907;
 	color: #fff !important;
 }
+
+/************************/
+/*			USER		*/
+/************************/
+
+.profile-image img {
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #fff;
+    display: block;
+    height: 150px;
+    margin: 0 auto;
+    width: 150px;
+}
+.user i.fa {
+	margin-right: 10px;
+}
