@@ -16,12 +16,12 @@ class Cart {
 		$this->cart = array();
 	}
 	
-	public function postAddProduct($id) {
+	public function getAddProduct($id) {
 		$this->cartModel->addProduct($id);
-		$parent = str_replace('http://','',$_SERVER['HTTP_REFERER']);
-		$parent = str_replace($_SERVER['HTTP_HOST'], '', $parent);
-		$parent = trim(str_replace(PROJECT_DIRECTORY,'', $parent),'/');
-		redirect($parent);
+		
+		$url = parent_url();
+
+		redirect($url);
 	}
 	public function postDeleteProduct($id) {
 		$this->cartModel->deleteProduct($id);

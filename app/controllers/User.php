@@ -22,12 +22,13 @@ class User {
 		$username = $_POST['user']['email'];
 		$password = $_POST['user']['password'];
 		$user = $this->userModel->connectUser($username, $password);
+		
 		if($user) {
 			$_SESSION['user'] = $user;
 			setcookie('userinfo', json_encode($user), (time() + 3600));
-			
 			return true;
 		} else {
+			show_flash(false,false,'<b>Erreur ! </b> Vous avez indiqué un mauvais email et/ou mot de passe.',false,false);
 			return false;
 		}
 	}

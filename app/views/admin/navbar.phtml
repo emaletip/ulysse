@@ -14,12 +14,18 @@
 		<div class="topmenu-outer">
 			<div class="top-menu">
 				<ul class="nav navbar-nav navbar-left">
+					<?php if(is_admin()) { ?>
 					<li>
 						<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/config" class="waves-effect waves-button waves-classic"><i class="fa fa-cogs m-r-xs"></i>Configuration</a>
 					</li>
 					<li>
 						<a href="/<?= PROJECT_DIRECTORY; ?>index" class="waves-effect waves-button waves-classic"><i class="fa fa-shopping-cart m-r-xs"></i>Voir ma boutique</a>
 					</li>
+					<?php } else { ?>
+					<li>
+						<a href="/<?= PROJECT_DIRECTORY; ?>product/add" class="waves-effect waves-button waves-classic"><i class="fa fa-plus-circle m-r-xs"></i>Vendre un produit</a>
+					</li>
+					<?php } ?>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 <!--
@@ -86,19 +92,38 @@
 						</ul>
 					</li>
 -->
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-							<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><i class="fa fa-angle-down"></i></span>
-							<img class="img-circle avatar" src="<?= $_SESSION['user']->avatar ? "/" . PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" width="40" height="40" alt="">
+					<li>
+					
+						<?php 
+						if( $_SESSION['user']->avatar ) {
+							$avatar = get_avatar($_SESSION['user']->avatar);
+						} else {
+							$avatar = FRONT_IMG_PATH.'default_avatar.gif';
+						}
+						
+						if(is_admin()) { ?>
+						<a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>" class=" waves-effect waves-button waves-classic">
+						<?php } else { ?>
+						<a href="/<?= PROJECT_DIRECTORY ?>user/<?= $_SESSION['user']->id ?>" class="waves-effect waves-button waves-classic">
+						<?php } ?>
+							<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?>
+							<!-- <i class="fa fa-angle-down"></i> -->
+							</span>
+							<img class="img-circle avatar" src="<?= $avatar ?>" width="40" height="40" alt="">
 						</a>
-						<ul class="dropdown-menu dropdown-list" role="menu">
-							<li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>"><i class="fa fa-user"></i>Profile</a></li>
-							<li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendrier</a></li>
+		<!--				<ul class="dropdown-menu dropdown-list" role="menu">
+							<li role="presentation">
+								<a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>"><i class="fa fa-user"></i>Profile</a>
+							</li>
+<!--
+							<li role="presentation">
+								<a href="calendar.html"><i class="fa fa-calendar"></i>Calendrier</a></li>
 							<li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Boîte de réception<span class="badge badge-success pull-right">4</span></a></li>
 							<li role="presentation" class="divider"></li>
 							<li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a></li>
 							<li role="presentation"><a href="login.html"><i class="fa fa-sign-out m-r-xs"></i>Déconnexion</a></li>
-						</ul>
+
+						</ul>-->
 					</li>
 					<li>
 						<a href="/<?= PROJECT_DIRECTORY ?>dashboard/logout" class="log-out waves-effect waves-button waves-classic">

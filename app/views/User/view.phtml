@@ -9,7 +9,7 @@
 	            <div class="row">
 	                <div class="col-md-3 profile-image">
 	                    <div class="profile-image-container">
-	                        <img src="<?= $u->avatar ? "/" . PROJECT_DIRECTORY . $u->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" alt="">
+	                        <img src="<?= get_avatar($u->avatar); ?>" alt="">
 	                    </div>
 	                </div>
 	            </div>

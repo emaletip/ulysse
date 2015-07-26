@@ -32,9 +32,10 @@
 						<div class="col-md-12">
                         	<b>Description :</b>
                         </div>	
-						<div class="col-md-12">
-							<?= $p->content_description; ?>
-                        </div>
+						<small>
+						<?= $p->content_description ?>
+						</small>
+						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
 					</div>
 				</div>
 			</div>

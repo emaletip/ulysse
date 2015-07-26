@@ -8,8 +8,15 @@
 				<div class="sidebar-header">
 					<div class="sidebar-profile">
 						<a href="/<?= PROJECT_DIRECTORY; ?>dashboard/user/<?= $_SESSION['user']->id ?>" id="profile-menu-link">
+							<?php 
+								if( $_SESSION['user']->avatar ) {
+									$avatar = get_avatar($_SESSION['user']->avatar);
+								} else {
+									$avatar = FRONT_IMG_PATH.'default_avatar.gif';
+								}
+							?>
 							<div class="sidebar-profile-image">
-								<img src="<?= $_SESSION['user']->avatar ? "/" . PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" class="img-circle img-responsive" alt="">
+								<img src="<?= $avatar; ?>" class="img-circle img-responsive" alt="">
 							</div>
 							<div class="sidebar-profile-details">
 								<span><?= $_SESSION['user']->first_name && $_SESSION['user']->last_name ? $_SESSION['user']->first_name." ".$_SESSION['user']->last_name : $_SESSION['user']->login ?><br><small><?= $_SESSION['user']->login ?></small></span>

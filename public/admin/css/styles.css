@@ -37,6 +37,41 @@ body {
 .panel-heading {
 	height: auto !important;
 }
+/********************/
+/*		LOGIN		*/
+/********************/
+body.login{
+	max-width: 100%;
+	overflow: hidden;
+}
+body.login .page-content{
+	background-color: #f1f4f9;
+
+}
+body.login .page-content .form-login {
+	background: #fff;
+}
+body.login .page-content .form-signin-heading {
+	margin: 30px 0;
+	font-size: 19px;	
+	color:#74767d;
+}
+body.login .page-content input{
+	border-radius: 3px;
+	margin: 15px 0;	
+}
+
+body.login .page-content .logo {
+    display: table-cell;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    padding: 0 15px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 30px;
+}
+
 /************************/
 /*		NAVBARSIDE		*/
 /************************/
@@ -120,9 +155,9 @@ body {
 	background-color: #d9edf7;
 	color: #d9edf7;
 }
-.list-user .img-circle {
+.list-user th .img-circle{
 	height: 60px;
-	width: 60px;
+	width: auto;
 }
 .list-user th,
 .list-user td {
