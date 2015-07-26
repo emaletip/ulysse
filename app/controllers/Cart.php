@@ -33,5 +33,32 @@ class Cart {
 	public function getStep1() {
 		return $this->cartModel->listCart();
 	}
+	public function getStep2() {
+		
+		/* Prepare Order Item */
+		
+		return $this->cartModel->listCart();
+	}	
+	public function postValidStep2() {
+		
+		$addresse = $_POST['delivery_first_name'] . ' ';
+		$addresse .= $_POST['delivery_last_name'] . ', ';
+		$addresse .= $_POST['delivery_address1'] . ', ';
+		$addresse .= $_POST['delivery_address2'] != '' ? $_POST['delivery_address2'] . ', ' : '' ;
+		$addresse .= $_POST['delivery_postal_code'] . ' ';
+		$addresse .= $_POST['delivery_city'] . ', ';
+		$addresse .= $_POST['delivery_country'] . ' ';
+		
+		/* MAJ ORDER */
+		
+		redirect('order/livraison');
+				
+	}
+	
+	public function getStep3() {
+	}
+	
+	public function getStep4() {
+	}
 
 }

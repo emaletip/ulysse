@@ -132,13 +132,19 @@ function handleFile($file, $path) {
 }
 
 function get_avatar($avatar){
+	if($avatar) {
 		$path_parts = pathinfo($avatar);
 		$ext = '.'.$path_parts['extension'];
 		$name = str_replace($ext,'',$path_parts['basename']).'-200x200';
 		
 		if(file_exists($path_parts['dirname'].'/'.$name.$ext)) {
 			$avatar = '/'.PROJECT_DIRECTORY.$path_parts['dirname'].'/'.$name.$ext;
-		}
-		
+		} 
+		 
+	} else {
+		$avatar = FRONT_IMG_PATH.'default_avatar.gif';
+	}
+	
+
 	return $avatar;
 }

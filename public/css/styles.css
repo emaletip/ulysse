@@ -68,7 +68,7 @@ h5 {
     line-height: 24px;
     text-transform: uppercase;
 }
-a.btn {
+.order button.btn, a.btn {
 	background: #ffffff none repeat scroll 0 0;
     border: 2px solid #5d9907;
     color: #5d9907;
@@ -152,7 +152,7 @@ a.btn {
 }
 
 /****************/
-/*		HEADER		*/
+/*    HEADER    */
 /****************/
 header {
 	margin-top: 40px;
@@ -226,6 +226,11 @@ nav ul li .logo h1 {
 /*****************/
 #content-wrapper .container {
   padding-top: 20px;
+}
+.control-label {
+	font-weight: 100;
+	padding: 7px;
+	font-size: 13px;
 }
 
 /*    BLOCKS    */
@@ -740,7 +745,7 @@ color: #337ab7;
     vertical-align: middle;
     width: 100%;
    }
-.control-label {
+.loginblock .control-label {
     color: #828282;
     font-family: "Open Sans",sans-serif;
     font-weight: 500;

@@ -158,7 +158,7 @@ class Api {
 			$id = $route['id'];
 			if (!$id) {
 				$this->$route['type'](ROUTE_PATH . $key, function () {
-					if(!is_admin()) {
+					if(!is_admin() && is_url_dashboard()) {
 						redirect('index');
 					}
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getUri()); 
@@ -181,7 +181,7 @@ class Api {
 				});
 			} else {
 				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
-					if(!is_admin()) {
+					if(!is_admin() && is_url_dashboard()) {
 						redirect('index');
 					}
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
