@@ -1,0 +1,157 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php 
+	$user = array();
+	if(isset($_SESSION['user'])) {
+		$user = $_SESSION['user'];
+	}
+?>
+<div id="content-wrapper" class="page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="page_cart">
+				<form action="/<?= PROJECT_DIRECTORY; ?>order/validStep2" method="post">
+				<div class="col-md-6 address">
+					<div class="panel panel-default">
+				    	<div class="panel-heading">
+							<h3 class="panel-title">Mon adresse</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="first_name">Prénom</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Prénom" class="form-control" name="first_name" id="first_name" value="<?= $user ? $user->first_name : ''; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="last_name">Nom</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Nom" class="form-control" name="last_name" id="last_name" value="<?= $user ? $user->last_name : ''; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="address1">Adresse</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Adresse" class="form-control" name="address1" id="address1" value="<?= $user ? $user->address1 : ''; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="address2">Complément</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Complément de l'adresse" class="form-control" name="address2" id="address2" value="<?= $user ? $user->address2 : ''; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="postal_code">Code postal</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Code postal" class="form-control" name="postal_code" id="postal_code" value="<?= $user ? $user->postal_code : ''; ?>">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="city">Ville</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Ville" class="form-control" name="city" id="city" value="<?= $user ? $user->city : ''; ?>">
+								</div>
+							</div>
+			
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="country">Pays</label>
+								<div class="col-sm-9">
+									<input type="text" placeholder="Pays" class="form-control" name="country" id="country" value="<?= $user ? $user->country : ''; ?>">
+								</div>
+							</div>
+						</div>
+				    </div>
+				</div>
+				<div class="col-md-6 address">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Adresse de livraison</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group col-sm-12">
+			                    <div class="col-sm-3">
+			                    <input id="use_address" type="checkbox" class="checkbox" name="active" value="1">
+			                    </div>
+			                    <label class="col-sm-9" for="title" >Utiliser mon adresse</label>
+			                </div>
+			                <div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_first_name">Prénom *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Prénom" class="form-control" name="delivery_first_name" id="first_name" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_last_name">Nom *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Nom" class="form-control" name="delivery_last_name" id="last_name" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" class="col-sm-3 control-label" for="delivery_address1">Adresse</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Adresse" class="form-control" name="delivery_address1" id="address1" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_address2">Complément *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Complément de l'adresse" class="form-control" name="delivery_address2" id="address2" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_postal_code">Code postal *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Code postal" class="form-control" name="delivery_postal_code" id="postal_code" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_city">Ville *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Ville" class="form-control" name="delivery_city" id="city" required>
+								</div>
+							</div>
+			
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="delivery_country">Pays *</label>
+								<div class="col-sm-9">
+								<input type="text" placeholder="Pays" class="form-control" name="delivery_country" id="country" required>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 address">
+					<div class="order">
+					<button type="submit" class="btn">Valider mon adresse</button>
+					
+					</div>
+				</div>
+				</form>				
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#use_address').click(function(){
+
+		if($(this).prop("checked") == true) {
+			$('[name="delivery_first_name"]').val($('[name="first_name"]').val());
+			$('[name="delivery_last_name"]').val($('[name="last_name"]').val());
+			$('[name="delivery_address1"]').val($('[name="address1"]').val());
+			$('[name="delivery_address2"]').val($('[name="address2"]').val());
+			$('[name="delivery_postal_code"]').val($('[name="postal_code"]').val());
+			$('[name="delivery_city"]').val($('[name="city"]').val());
+			$('[name="delivery_country"]').val($('[name="country"]').val());
+		} else {
+			$('[name="delivery_first_name"]').val('');
+			$('[name="delivery_last_name"]').val('');
+			$('[name="delivery_address1"]').val('');
+			$('[name="delivery_address2"]').val('');
+			$('[name="delivery_postal_code"]').val('');
+			$('[name="delivery_city"]').val('');
+			$('[name="delivery_country"]').val('');
+		}
+	
+	});
+</script>
+<?php include_once("frontfooter.phtml"); ?>

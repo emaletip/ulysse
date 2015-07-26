@@ -241,6 +241,7 @@
                     'CREATE TABLE IF NOT EXISTS `order` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `user_id` int(11) NOT NULL,
+                      `delivery_address` text NOT NULL,
                       `total_price` decimal(10,2) NOT NULL,
                       `product_json` text NOT NULL,
                       `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
