@@ -88,8 +88,11 @@
 					</li>
 -->
 					<li class="dropdown">
+					
 						<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
 							<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?><i class="fa fa-angle-down"></i></span>
+							
+						
 							<img class="img-circle avatar" src="<?= $_SESSION['user']->avatar ? "/" . PROJECT_DIRECTORY . $_SESSION['user']->avatar : FRONT_IMG_PATH . "default_avatar.gif" ?>" width="40" height="40" alt="">
 						</a>
 						<ul class="dropdown-menu dropdown-list" role="menu">

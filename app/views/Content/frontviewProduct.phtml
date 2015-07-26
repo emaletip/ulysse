@@ -7,7 +7,10 @@
 				<div class="row">
 					<div class="col-md-12" id="article_list">
 						<h1><?= $p->content_title ?></h1>
-						<small></small>
+						<small>
+						<?= $p->content_description ?>
+						</small>
+						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
 					</div>
 				</div>
 			</div>

@@ -7,25 +7,49 @@
 		color: #fff;
 	}
 </style>
-<body class="page-header-fixed pace-done">
+<body class="page-header-fixed pace-done login">
 	<main class="page-content content-wrap">
-<br><br><br><br><br><br><br><br>
-		<div class="col-lg-4 col-md-4"></div>
+	<br><br><br><br><br><br>
+		<div class="row">
+			<div class="col-lg-4 col-md-4"></div>
+			<div class="col-lg-4 col-md-4 logo"> Panneau d'administration </div>
+			<div class="col-lg-4 col-md-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-4"></div>
 			<div class="col-lg-4 col-md-4 form-login">
+						
 				<form class="form-signin" action="/<?= PROJECT_DIRECTORY ?>dashboard/connect" method="post">
-					<h2 class="form-signin-heading">Please sign in</h2>
-					<label for="inputEmail" class="sr-only">Email address</label>
-					<input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email" name="user[email]">
-					<label for="inputPassword" class="sr-only">Password</label>
-					<input id="inputPassword" class="form-control" placeholder="Password" required="" type="password" name="user[password]">
+				<?php
+				if (isset($_SESSION['flash'])) {
+					foreach($_SESSION['flash'] as $msg) {
+						if($msg['time'] <= time()) {
+							unset($_SESSION['flash']);
+						} else { ?>
+						<br>
+							<div role="alert" class="alert alert-<?= $msg['key'] ?>">
+							<?= $msg['msg'] ?>
+							</div>
+						<?php 
+						}
+					}
+				} ?>
+					<h2 class="form-signin-heading">Merci de vous connecter</h2>
+					<label for="inputEmail" class="sr-only">Email</label>
+					<input id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" type="email" name="user[email]">
+					<label for="inputPassword" class="sr-only">Mot de passe</label>
+					<input id="inputPassword" class="form-control" placeholder="Mot de passe" required="" type="password" name="user[password]">
+<!--
 					<div class="checkbox">
 						<label>
 						<input value="remember-me" type="checkbox"> Remember me
 						</label>
 					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+-->
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
 				</form>
 			</div>
 			<div class="col-lg-4 col-md-4"></div>
-		</main>
+		</div>
+	</main>
 </body>

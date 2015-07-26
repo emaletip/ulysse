@@ -42,8 +42,8 @@
 									} else {
 										$row = "<tr>";
 									}
-
-									$avatar = $v->avatar ? "/" . PROJECT_DIRECTORY . $v->avatar : FRONT_IMG_PATH . "default_avatar.gif";
+									
+									$avatar = get_avatar($v->avatar);
 
 									$row .= "<th><img class='img-circle img-responsive' alt='' src='" . $avatar . "'></th>";
 									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/user/".$v->id."'>" . $v->login . "</a></th>";

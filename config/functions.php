@@ -12,13 +12,17 @@ function is_loged(){
 		header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.$location.'login');
 	} else {
 		if(!isset($_SESSION['loged'])) {
-			$_SESSION['flash']['login']['key'] = 'success';
-			$_SESSION['flash']['login']['msg'] = '<b>Félicitations ! </b> Vous êtes maintenant connecté(e).';
-			$_SESSION['flash']['login']['time'] = time() + 1;
 			$_SESSION['loged'] = true;
+			show_flash(true,'<b>Félicitations ! </b> Vous êtes maintenant connecté(e).',false,false,false);
 		}
 		return true;
 	}
+}
+
+function parent_url(){
+	$parent = str_replace('http://','',$_SERVER['HTTP_REFERER']);
+	$parent = str_replace($_SERVER['HTTP_HOST'], '', $parent);
+	return trim(str_replace(PROJECT_DIRECTORY,'', $parent),'/');
 }
 
 function is_url_dashboard() {
@@ -34,9 +38,16 @@ function is_admin() {
 	$logged = is_loged();
 	if($logged && is_url_dashboard()) {
 		if($_SESSION['user']->role_id == 3 && is_url_dashboard()){
-			redirect('index');
+			return false;
 		}
+		return true;
+	} else if ($logged && !is_url_dashboard()) {
+		if($_SESSION['user']->role_id == 3){
+			return false;
+		}
+		return true;
 	}
+	return false;
 }
 
 function redirect($path) {
@@ -55,9 +66,13 @@ function show_flash($res, $msg_true = '<b>Félicitations ! </b> Vos données ont
 	} else {
 		$_SESSION['flash']['user']['key'] = 'danger';
 		if($msg_false){
-			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Il y a eu une erreur lors de la sauvegarde de vos données.';
+			if($msg_false == '') {				
+				$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Il y a eu une erreur lors de la sauvegarde de vos données.';
+			} else {
+				$_SESSION['flash']['user']['msg'] = $msg_false;
+			}
 		} else {
-			$_SESSION['flash']['user']['msg'] = '';
+			$_SESSION['flash']['user']['msg'] = '';			
 			foreach ($res as $v) {
 				$_SESSION['flash']['user']['msg'] .= $v.'<br>';
 			}
@@ -80,10 +95,29 @@ function handleFile($file, $path) {
             }
         } else {
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $name = md5(uniqid()) . '.' . $extension;
-            $image_path = str_replace('../', '', $path) . '/' . $name;			
+            $nameid = md5(uniqid());
+            $name =  $nameid . '.' . $extension;
+            $image_path = $path . '/' . $name;	
+            
+            $create_img = move_uploaded_file($file['tmp_name'], $path . '/' . $name);
 
-            if (move_uploaded_file($file['tmp_name'], $path . '/' . $name)) {
+            $largeur = 200;
+			$hauteur = 200;
+			 
+			$image = imagecreatefromjpeg($image_path);
+			$taille = getimagesize($image_path);
+			 
+			$sortie = imagecreatetruecolor($largeur,$hauteur);
+			 
+			$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+			 
+			$deltax = $taille[0]-($coef * $largeur); 
+			$deltay = $taille[1]-($coef * $hauteur);
+			 
+			imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+			$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+            		
+            if ($create_img) {
                 $message = 'Upload réussi !';
                 return $img_path. '/' .$name;
             } else {
@@ -97,3 +131,14 @@ function handleFile($file, $path) {
     }
 }
 
+function get_avatar($avatar){
+		$path_parts = pathinfo($avatar);
+		$ext = '.'.$path_parts['extension'];
+		$name = str_replace($ext,'',$path_parts['basename']).'-200x200';
+		
+		if(file_exists($path_parts['dirname'].'/'.$name.$ext)) {
+			$avatar = '/'.PROJECT_DIRECTORY.$path_parts['dirname'].'/'.$name.$ext;
+		}
+		
+	return $avatar;
+}

@@ -88,7 +88,9 @@ class Api {
 		/* DASHBOARD INDEX */
 		
 		$this->get(ROUTE_PATH . 'dashboard/index', function () {
-			is_admin();
+			if(!is_admin()) {
+				redirect('index');
+			}
 			$content = new \app\controllers\Content();
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
@@ -99,7 +101,9 @@ class Api {
 		});
 		
 		$this->get(ROUTE_PATH . 'dashboard/', function () {
-			is_admin();
+			if(!is_admin()) {
+				redirect('index');
+			}
 			$content = new \app\controllers\Content();
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
@@ -111,7 +115,9 @@ class Api {
 		});
 		
 		$this->get(ROUTE_PATH . 'dashboard', function () {
-			is_admin();
+			if(!is_admin()) {
+				redirect('index');
+			}
 			$content = new \app\controllers\Content();
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
@@ -152,7 +158,9 @@ class Api {
 			$id = $route['id'];
 			if (!$id) {
 				$this->$route['type'](ROUTE_PATH . $key, function () {
-					is_admin();
+					if(!is_admin()) {
+						redirect('index');
+					}
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getUri()); 
 					$route = $_SESSION['routes'][$key];
 
@@ -173,7 +181,9 @@ class Api {
 				});
 			} else {
 				$this->$route['type'](ROUTE_PATH . $key, function ($id) {
-					is_admin();
+					if(!is_admin()) {
+						redirect('index');
+					}
 					$key = str_replace('/'.PROJECT_DIRECTORY, '',$this->getRequest()->getParams()['route']); 
 					$route = $_SESSION['routes'][$key];
 
