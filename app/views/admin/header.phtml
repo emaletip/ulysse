@@ -38,6 +38,12 @@
 						</ul>
 					</li>
 					<?php if ($_SESSION['user']->role_id != 3) { ?>
+					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-list"></i><p>Catégories</p><span class="arrow"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/category">Les catégories</a></li>
+							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/category/add">Ajouter une catégorie</a></li>
+						</ul>
+					</li>
 					<li class="dropdown"><a class="dropdown-toggle" aria-expanded="false" role="button" data-toggle="dropdown" href="#"><i class="fa fa-newspaper-o"></i><p>Actualités</p><span class="arrow"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/<?= PROJECT_DIRECTORY; ?>dashboard/article">Les articles</a></li>

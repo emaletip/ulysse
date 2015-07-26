@@ -1,5 +1,5 @@
 <?php include_once("frontheader.phtml"); 
-	$p = $Contents['results'][0]; 
+	$p = $Contents['results'][0];
 ?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="product">
@@ -7,7 +7,34 @@
 				<div class="row">
 					<div class="col-md-12" id="article_list">
 						<h1><?= $p->content_title ?></h1>
-						<small></small>
+						<?php if($p->content_image != '') {?>
+						<div class="col-md-6 product_image"><img src="/<?= PROJECT_DIRECTORY.$p->content_image ?>"></div>
+						<div class="col-md-6">
+						<?php } else { ?>
+						<div class="col-md-12">
+						<?php } ?>							
+					
+						<h3>Attributs</h3> 
+						<div class="col-md-3">
+                        	<b>Prix :</b>
+                        </div>	
+						<div class="col-md-9">
+							<?= $p->content_price; ?> €
+                        </div>
+
+						<div class="col-md-3">
+                        	<b>Catégorie :</b>
+                        </div>	
+						<div class="col-md-9">
+							<?= $p->category_name; ?>
+                        </div>
+
+						<div class="col-md-12">
+                        	<b>Description :</b>
+                        </div>	
+						<div class="col-md-12">
+							<?= $p->content_description; ?>
+                        </div>
 					</div>
 				</div>
 			</div>

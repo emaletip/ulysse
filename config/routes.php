@@ -532,6 +532,65 @@ $routes['dashboard/fields/insert'] = array(
 					  'view' => 'addField',	
 					);
 
+/* Category */
+
+$routes['dashboard/category'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Category',
+					  'action' => 'Category_list',
+					  'view' => 'list',
+				   );	
+$routes['dashboard/category/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Category',
+					  'action' => 'Category',
+					  'view' => 'view',
+				   );
+$routes['dashboard/category/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Category',
+					  'action' => 'Category_edit',
+					  'view' => 'edit',
+				   );
+$routes['dashboard/category/update'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'Category',
+					  'action' => 'Category_edit',
+					  'view' => 'edit',
+				   );
+$routes['dashboard/category/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Category',
+					  'action' => 'Category_delete',
+					  'view' => 'list',
+				   );
+$routes['dashboard/category/add'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Category',
+					  'action' => 'Category_add',
+					  'view' => 'add',
+				   );
+$routes['dashboard/category/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Category',
+					  'action' => 'Category_add',
+					  'view' => 'add',
+				   ); 
+
 /* pages */
 
 $routes['dashboard/page'] = array(

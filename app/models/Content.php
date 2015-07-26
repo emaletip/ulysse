@@ -197,11 +197,12 @@ class Content {
     public function getProduct($id){
         $fields = $this->getFields($id);
         $results['fields'] = $fields;
-        $query = 'SELECT *, c.id AS content_id, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT *, c.id AS content_id, t.id AS content_type_id, cy.name AS category_name FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name ';
         foreach($fields as $key => $field){
             $query .= 'JOIN `'.$field[0]->name.'` f'.$key.' ON c.id = f'.$key.'.content_id ';
         }
+        $query .= 'JOIN `category` cy ON cy.id = f2.content_category ';
         $query .= 'WHERE c.`content_type_name` = \'product\' AND c.id = '.$id.'';
         $results['results'] = $this->pdo->query($query);
         return($results);

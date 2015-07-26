@@ -8,16 +8,19 @@
 
 						<div class="button-group filters-button-group">
 						  <button class="button is-checked" data-filter="*">Tous</button>
-						  <button class="button" data-filter=".nourriture">Nourriture</button>
-						  <button class="button" data-filter=".informatique">Informatique</button>
-						  <button class="button" data-filter=".mobilier">Mobilier</button>
-						  <!-- PENSER A FAIRE UNE REQUETE POUR OBTENIR TOUTES LES CATEGORIES -->
+						  <?php
+						  	$categories = $Content->contentModel->AllCategory();
+
+						  	foreach ($categories as $c) {
+						  		echo "<button class='button' data-filter='." . strtolower($c->name) . "'>" . ucfirst($c->name) . "</button>";
+						  	}
+						  ?>
 						</div>
 
 						<div class="grid">
 						<?php
 							foreach ($Contents as $k => $p) {
-								$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default_avatar.gif";
+								$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
 								$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
 								$row .= "<div class='product_photo'>";
 								$row .= "<img src='" . $image . "' alt=''>";
