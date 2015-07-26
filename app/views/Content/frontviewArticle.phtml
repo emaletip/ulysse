@@ -1,12 +1,14 @@
 <?php include_once("frontheader.phtml"); 
-$a = $Contents[0]; ?>
+$a = $Contents[0]; 
+$created_by = $a->first_name && $a->last_name ? $a->first_name . " " . $a->last_name : $a->login;
+?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="article">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 article_view">
 						<h1><?= $a->content_title ?></h1>
-						<small>Posté par <?= $a->login ?> le <?= $a->created_date ?></small>
+						<small>Posté par <?= $created_by ?> le <?= $a->created_date ?></small>
 						<div class="article_content">
 							<img src="<?= '/' . PROJECT_DIRECTORY . $a->content_image ?>" alt="<?= $a->content_title ?>">
 							<p>

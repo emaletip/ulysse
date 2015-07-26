@@ -173,7 +173,7 @@ class Content {
     }
     
     public function getArticleList(){
-        $query = 'SELECT c.*, ft.*, fb.*, u.login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fb.*, u.login, u.last_name, u.first_name, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id
@@ -219,7 +219,7 @@ class Content {
     }
 
     public function getArticle($id){
-        $query = 'SELECT c.*, ft.*, fb.*, fi.*, u.login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        $query = 'SELECT c.*, ft.*, fb.*, fi.*, u.login, u.last_name, u.first_name, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_body` fb ON c.id = fb.content_id

@@ -10,9 +10,10 @@
 							$last = key($Contents);
 
 							foreach ($Contents as $k => $a) {
+								$created_by = $a->first_name && $a->last_name ? $a->first_name . " " . $a->last_name : $a->login;
 								$row = "<div class='article_row'>";
 								$row .= "<h2><a href='/" . PROJECT_DIRECTORY . "article/".$a->content_id."'>" . $a->content_title . "</a></h2>";
-								$row .= "<small>Posté par " . $a->login . " le " . $a->created_date . "</small>";
+								$row .= "<small>Posté par " . $created_by . " le " . $a->created_date . "</small>";
 								$row .= "<p>" . $a->content_body . "</p>";
 								if (!($k == $last)) {
 									$row .= "<hr>";

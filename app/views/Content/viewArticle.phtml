@@ -3,13 +3,14 @@
 <?php
     $c = $Contents[0];
     $tags_exists = array_key_exists('tags', $c);
+    $created_by = $c->first_name && $c->last_name ? $c->first_name . " " . $c->last_name : $c->login;
 ?>          
 <div id="main-wrapper">
     <div class="col-lg-12">
         <div class="panel panel-white">
             <div class="panel-heading">
                 <h4><?= $c->content_title ?></h4>
-                <small><?= "Le " . $c->created_date . " par " . $c->login ?></small>
+                <small><?= "Le " . $c->created_date . " par " . $created_by ?></small>
             </div>
             <div class="panel-body">
                 <img alt="<?= $c->content_title ?>" src="<?= '/' . PROJECT_DIRECTORY . $c->content_image ?>">

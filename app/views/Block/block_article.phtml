@@ -13,7 +13,7 @@
 		<h5>
 		 <?= $article->content_title; ?>
 		</h5>
-		<p><small> <?= date('d/m/Y', strtotime($article->created_date)); ?> par <?= $user->first_name.' '.$user->last_name; ?></small>
+		<p><small> <?= date('d/m/Y', strtotime($article->created_date)); ?> par <?= $user->first_name && $user->last_name ? $user->first_name . " " . $user->last_name : $user->login ?></small>
 		</p>
 		<div>
 			<a class="btn" href="/<?= PROJECT_DIRECTORY ?>article/<?= $article->id; ?>"> Voir </a>
