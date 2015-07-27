@@ -25,7 +25,7 @@
 								foreach ($Contents as $Article) {
 									$created_by = $Article->first_name && $Article->last_name ? $Article->first_name . " " . $Article->last_name : $Article->login;
 									$row = "<tr>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/article/".$Article->content_id."'>" . $Article->content_title . "</a></td>";
+									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/article/".$Article->content_id."'>" . $Article->content_title . "</a></th>";
 									$row .= "<td>" . $Article->content_body . "</td>";
 									$row .= "<td>" . $Article->created_date . "</td>";
 									$row .= "<td>" . $created_by . "</td>";

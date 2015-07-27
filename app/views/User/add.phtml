@@ -1,103 +1,110 @@
 <?php include_once("header.phtml"); ?>
 <?php include_once("breadcrumb.phtml"); ?>
-<?php
-	$u = $Users[0];
-?>
+<?php $u = $Users[0]; ?>
 <div id="main-wrapper">
-	<div class="panel-body">
-		<form action="/<?= PROJECT_DIRECTORY ?>dashboard/user/insert" method="post" enctype="multipart/form-data" class="form-horizontal">
-			<!-- email -->
-			<div class="form-group">
-				<label for="email">E-mail</label>
-				<input type="text" id="email" name="email" class="form-control" placeholder="E-mail">
-			</div>
-			
-			<!-- login -->
-			<div class="form-group">
-				<label for="login">Login</label>
-				<input type="text" id="login" name="login" class="form-control" placeholder="Login">
-			</div>
-			
-			<!-- password -->
-			<div class="form-group">
-				<label for="password">Mot de passe</label>
-				<input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe">
-			</div>
-			
-			<!-- first-name -->
-			<div class="form-group">
-				<label for="first_name">Prénom</label>
-				<input type="text" id="first_name" name="first_name" class="form-control" placeholder="Prénom">
-			</div>
-			
-			<!-- last-name -->
-			<div class="form-group">
-				<label for="last_name">Nom</label>
-				<input type="text" id="last_name" name="last_name" class="form-control" placeholder="Nom">
-			</div>
-			
-			<!-- address-1 -->
-			<div class="form-group">
-				<label for="address1">Adresse</label>
-				<input type="text" id="address1" name="address1" class="form-control" placeholder="Adresse">
-			</div>
-			
-			<!-- address-2 -->
-			<div class="form-group">
-				<label for="address2">Complément</label>
-				<input type="text" id="address2" name="address2" class="form-control" placeholder="Complément de l'adresse">
-			</div>
-			
-			<!-- postal-code -->
-			<div class="form-group">
-				<label for="postal_code">Code postal</label>
-				<input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="Code postal">
-			</div>
-			
-			<!-- city -->
-			<div class="form-group">
-				<label for="city">Ville</label>
-				<input type="text" id="city" name="city" class="form-control" placeholder="Ville">
-			</div>
-			
-			<!-- country -->
-			<div class="form-group">
-				<label for="country">Pays</label>
-				<input type="text" id="country" name="country" class="form-control" placeholder="Pays">
-			</div>
+	<div class="row">
+        <div class="col-md-12">
+        	<div class="panel panel-white">
+        		<div class="panel-heading clearfix">
+	        		<h4 class="panel-title">Enregistrer un nouvel utilisateur</h4>
+	        	</div>
+	        	<div class="panel-body">
+					<form action="/<?= PROJECT_DIRECTORY ?>dashboard/user/insert" method="post" enctype="multipart/form-data" class="form-horizontal">
+						<!-- email -->
+						<div class="form-group">
+							<label for="email" class="col-sm-2 control-label">E-mail</label>
+							<div class="col-sm-10"><input type="text" id="email" name="email" class="form-control" placeholder="E-mail"></div>
+						</div>
+						
+						<!-- login -->
+						<div class="form-group">
+							<label for="login" class="col-sm-2 control-label">Login</label>
+							<div class="col-sm-10"><input type="text" id="login" name="login" class="form-control" placeholder="Login"></div>
+						</div>
+						
+						<!-- password -->
+						<div class="form-group">
+							<label for="password" class="col-sm-2 control-label">Mot de passe</label>
+							<div class="col-sm-10"><input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"></div>
+						</div>
+						
+						<!-- first-name -->
+						<div class="form-group">
+							<label for="first_name" class="col-sm-2 control-label">Prénom</label>
+							<div class="col-sm-10"><input type="text" id="first_name" name="first_name" class="form-control" placeholder="Prénom"></div>
+						</div>
+						
+						<!-- last-name -->
+						<div class="form-group">
+							<label for="last_name" class="col-sm-2 control-label">Nom</label>
+							<div class="col-sm-10"><input type="text" id="last_name" name="last_name" class="form-control" placeholder="Nom"></div>
+						</div>
+						
+						<!-- address-1 -->
+						<div class="form-group">
+							<label for="address1" class="col-sm-2 control-label">Adresse</label>
+							<div class="col-sm-10"><input type="text" id="address1" name="address1" class="form-control" placeholder="Adresse"></div>
+						</div>
+						
+						<!-- address-2 -->
+						<div class="form-group">
+							<label for="address2" class="col-sm-2 control-label">Complément</label>
+							<div class="col-sm-10"><input type="text" id="address2" name="address2" class="form-control" placeholder="Complément de l'adresse"></div>
+						</div>
+						
+						<!-- postal-code -->
+						<div class="form-group">
+							<label for="postal_code" class="col-sm-2 control-label">Code postal</label>
+							<div class="col-sm-10"><input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="Code postal"></div>
+						</div>
+						
+						<!-- city -->
+						<div class="form-group">
+							<label for="city" class="col-sm-2 control-label">Ville</label>
+							<div class="col-sm-10"><input type="text" id="city" name="city" class="form-control" placeholder="Ville"></div>
+						</div>
+						
+						<!-- country -->
+						<div class="form-group">
+							<label for="country" class="col-sm-2 control-label">Pays</label>
+							<div class="col-sm-10"><input type="text" id="country" name="country" class="form-control col-sm-10" placeholder="Pays"></div>
+						</div>
 
-			<!-- user role -->
-			<div class="form-group">
-				<label>Role de l'utilisateur</label>
-				<?php
-					$req = new \config\database();
-					$result = $req->pdo->query("SELECT * FROM role ORDER BY id DESC")->fetchAll(\PDO::FETCH_OBJ);
-				?>
-				<select class="form-control" id="role_id" name="role_id">
-					<?php
-						foreach ($result as $v) {
-							$opt = "<option value='" . $v->id . "' ";
-							if($u->role_id == $v->id) {
-								$opt .= "selected='selected'";
-							}
-							$opt .= ">";
-							if($v->id == 1) {
-								$opt .= "Super administrateur";
-							} else {
-								$opt .= ucfirst($v->name);
-							}
-							$opt .= "</option>";
-							echo $opt;
-						}
-					?>
-				</select>
+						<!-- user role -->
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Role de l'utilisateur</label>
+							<?php
+								$req = new \config\database();
+								$result = $req->pdo->query("SELECT * FROM role ORDER BY id DESC")->fetchAll(\PDO::FETCH_OBJ);
+							?>
+							<div class="col-sm-10"><select class="form-control" id="role_id" name="role_id">
+								<?php
+									foreach ($result as $v) {
+										$opt = "<option value='" . $v->id . "' ";
+										if($u->role_id == $v->id) {
+											$opt .= "selected='selected'";
+										}
+										$opt .= ">";
+										if($v->id == 1) {
+											$opt .= "Super administrateur";
+										} else {
+											$opt .= ucfirst($v->name);
+										}
+										$opt .= "</option>";
+										echo $opt;
+									}
+								?>
+							</select></div>
+						</div>
+						
+						<!-- submit -->
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10"><button class="btn btn-primary" type="submit">Ajouter un utilisateur</button></div>
+						</div>
+					</form>
+				<div>
 			</div>
-			
-			<!-- submit -->
-			<div class="form-group">
-				<input type="submit" id="submit" name="submit" class="form-control" value="Enregistrer">
-			</div>
-		</form>
-	</div>
+		</div>
+    </div>
 </div><!-- Main Wrapper -->
 <?php include_once("footer.phtml"); ?>

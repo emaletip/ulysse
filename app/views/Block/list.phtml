@@ -26,7 +26,7 @@
 
 									// Vérifie si l'utilisateur est Super administrateur (1) ou administrateur (2)
 									$row = "<tr>";
-									$row .= "<th>" . ucfirst(str_replace('_',' ',str_replace('block_','',$v->name))) ."</th>";
+									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'>" . ucfirst(str_replace('_',' ',str_replace('block_','',$v->name))) ."</a></th>";
 									$row .= "<td>" . $v->title ."</td>";
 									$row .= "<td>".($v->is_editable == 1 ? 'Oui' : 'Non')." </td>";
 									$row .= "<td style='text-align:center'>".($v->is_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
