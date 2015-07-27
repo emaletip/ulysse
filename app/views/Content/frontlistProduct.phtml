@@ -12,7 +12,7 @@
 						  	$categories = $Content->contentModel->AllCategory();
 
 						  	foreach ($categories as $c) {
-						  		echo "<button class='button' data-filter='." . strtolower($c->name) . "'>" . ucfirst($c->name) . "</button>";
+						  		echo "<button class='button btn-filter' data-filter='." . strtolower($c->name) . "'>" . ucfirst($c->name) . "</button>";
 						  	}
 						  ?>
 						</div>
@@ -28,9 +28,9 @@
 								$row .= "<div class='product_details'>";
 								$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
 								$row .= "<h2>" . $p->content_title . "</h2>";
-								$row .= "<small>Proposé par : " . $p->user_login . "</small>";
-								$row .= "<div>Prix : " . $p->content_price . " €</div>";
-								$row .= "<div>Stock : " . $p->content_stock . "</div>";
+								$row .= "<small>Proposé par " . $p->user_login . "</small>";
+								$row .= "<div><span class='green'>Prix :</span> " . $p->content_price . " €</div>";
+								$row .= "<div><span class='green'>Stock :</span> " . $p->content_stock . "</div>";
 								$row .= "</div>";
 								$row .= "</div>";
 								echo $row;

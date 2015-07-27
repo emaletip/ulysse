@@ -1,18 +1,15 @@
 <?php include_once("frontheader.phtml"); 
 	$p = $Contents['results'][0];
+	$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
 ?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="product">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12" id="article_list">
+					<div class="col-md-12" id="product_view">
 						<h1><?= $p->content_title ?></h1>
-						<?php if($p->content_image != '') {?>
-						<div class="col-md-6 product_image"><img src="/<?= PROJECT_DIRECTORY.$p->content_image ?>"></div>
-						<div class="col-md-6">
-						<?php } else { ?>
-						<div class="col-md-12">
-						<?php } ?>							
+						<div class="col-md-6 product_image"><img src="<?= $image ?>"></div>
+						<div class="col-md-6">						
 					
 						<h3>Attributs</h3> 
 						<div class="col-md-3">
@@ -30,11 +27,11 @@
                         </div>
 
 						<div class="col-md-12">
-                        	<b>Description :</b>
+                        	<b>Description :</b><br>
+                        	<small>
+								<?= $p->content_description ?>
+							</small>
                         </div>	
-						<small>
-						<?= $p->content_description ?>
-						</small>
 						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
 					</div>
 				</div>

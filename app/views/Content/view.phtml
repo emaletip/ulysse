@@ -8,6 +8,7 @@
 			$custom[] = $field[0];
 		}
 	}
+	$image = $product->content_image ? "/" . PROJECT_DIRECTORY . $product->content_image : FRONT_IMG_PATH . "default-image.png";
 ?>            
 	<div id="main-wrapper">
 		<div class="row">
@@ -19,12 +20,8 @@
                         </h4>
                     </div>
 					<div class="panel-body">
-					<?php if($product->content_image != '') {?>
-						<div class="col-md-6 product_image"><img src="/<?= PROJECT_DIRECTORY.$product->content_image ?>"></div>
-						<div class="col-md-6">
-					<?php } else { ?>
-						<div class="col-md-12">
-					<?php } ?>							
+					<div class="col-md-6 product_image"><img src="<?= $image ?>"></div>
+					<div class="col-md-6">						
 					
 						<h3>Attributs</h3> 
 						<div class="col-md-3">
@@ -54,7 +51,10 @@
 	                        	<?= '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>'; ?>
 	                        <?php } ?>
 	                     
-	                     <?php } ?>   	
+	                    <?php } ?> 
+	                    <p>
+		                    <a href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/product/edit/' . $product->content_id ?>">Modifier ce contenu.</a>
+		                </p>  	
 			          	</div>
 					</div>
                 </div>
