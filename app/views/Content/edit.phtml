@@ -18,7 +18,12 @@
                     	$value = $c->{'content_'.$name};
                         $options = $Content->contentModel->AllCategory();
                     } else {
-                        $value = $c->{'content_'.$name};
+                        if($type == 'select'){
+                            $options = $Content->contentModel->getContentSelect('field_'.$name);
+                            $value = $c->{'content_'.$name};
+                        } else {
+                            $value = $c->{'content_'.$name};
+                        }
                     }
                     if ($name == 'image' && $value != '') {
 	                    echo '<div class="miniature col-sm-offset-2"><img src="/'.PROJECT_DIRECTORY.$c->{'content_'.$name}.'"></div><input type="hidden" name="old_image" value="'.$c->{'content_'.$name}.'">';

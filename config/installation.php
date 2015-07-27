@@ -109,6 +109,13 @@
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `content_select` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `name` varchar(255) NOT NULL,
+                      `field_name` varchar(100) NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     'CREATE TABLE IF NOT EXISTS `content_tag` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `content_id` int(11) NOT NULL,
