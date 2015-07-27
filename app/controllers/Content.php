@@ -58,6 +58,7 @@ class Content {
 
     
     public function getProduct_add() {
+        return $this->contentModel->getProductList();
 	}
 
     public function getPage_add() {

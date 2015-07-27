@@ -1033,7 +1033,7 @@ font-size: 12px;
 /*	GENERAL	*/
 #product_list h1,
 #product_view h1,
-#product_add h1 {
+#product_add h1, #product_add_stock h1 {
 	font-family: 'PT Sans Narrow', sans-serif;
 	margin-bottom: 40px;
 	text-transform: uppercase;
@@ -1120,10 +1120,10 @@ font-size: 12px;
 }
 
 /*	ADD	*/
-#product_add form {
+#product_add form, #product_add_stock form {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding-bottom: 30px;
-  padding-right: 120px;
+  padding-right: 60px;
   padding-top: 30px;
 }

@@ -311,7 +311,6 @@
 					  `id` INT NOT NULL AUTO_INCREMENT,
 					  `user_id` INT NOT NULL,
 					  `content_id` INT NOT NULL,
-					  `content_description` TEXT NULL,
 					  `content_price` DECIMAL(10,2) NULL,
 					  `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 					  PRIMARY KEY (`id`)
