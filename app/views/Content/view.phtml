@@ -13,15 +13,15 @@
 	<div id="main-wrapper">
 		<div class="row">
 			<div class="col-md-12">
-                <div class="panel panel-white">
+                <div class="panel panel-white" id="back_product_view">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title ">
+                        <h3 class="panel-title ">
                         	<?= $product->content_title; ?>
-                        </h4>
+                        </h3>
                     </div>
 					<div class="panel-body">
 					<div class="col-md-6 product_image"><img src="<?= $image ?>"></div>
-					<div class="col-md-6">						
+					<div class="col-md-6 product_details">						
 					
 						<h3>Attributs</h3> 
 						<div class="col-md-3">
@@ -54,10 +54,10 @@
                                     print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>';
                                }
         
-	                       } ?>
-	                    <p>
-		                    <a href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/product/edit/' . $product->content_id ?>">Modifier ce contenu.</a>
-		                </p>  	
+	                    } ?>
+	                    <div class="col-md-12">
+	                    	<a class="edit_link" href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/product/edit/' . $product->content_id ?>">Modifier ce contenu.</a>
+	                    </div>
 			          	</div>
 					</div>
                 </div>
