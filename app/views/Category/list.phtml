@@ -21,7 +21,7 @@
 							<?php
 								foreach ($Categorys as $Category) {
 									$row = "<tr>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/category/".$Category->id."'>" . $Category->name . "</a></td>";
+									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/category/".$Category->id."'>" . $Category->name . "</a></th>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/category/".$Category->id."'><span class='fa fa-plus-square-o'></span></a></td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/category/edit/".$Category->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
 									$row .= "<td><a onclick='myFunction(".$Category->id.")'><span class='fa fa-times'></span></a></td></tr>";

@@ -7,39 +7,44 @@
 <div id="main-wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h3>Enregistrer un nouvel article</h3>
-            <hr>
-            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/article/update" method="post" class="form-horizontal" enctype="multipart/form-data">
-                <input type="hidden" name="id" id="id" value="<?= $c->content_id ?>">
-                <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label">Titre</label>
-                    <div class="col-sm-10"><input type="text" class="form-control" name="title" value="<?= $c->content_title ?>"></div>
+            <div class="panel panel-white">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title">Editer un article</h4>
                 </div>
-                <div class="form-group">
-                    <label for="body" class="col-sm-2 control-label">Contenu</label>
-                    <div class="col-sm-10"><textarea name="body" class="form-control ckeditor" rows="5"><?= $c->content_body ?></textarea></div>
+                <div class="panel-body">
+                    <form action="/<?= PROJECT_DIRECTORY ?>dashboard/article/update" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id" value="<?= $c->content_id ?>">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Titre</label>
+                            <div class="col-sm-10"><input type="text" class="form-control" name="title" value="<?= $c->content_title ?>"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="body" class="col-sm-2 control-label">Contenu</label>
+                            <div class="col-sm-10"><textarea name="body" class="form-control ckeditor" rows="5"><?= $c->content_body ?></textarea></div>
+                        </div>
+                        <?php if ($c->content_image != '' && !is_null($c->content_image) ) { ?>
+                            <input type="hidden" value="<?= $c->content_image ?>" name="old_img" > 
+                        <?php }  ?>
+                        <div class="form-group">
+                            <?php
+                                if($c->content_image != null) { 
+                                    echo '<div class="col-sm-12"><img class="col-sm-offset-2" src="/'.PROJECT_DIRECTORY.$c->content_image.'" style="max-width:20%; max-height:400px"></div>';
+                                }
+                            ?>
+                            <label for="image" class="col-sm-2 control-label">Image</label>
+                            <div class="col-sm-10"><input type="file" name="image" class="form-control" rows="5"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tag" class="col-sm-2 control-label">Tags</label>
+                            <div class="col-sm-10"><input name="tag" class="form-control" row="5" value="<?= $tags_exists ? str_replace(",", ", ", $c->tags) : '' ?>"></div>
+                            <small>Les tags doivent être séparés par des virgules.</small>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Sauvegarder</button></div>
+                        </div>
+                    </form>
                 </div>
-                <?php if ($c->content_image != '' && !is_null($c->content_image) ) { ?>
-                    <input type="hidden" value="<?= $c->content_image ?>" name="old_img" > 
-                <?php }  ?>
-                <div class="form-group">
-                    <?php
-                        if($c->content_image != null) { 
-                            echo '<div class="col-sm-12"><img class="col-sm-offset-2" src="/'.PROJECT_DIRECTORY.$c->content_image.'" style="max-width:20%; max-height:400px"></div>';
-                        }
-                    ?>
-                    <label for="image" class="col-sm-2 control-label">Image</label>
-                    <div class="col-sm-10"><input type="file" name="image" class="form-control" rows="5"></div>
-                </div>
-                <div class="form-group">
-                    <label for="tag" class="col-sm-2 control-label">Tags</label>
-                    <div class="col-sm-10"><input name="tag" class="form-control" row="5" value="<?= $tags_exists ? str_replace(",", ", ", $c->tags) : '' ?>"></div>
-                    <small>Les tags doivent être séparés par des virgules.</small>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Ajouter l'article</button></div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

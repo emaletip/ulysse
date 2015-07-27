@@ -1,0 +1,31 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>
+<?php $c = $Contents[0]; ?>
+<div id="main-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Supprimer un champ</h3>
+            <hr>
+            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/fields/del" method="post" class="form-horizontal">
+                
+                <p>Champ : <?php print $c->label; ?></p>
+                
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="1">
+                        Confirmer la suppression
+                    </label>
+                </div>
+                
+                <input type="hidden" name="id" value="<?php print $c->id; ?>">
+                
+                <hr>
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10"><button type="submit" class="btn btn-primary">Supprimer le champ</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php include_once("footer.phtml"); ?>
