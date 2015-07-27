@@ -24,6 +24,9 @@
                         </p>
                         </li>
                         <li><p><i class="fa fa-envelope m-r-xs"></i><a href="mailto:<?= $u->email ?>"><?= $u->email ?></a></p></li>
+                        <?php if($_SESSION['user']->id == $u->id) { ?>
+                            <li><p><a href="edit/<?= $u->id ?>">Modifier votre profil</a></p></li>
+                        <?php } ?>
                         <hr>
                     </ul>
 				</div>

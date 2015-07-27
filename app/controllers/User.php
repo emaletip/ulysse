@@ -151,4 +151,45 @@ class User {
 
 		redirect('dashboard/user/list');
 	}
+
+	public function getUser_front_edit($id) {
+		$user = $this->userModel->getUser($id);
+
+		if($_SESSION['user']->role_id != $user[0]->id) {
+			$_SESSION['flash']['user']['key'] = 'warning';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à accéder à cette page.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
+
+			redirect('user/' . $_SESSION['user']->id);
+		} else {
+			return $user;
+		}
+	}
+
+	public function postUser_front_update() {
+		$dirimg = "User";
+		if(isset($_FILES) && $_FILES['avatar']['name'] != '') {
+			if(isset($_POST['old_avt'])) {
+				$old_avt = __DIR__.'/../../'.$_POST['old_avt'];
+				if(file_exists($old_avt)) {
+					unlink($old_avt);
+				}
+				unset($_POST['old_avt']);
+			}
+			$_POST['avatar'] = handleFile($_FILES['avatar'], $dirimg);
+		} else {
+			if(isset($_POST['old_avt'])) {
+				unset($_POST['old_avt']);
+			}
+			unset($_POST['avatar']);
+		}
+
+		$this->userModel->updateUser($_POST);
+
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+	
+		redirect('user/'.$_POST['id']);
+	}
 }

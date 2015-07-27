@@ -72,6 +72,28 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Alert -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<?php
+						if (isset($_SESSION['flash'])) {
+							foreach($_SESSION['flash'] as $msg) {
+								if($msg['time'] <= time()) {
+									unset($_SESSION['flash']);
+								} else { ?>
+									<div role="alert" class="alert alert-<?= $msg['key'] ?>">
+									<?= $msg['msg'] ?>
+									</div>
+								<?php 
+								}
+							}
+						} 
+					?>
+				</div>
+			</div>
+		</div>
 	
 	</header>
 	<!-- END HEADER -->

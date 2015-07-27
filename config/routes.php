@@ -100,6 +100,24 @@ $routes['user/([0-9]+)'] = array(
 					  'view' => 'frontview',
 				   );
 
+$routes['user/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'User_front_edit',
+					  'view' => 'frontedit',
+				   );
+
+$routes['user/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'User',
+					  'action' => 'User_front_update',
+					  'view' => 'frontedit',
+				   );
+
 $routes['product/add'] = array(
 					  'path' => 'app',
 					  'id' => false,
