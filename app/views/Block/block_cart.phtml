@@ -1,12 +1,21 @@
 <?php 
 
 	/* Créer route pour ajouter et supprimer un produit au panier */
-
-	$products = $Cart->cartModel->listCart(); 
+	$products = array();
+	if(isset($_SESSION['user'])) {
+		$products = $Cart->cartModel->listCart(); 
+	} else {
+		if (isset($_SESSION['cart'])) {
+			$products = $_SESSION['cart'];
+		}
+	}
+	
 	$product_res = $contentModel->getProductList();
+
 	foreach($product_res as $pr){
 		$product[$pr->content_id] = $pr;
 	}
+	
 	$nb = 0;
 	foreach($products as $pc) {
 		$nb += $pc->quantity;

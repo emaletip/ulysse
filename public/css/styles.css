@@ -150,7 +150,8 @@ h5 {
 	width: 50px;
 	margin-left: 0;
 }
-
+.color-tooltip + .tooltip > .tooltip-inner {background-color: #f5f5f5; max-width: 250px; width: 250px; color: #000; 	padding:10px;}
+.color-tooltip + .tooltip > .tooltip-arrow { border-right-color: #f5f5f5; }
 /****************/
 /*    HEADER    */
 /****************/
@@ -232,7 +233,13 @@ nav ul li .logo h1 {
 	padding: 7px;
 	font-size: 13px;
 }
-
+.table{
+	width: 100%;
+}
+.table td 	{
+	vertical-align: middle !important;
+	height: 100%;
+}
 /*    BLOCKS    */
 #content-wrapper .container .row {
   padding-bottom: 30px;

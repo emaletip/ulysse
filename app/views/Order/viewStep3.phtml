@@ -1,0 +1,73 @@
+<?php include_once("frontheader.phtml"); ?>
+
+<div id="content-wrapper" class="page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="page_cart">
+				<div class="col-md-12">
+				<form method="post" action="/<?= PROJECT_DIRECTORY; ?>order/validStep3">
+					<table class="table">
+						<tr>
+							<td>
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							</td>
+							<td>
+								La poste	
+							</td>
+								<td>
+								1 semaine	
+							</td>
+							<td>
+								1,50 	€	
+							</td>
+							<td>
+			                    <input id="use_address" type="checkbox" class="checkbox" name="livraison" value="1">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							</td>
+							<td>
+								Chronopost
+							</td>
+								<td>
+								2/3 jours	
+							</td>
+								<td>
+								5,40 €	
+							</td>
+							<td>
+			                    <input id="use_address" type="checkbox" class="checkbox" name="livraison" value="2">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							</td>
+							<td>
+								Autre
+							</td>
+								<td>
+								24H	
+							</td>
+								<td>
+								10,60 €	
+							</td>
+							<td>
+			                    <input id="use_address" type="checkbox" class="checkbox" name="livraison" value="3">
+							</td>
+						</tr>	
+					</table>
+				</div>				
+				<div class="col-md-12">
+					<div class="order">
+						<button type="submit" class="btn" >Valider la livraison</a>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<?php include_once("frontfooter.phtml"); ?>

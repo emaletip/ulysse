@@ -1,0 +1,89 @@
+<?php include_once("frontheader.phtml"); ?>
+
+<div id="content-wrapper" class="page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="page_cart">
+				<div class="col-md-12">
+					<div class="col-md-2">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<a href="#">
+								<img width="100%" src="/<?=PROJECT_DIRECTORY?>/public/img/paypal_logo.jpg">
+								</a>
+							</div>
+						</div>
+					</div>
+					<form action="/<?= PROJECT_DIRECTORY; ?>order/validStep4" method="post">
+					<div class="col-md-10">
+						
+						<div class="panel panel-default">
+					    	<div class="panel-heading">
+								<h3 class="panel-title">Carte Bancaires</h3>
+							</div>
+							<div class="panel-body">
+								<div style="padding-bottom:10px;" class="row col-sm-12">
+									<label style="" class="col-sm-4 control-label" for="first_name">Carte bancaire acceptée</label>
+									<div class="col-sm-8">
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> 
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> <img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> 
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="number">Numéro de carte</label>
+									<div class="col-sm-2">
+										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
+									</div>
+									<div class="col-sm-2">
+										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
+									</div>
+									<div class="col-sm-2">
+										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
+									</div>
+									<div class="col-sm-2">
+										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="month">Date d'expiration</label>
+									<div class="col-sm-4">
+										<input type="text" placeholder="Mois" class="form-control" name="month" value="">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" placeholder="Année" class="form-control" name="year" value="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label" for="cryptogramme">Cryptogramme ?	</label>
+									<div class="col-sm-1">
+										<i data-toggle="tooltip" data-placement="right" title="Vous trouverez le cryptogramme au dos de votre carte bancaire. Merci de notter les trois derniers chiffres." class="fa fa-question-circle pointer color-tooltip"></i>
+										<script>
+											$(function () {
+												$('[data-toggle="tooltip"]').tooltip();
+											})
+										</script>
+									</div>
+									<div class="col-sm-7">
+										<input type="text" placeholder="Cryptogramme" class="form-control" name="cryptogramme" value="">
+									</div>
+									
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-10 col-md-offset-2">
+						<div class="order">
+							<button class="btn">Valider et payer</button>
+						</div>
+					</div>
+					</form>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<?php include_once("frontfooter.phtml"); ?>

@@ -17,7 +17,7 @@ $routes['order'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'Step1',
 					  'view' => 'viewStep1',
 				   );
@@ -25,7 +25,7 @@ $routes['order/validStep2'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'post',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'ValidStep2',
 					  'view' => 'viewStep2',
 				   );
@@ -34,23 +34,39 @@ $routes['order/adresse'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'Step2',
 					  'view' => 'viewStep2',
-				   );				   
+				   );
+$routes['order/validStep3'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Order',
+					  'action' => 'ValidStep3',
+					  'view' => 'viewStep3',
+);				   
 $routes['order/livraison'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'Step3',
 					  'view' => 'viewStep3',
-				   );			
+				   );	
+$routes['order/validStep4'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Order',
+					  'action' => 'ValidStep4',
+					  'view' => 'viewStep4',
+				   );				   		
 $routes['order/paiement'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'Step4',
 					  'view' => 'viewStep4',
 				   );	
@@ -58,7 +74,7 @@ $routes['order/confirmation'] = array(
 					  'path' => 'app',
 					  'id' => false,
 					  'type' => 'get',
-					  'controller' => 'Cart',
+					  'controller' => 'Order',
 					  'action' => 'Step5',
 					  'view' => 'viewStep5',
 				   );	

@@ -38,9 +38,8 @@ class Api {
 			
 			$userObj = new User();
 			$user = $userObj->postConnectFront();
-			
-			header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.'');
-
+			$parent_url = parent_url();
+			header('Location: http://'.$_SERVER["HTTP_HOST"].'/'.PROJECT_DIRECTORY.( $parent_url != '' ? ''.$parent_url : ''));
 			
 			$result = new Result();
 			return $result;
@@ -130,7 +129,9 @@ class Api {
 		
 		$this->get(ROUTE_PATH . 'logout', function () {
             
+			$cart = new \app\models\Cart();
             if (isset($_SESSION['user'])) {
+            	$cart->deleteCart($_SESSION['user']->id);
                 unset($_SESSION['user']);
                 session_destroy();
             }
@@ -142,12 +143,15 @@ class Api {
         
         $this->get(ROUTE_PATH . 'dashboard/logout', function () {
         	
+           	$cart = new \app\models\Cart();
             if (isset($_SESSION['user'])) {
+            	$cart->deleteCart($_SESSION['user']->id);
                 unset($_SESSION['user']);
                 session_destroy();
             }
             setcookie('userinfo');
             unset($_SESSION['loged']);
+            
             $this->getResponse()->redirect('index');
         });
         
@@ -205,8 +209,6 @@ class Api {
 			
 			
         }    
-/* 		var_dump('<pre>',$this->getRouter()->getRoutes());die; */
-
     }
 
     public function serve() {

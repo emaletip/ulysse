@@ -22,7 +22,7 @@ class User {
 		$username = $_POST['user']['email'];
 		$password = $_POST['user']['password'];
 		$user = $this->userModel->connectUser($username, $password);
-		
+
 		if($user) {
 			$_SESSION['user'] = $user;
 			setcookie('userinfo', json_encode($user), (time() + 3600));
@@ -32,6 +32,7 @@ class User {
 			return false;
 		}
 	}
+	
 	public function postConnectFront() {
 		
 		if(isset($_SESSION['user'])) {
@@ -49,7 +50,9 @@ class User {
 			}
 			
 			/* set new cart or get old one */
-			$this->userCart->initCart($user);
+			if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+				$this->userCart->initCart($user->id);
+			}
 			
 			return true;
 		} else {
