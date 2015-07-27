@@ -145,13 +145,31 @@ class Content {
     public function getFieldAdd() {
     }
     public function postFieldAdd() {
-        return $this->contentModel->postFieldAdd();
+        $this->contentModel->postFieldAdd();
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le produit a bien été ajouté.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+		redirect('dashboard/fields');
 	}
     public function getFieldEdit($id) {
         return $this->contentModel->getFieldEdit($id);
     }
     public function postFieldEdit() {
-        return $this->contentModel->postFieldEdit();
+        $this->contentModel->postFieldEdit();
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le produit a bien été mis à jour.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+		redirect('dashboard/fields');
+	}
+    public function getFieldDelete($id) {
+        return $this->contentModel->getFieldEdit($id);
+    }
+    public function postFieldDelete() {
+        $this->contentModel->postFieldDelete();
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le produit a bien été supprimé.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+		redirect('dashboard/fields');
 	}
 
     /*		ARTICLES 	*/
