@@ -1,6 +1,9 @@
 <?php include_once("frontheader.phtml"); ?>
 <?php
-	$u = $Users[0];
+	$u 		= $Users[0];
+	$orders = $User->orderModel->getUserOrder($id);
+	$buys   = $User->orderModel->getUserBuys($id);
+	$products = $User->contentModel->getUserProduct($id);
 ?>
 <!-- CONTENT -->
 	<div id="content-wrapper" class="user">
@@ -30,6 +33,91 @@
                         <hr>
                     </ul>
 				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+	                	<div class="panel-heading">
+							<h3 class="panel-title">Vos commandes</h3>
+	                    </div>
+	                    <div class="panel-body">
+	                        <table class="table adminorder">
+							<?php 
+							$i = 0;
+							foreach($orders as $order) {
+								$i++;
+								$pdt = $User->contentModel->getProduct($order->product_id);
+								$pdt = current($pdt['results']); ?>
+							   	<tr>
+								   	<td><?= $pdt->content_title ?></td>
+								   	<td>x<?=$order->quantity ?> </td>
+								   	<td><?= $pdt->content_price ?> €</td>
+								   	<td>
+								   	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/order/<?= $order->id ?>">
+										<span class="fa fa-plus-square-o"></span>
+									</a>
+									</td>
+								</tr>
+								
+	                          <?php 
+	                          if($i >= 3) { break; }
+	                          } ?>
+	                        </table>
+	                        <div style="text-align:center;">
+	                        	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders" class="btn btn-success">Voir toutes mes commandes</a>
+							</div>
+	                    </div>
+	                </div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+	                	<div class="panel-heading">
+							<h3 class="panel-title">Vos achats</h3>
+	                    </div>
+	                    <div class="panel-body">
+	                        <table class="table adminorder">
+							<?php 
+							$i = 0;
+							foreach($buys as $buy) {
+								$i++;
+								$pdt = $User->contentModel->getProduct($buy->product_id);
+								$pdt = current($pdt['results']); ?>
+							   	<tr>
+								   	<td><?= $pdt->content_title ?></td>
+								   	<td>x<?=$buy->quantity ?> </td>
+								   	<td><?= $pdt->content_price ?> €</td>
+								</tr>
+								
+	                          <?php 
+	                          if($i >= 3) { break; }
+	                        } ?>
+	                        </table>
+	                        <div style="text-align:center;">
+	                        	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders" class="btn btn-success">Voir tous mes achats</a>
+							</div>
+	                    </div>
+	                </div>
+				</div>
+				 <div class="col-md-12 m-t-lg">
+	           		<div class="panel panel-default panel-transparent">
+	                	<div class="panel-heading bg-white">
+							<h3 class="panel-title">Vos produits</h3>
+	                    </div>
+	                    <div class="panel-body">
+	            	<?php if(!empty($products)) {
+	            		foreach($products as $product) {
+	            			$product = current($product['results']);
+	            			echo '
+	            			<div class="col-md-2 text-center">
+	            			<img height="150px" src="'.get_miniature($product->content_image).'" />
+	            			<a href="/'.PROJECT_DIRECTORY.'product/'.$product->content_id.'">
+	            			<h4>'. $product->content_title .'</h4>
+	            			</a>
+	            			</div>';
+	            			} 
+		            	}
+	            	?>
+						</div>
+                	</div>
+                </div>
 			</div>
 		</div>
 	</div>

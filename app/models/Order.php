@@ -18,35 +18,46 @@ class Order {
 		$this->cartModel = new \app\models\Cart();
 		$this->contentModel = new \app\models\Content();
 	}
-	
+		
 	public function addOrder($post) {
 
 		$products = $this->cartModel->listCart();
+
 		$total_price = 0;
+		
+		$resid = $this->pdo->query('SELECT max(id) as last_id FROM `order`;');
+		$last_id = current($resid)->last_id ? current($resid)->last_id + 1 : 1;
 		
 		foreach($products as $product) {
 			$p = $this->contentModel->getProduct($product->product_id);
-			$total_price += $product->quantity * current($p['results'])->content_price;
+			$pdt = current($p['results']);
+			
+			$res = $this->pdo->insert(
+				'INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `user_id`)
+				VALUES (:order_id, :product_id, :quantity, :user_id)', array(
+	            ':user_id' => (int)$pdt->created_user,
+	            ':product_id' => (int)$pdt->content_id,
+	            ':order_id' => (int)$last_id,
+	            ':quantity' => (int)$product->quantity,
+	            )
+	        );
+			$total_price += $product->quantity * $pdt->content_price;
 		}
-		
-		$product_json = json_encode($products);
-		$product_json = str_replace('"','\\"',$product_json);
-		
 		$_SESSION['order']['products'] = $product_json;
 		
 		$delivery_address = $post['delivery_address']; 
 		
 		$res = $this->pdo->insert(
-        'INSERT INTO `order`(`user_id`, `delivery_address`, `total_price`, `product_json`)
-        VALUES (:user_id, :delivery_address, :total_price, :product_json)', array(
-            ':user_id' => $_SESSION['user']->id,
-            ':product_json' => $product_json,
+        'INSERT INTO `order`(`id`, `user_id`, `delivery_address`, `total_price`)
+        VALUES (:id, :user_id, :delivery_address, :total_price)', array(
+            ':id' => (int)$last_id,
+            ':user_id' => (int)$_SESSION['user']->id,
             ':delivery_address' => $delivery_address,
             ':total_price' => $total_price,
             )
         );
         
-	    return true;    
+	    return $last_id;    
 	}
 	
 	public function getPdo() {
@@ -54,7 +65,20 @@ class Order {
 	}
 	
 	public function getList() {
-		return $this->pdo->query('SELECT * FROM order;');
+		return $this->pdo->query('SELECT * FROM `order`;');
+	}
+
+	public function getOrderProduct($id) {
+		 return $this->pdo->query('SELECT * FROM `order_product` WHERE order_id=:order_id', 
+		 							array(':order_id' => (int)$id));
+	}
+	
+	public function getUserOrder($id) {
+		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`user_id`=:user_id', array(':user_id' => (int)$id));
+	}
+	
+	public function getUserBuys($id) {
+		return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE o.`user_id`=:user_id', array(':user_id' => (int)$id));
 	}
 	
  	public function getId() {
@@ -67,7 +91,7 @@ class Order {
 	}
 	
 	public function getUser($id) {
-		return $this->pdo->query('SELECT * FROM user WHERE id=:id;', array(':id', $id));
+		return $this->pdo->query('SELECT * FROM user WHERE id=:id;', array(':id' => $id));
 	}
 	
  	public function getUser_id() {

@@ -14,14 +14,16 @@ body {
 .red {
 	color:#f25656;
 }
-
+.bg-white {
+	background-color:#fff !important;
+}
 #main-wrapper .panel:first-child .panel-heading{
 	height: 60px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #eee !important;
 }
 #main-wrapper .panel:first-child .panel-title {
-	font-size: 17px;
+	font-size: 15px;
 	font-weight: bold;
 	padding-left:15px;
 }
@@ -36,6 +38,10 @@ body {
 }
 .panel-heading {
 	height: auto !important;
+}
+
+.panel.panel-transparent .panel-body{
+	padding: 0;
 }
 /********************/
 /*		LOGIN		*/
@@ -198,6 +204,10 @@ body.login .page-content .logo {
 }
 .profile-image img {
   height: 150px;
+}
+.adminorder.table td{
+	border-top:0;
+	border-bottom: 1px solid #ddd;
 }
 
 /********************/

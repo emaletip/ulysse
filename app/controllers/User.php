@@ -6,10 +6,19 @@ class User {
 
 	private $userModel;
 	private $userCart;
+	public $orderModel;
+	public $contentModel;
 
 	public function __construct() {
+	
+		if(!isset($_SESSION['user']) && is_url_user() && !is_url_home() ){
+			redirect('index');
+		}
+	
 		$this->userModel = new \app\models\User();
 		$this->userCart = new \app\controllers\Cart();
+		$this->orderModel = new \app\models\Order();
+		$this->contentModel = new \app\models\Content();
 		return $this->userModel;
 	}
 

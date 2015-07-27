@@ -249,6 +249,20 @@ class Content {
         return($results);
     }
     
+    public function getUserProduct($id){
+    	
+		$query = 'SELECT id FROM `content` c WHERE `created_user`='.$id.' AND c.`content_type_name` = \'product\'';
+		$results = $this->pdo->query($query);
+		$products = array();
+        if(!empty($results)) {
+	        foreach($results as $res_p) {
+		        $products[] = $this->getProduct($res_p->id);
+	        }
+        }
+        return $products;  
+    
+	}
+    
 	public function getPage($id){
         $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name

@@ -34,6 +34,24 @@ function is_url_dashboard() {
 	return false;	
 }
 
+function is_url_user() {
+	$url = str_replace('/'.PROJECT_DIRECTORY,'',$_SERVER['REQUEST_URI']);
+	$url_arr = explode('/', $url);
+	if($url_arr[0] == 'user' ) {
+		return true;
+	} 
+	return false;	
+}
+
+function is_url_home() {
+	$url = str_replace('/'.PROJECT_DIRECTORY,'',$_SERVER['REQUEST_URI']);
+	$url_arr = explode('/', $url);
+	if($url_arr[0] == 'index' ) {
+		return true;
+	} 
+	return false;	
+}
+
 function is_admin() {
 	$logged = is_loged();
 	if($logged && is_url_dashboard()) {

@@ -1,6 +1,6 @@
 <?php include_once("frontheader.phtml"); ?>
 <?php 
-	$products = json_decode(str_replace('\\"','"',$Orders['products']));
+	$products = $Orders['products'];
 ?>
 <div id="content-wrapper" class="page">
 	<div class="container">

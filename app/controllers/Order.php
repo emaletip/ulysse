@@ -72,9 +72,9 @@ class Order {
 			show_flash(false,false,'<b>Erreur ! </b> Le numéro de carte est invalide.',false,false);
 			redirect(parent_url());
 		}
+		
+		$_SESSION['order_id'] = $this->orderModel->addOrder($_SESSION['order']);
 
-		$order = $this->orderModel->addOrder($_SESSION['order']);
-				
 		redirect('order/confirmation');
 				
 	}
@@ -86,7 +86,10 @@ class Order {
 	}
 	
 	public function getStep5() {
-		$order  = $_SESSION['order'];
+
+		$order = $_SESSION['order'];
+		$order['products'] = $this->orderModel->getOrderProduct($_SESSION['order_id']);
+		
 		return $order;
 	}
 

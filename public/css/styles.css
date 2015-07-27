@@ -52,6 +52,9 @@ ul {
 hr {
   border-color: #ccc;
 }
+header {
+	margin-bottom: 1px solid #ccc;
+}
 header .fa , #content-wrapper .fa,footer .fa {
   color: #5d9907;
 }
@@ -267,6 +270,10 @@ border-top: 0 !important;
 footer {
   margin-bottom: 40px;
 }
+footer .row {
+	padding-top: 30px; 
+	border-top:1px solid #F3F3F3 !important;
+}
 
 /*****************/
 /*     NAVBAR    */
@@ -290,6 +297,11 @@ footer {
     text-align: center;
     text-shadow: none !important;
     vertical-align: middle;
+}
+
+.navbar {
+	border-bottom:1px solid #F3F3F3 !important;
+	margin-bottom: 0;
 }
 
 .sidebar-pusher, .search-button {
@@ -1025,6 +1037,21 @@ font-size: 12px;
 }
 .user i.fa {
 	margin-right: 10px;
+}
+
+.adminorder {
+	width: 100%;
+}
+.adminorder td{
+	padding: 3px 10px;
+	font-size: 14px;
+}
+.adminorder.table tr td:last-od-type{
+	text-align: right;
+}
+.adminorder.table td{
+	border-top:0;
+	border-bottom: 1px solid #ddd;
 }
 
 /********************/
