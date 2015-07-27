@@ -50,11 +50,17 @@
 
 						<?php if(!empty($custom)) { ?>
 							<h3>Champs supplémentaire(s)</h3> 
-							<?php foreach($custom as $c) { ?>
-	                        	<?= '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>'; ?>
-	                        <?php } ?>
-	                     
-	                     <?php } ?>   	
+							<?php foreach($custom as $c) {
+        
+                                if($c->type == 'select') {
+                                    $value = $Content->contentModel->getContentSelectValue($product->{str_replace('field_','content_',$c->name)});
+                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
+                                } else {
+                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>';
+                               }
+        
+	                       } ?>
+                        <?php } ?>
 			          	</div>
 					</div>
                 </div>

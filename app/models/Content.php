@@ -133,6 +133,11 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;
     }
+    public function getContentSelectValue($id){
+        $query = 'SELECT * FROM content_select WHERE id = \''.$id.'\'';
+        $results = $this->pdo->query($query);
+        return $results; 
+    }
     
     public function getProductList(){
         $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*,fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
@@ -147,6 +152,7 @@ class Content {
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'';
         $results = $this->pdo->query($query);
+        print_r($query);
         return $results;
     }
     
