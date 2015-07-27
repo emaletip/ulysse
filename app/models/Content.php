@@ -19,6 +19,17 @@ class Content {
     }
     public function getFieldAdd() {
     }
+    public function postFieldDelete(){   
+        
+        $query = $this->pdo->query('SELECT name, type, id FROM field WHERE id = '.$_POST['id'].'');
+        $this->pdo->update('DELETE FROM field WHERE id = '.$_POST['id'].'');
+        $this->pdo->update('DELETE FROM content_field WHERE field_id = '.$_POST['id'].' AND content_type_id = 4');
+        $this->pdo->query('DROP TABLE '.$query[0]->name);
+        
+        if($query[0]->type == 'select'){
+            $this->pdo->update('DELETE FROM content_select WHERE field_name = \''.$query[0]->name.'\'');
+        }
+    }
     public function postFieldAdd() {
         
         if(!empty($_POST['label']) && !empty($_POST['name'])) {
@@ -104,7 +115,7 @@ class Content {
             );
             
             if(!empty($_POST['contenuselect']) && $_POST['type'] == 'select'){
-                $del = $this->pdo->update('DELETE * FROM content_select WHERE field_name = \''.$_POST['name'].'\'');
+                $del = $this->pdo->update('DELETE FROM content_select WHERE field_name = \''.$_POST['name'].'\'');
                 $ligne = explode("\n", $_POST['contenuselect']);
                 foreach($ligne as $val){
                     $insert = $this->pdo->insert(

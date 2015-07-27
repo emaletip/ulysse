@@ -623,6 +623,22 @@ $routes['dashboard/fields/update'] = array(
 					  'action' => 'FieldEdit',
 					  'view' => 'editField',	
 					);
+$routes['dashboard/fields/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'FieldDelete',
+					  'view' => 'deleteField',	
+					);
+$routes['dashboard/fields/del'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'FieldDelete',
+					  'view' => 'deleteField',	
+					);
 
 /* Category */
 
