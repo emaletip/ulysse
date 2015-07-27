@@ -22,7 +22,7 @@
 								$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
 								$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
 								$row .= "<div class='product_photo'>";
-								$row .= "<img src='" . $image . "' alt=''>";
+								$row .= "<img src='" . $image . "' alt='" . $p->content_title . "'>";
 								$row .= "</div>";
 								$row .= "<div class='product_details'>";
 								$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
