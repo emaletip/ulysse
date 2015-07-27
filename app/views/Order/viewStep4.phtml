@@ -5,57 +5,49 @@
 		<div class="row">
 			<div class="col-md-12" id="page_cart">
 				<div class="col-md-12">
-					<div class="col-md-2">
-						<div class="panel panel-default">
+				<h1>Paiement</h1>
+						<div class="panel panel-default col-md-2">
 							<div class="panel-body">
 								<a href="#">
 								<img width="100%" src="/<?=PROJECT_DIRECTORY?>/public/img/paypal_logo.jpg">
+								<div class="text-center">Payer via paypal</div>
 								</a>
 							</div>
 						</div>
-					</div>
 					<form action="/<?= PROJECT_DIRECTORY; ?>order/validStep4" method="post">
 					<div class="col-md-10">
-						
 						<div class="panel panel-default">
 					    	<div class="panel-heading">
-								<h3 class="panel-title">Carte Bancaires</h3>
+								<h3 class="panel-title">Payer par carte bancaire</h3>
 							</div>
 							<div class="panel-body">
 								<div style="padding-bottom:10px;" class="row col-sm-12">
 									<label style="" class="col-sm-4 control-label" for="first_name">Carte bancaire acceptée</label>
 									<div class="col-sm-8">
-										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> 
-										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> <img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30"> 
-										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="30">
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/card1.png" height="30"> 
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/card2.png" height="30">
+										<img src="/<?= PROJECT_DIRECTORY ?>/public/img/card3.png" height="30">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="number">Numéro de carte</label>
-									<div class="col-sm-2">
-										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
-									</div>
-									<div class="col-sm-2">
-										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
-									</div>
-									<div class="col-sm-2">
-										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
-									</div>
-									<div class="col-sm-2">
-										<input type="text" placeholder="Numéro de carte" class="form-control" name="number[]" value="">
+									<label class="col-sm-4 control-label" for="number">Numéro de carte *</label>
+									<div class="col-sm-8">
+										<input type="text" placeholder="Numéro de carte" class="form-control" name="number" value="4123456745678906" required>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="month">Date d'expiration</label>
+									<label class="col-sm-4 control-label" for="month">Date d'expiration *</label>
 									<div class="col-sm-4">
-										<input type="text" placeholder="Mois" class="form-control" name="month" value="">
+										<?php $dm = date('m'); ?>
+										<input type="number" min=1 max=12 placeholder="Mois" class="form-control" name="month" value="<?= $dm ?>" required>
 									</div>
 									<div class="col-sm-4">
-										<input type="text" placeholder="Année" class="form-control" name="year" value="">
+										<?php $d = date('Y'); ?>
+										<input type="number" min="<?= $d ?>" placeholder="Année" class="form-control" name="year" value="<?= $d ?>"  required>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="cryptogramme">Cryptogramme ?	</label>
+									<label class="col-sm-4 control-label" for="cryptogramme">Cryptogramme *	</label>
 									<div class="col-sm-1">
 										<i data-toggle="tooltip" data-placement="right" title="Vous trouverez le cryptogramme au dos de votre carte bancaire. Merci de notter les trois derniers chiffres." class="fa fa-question-circle pointer color-tooltip"></i>
 										<script>
@@ -65,7 +57,7 @@
 										</script>
 									</div>
 									<div class="col-sm-7">
-										<input type="text" placeholder="Cryptogramme" class="form-control" name="cryptogramme" value="">
+										<input type="text" placeholder="Cryptogramme" class="form-control" name="cryptogramme" value="123" required>
 									</div>
 									
 

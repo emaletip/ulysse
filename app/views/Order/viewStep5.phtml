@@ -1,12 +1,132 @@
 <?php include_once("frontheader.phtml"); ?>
-
+<?php 
+	$products = json_decode(str_replace('\\"','"',$Orders['products']));
+?>
 <div id="content-wrapper" class="page">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" id="page_cart">
 				<div class="col-md-12">
-					Récapitulatif de la commande
-				</div>				
+					<div class="row">
+						<h1>Récapitulatif de votre commande</h1>
+						<!-- Produits achetés -->
+						<div class="panel panel-default">
+					    	<div class="panel-heading">
+								<h3 class="panel-title">Commande</h3>
+							</div>
+							<div class="panel-body">
+								<table class="tab_product">	
+									<thead>
+										<td>Image</td>
+										<td>Nom du produit</td>
+										<td>Quantité</td>
+										<td>Prix unitaire</td>
+										<td>Total</td>
+									</thead>
+									<?php foreach($products as $product) {
+										$p = $Order->contentModel->getProduct($product->product_id);
+										$pdt = $p['results'][0];
+										echo '<tr>';
+										
+										$miniature = get_miniature($pdt->content_image);
+										$img = $miniature;
+										
+										?>
+										<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
+										<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
+										<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
+										<td class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
+										<td class="cart_product_line"><?= number_format($pdt->content_price*$product_cart->quantity,2,',',' ');?> €</td>
+										<?php
+										echo '</tr>';
+										
+										 $total += $product_cart->quantity * $pdt->content_price;
+										
+	
+									} ?>
+								</table>
+							</div>
+						</div>
+						<div class="panel panel-default">
+					    	<div class="panel-heading">
+								<h3 class="panel-title">Livreur</h3>
+							</div>
+							<div class="panel-body">
+						<table width="100%">
+						<?php switch ($Orders['livraison']) {
+							case 1:
+							echo '<tr>
+									<td width="20%">
+										<img src="/'. PROJECT_DIRECTORY .'/public/img/la-poste.png" height="50">
+									</td>
+									<td>
+										La poste	
+									</td>
+									<td width="40%">
+										Livraison en 7 jours ouvrés maximum
+									</td>
+									<td>
+										1,50 	€	
+									</td>
+								</tr>';
+								break;
+							case 2: 
+							echo '<tr>
+									<td width="20%">
+										<img src="/'.  PROJECT_DIRECTORY .'/public/img/colissimo.png" height="50">
+									</td>
+									<td>
+										Colissimo
+									</td>
+									<td width="40%">
+										Livraison en 2/3 jours ouvrés maximum	
+									</td>
+									<td>
+										5,40 €	
+									</td>
+								</tr>';
+								break;
+							case 3:
+							echo '<tr>
+									<td width="20%">
+										<img src="/'. PROJECT_DIRECTORY .'/public/img/chronopost.png" width="130">
+									</td>
+									<td>
+										Chronopost
+									</td>
+									<td width="40%">
+										Livraison en 24H	
+									</td>
+										<td>
+										10,60 €	
+									</td>
+								</tr>';
+							break;
+						} ?>		
+							</table>
+								
+															
+							</div>
+						</div>
+						<div class="panel panel-default">
+					    	<div class="panel-heading">
+								<h3 class="panel-title">Adresse de livraison</h3>
+							</div>
+							<div class="panel-body">
+								<div class="col-md-2">
+									<i class="fa fa-truck" style="font-size: 50px"></i>
+								</div>
+								<div class="col-md-10">								
+									<?= str_replace(',','<br>',$Orders['delivery_address']); ?>
+								</div>							
+							</div>
+						</div>
+						
+					</div>
+				</div>	
+				<div class="col-md-12 text-center">
+				<a class="btn">Imprimer</a>
+				</div>
 			</div>
 		</div>
 	</div>

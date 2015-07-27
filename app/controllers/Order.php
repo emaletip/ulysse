@@ -6,10 +6,12 @@ class Order {
 
 	public $cartModel;
 	public $orderModel;
+	public $contentModel;
 
 	public function __construct() {
 		$this->orderModel = new \app\models\Order();
 		$this->cartModel = new \app\models\Cart();
+		$this->contentModel = new \app\models\Content();
 		return $this;
 	}
 
@@ -67,13 +69,12 @@ class Order {
 
 		/* MAJ ORDER */
 		if(!is_valid_cb($cb)){
-		 	die('erreur');
 			show_flash(false,false,'<b>Erreur ! </b> Le numéro de carte est invalide.',false,false);
 			redirect(parent_url());
 		}
 
-		die('marche');
-
+		$order = $this->orderModel->addOrder($_SESSION['order']);
+				
 		redirect('order/confirmation');
 				
 	}
@@ -85,7 +86,8 @@ class Order {
 	}
 	
 	public function getStep5() {
+		$order  = $_SESSION['order'];
+		return $order;
 	}
-	
 
 }	
