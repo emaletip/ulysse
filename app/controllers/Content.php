@@ -147,6 +147,12 @@ class Content {
     public function postFieldAdd() {
         return $this->contentModel->postFieldAdd();
 	}
+    public function getFieldEdit($id) {
+        return $this->contentModel->getFieldEdit($id);
+    }
+    public function postFieldEdit() {
+        return $this->contentModel->postFieldEdit();
+	}
 
     /*		ARTICLES 	*/
 

@@ -61,7 +61,7 @@ class Content {
                     ':field_id' => $lastId,
                     ':content_id' => $id->content_id,
                     ':content_'.$_POST['name'].'' => '',
-                    ':content_type_name' => 'produit'
+                    ':content_type_name' => 'product'
                     )
                 );
             }
@@ -82,6 +82,40 @@ class Content {
         }
         else {
             return false;
+        }
+    }
+    public function getFieldEdit($id) {
+        $results = $this->pdo->query('SELECT * FROM field WHERE id = '.$id.'');
+        if($results[0]->type == 'select'){
+            $content = $this->pdo->query('SELECT * FROM content_select WHERE field_name = \''.$results[0]->name.'\'');
+            $results[] = $content;
+        }
+        return $results;
+    }
+    public function postFieldEdit() {
+        
+        if(!empty($_POST['label']) && !empty($_POST['name'])) {
+            
+            $query = $this->pdo->update(
+            'UPDATE field SET label = :label WHERE id = :id', array(
+                ':id' => $_POST['id'],
+                ':label' => $_POST['label']
+                )
+            );
+            
+            if(!empty($_POST['contenuselect']) && $_POST['type'] == 'select'){
+                $del = $this->pdo->update('DELETE * FROM content_select WHERE field_name = \''.$_POST['name'].'\'');
+                $ligne = explode("\n", $_POST['contenuselect']);
+                foreach($ligne as $val){
+                    $insert = $this->pdo->insert(
+                    'INSERT INTO content_select (name, field_name)
+                    VALUES (:name, :field_name)', array(
+                        ':name' => $val,
+                        ':field_name' => $_POST['name']
+                        )
+                    );
+                }
+            }
         }
     }
     

@@ -607,6 +607,22 @@ $routes['dashboard/fields/insert'] = array(
 					  'action' => 'FieldAdd',
 					  'view' => 'addField',	
 					);
+$routes['dashboard/fields/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'FieldEdit',
+					  'view' => 'editField',	
+					);
+$routes['dashboard/fields/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'FieldEdit',
+					  'view' => 'editField',	
+					);
 
 /* Category */
 
