@@ -14,15 +14,22 @@
                     $type = $field[0]->type;
                     $name = substr(strstr($field[0]->name, '_'), 1);
                     if($name == 'category'){
-                        $value = $Content->contentModel->AllCategory();
+                        $options = $Content->contentModel->AllCategory();
+                    	$value = '';
                     } else {
-                        $value = "";
+                        if($type == 'select'){
+                            $options = $Content->contentModel->getContentSelect('field_'.$name);
+                            $value = '';
+                        } else {
+                            $options = '';
+                            $value = '';
+                        }
                     }
                 ?>
                 
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label"><?php print $field[0]->label; ?></label>
-                    <div class="col-sm-10"><?php print $Content->contentModel->printField($type, $name, $value, 10, 100); ?></div>
+                    <div class="col-sm-10"><?php print $Content->contentModel->printField($type, $name, $value, 10, 100, $options); ?></div>
                 </div>
                 
                 <?php endforeach; ?>

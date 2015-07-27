@@ -1,8 +1,8 @@
 <?php include_once("frontheader.phtml"); ?>
 <?php 
 	/* Créer route pour ajouter et supprimer un produit au panier */
-	$products = $Carts;
-		$product_res = $contentModel->getProductList();
+	$products = $Orders;
+	$product_res = $contentModel->getProductList();
 	foreach($product_res as $pr){
 		$product[$pr->content_id] = $pr;
 	}
@@ -26,6 +26,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" id="page_cart">
+				<div class="col-md-12">
 				<?php 
 				$total = 0;
 				if(!empty($products)){ ?>
@@ -41,8 +42,10 @@
 						
 		<?php 		foreach($products as $product_cart) {
 						echo '<tr>';
-						$pdt = $product[$product_cart->product_id];?>
-						<td class="cart_product_line img"> <img src="" height="70px"></td>
+						$pdt = $product[$product_cart->product_id];
+						$img = $pdt->content_image ? "/".PROJECT_DIRECTORY.$pdt->content_image : FRONT_IMG_PATH.'default-image.png'
+						?>
+						<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
 						<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
 						<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
 						<td class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
@@ -64,8 +67,16 @@
 				} else {
 					echo 'Aucun produits';
 				} ?>
-				<div class="order">
-				<a class="btn" href="/<?= PROJECT_DIRECTORY; ?>order">Commander</a>
+				</div>
+				<div class="col-md-12">
+					<div class="order">
+					<?php if(isset($_SESSION['user'])) { ?>
+						<a class="btn" href="/<?= PROJECT_DIRECTORY; ?>order/adresse">Valider ma commande</a>
+					<?php } else { ?>
+						<div class="alert alert-danger" role="alert">Vous devez vous connecter pour valider votre commande.</div>
+						
+					<?php } ?>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -325,7 +325,7 @@
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
                     
                     'CREATE TABLE IF NOT EXISTS `cart` (
-					  `id` INT NOT NULL,
+					  `id` INT NOT NULL AUTO_INCREMENT,
 					  `user_id` INT NULL,
 					  `product_id` INT NULL,
 					  `quantity` INT NULL,
