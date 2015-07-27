@@ -1,5 +1,12 @@
 <?php include_once("frontheader.phtml"); 
 	$p = $Contents['results'][0];
+	$p_f = $Contents['fields'];
+	$custom = array();
+	foreach($p_f as $field) {
+		if($field[0]->custom == 1) {
+			$custom[] = $field[0];
+		}
+	}
 	$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
 ?>
 	  <!-- CONTENT -->
@@ -35,6 +42,18 @@
 								<?= $p->content_description ?>
 							</small>
                         </div>	
+
+                        <?php foreach($custom as $c) {
+        
+                                if($c->type == 'select') {
+                                    $value = $Content->contentModel->getContentSelectValue($p->{str_replace('field_','content_',$c->name)});
+                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
+                                } else {
+                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div>';
+                               }
+        
+	                    } ?>
+
 						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
 					</div>
 				</div>
