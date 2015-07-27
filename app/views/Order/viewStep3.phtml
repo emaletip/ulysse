@@ -5,17 +5,23 @@
 		<div class="row">
 			<div class="col-md-12" id="page_cart">
 				<div class="col-md-12">
+				<h1>Choix de la livraison</h1>
 				<form method="post" action="/<?= PROJECT_DIRECTORY; ?>order/validStep3">
-					<table class="table">
+					<div class="panel panel-default">
+				    	<div class="panel-heading">
+							<h3 class="panel-title">Livreurs</h3>
+						</div>
+						<div class="panel-body">
+							<table class="table livraison">
 						<tr>
-							<td>
-								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							<td width="20%">
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/la-poste.png" height="50">
 							</td>
 							<td>
 								La poste	
 							</td>
-								<td>
-								1 semaine	
+							<td width="40%">
+								Livraison en 7 jours ouvrés maximum
 							</td>
 							<td>
 								1,50 	€	
@@ -25,14 +31,14 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							<td width="20%">
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/colissimo.png" height="50">
 							</td>
 							<td>
-								Chronopost
+								Colissimo
 							</td>
-								<td>
-								2/3 jours	
+							<td width="40%">
+								Livraison en 2/3 jours ouvrés maximum	
 							</td>
 								<td>
 								5,40 €	
@@ -42,14 +48,14 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" width="50" height="50">
+							<td width="20%">
+								<img src="/<?= PROJECT_DIRECTORY ?>/public/img/chronopost.png" width="130">
 							</td>
 							<td>
-								Autre
+								Chronopost
 							</td>
-								<td>
-								24H	
+							<td width="40%">
+								Livraison en 24H	
 							</td>
 								<td>
 								10,60 €	
@@ -59,12 +65,14 @@
 							</td>
 						</tr>	
 					</table>
-				</div>				
-				<div class="col-md-12">
-					<div class="order">
-						<button type="submit" class="btn" >Valider la livraison</a>
+						</div>
+						</div>
+					</div>				
+					<div class="col-md-12">
+						<div class="order">
+							<button type="submit" class="btn" >Valider la livraison</a>
+						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 		</div>

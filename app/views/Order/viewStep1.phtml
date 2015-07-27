@@ -25,7 +25,10 @@
 <div id="content-wrapper" class="page">
 	<div class="container">
 		<div class="row">
+		
+			
 			<div class="col-md-12" id="page_cart">
+				<h1>Panier</h1>
 				<div class="col-md-12">
 				<?php 
 				$total = 0;
@@ -43,31 +46,36 @@
 		<?php 		foreach($products as $product_cart) {
 						echo '<tr>';
 						$pdt = $product[$product_cart->product_id];
-						$img = $pdt->content_image ? "/".PROJECT_DIRECTORY.$pdt->content_image : FRONT_IMG_PATH.'default-image.png'
+						
+						$miniature = get_miniature($pdt->content_image);
+						$img = $miniature;
 						?>
 						<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
-						<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
+						<td class="cart_product_line name"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
 						<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
-						<td class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
+						<td class="cart_product_line price"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
 						<td class="cart_product_line"><?= number_format($pdt->content_price*$product_cart->quantity,2,',',' ');?> €</td>
 						<td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
 						<?php
 						echo '</tr>';
-						echo '<tr>';
 						$total += $product_cart->quantity * $pdt->content_price;
-						echo '</tr>';
 					}
-				
 				?>
-				</table>
-				<div class="total">
-				<span>TOTAL</span> : 
-				<span class="total_value"><?= number_format($total,2,',',' ') ?></span> € </div>
+				
+				<tr class="total_price">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>TOTAL</td> : 
+				<td class="total_value"><?= number_format($total,2,',',' ') ?> € 
 				<?php
 				} else {
 					echo 'Aucun produits';
 				} ?>
-				</div>
+				</td>
+				<td></td>
+				</tr>
+				</table>
 				<div class="col-md-12">
 					<div class="order">
 					<?php if(isset($_SESSION['user'])) { ?>

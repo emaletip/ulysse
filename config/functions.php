@@ -144,33 +144,46 @@ function get_avatar($avatar){
 	} else {
 		$avatar = FRONT_IMG_PATH.'default_avatar.gif';
 	}
-	
-
 	return $avatar;
 }
 
+function get_miniature($min){
+	if($min) {
+		$path_parts = pathinfo($min);
+		$ext = '.'.$path_parts['extension'];
+		$name = str_replace($ext,'',$path_parts['basename']).'-200x200';
+		
+		if(file_exists($path_parts['dirname'].'/'.$name.$ext)) {
+			$min = '/'.PROJECT_DIRECTORY.$path_parts['dirname'].'/'.$name.$ext;
+		} 
+		 
+	} else {
+		$min = FRONT_IMG_PATH.'default-image.png';
+	}
+	return $min;
+}
+
+
 function is_valid_cb($cb, $extra_check=false) {
 
-	$cc = implode(' ',$cb['nb']);
+	$cc = $cb['nb'];
 	
 	$cards = array(
-        "visa" => "(4\d{12}(?:\d{3})?)",
-        "amex" => "(3[47]\d{13})",
-        "jcb" => "(35[2-8][89]\d\d\d{10})",
-        "maestro" => "((?:5020|5038|6304|6579|6761)\d{12}(?:\d\d)?)",
-        "solo" => "((?:6334|6767)\d{12}(?:\d\d)?\d?)",
-        "mastercard" => "(5[1-5]\d{14})",
-        "switch" => "(?:(?:(?:4903|4905|4911|4936|6333|6759)\d{12})|(?:(?:564182|633110)\d{10})(\d\d)?\d?)",
+        "visa"		 => "(^4[0-9]{12}(?:[0-9]{3})?$)",
+        "amex"		 => "(^3[47][0-9]{13}$)",
+        "mastercard" => "(^5[1-5][0-9]{14}$)",
     );
-    $names = array("Visa", "American Express", "JCB", "Maestro", "Solo", "Mastercard", "Switch");
+    
+    $names = array("Visa", "American Express", "JCB", "Mastercard");
     $matches = array();
-    $pattern = "#^(?:".implode("|", $cards).")$#";
+    $pattern = "#^(?:".implode("|", $cards).")$#";    
     $result = preg_match($pattern, str_replace(" ", "", $cc), $matches);
+   
     if($extra_check && $result > 0){
         $result = (validatecard($cc))?1:0;
     }
-    
-    $return = ($result>0)?$names[sizeof($matches)-2]:false;
-	
+
+    $return = ($result>0) ? true : false;
+
     return $return;
 }
