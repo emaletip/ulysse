@@ -1,0 +1,141 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php
+
+	$u     = $Users[0];
+	$order = $Users['order'];
+?>
+<!-- CONTENT -->
+	<div id="content-wrapper" class="user">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" id="article_list">
+					<div class="profile-image">
+                        <img src="<?= get_avatar($u->avatar); ?>" alt="">
+                    </div>
+                    <h3 class="text-center"><?= $u->first_name && $u->last_name ? $u->first_name . " " . $u->last_name : $u->login ?></h3>
+                    <ul class="list-unstyled text-center">
+                        <li><p><i class="fa fa-map-marker m-r-xs"></i>
+                        	<?php 
+                        		$completAddress = $u->address1 && $u->address2 ? $u->address1 . " / " . $u->address2 : "Adresse non renseignée";
+                        		$completAddress .= "<br>";
+                        		$completAddress .= $u->postal_code && $u->city ? $u->postal_code . " " . $u->city : "";
+                        		$completAddress .= $u->postal_code && $u->city && $u->country ? ", " : "";
+                        		$completAddress .= $u->country ? $u->country : "";
+                        		echo $completAddress;
+                        	?>
+                        </p>
+                        </li>
+                        <li><p><i class="fa fa-envelope m-r-xs"></i><a href="mailto:<?= $u->email ?>"><?= $u->email ?></a></p></li>
+                        <?php if($_SESSION['user']->id == $u->id) { ?>
+                            <li><p><a href="edit/<?= $u->id ?>">Modifier votre profil</a></p></li>
+                        <?php } ?>
+                        <hr>
+                    </ul>
+				</div>
+				<div class="col-md-12">
+					<h2>Votre commande</h2>
+					<br>
+					<?php 
+						$order = $order[0];					
+						$pdt = $User->contentModel->getProduct($order->product_id);
+						$pdt = current($pdt['results']); 
+
+						if($order->user_content_id != 0) {
+							$usc = $Cart->cartModel->getUserContent($order->user_content_id);
+							$price = $usc[0]->content_price;
+						} else {
+							$price = $pdt->content_price;
+						}
+						switch($order->status_id) {
+							case 1:
+								$status = '<span class="label label-success">Envoyé</span>';
+								break;
+							default:
+								$status = '<span class="label label-default">En cours</span>';
+								break;
+						}
+						?>
+						<div class="col-md-4">
+							<p><b>Addresse de livraison :</b></p>
+							<p> <?= $order->delivery_address ?></p>
+							<p><b>Livreur :</b></p>
+							<table style="width:100%; font-size:inherit;">
+						<?php switch ($order->delivery_id) {
+							case 1:
+							echo '<tr>
+									<td width="20%">
+										<img src="/'. PROJECT_DIRECTORY .'/public/img/la-poste.png" height="50">
+									</td>
+									<td>
+										La poste	
+									</td>
+									<td width="40%">
+										7 jours
+									</td>
+									<td>
+										1,50 	€	
+									</td>
+								</tr>';
+								break;
+							case 2: 
+							echo '<tr>
+									<td width="20%">
+										<img src="/'.  PROJECT_DIRECTORY .'/public/img/colissimo.png" height="50">
+									</td>
+									<td>
+										Colissimo
+									</td>
+									<td width="40%">
+										Livraison en 2/3 jours ouvrés maximum	
+									</td>
+									<td>
+										5,40 €	
+									</td>
+								</tr>';
+								break;
+							case 3:
+							echo '<tr>
+									<td width="20%">
+										<img src="/'. PROJECT_DIRECTORY .'/public/img/chronopost.png" width="130">
+									</td>
+									<td>
+										Chronopost
+									</td>
+									<td width="40%">
+										Livraison en 24H	
+									</td>
+										<td>
+										10,60 €	
+									</td>
+								</tr>';
+							break;
+						} ?>		
+						</table>
+						<br>
+						<div class="col-md-12">
+							<select class="form-control	">
+								<option <?php if ($order->status_id == 0): echo 'selected'; endif; ?>value="0">En cours</option>
+								<option <?php if ($order->status_id == 1): echo 'selected'; endif; ?>value="1">Envoyée</option>
+								<option <?php if ($order->status_id == 2): echo 'selected'; endif; ?>value="2">Reçue</option>
+								<option <?php if ($order->status_id == 3): echo 'selected'; endif; ?>value="3">Annulée</option>
+							</select>
+						</div>
+						</div>
+						<div class="col-md-7 col-md-offset-1">
+							<table class="table">
+								<tr>
+								   	<td><img height="150" src="<?= get_avatar($pdt->content_image) ?>"></td>
+								   	<td><h4><?= $pdt->content_title ?></h4></td>
+								   	<td>x<?=$order->quantity ?> </td>
+								   	<td><?= $price ?> €</td>
+								   	<td><?= $status ?></td>
+								</tr>
+							</table>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php include_once("frontfooter.phtml"); ?>

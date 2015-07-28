@@ -4,10 +4,11 @@ namespace app\controllers;
 
 class User {
 
-	private $userModel;
+	public $userModel;
 	private $userCart;
 	public $orderModel;
 	public $contentModel;
+	public $cartModel;
 
 	public function __construct() {
 	
@@ -19,6 +20,7 @@ class User {
 		$this->userCart = new \app\controllers\Cart();
 		$this->orderModel = new \app\models\Order();
 		$this->contentModel = new \app\models\Content();
+		$this->cartModel = new \app\models\Cart();
 		return $this->userModel;
 	}
 
@@ -42,6 +44,65 @@ class User {
 		}
 	}
 	
+	public function getUserOrder($id) {
+	
+		$user = $this->userModel->getUser($_SESSION['user']->id);
+
+		if($_SESSION['user']->role_id != 1 && $id != $_SESSION['user']->id) {
+			$_SESSION['flash']['user']['key'] = 'warning';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à modifier le Superadmin.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
+		
+			redirect('dashboard/user/'.$id);
+		}
+		
+		$user['order'] = $this->orderModel->getOrder($id);
+		return $user;
+	}
+
+	public function getOrder($id) {
+		
+		$user = $this->userModel->getUser($_SESSION['user']->id);
+
+		if($_SESSION['user']->role_id != 1 && $id != $_SESSION['user']->id) {
+			$_SESSION['flash']['user']['key'] = 'warning';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à modifier le Superadmin.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
+		
+			redirect('dashboard/user/'.$id);
+		}
+		
+		$user['order'] = $this->orderModel->getOrder($id);
+		return $user;
+	}
+
+	public function getUserOrderFront($id) {
+	
+		$user = $this->userModel->getUser($_SESSION['user']->id);
+
+		if($_SESSION['user']->role_id != 1 && $id != $_SESSION['user']->id) {
+			$_SESSION['flash']['user']['key'] = 'warning';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à modifier le Superadmin.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
+		
+			redirect('user');
+		}
+		
+		$user['order'] = $this->orderModel->getOrder($id);
+		return $user;
+	}
+	
+	public function getUserOrdersFront() {
+		$user = $this->userModel->getUser($_SESSION['user']->id);
+		return $user;
+	}
+
+	public function getUserBuysFront() {
+		$user = $this->userModel->getUser($_SESSION['user']->id);
+		return $user;
+	}
+
+	
 	public function postConnectFront() {
 		
 		if(isset($_SESSION['user'])) {
@@ -51,6 +112,7 @@ class User {
 		$username = $_POST['user']['email'];
 		$password = $_POST['user']['password'];
 		$user = $this->userModel->connectUser($username, $password);
+		
 		if($user) {
 			$_SESSION['user'] = $user;
 			if (isset($_POST['user']['remember']) && $_POST['user']['remember'] == 1) {
@@ -70,6 +132,7 @@ class User {
 	}
 
 	public function getUser($id) {
+		$id = $_SESSION['user']->id;
 		$user = $this->userModel->getUser($id);
 		return $user;
 	}
@@ -167,7 +230,7 @@ class User {
 			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à accéder à cette page.';
 			$_SESSION['flash']['user']['time'] = time() + 1;
 
-			redirect('user/' . $_SESSION['user']->id);
+			redirect('user');
 		} else {
 			return $user;
 		}
@@ -197,6 +260,6 @@ class User {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 1;
 	
-		redirect('user/'.$_POST['id']);
+		redirect('user');
 	}
 }

@@ -23,7 +23,7 @@
 			                    $name = substr(strstr($field[0]->name, '_'), 1);
 			                    $value = $product->{'content_'.$name};
 			                    if($name == 'stock'){
-									echo '<input type="hidden" name="stock" value="1">';
+									echo '<input type="hidden" name="stock" value="'.$product->{'content_'.$name}.'">';
 				                    continue;
 
 			                    }

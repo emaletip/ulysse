@@ -26,7 +26,7 @@
 										echo '<tr>';
 										
 										if($product->user_content_id != 0) {
-											$usc = $Cart->cartModel->getUserContent($product->user_content_id);
+											$usc = $Order->cartModel->getUserContent($product->user_content_id);
 											$price = $usc[0]->content_price;
 										} else {
 											$price = $pdt->content_price;

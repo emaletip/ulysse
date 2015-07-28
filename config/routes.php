@@ -45,7 +45,7 @@ $routes['order/validStep3'] = array(
 					  'controller' => 'Order',
 					  'action' => 'ValidStep3',
 					  'view' => 'viewStep3',
-);				   
+);			   
 $routes['order/livraison'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -131,9 +131,9 @@ $routes['product/([0-9]+)'] = array(
 					  'view' => 'frontviewProduct',
 				   );
 
-$routes['user/([0-9]+)'] = array(
+$routes['user'] = array(
 					  'path' => 'app',
-					  'id' => true,
+					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'User',
 					  'action' => 'User',
@@ -168,6 +168,31 @@ $routes['user/product/add'] = array(
 				   );
 				   
 				   
+$routes['user/orders'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'UserOrdersFront',
+					  'view' => 'frontlistOrder',
+				   );
+$routes['user/order/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'UserOrderFront',
+					  'view' => 'frontviewOrder',
+				   );				   
+$routes['user/buys'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'UserBuysFront',
+					  'view' => 'frontlistBuys',
+				   );
+
 				   
 $routes['product/insert'] = array(
 					  'path' => 'app',
@@ -488,22 +513,22 @@ $routes['dashboard/order'] = array(
 
 /* user order pour pauline */
 
-$routes['dashboard/user/order/([0-9]+)'] = array(
+$routes['dashboard/order/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
 					  'controller' => 'User',
-					  'action' => 'OrderUser',
-					  'view' => 'list',
+					  'action' => 'Order',
+					  'view' => 'viewOrder',
 				   );
 				   
-$routes['dashboard/orders'] = array(
+$routes['dashboard/orders/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
 					  'type' => 'get',
-					  'controller' => 'Order',
+					  'controller' => 'User',
 					  'action' => 'UserOrder',
-					  'view' => 'list',
+					  'view' => 'listOrder',
 				   );
 /* Menu */
 

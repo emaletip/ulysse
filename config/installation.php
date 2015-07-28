@@ -2,8 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Préparation d'Ulysse</title>
-        
+        <title>Préparation d'Ulysse</title>       
         <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
         <link rel="stylesheet" href="vendor/css/bootstrap-theme.min.css">
         <script src="vendor/js/jquery-2.1.4.min.js"></script>
@@ -250,7 +249,7 @@
                       `user_id` int(11) NOT NULL,
                       `delivery_address` text NOT NULL,
                       `total_price` decimal(10,2) NOT NULL,
-                      `product_json` text NOT NULL,
+                      `delivery_id` int(11) NOT NULL,
                       `status_id` int(11) NOT NULL,
                       `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                       PRIMARY KEY (`id`)

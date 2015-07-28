@@ -103,7 +103,7 @@
 						if(is_admin()) { ?>
 						<a href="/<?= PROJECT_DIRECTORY ?>dashboard/user/<?= $_SESSION['user']->id ?>" class=" waves-effect waves-button waves-classic">
 						<?php } else { ?>
-						<a href="/<?= PROJECT_DIRECTORY ?>user/<?= $_SESSION['user']->id ?>" class="waves-effect waves-button waves-classic">
+						<a href="/<?= PROJECT_DIRECTORY ?>user" class="waves-effect waves-button waves-classic">
 						<?php } ?>
 							<span class="user-name"><?= $_SESSION['user']->first_name." ".$_SESSION['user']->last_name ?>
 							<!-- <i class="fa fa-angle-down"></i> -->

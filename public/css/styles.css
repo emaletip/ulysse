@@ -115,11 +115,13 @@ button.btn-primary:not(.btn-default), a.btn-primary{
 .breadcrumb {
 	background-color: #fff;
 }
+/*
 .label {
 	color: #333;
 	padding-left: 0;
 	text-align: left;
 }
+*/
 /****************/
 /*    BLOCKS    */
 /****************/
@@ -1064,9 +1066,20 @@ font-size: 12px;
 .adminorder {
 	width: 100%;
 }
-.adminorder td{
+.adminorder .fa-plus-square-o{
+	font-size: 18px;
+}
+.adminorder.adminorderview thead tr td {
+	padding: 20px 0;
+	border-bottom: 3px solid #d8dee4;
+	font-weight: bold;
+}
+.adminorder tbody td {
 	padding: 3px 10px;
 	font-size: 14px;
+}
+.adminorder.adminorderview tbody td {
+	padding: 20px 0;
 }
 .adminorder.table tr td:last-od-type{
 	text-align: right;
@@ -1227,10 +1240,12 @@ font-size: 12px;
 .user_content .add .btn {
 	font-size: 12px;
 }
+/*
 #product_view .label {
 	padding-left: 15px;
 }
 
+*/
 /*	ADD	*/
 #product_add form, #product_add_stock form {
   border: 1px solid #ccc;

@@ -18,9 +18,15 @@ class Order {
 		$this->cartModel = new \app\models\Cart();
 		$this->contentModel = new \app\models\Content();
 	}
+	
+	public function getOrder($id) {
+		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`id`=:id', array(':id' => (int)$id));
+	}
 		
 	public function addOrder($post) {
-
+		
+		$livraison_id = $post['livraison'];
+		
 		$user_content_id = 0;
 
 		$products = $this->cartModel->listCart();
@@ -56,12 +62,13 @@ class Order {
 		$delivery_address = $post['delivery_address']; 
 		
 		$res = $this->pdo->insert(
-        'INSERT INTO `order`(`id`, `user_id`, `delivery_address`, `total_price`)
-        VALUES (:id, :user_id, :delivery_address, :total_price)', array(
+        'INSERT INTO `order`(`id`, `user_id`, `delivery_address`, `total_price`, `delivery_id`)
+        VALUES (:id, :user_id, :delivery_address, :total_price, :delivery_id)', array(
             ':id' => (int)$last_id,
             ':user_id' => (int)$_SESSION['user']->id,
             ':delivery_address' => $delivery_address,
             ':total_price' => $total_price,
+            ':delivery_id' => $livraison_id,
             )
         );
         
@@ -84,7 +91,7 @@ class Order {
 		 return $this->pdo->query('SELECT * FROM `order_product` WHERE order_id=:order_id', 
 		 							array(':order_id' => (int)$id));
 	}
-	
+		
 	public function getUserOrder($id) {
 		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`user_id`=:user_id', array(':user_id' => (int)$id));
 	}

@@ -1,0 +1,100 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php
+	$id = $_SESSION['user']->id;
+	$u 		 = $Users[0];
+	$orders  = $User->orderModel->getUserOrder($id);
+	$products = $User->contentModel->getUserProduct($id);
+?>
+<!-- CONTENT -->
+	<div id="content-wrapper" class="user">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" id="article_list">
+					<div class="profile-image">
+                        <img src="<?= get_avatar($u->avatar); ?>" alt="">
+                    </div>
+                    <h3 class="text-center"><?= $u->first_name && $u->last_name ? $u->first_name . " " . $u->last_name : $u->login ?></h3>
+                    <ul class="list-unstyled text-center">
+                        <li><p><i class="fa fa-map-marker m-r-xs"></i>
+                        	<?php 
+                        		$completAddress = $u->address1 && $u->address2 ? $u->address1 . " / " . $u->address2 : "Adresse non renseignée";
+                        		$completAddress .= "<br>";
+                        		$completAddress .= $u->postal_code && $u->city ? $u->postal_code . " " . $u->city : "";
+                        		$completAddress .= $u->postal_code && $u->city && $u->country ? ", " : "";
+                        		$completAddress .= $u->country ? $u->country : "";
+                        		echo $completAddress;
+                        	?>
+                        </p>
+                        </li>
+                        <li><p><i class="fa fa-envelope m-r-xs"></i><a href="mailto:<?= $u->email ?>"><?= $u->email ?></a></p></li>
+                        <?php if($_SESSION['user']->id == $u->id) { ?>
+                            <li><p><a href="edit/<?= $u->id ?>">Modifier votre profil</a></p></li>
+                        <?php } ?>
+                        <hr>
+                    </ul>
+				</div>
+				<div class="col-md-12">
+					<h2>Vos commandes</h2>
+					<br>
+                    <table class="table adminorder adminorderview">
+                    <thead>
+	                    <tr>
+						   	<td>Produit</td>
+						   	<td>Adresse de livraison</td> 	
+						   	<td>Utilisateur</td>
+						   	<td>Quantité </td>
+						   	<td>Prix</td>
+						   	<td></td>
+						   	<td></td>
+						</tr>
+                    </thead>
+					<?php 
+					foreach($orders as $order) {
+					
+						$pdt = $User->contentModel->getProduct($order->product_id);
+						$pdt = current($pdt['results']); 
+						$user = $User->getuser($order->user_id);
+						$user = $user[0];
+						
+						if($order->user_content_id != 0) {
+							$usc = $User->cartModel->getUserContent($order->user_content_id);
+							$price = $usc[0]->content_price;
+						} else {
+							$price = $pdt->content_price;
+						}
+						
+						switch($order->status_id) {
+							case 1:
+								$status = '<span class="label label-success">Envoyé</span>';
+								break;
+							default:
+								$status = '<span class="label label-default">En cours</span>';
+								break;
+						}
+						?>
+					   	<tr>
+						   	<td><?= $pdt->content_title ?></td>
+						   	<td><?= $order->delivery_address ?></td> 	
+						   	<td><?= $user->first_name.' '.$user->last_name ?></td>
+						   	<td>x<?=$order->quantity ?> </td>
+						   	<td><?= $price ?> €</td>
+						   	<td><?= $status ?></td>
+						   	<td>
+						   	<a href="/<?= PROJECT_DIRECTORY ?>user/order/<?= $order->id ?>">
+								<span class="fa fa-plus-square-o"></span>
+							</a>
+							</td>
+						</tr>
+						
+                      <?php  
+	                 }
+	                 if(empty($orders)) {
+						 echo '<p style="border:1px solid #f0f0f0;padding:15px">Aucune commande en cours<p>';
+	                 }
+                      ?>
+                    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php include_once("frontfooter.phtml"); ?>

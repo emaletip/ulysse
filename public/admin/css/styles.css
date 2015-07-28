@@ -44,9 +44,13 @@ body {
 	padding: 0;
 }
 .label {
-	color: #333;
-	padding-left: 0;
+	//color: #333;
+	//padding-left: 0;
 	text-align: left;
+}
+.label.label-default{
+	border:0;
+	background: #474747;
 }
 /********************/
 /*		LOGIN		*/
@@ -213,7 +217,34 @@ body.login .page-content .logo {
 .adminorder.table td{
 	border-top:0;
 	border-bottom: 1px solid #ddd;
+	vertical-align: middle;
 }
+.adminorder {
+	width: 100%;
+}
+.adminorder .fa-plus-square-o{
+	font-size: 18px;
+}
+.adminorder.adminorderview thead tr td {
+	padding: 20px 0;
+	border-bottom: 3px solid #d8dee4;
+	font-weight: bold;
+}
+.adminorder tbody td {
+	padding: 3px 10px;
+	font-size: 14px;
+}
+.adminorder.adminorderview tbody td {
+	padding: 20px 0;
+}
+.adminorder.table tr td:last-od-type{
+	text-align: right;
+}
+.adminorder.table td{
+	border-top:0;
+	border-bottom: 1px solid #ddd;
+}
+
 
 /********************/
 /*		PRODUCT		*/
@@ -224,9 +255,11 @@ body.login .page-content .logo {
 	display: block;
 	margin-top: 50px;
 }
+/*
 #back_product_view .product_details .label {
 	padding-left: 15px;
 }
+*/
 
 
 /********************/

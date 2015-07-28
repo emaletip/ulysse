@@ -13,7 +13,9 @@ function is_loged(){
 	} else {
 		if(!isset($_SESSION['loged'])) {
 			$_SESSION['loged'] = true;
+			if(is_url_dashboard()){
 			show_flash(true,'<b>Félicitations ! </b> Vous êtes maintenant connecté(e).',false,false,false);
+			}
 		}
 		return true;
 	}

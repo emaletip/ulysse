@@ -1,5 +1,6 @@
 <?php include_once("frontheader.phtml"); ?>
 <?php
+	$id     = $_SESSION['user']->id;
 	$u 		= $Users[0];
 	$orders = $User->orderModel->getUserOrder($id);
 	$buys   = $User->orderModel->getUserBuys($id);
@@ -66,7 +67,7 @@
 						   	<td><?= $price ?> €</td>
 						   	<td><?= $status ?></td>
 						   	<td>
-						   	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/order/<?= $order->id ?>">
+						   	<a href="/<?= PROJECT_DIRECTORY ?>user/order/<?= $order->id ?>">
 								<span class="fa fa-plus-square-o"></span>
 							</a>
 							</td>
@@ -82,7 +83,7 @@
                       ?>
                     </table>
                     <div style="text-align:center;">
-                    	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders" class="btn btn-success">Voir toutes mes commandes</a>
+                    	<a href="/<?= PROJECT_DIRECTORY ?>user/orders" class="btn btn-success">Voir toutes mes commandes</a>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -128,7 +129,7 @@
 ?>
                         </table>
 	                    <div style="text-align:center;">
-	                        <a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders" class="btn btn-success">Voir tous mes achats</a>
+	                        <a href="/<?= PROJECT_DIRECTORY ?>user/buys" class="btn btn-success">Voir tous mes achats</a>
 	                    </div>
 				</div>
 				<div style="margin-top:50px;" class="col-md-12 m-t-lg">

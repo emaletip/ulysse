@@ -124,7 +124,6 @@ class Content {
 	}
 	
 	public function postProduct_edit_front() {
-		//var_dump($_POST);die;
 		unset($_POST['submit']);
 		$dirimg = 'Content';
 
@@ -149,7 +148,6 @@ class Content {
 		}
 
 		$edit = $this->contentModel->editContent($_POST);
-
 		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'product/'.$_POST['content_id'],'product/edit/'.$_POST['content_id']);
 
 	}

@@ -590,9 +590,9 @@ class Content {
                     )
                 );
                 if($query){
-                    $error = 0;
-                } else {
                     $error = 1;
+                } else {
+                    $error = 0;
                 }
             }
         }
