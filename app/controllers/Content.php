@@ -139,6 +139,9 @@ class Content {
 	public function getProductList() {
         return $this->contentModel->getProductList();
     }
+    public function getProductListSearch($name) {
+        return $this->contentModel->getProductListSearch($name);
+    }
     
     public function getFieldList() {
         return $this->contentModel->getFieldList();

@@ -200,6 +200,22 @@ class Content {
         return $results;
     }
     
+    public function getProductListSearch($name){
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*,fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_price` fp ON c.id = fp.content_id
+        JOIN `field_stock` fs ON c.id = fs.content_id
+        JOIN `field_category` fc ON c.id = fc.content_id
+        JOIN `field_active` fa ON c.id = fa.content_id
+        JOIN `field_image` fi ON c.id = fi.content_id
+        JOIN `category` cy ON cy.id = fc.content_category
+        JOIN `user` u ON u.id = c.created_user
+        WHERE c.`content_type_name` = \'product\' AND ft.`content_title` LIKE \'%'.$name.'%\'';
+        $results = $this->pdo->query($query);
+        return $results;
+    }
+    
      public function getSliderList(){
         $query = 'SELECT c.*, ft.*, fi.*, fd.*, fc.*, fl.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name

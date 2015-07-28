@@ -97,6 +97,14 @@ $routes['product'] = array(
 					  'action' => 'ProductList',
 					  'view' => 'frontlistProduct',
 				   );
+$routes['product/search'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ProductListSearch',
+					  'view' => 'frontlistProduct',
+				   );
 
 $routes['product/([0-9]+)'] = array(
 					  'path' => 'app',
