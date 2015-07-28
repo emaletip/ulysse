@@ -9,6 +9,7 @@
 		}
 	}
 	$image = $product->content_image ? "/" . PROJECT_DIRECTORY . $product->content_image : FRONT_IMG_PATH . "default-image.png";
+	$tags_exists = array_key_exists('tags', $product);
 ?>            
 	<div id="main-wrapper">
 		<div class="row">
@@ -36,6 +37,19 @@
                         </div>	
 						<div class="col-md-9">
 							<?= $product->category_name; ?>
+                        </div>
+
+                        <div class="col-md-3">
+                        	<b>Tags :</b>
+                        </div>	
+						<div class="col-md-9">
+							<?php
+								if($tags_exists) { 
+									echo str_replace(',', ', ', $product->tags);
+								} else {
+									echo "Pas de tags associés";
+								}
+							?>
                         </div>
 
 						<div class="col-md-12">

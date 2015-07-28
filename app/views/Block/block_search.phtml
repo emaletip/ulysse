@@ -1,3 +1,8 @@
+<?php 
+	$tags = $contentModel->getTags();
+	end($tags);
+	$last = key($tags);
+?>
 <form action="/<?= PROJECT_DIRECTORY ?>product/search" method="post">
     <div class="block" id="block-search">
         <div class="input-group">
