@@ -293,17 +293,19 @@ class Content {
 		        $products[] = $this->getProduct($res_p->id);
 	        }
         }
-        $query2 = 'SELECT content_id FROM `user_content` WHERE `user_id`='.$id;
+        $query2 = 'SELECT * FROM `user_content` WHERE `user_id`='.$id;
 		$results2 = $this->pdo->query($query2);
 		if(!empty($results2)) {
 	        foreach($results2 as $res_p2) {
-		        $products_plus[] = $this->getProduct($res_p2->content_id);
+		        $products_plus[$res_p2->content_id]['item'] = $this->getProduct($res_p2->content_id);
+		        $products_plus[$res_p2->content_id]['price'] = $res_p2->content_price;
 	        }
 			foreach($products_plus as $k => $pp) {
-				$p = current($pp['results']);
-				$p->content_price;
-			}
-        }
+				$products_plus[$k]['item']['results'][0]->content_price = $pp['price'];
+				$products_plus[$k]['item']['results'][0]->content_active = 1;
+				$products[] = $products_plus[$k]['item'];
+			}			
+		}
         return $products;  
     
 	}

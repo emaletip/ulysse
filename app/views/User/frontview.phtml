@@ -104,15 +104,37 @@
 	                    <div class="panel-body">
 	            	<?php if(!empty($products)) {
 	            		foreach($products as $product) {
-	            			$product = current($product['results']);
-	            			echo '
+	            			$p = $product['results'][0];
+	            			
+	            			$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+							$row .= "<div class='product_photo'>";
+							$row .= "<img src='" . get_miniature($p->content_image) . "' alt='" . $p->content_title . "'>";
+							$row .= "</div>";
+							$row .= "<div class='product_details'>";
+							$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
+							$row .= "<h2>" . $p->content_title . "</h2>";
+							$row .= "<div><span class='green'>Prix :</span> " . $p->content_price . " €</div>";
+							$row .= "</div>";
+							if(!$p->content_active) {
+							$row .= '<div class="edit"><a class="btn" href="/'.PROJECT_DIRECTORY.'user/product/edit/'.$p->content_id.'"> Edit </a></div>';
+							}
+							$row .= "</div>";
+							echo $row;
+						
+	            				            			
+	            			/*
+echo '
+	            			
+	            			
+	            			
 	            			<div class="col-md-2 text-center">
 	            			<img height="150px" src="'.get_miniature($product->content_image).'" />
 	            			<a href="/'.PROJECT_DIRECTORY.'product/'.$product->content_id.'">
 	            			<h4>'. $product->content_title .'</h4>
 	            			</a>
-	            			<a class="btn" href="/'.PROJECT_DIRECTORY.'user/product/edit/'.$product->content_id.'"> Edit </a>
+	            			
 	            			</div>';
+*/
 	            			} 
 		            	}
 	            	?>
