@@ -419,7 +419,6 @@
                     
                     'INSERT INTO `content_tag` (`content_id`, `tag_id`) VALUES
                     (3, 2),
-                    (4, 5),
                     (4, 1),
                     (5, 3),
                     (6, 5),
@@ -454,7 +453,7 @@
                     
                     'INSERT INTO `field_description` (`field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
                     (3, 3, \'<p>Le tiroir, facile &agrave; ouvrir et &agrave; fermer, est &eacute;quip&eacute; d&#39;un arr&ecirc;t.</p><p>Dimensions : 46 x&nbsp;35 cm</p>\', \'product\'),
-                    (3, 4, \'Mais oui cest clair !\', \'product\'),
+                    (3, 4, \'<p>Zones de contact couvertes de cuir fleur souple teint&eacute; dans la masse de 1,2 mm d&#39;&eacute;paisseur tr&egrave;s moelleux et doux au toucher.</p>\', \'product\'),
                     (3, 5, \'Mais oui cest clair !\', \'product\'),
                     (3, 6, \'Mais oui cest clair !\', \'product\'),
                     (3, 7, \'Mais oui cest clair !\', \'product\'),
@@ -470,7 +469,7 @@
                     (5, 6, \'10.50\', \'product\'),
                     (5, 7, \'10.50\', \'product\'),
                     (5, 8, \'10.50\', \'product\'),
-                    (5, 9, \'10.50\', \'product\')',
+                    (5, 9, \'1549.50\', \'product\')',
                     
                     'INSERT INTO `field_stock` (`field_id`, `content_id`, `content_stock`, `content_type_name`) VALUES
                     (9, 3, \'64\', \'product\'),
@@ -502,7 +501,7 @@
                     
                     'INSERT INTO `field_image` (`field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
                     (10, 3, \'public/img/Content/883aa47854bf0803e8d30dd1d91ff2cd.jpg\', \'product\'),
-                    (10, 4, \'\', \'product\'),
+                    (10, 4, \'public/img/Content/94f6443c3ad607c078c0473ecbc8b71e.JPG\', \'product\'),
                     (10, 5, \'\', \'product\'),
                     (10, 6, \'\', \'product\'),
                     (10, 7, \'\', \'product\'),
@@ -513,7 +512,7 @@
                     (1, 1, \'Page de base\', \'page\'),
                     (1, 2, \'Nouvelle !\', \'article\'),
                     (1, 3, \'HEMNES - Table de chevet, brun noir\', \'product\'),
-                    (1, 4, \'Produit 2\', \'product\'),
+                    (1, 4, \'TIMSFORS - Canapé d\'angle 2+2 places\', \'product\'),
                     (1, 5, \'Produit 3\', \'product\'),
                     (1, 6, \'Produit 4\', \'product\'),
                     (1, 7, \'Produit 5\', \'product\'),
