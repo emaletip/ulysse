@@ -75,7 +75,7 @@ h5 {
     line-height: 24px;
     text-transform: uppercase;
 }
-.order button.btn, a.btn {
+button.btn, a.btn {
 	background: #ffffff none repeat scroll 0 0;
     border: 2px solid #5d9907;
     color: #5d9907;
@@ -1129,6 +1129,11 @@ font-size: 12px;
 .p_row .product_details div {
 	margin: 0 10px;
 }
+.p_row .edit{
+	position: absolute;
+	top: 150px;
+	left: 65px;
+}
 .p_row .product_details h2 {
 	color: #5d9907;
 	font-family: 'PT Sans Narrow', sans-serif;
@@ -1161,4 +1166,15 @@ font-size: 12px;
   padding-bottom: 30px;
   padding-right: 60px;
   padding-top: 30px;
+}
+/*  AUTOCOMPLETE  */
+.ui-autocomplete .ui-menu-item{
+	font-size: 14px	
+}
+.ui-autocomplete .ui-menu-item.ui-state-focus{
+    background: #5d9907;
+    border: 0;  
+}
+.ui-menu-item.ui-state-focus a{
+color: #fff;
 }

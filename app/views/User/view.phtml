@@ -74,11 +74,21 @@ $products = $User->contentModel->getUserProduct($id);
 								foreach($orders as $order) {
 									$i++;
 									$pdt = $User->contentModel->getProduct($order->product_id);
-									$pdt = current($pdt['results']); ?>
+									$pdt = current($pdt['results']); 
+									switch ($order->status_id) {
+										case 1:
+											$status = 'Commande envoyée';
+											break;
+										default:
+											$status = 'Nouvelle commande';
+											break;
+									}
+									?>
 								   	<tr>
 									   	<td><?= $pdt->content_title ?></td>
 									   	<td>x<?=$order->quantity ?> </td>
 									   	<td><?= $pdt->content_price ?> €</td>
+									   	<td><?= $status ?></td>
 									   	<td>
 									   	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/order/<?= $order->id ?>">
 											<span class="fa fa-plus-square-o"></span>

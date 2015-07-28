@@ -251,6 +251,7 @@
                       `delivery_address` text NOT NULL,
                       `total_price` decimal(10,2) NOT NULL,
                       `product_json` text NOT NULL,
+                      `status_id` int(11) NOT NULL,
                       `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT charset=utf8 AUTO_INCREMENT=1',
