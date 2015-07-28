@@ -68,7 +68,11 @@ class Content {
     public function postProduct_edit() {
 		unset($_POST['submit']);
 		$dirimg = 'Content';
-		
+
+		if(!array_key_exists('active', $_POST)) {
+			$_POST['active'] = '0';
+		}
+
 		if(isset($_FILES) && $_FILES['image']['name'] != '') {
 			if(isset($_POST['old_img'])) {
 				$old_img = __DIR__.'/../../'.$_POST['old_img'];
@@ -138,6 +142,10 @@ class Content {
 	
 	public function getProductList() {
         return $this->contentModel->getProductList();
+    }
+
+    public function getActiveProductList() {
+        return $this->contentModel->getActiveProductList();
     }
     
     public function getFieldList() {
