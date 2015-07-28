@@ -275,6 +275,19 @@ class Content {
 		        $products[] = $this->getProduct($res_p->id);
 	        }
         }
+        $query2 = 'SELECT content_id FROM `user_content` WHERE `user_id`='.$id;
+		$results2 = $this->pdo->query($query2);
+		if(!empty($results2)) {
+	        foreach($results2 as $res_p2) {
+		        $products_plus[] = $this->getProduct($res_p2->content_id);
+	        }
+			foreach($products_plus as $k => $pp) {
+				var_dump($k);
+				$p = current($pp['results']);
+				$p->content_price;
+			}
+			die;
+        }
         return $products;  
     
 	}
@@ -332,7 +345,21 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;
     }
+    
+	public function addUserProduct($data){
 
+	    $query_content = $this->pdo->insert(
+        'INSERT INTO user_content (user_id, content_id, content_price)
+        VALUES (:user_id, :content_id, :content_price)', array(
+            ':user_id' => $_SESSION['user']->id,
+            ':content_id' => (int)$data['id_product'],
+            ':content_price' => $data['price'],
+            )
+        );
+        return $query_content;
+	}
+					  
+					  
     public function addProduct(array $data) {
 			
 		$query_content = $this->pdo->insert(

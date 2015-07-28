@@ -28,6 +28,13 @@ class Content {
 	
 		redirect('dashboard/product');
 	}
+
+	public function postProductPlus() {	
+		
+		$add = $this->contentModel->addUserProduct($_POST);
+		show_flash($add,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.','<b>Erreur ! </b> Votre produit \'a pas pu être enregistré.','user/'.$_SESSION['user']->id,'user/'.$_SESSION['user']->id);
+
+    }
     
     public function postPage_add() {
 		unset($_POST['submit']);

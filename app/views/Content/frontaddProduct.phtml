@@ -52,20 +52,60 @@
                     
                     <div class="col-md-6" id="product_add_stock">
                         <h1>Vendre un produit déjà existant</h1>
-                        <form action="/<?= PROJECT_DIRECTORY ?>dashboard/product/plus" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            <div class="form-group">
-			                    <label for="id_product" class="col-sm-4 control-label">Produit</label>
-			                    <div class="col-sm-8">
-                                    <select name="id_product" class="form-control">
-                                        <?php foreach($Contents as $product) : ?>
-                                            <option value="<?php print $product->content_id; ?>"><?php print $product->content_title; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-			                </div>
-                            <div class="form-group">
-			                    <label for="price" class="col-sm-4 control-label">Votre prix</label>
-			                    <div class="col-sm-8"><input type="text" name="price" class="form-control"></div>
+                        <form action="/<?= PROJECT_DIRECTORY ?>product/plus" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="col-sm-3">
+                            
+                            <img height=120 id="auto-icon" src="/<?= PROJECT_DIRECTORY ?>/public/img/default-image.png" 	alt="">
+                            </div>
+                            <div class="col-sm-9">
+		                        <div class="form-group">
+				                    <label for="id_product" class="col-sm-4 control-label">Produit</label>
+				                    <div class="col-sm-8">
+		                            <input type="text" id="auto" class="form-control" placeholder="Rechercher un produit"/>
+									<input type="hidden" id="auto-id" name="id_product" >                                    
+<script>
+$(function() {
+var projects = [
+ <?php foreach($Contents as $product) {
+ 	echo '{
+		  	value: "'.$product->content_id.'",
+		  	label: "'.$product->content_title.'",
+		  	icon: "'.get_miniature($product->content_image).'"
+ 		  },
+ ';
+ } ?>
+];
+	
+	$( "#auto" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#auto" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#auto" ).val( ui.item.label );
+        $( "#auto-id" ).val( ui.item.value );
+        $( "#auto-icon" ).attr( "src", ui.item.icon );
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+        .appendTo( ul );
+    };
+});
+</script>
+                                    
+                                    
+	                                </div>
+				                </div>
+	                            <div class="form-group">
+				                    <label for="price" class="col-sm-4 control-label">Votre prix</label>
+				                    <div class="col-sm-8"><input type="text" name="price" class="form-control" placeholder="Indiquer votre prix"></div>
+				                </div>
 			                </div>
                             <div class="form-group">
 			                    <div class="col-sm-offset-4 col-sm-8"><button type="submit" class="btn btn-primary">Ajouter le produit</button></div>
