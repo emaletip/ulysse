@@ -1,22 +1,23 @@
 <?php 
 	$tags = $contentModel->getTags();
 ?>
-<div class="block" id="block-search">
-	<div class="input-group">
-		<span class="input-group-btn">
-			<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-		</span>
-		<input type="text" class="form-control" placeholder="Recherche ...">
-	</div>
-	<div class="input-group">
-		<span class="input-group-btn">
-			<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-		</span>
-		<input id="research_tag" type="text" class="form-control" placeholder="Tags ...">
-		<input type="hidden" id="tag_id">
-	</div>
+<form action="/<?= PROJECT_DIRECTORY ?>product/search" method="post">
+    <div class="block" id="block-search">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" class="form-control" placeholder="Recherche ..." name="name">
+        </div>
+    </div>
+</form>
+<div class="input-group">
+	<span class="input-group-btn">
+		<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+	</span>
+	<input id="research_tag" type="text" class="form-control" placeholder="Tags ...">
+	<input type="hidden" id="tag_id">
 </div>
-
 <script>
   $(function() {
     var projects = [

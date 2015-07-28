@@ -200,6 +200,22 @@ class Content {
         return $results;
     }
     
+    public function postProductListSearch(){
+        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*,fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+        JOIN `content_type` t ON c.content_type_name = t.name
+        JOIN `field_title` ft ON c.id = ft.content_id
+        JOIN `field_price` fp ON c.id = fp.content_id
+        JOIN `field_stock` fs ON c.id = fs.content_id
+        JOIN `field_category` fc ON c.id = fc.content_id
+        JOIN `field_active` fa ON c.id = fa.content_id
+        JOIN `field_image` fi ON c.id = fi.content_id
+        JOIN `category` cy ON cy.id = fc.content_category
+        JOIN `user` u ON u.id = c.created_user
+        WHERE c.`content_type_name` = \'product\' AND ft.`content_title` LIKE \'%'.$_POST['name'].'%\'';
+        $results = $this->pdo->query($query);
+        return $results;
+    }
+    
      public function getSliderList(){
         $query = 'SELECT c.*, ft.*, fi.*, fd.*, fc.*, fl.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
@@ -277,6 +293,19 @@ class Content {
 		        $products[] = $this->getProduct($res_p->id);
 	        }
         }
+        $query2 = 'SELECT content_id FROM `user_content` WHERE `user_id`='.$id;
+		$results2 = $this->pdo->query($query2);
+		if(!empty($results2)) {
+	        foreach($results2 as $res_p2) {
+		        $products_plus[] = $this->getProduct($res_p2->content_id);
+	        }
+			foreach($products_plus as $k => $pp) {
+				var_dump($k);
+				$p = current($pp['results']);
+				$p->content_price;
+			}
+			die;
+        }
         return $products;  
     
 	}
@@ -334,7 +363,21 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;
     }
+    
+	public function addUserProduct($data){
 
+	    $query_content = $this->pdo->insert(
+        'INSERT INTO user_content (user_id, content_id, content_price)
+        VALUES (:user_id, :content_id, :content_price)', array(
+            ':user_id' => $_SESSION['user']->id,
+            ':content_id' => (int)$data['id_product'],
+            ':content_price' => $data['price'],
+            )
+        );
+        return $query_content;
+	}
+					  
+					  
     public function addProduct(array $data) {
 			
 		$query_content = $this->pdo->insert(
@@ -674,14 +717,13 @@ class Content {
         $results = $this->pdo->query($query);
         
         /* get products from the current category */
-		$query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+		$query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
         JOIN `field_stock` fs ON c.id = fs.content_id
         JOIN `field_category` fc ON c.id = fc.content_id
         JOIN `field_active` fa ON c.id = fa.content_id
-        JOIN `field_image` fi ON c.id = fi.content_id
         JOIN `category` cy ON cy.id = fc.content_category
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'

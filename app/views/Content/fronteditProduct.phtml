@@ -1,0 +1,59 @@
+<?php include_once("frontheader.phtml"); ?>
+<?php 
+	$fields = $Content->contentModel->getFieldsName("product"); 
+	$product = $Contents['results'][0];
+?>
+	  <!-- CONTENT -->
+		<div id="content-wrapper" class="article">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" id="product_add">
+						<h1>Modifier <?= $product->content_title; ?></h1>
+			            <form action="/<?= PROJECT_DIRECTORY ?>product/update" method="post" class="form-horizontal" enctype="multipart/form-data">
+			            
+			            	<input type="hidden" name="content_id" value="<?= $product->content_id; ?>">
+			                
+			                <?php foreach($fields as $field): ?>
+			                
+                            <?php if(substr(strstr($field[0]->name, '_'), 1) != 'active') : ?>
+                            
+			                <?php
+			                    $type = $field[0]->type;
+			                    $name = substr(strstr($field[0]->name, '_'), 1);
+			                    $value = $product->{'content_'.$name};
+			                    if($name == 'stock'){
+									echo '<input type="hidden" name="stock" value="1">';
+				                    continue;
+
+			                    }
+			                    if($name == 'category'){
+                                    $options = $Content->contentModel->AllCategory();
+                                } else {
+                                    if($type == 'select'){
+                                        $options = $Content->contentModel->getContentSelect('field_'.$name);
+                                    } else {
+                                        $options = '';
+                                    }
+                                }
+			                ?>
+			                
+			                <div class="form-group">
+			                    <label for="title" class="col-sm-2 control-label"><?php print $field[0]->label; ?></label>
+			                    <div class="col-sm-10"><?php print $Content->contentModel->printField($type, $name, $value, 10, 100, $options); ?></div>
+			                </div>
+                            
+                            <?php endif; ?>
+			                
+			                <?php endforeach; ?>
+			                
+                            <input type="hidden" name="active" value="0">
+                            
+			                <div class="form-group">
+			                    <div class="col-sm-offset-4 col-sm-10"><button type="submit" class="btn btn-primary">Sauvegarder le produit</button></div>
+			                </div>
+			            </form>
+					</div>                    
+				</div>
+			</div>
+		</div>
+<?php include_once("frontfooter.phtml"); ?>

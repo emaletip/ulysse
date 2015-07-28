@@ -12,6 +12,8 @@ class Content {
 	}
     
     public function postProduct_add() {
+		//var_dump($_POST);die;	
+		
 		unset($_POST['submit']);	
 		$path = 'Content';
 		$_POST['image'] = handleFile($_FILES['image'], $path);
@@ -26,6 +28,13 @@ class Content {
 	
 		redirect('dashboard/product');
 	}
+
+	public function postProductPlus() {	
+		
+		$add = $this->contentModel->addUserProduct($_POST);
+		show_flash($add,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.','<b>Erreur ! </b> Votre produit \'a pas pu être enregistré.','user/'.$_SESSION['user']->id,'user/'.$_SESSION['user']->id);
+
+    }
     
     public function postPage_add() {
 		unset($_POST['submit']);
@@ -94,6 +103,37 @@ class Content {
 		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'dashboard/product/'.$_POST['content_id'],'dashboard/product/edit/'.$_POST['content_id']);
 
 	}
+	
+	public function postProduct_edit_front() {
+		//var_dump($_POST);die;
+		unset($_POST['submit']);
+		$dirimg = 'Content';
+
+		if(!array_key_exists('active', $_POST)) {
+			$_POST['active'] = '0';
+		}
+
+		if(isset($_FILES) && $_FILES['image']['name'] != '') {
+			if(isset($_POST['old_img'])) {
+				$old_img = __DIR__.'/../../'.$_POST['old_img'];
+				if(file_exists($old_img)) {
+					unlink($old_img);
+				}
+				unset($_POST['old_img']);
+			}
+			$_POST['image'] = handleFile($_FILES['image'], $dirimg);
+		} else {
+			if(isset($_POST['old_img'])) {
+				unset($_POST['old_img']);
+			}
+			unset($_POST['image']);
+		}
+
+		$edit = $this->contentModel->editContent($_POST);
+
+		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'product/'.$_POST['content_id'],'product/edit/'.$_POST['content_id']);
+
+	}
        
     public function postPage_edit() {
 		$edit = $this->contentModel->editContent($_POST);
@@ -143,7 +183,14 @@ class Content {
 	public function getProductList() {
         return $this->contentModel->getProductList();
     }
-
+    
+    public function postProductListSearch() {
+        return $this->contentModel->postProductListSearch();
+    }
+    public function getActiveProductList() {
+        return $this->contentModel->getActiveProductList();
+    }
+    
     public function getFieldList() {
         return $this->contentModel->getFieldList();
     }
