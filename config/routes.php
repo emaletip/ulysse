@@ -474,6 +474,15 @@ $routes['dashboard/order'] = array(
 					  'action' => 'List',
 					  'view' => 'list',
 				   );
+
+$routes['dashboard/orders'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Order',
+					  'action' => 'List',
+					  'view' => 'list',
+				   );
 /* Menu */
 
 $routes['dashboard/menu'] = array(
