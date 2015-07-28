@@ -41,6 +41,17 @@ class Order {
 	            ':quantity' => (int)$product->quantity,
 	            )
 	        );
+
+	        // Pauline
+	        $res2 = $this->pdo->update(
+	        	'UPDATE `field_stock`
+	        	SET `content_stock` = :new_value
+	        	WHERE content_id = :content_id', array(
+	        		':new_value' => (int)$pdt->content_stock - $product->quantity,
+	        		':content_id' => (int)$pdt->content_id
+	        	)
+	        );
+	        // Fin Pauline
 			$total_price += $product->quantity * $pdt->content_price;
 		}
 		//$_SESSION['order']['products'] = $product_json;		
