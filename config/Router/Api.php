@@ -94,6 +94,12 @@ class Api {
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
 			$nbUser = count($user->getUser_list());
+			$order = new \app\controllers\Order();
+			$nbOrder = count($order->getListOrderProduct());
+			$earnings = new \app\controllers\Order();
+			$ttlEarnings = $earnings->getTotalEarnings();
+			$ttlEarnings = $ttlEarnings[0]->earnings;
+
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
 			return $result;
@@ -107,6 +113,11 @@ class Api {
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
 			$nbUser = count($user->getUser_list());
+			$order = new \app\controllers\Order();
+			$nbOrder = count($order->getListOrderProduct());
+			$earnings = new \app\controllers\Order();
+			$ttlEarnings = $earnings->getTotalEarnings();
+			$ttlEarnings = $ttlEarnings[0]->earnings;
 
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();
@@ -121,6 +132,11 @@ class Api {
 			$nbProduct = count($content->getProductList());
 			$user = new \app\controllers\User();
 			$nbUser = count($user->getUser_list());
+			$order = new \app\controllers\Order();
+			$nbOrder = count($order->getListOrderProduct());
+			$earnings = new \app\controllers\Order();
+			$ttlEarnings = $earnings->getTotalEarnings();
+			$ttlEarnings = $ttlEarnings[0]->earnings;
 
 			require_once BACK_VIEWS_PATH . 'index.phtml';
 			$result = new Result();

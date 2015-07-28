@@ -112,6 +112,14 @@ button.btn-primary:not(.btn-default), a.btn-primary{
 .text-center{
 	text-align: center;
 }
+.breadcrumb {
+	background-color: #fff;
+}
+.label {
+	color: #333;
+	padding-left: 0;
+	text-align: left;
+}
 /****************/
 /*    BLOCKS    */
 /****************/
@@ -1219,6 +1227,10 @@ font-size: 12px;
 .user_content .add .btn {
 	font-size: 12px;
 }
+#product_view .label {
+	padding-left: 15px;
+}
+
 /*	ADD	*/
 #product_add form, #product_add_stock form {
   border: 1px solid #ccc;

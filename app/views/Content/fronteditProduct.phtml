@@ -4,8 +4,9 @@
 	$product = $Contents['results'][0];
 ?>
 	  <!-- CONTENT -->
-		<div id="content-wrapper" class="article">
+		<div id="content-wrapper" class="product">
 			<div class="container">
+				<?php include_once("frontbreadcrumb.phtml"); ?>
 				<div class="row">
 					<div class="col-md-12" id="product_add">
 						<h1>Modifier <?= $product->content_title; ?></h1>

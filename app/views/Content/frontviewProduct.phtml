@@ -13,6 +13,7 @@
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="product">
 			<div class="container">
+				<?php include_once("frontbreadcrumb.phtml"); ?>
 				<div class="row">
 					<div class="col-md-12" id="product_view">
 						<h1><?= $p->content_title ?></h1>
@@ -41,12 +42,10 @@
                         <div class="col-md-3">
                         	<b>Tags :</b>
                         </div>	
-						<div class="col-md-9">
+						<div class="col-md-9 label">
 	                        <?php 
 								if (isset($p->tagsView)) {
 									echo str_replace(',', ', ', $p->tagsView);
-								} else {
-									echo "Pas de tag associés";
 								}
 							?>
 						</div>

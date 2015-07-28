@@ -16,7 +16,7 @@
                 <img alt="<?= $c->content_title ?>" src="<?= '/' . PROJECT_DIRECTORY . $c->content_image ?>">
                 <p><?= $c->content_body ?></p>
                 <?php if($tags_exists) { ?>
-                    <small><?= str_replace(',', ', ', $c->tags) ?></small>
+                    <small class="label"><?= str_replace(',', ', ', $c->tags) ?></small>
                 <?php } ?>
                 <p>
                     <a href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/article/edit/' . $c->content_id ?>">Modifier ce contenu.</a>

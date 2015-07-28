@@ -499,10 +499,10 @@ $routes['dashboard/user/order/([0-9]+)'] = array(
 				   
 $routes['dashboard/orders'] = array(
 					  'path' => 'app',
-					  'id' => false,
+					  'id' => true,
 					  'type' => 'get',
 					  'controller' => 'Order',
-					  'action' => 'List',
+					  'action' => 'UserOrder',
 					  'view' => 'list',
 				   );
 /* Menu */

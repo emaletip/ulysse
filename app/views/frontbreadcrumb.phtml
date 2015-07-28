@@ -1,3 +1,9 @@
-<div class="col-md-12">
-Accueil 
+<div class="page-title">
+    <div class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="/<?= PROJECT_DIRECTORY ?>index">Home</a></li>
+            <?php $name = explode('/',$_SERVER['REQUEST_URI']); ?>
+            <li class="active"><?= isset($name[2]) ? ucfirst($name[2]) : '' ?></li>
+        </ol>
+    </div>
 </div>

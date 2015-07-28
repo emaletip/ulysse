@@ -76,6 +76,10 @@ class Order {
 		return $this->pdo->query('SELECT * FROM `order`;');
 	}
 
+	public function getListOrderProduct() {
+		return $this->pdo->query('SELECT * FROM `order_product`;');
+	}
+
 	public function getOrderProduct($id) {
 		 return $this->pdo->query('SELECT * FROM `order_product` WHERE order_id=:order_id', 
 		 							array(':order_id' => (int)$id));
@@ -87,6 +91,10 @@ class Order {
 	
 	public function getUserBuys($id) {
 		return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE o.`user_id`=:user_id', array(':user_id' => (int)$id));
+	}
+
+	public function getTotalEarnings() {
+		return $this->pdo->query('SELECT SUM(total_price) AS earnings FROM `order`;');
 	}
 	
  	public function getId() {
