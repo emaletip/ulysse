@@ -28,19 +28,21 @@
 										$pdt = $p['results'][0];
 										echo '<tr>';
 										
+										//var_dump($product);die;
+										
 										$miniature = get_miniature($pdt->content_image);
 										$img = $miniature;
 										
 										?>
 										<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
 										<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
-										<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
+										<td class="cart_product_line qty">x <?=  $product->quantity; ?></td>
 										<td class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
-										<td class="cart_product_line"><?= number_format($pdt->content_price*$product_cart->quantity,2,',',' ');?> €</td>
+										<td class="cart_product_line"><?= number_format($pdt->content_price*$product->quantity,2,',',' ');?> €</td>
 										<?php
 										echo '</tr>';
 										
-										 $total += $product_cart->quantity * $pdt->content_price;
+										 $total += $product->quantity * $pdt->content_price;
 										
 	
 									} ?>

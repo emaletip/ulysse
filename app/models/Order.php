@@ -43,7 +43,7 @@ class Order {
 	        );
 			$total_price += $product->quantity * $pdt->content_price;
 		}
-		$_SESSION['order']['products'] = $product_json;
+		//$_SESSION['order']['products'] = $product_json;		
 		
 		$delivery_address = $post['delivery_address']; 
 		

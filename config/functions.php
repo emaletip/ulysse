@@ -119,8 +119,8 @@ function handleFile($file, $path) {
             
             $create_img = move_uploaded_file($file['tmp_name'], $path . '/' . $name);
 
-            $largeur = 200;
-			$hauteur = 200;
+            $largeur = 300;
+			$hauteur = 300;
 			 
 			$image = imagecreatefromjpeg($image_path);
 			$taille = getimagesize($image_path);
