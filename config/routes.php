@@ -253,6 +253,14 @@ $routes['contact'] = array(
 					  'action' => 'Contact',
 					  'view' => 'frontviewContact',
 				   );
+$routes['contact/send'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Contact',
+					  'view' => 'frontviewContact',
+				   );
 				   
 /************/
 /*   BACK   */

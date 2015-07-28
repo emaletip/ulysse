@@ -4,11 +4,30 @@ $page = $Contents[0]; ?>
 		<div id="content-wrapper" class="page">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-					<h1>Contact</h1>
-					<p>
-						Afficher le contenu de la page contact
-					</p>
+                    <div class="col-md-6">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.507856336819!2d2.3883429000000005!3d48.8485254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720ccddcca19%3A0x46c178e321c33af5!2sIP-Formation!5e0!3m2!1sfr!2sfr!4v1438077720851" width="100%" height="375" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+					<div class="col-md-6">
+					<h2>Contact</h2>
+                        <form action="/<?= PROJECT_DIRECTORY ?>contact/send" method="post">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">@</span>
+                              <input type="text" class="form-control" placeholder="Votre email" aria-describedby="basic-addon1" name="email">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                              <input type="text" class="form-control" placeholder="L'objet du mail" aria-describedby="basic-addon2" name="object">
+                            </div>
+                          </div>
+                            <div class="form-group">
+                            <span class="input-group-addon" id="basic-addon3"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
+                            <textarea class="form-control" name="message" rows="5" aria-describedby="basic-addon3"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
 					</div>
 				</div>
 			</div>
