@@ -12,7 +12,6 @@ class Content {
 	}
     
     public function postProduct_add() {
-		//var_dump($_POST);die;	
 		
 		unset($_POST['submit']);	
 		$path = 'Content';
@@ -25,9 +24,27 @@ class Content {
 		$_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 		$_SESSION['flash']['user']['time'] = time() + 1;
-	
+
 		redirect('dashboard/product');
 	}
+
+	 public function postProduct_add_front() {
+			
+			unset($_POST['submit']);	
+			$path = 'Content';
+			$_POST['image'] = handleFile($_FILES['image'], $path);
+			if(!isset($_POST['active'])) {
+				$_POST['active'] = 0;
+			}
+			$add = $this->contentModel->addProduct($_POST);
+	
+			$_SESSION['flash']['user']['key'] = 'success';
+			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
+	
+			redirect('user/'.$_SESSION['user']->id);
+		}
+
 
 	public function postProductPlus() {	
 		
@@ -101,6 +118,8 @@ class Content {
 		$edit = $this->contentModel->editContent($_POST);
 
 		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'dashboard/product/'.$_POST['content_id'],'dashboard/product/edit/'.$_POST['content_id']);
+		
+		redirect('dashboard/product/'.$_POST['content_id']);
 
 	}
 	
@@ -171,7 +190,7 @@ class Content {
         $_SESSION['flash']['user']['key'] = 'success';
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre message a bien été envoyé.';
 		$_SESSION['flash']['user']['time'] = time() + 1;
-        redirect('index');
+        redirect('contact');
 	}
 	
 	public function getCategory($id) {

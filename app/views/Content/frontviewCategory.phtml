@@ -18,8 +18,7 @@
 							$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
 							$row .= "<h2>" . $p->content_title . "</h2>";
 							$row .= "<small>Proposé par : " . $p->user_login . "</small>";
-							$row .= "<div>Prix : " . $p->content_price . " €</div>";
-							$row .= "<div>Stock : " . $p->content_stock . "</div>";
+							$row .= "<div> " . $p->content_price . " €</div>";
 							$row .= "</div>";
 							$row .= "</div>";
 							echo $row;

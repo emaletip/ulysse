@@ -394,13 +394,14 @@
                     (\'principal\'),
                     (\'secondaire\')',
                     
-                    'INSERT INTO `content_menu` (`content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
-					(0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
-					(1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
-					(1, 1, 2, NULL, \'page\', \'Salon\', 1),
-					(1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
-					(1, 2, 8, NULL, \'page\', \'Test\', 1),
-					(0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
+/* refaire*/
+                    'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
+					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
+					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
+					(5, 1, 1, 2, NULL, \'page\', \'Présentation\', 1),
+					(8, 1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
+					(9, 1, 2, 8, NULL, \'page\', \'Test\', 1),
+					(10, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
                     
                     'INSERT INTO `content_field` (`content_type_id`, `field_id`) VALUES
                     (4, 1),
@@ -419,14 +420,9 @@
                     'INSERT INTO `content_tag` (`content_id`, `tag_id`) VALUES
                     (3, 2),
                     (4, 5),
-                    (4, 1),
                     (5, 3),
-                    (6, 5),
-                    (7, 7),
-                    (8, 4),
-                    (8, 2),
-                    (9, 1),
-                    (9, 2)',
+                    (6, 1),
+                    (9, 4)',
                 
                     'INSERT INTO content_type (`name`) VALUES
                     (\'page\'),
@@ -453,32 +449,32 @@
                     
                     'INSERT INTO `field_description` (`field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
                     (3, 3, \'<p>Le tiroir, facile &agrave; ouvrir et &agrave; fermer, est &eacute;quip&eacute; d&#39;un arr&ecirc;t.</p><p>Dimensions : 46 x&nbsp;35 cm</p>\', \'product\'),
-                    (3, 4, \'Mais oui cest clair !\', \'product\'),
-                    (3, 5, \'Mais oui cest clair !\', \'product\'),
-                    (3, 6, \'Mais oui cest clair !\', \'product\'),
-                    (3, 7, \'Mais oui cest clair !\', \'product\'),
-                    (3, 8, \'Mais oui cest clair !\', \'product\'),
-                    (3, 9, \'Mais oui cest clair !\', \'product\'),
+                    (3, 4, \'<p>Zones de contact couvertes de cuir fleur souple teint&eacute; dans la masse de 1,2 mm d&#39;&eacute;paisseur tr&egrave;s moelleux et doux au toucher.</p>\', \'product\'),
+                    (3, 5, \'<p>Le miroir est dot&eacute; d&#39;une pellicule anti-&eacute;clats au dos, ce qui r&eacute;duit le risque de blessure si le verre se brise.</p>\', \'product\'),
+                    (3, 6, \'<p>Teint&eacute; brun fr&ecirc;ne teint&eacute; plaqu&eacute; fr&ecirc;ne.</p><p>La t&ecirc;te de lit souple est tr&egrave;s confortable ; vous pouvez vous y appuyer pour lire ou regarder la t&eacute;l&eacute;vision.</p>\', \'product\'),
+                    (3, 7, \'<p>L&#39;ouverture &agrave; l&#39;arri&egrave;re vous permet de rassembler et d&#39;organiser facilement les c&acirc;bles.</p>\', \'product\'),
+                    (3, 8, \'<p>Induction domino/booster</p><p>Garantie 5 ans gratuite. D&eacute;tails des conditions disponibles en magasin ou sur internet.</p>\', \'product\'),
+                    (3, 9, \'<p>Garantie 10 ans gratuite. D&eacute;tails des conditions disponibles en magasin ou sur internet.</p>\', \'product\'),
 					(3, 10, \'\', \'slider\'),
 					(3, 11, \'\', \'slider\')',
                     
                     'INSERT INTO `field_price` (`field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (5, 3, \'49.50\', \'product\'),
-                    (5, 4, \'10.50\', \'product\'),
-                    (5, 5, \'10.50\', \'product\'),
-                    (5, 6, \'10.50\', \'product\'),
-                    (5, 7, \'10.50\', \'product\'),
-                    (5, 8, \'10.50\', \'product\'),
-                    (5, 9, \'10.50\', \'product\')',
+                    (5, 4, \'1549.00\', \'product\'),
+                    (5, 5, \'35.00\', \'product\'),
+                    (5, 6, \'379.50\', \'product\'),
+                    (5, 7, \'55.00\', \'product\'),
+                    (5, 8, \'259.50\', \'product\'),
+                    (5, 9, \'69.50\', \'product\')',
                     
                     'INSERT INTO `field_stock` (`field_id`, `content_id`, `content_stock`, `content_type_name`) VALUES
                     (9, 3, \'64\', \'product\'),
-                    (9, 4, \'10\', \'product\'),
-                    (9, 5, \'10\', \'product\'),
-                    (9, 6, \'10\', \'product\'),
-                    (9, 7, \'10\', \'product\'),
-                    (9, 8, \'10\', \'product\'),
-                    (9, 9, \'10\', \'product\')',
+                    (9, 4, \'7\', \'product\'),
+                    (9, 5, \'21\', \'product\'),
+                    (9, 6, \'40\', \'product\'),
+                    (9, 7, \'35\', \'product\'),
+                    (9, 8, \'8\', \'product\'),
+                    (9, 9, \'14\', \'product\')',
                     
                     'INSERT INTO `field_category` (`field_id`, `content_id`, `content_category`, `content_type_name`) VALUES
                     (4, 3, \'1\', \'product\'),
@@ -501,23 +497,23 @@
                     
                     'INSERT INTO `field_image` (`field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
                     (10, 3, \'public/img/Content/883aa47854bf0803e8d30dd1d91ff2cd.jpg\', \'product\'),
-                    (10, 4, \'\', \'product\'),
-                    (10, 5, \'\', \'product\'),
-                    (10, 6, \'\', \'product\'),
-                    (10, 7, \'\', \'product\'),
-                    (10, 8, \'\', \'product\'),
-                    (10, 9, \'\', \'product\')',
+                    (10, 4, \'public/img/Content/94f6443c3ad607c078c0473ecbc8b71e.JPG\', \'product\'),
+                    (10, 5, \'public/img/Content/7ac5319ae2499d6c19c6dd53f750371b.JPG\', \'product\'),
+                    (10, 6, \'public/img/Content/5b74f7c77ca9b6b05774dd1e13518dba.JPG\', \'product\'),
+                    (10, 7, \'public/img/Content/c82228a4392fb245fb70c39a9b9d2098.JPG\', \'product\'),
+                    (10, 8, \'public/img/Content/964e024cbbefe76949d0b93ee41ac301.JPG\', \'product\'),
+                    (10, 9, \'public/img/Content/42fb4c9cbc8de6ab19be9415a92bffdb.JPG\', \'product\')',
 
                     'INSERT INTO `field_title` (`field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
                     (1, 1, \'Page de base\', \'page\'),
                     (1, 2, \'Nouvelle !\', \'article\'),
                     (1, 3, \'HEMNES - Table de chevet, brun noir\', \'product\'),
-                    (1, 4, \'Produit 2\', \'product\'),
-                    (1, 5, \'Produit 3\', \'product\'),
-                    (1, 6, \'Produit 4\', \'product\'),
-                    (1, 7, \'Produit 5\', \'product\'),
-                    (1, 8, \'Produit 6\', \'product\'),
-                    (1, 9, \'Produit 7\', \'product\'),
+                    (1, 4, \'TIMSFORS - Canapé d&#39;angle 2+2 places\', \'product\'),
+                    (1, 5, \'LILLÅNGEN - Miroir, blanc\', \'product\'),
+                    (1, 6, \'OPPLAND - Cadre de lit\', \'product\'),
+                    (1, 7, \'LACK - Banc TV, motif bouleau\', \'product\'),
+                    (1, 8, \'MÖJLIG - Table cuisson induction\', \'product\'),
+                    (1, 9, \'LILLÅNGEN - Lavabo, blanc\', \'product\'),
 					(1, 10,\'Le chat\',\'slider\'),
 					(1, 11,\'Un chat 2\',\'slider\')',
                     
