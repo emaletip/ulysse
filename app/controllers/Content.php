@@ -165,7 +165,13 @@ class Content {
 	}
 	
 	public function getContact() {
-		/* elodie: Affiche la page contact */
+	}
+    public function postContact() {
+        $this->contentModel->postContact();
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Votre message a bien été envoyé.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+        redirect('index');
 	}
 	
 	public function getCategory($id) {
