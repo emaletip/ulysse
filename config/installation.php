@@ -391,7 +391,7 @@
                     'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
 					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
 					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
-					(5, 1, 1, 2, NULL, \'page\', \'Salon\', 1),
+					(5, 1, 1, 2, NULL, \'page\', \'Présentation\', 1),
 					(8, 1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
 					(9, 1, 2, 8, NULL, \'page\', \'Test\', 1),
 					(10, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
@@ -466,7 +466,7 @@
                     (2, 4, 4, \'\', \'product\')',
 
                     'INSERT INTO `field_title` (`id`, `field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
-                    (1, 1, 1, \'Page de base\', \'page\'),
+                    (1, 1, 1, \'Présentation\', \'page\'),
                     (2, 1, 2, \'Nouvelle !\', \'article\'),
                     (3, 1, 3, \'Premier produit\', \'product\'),
                     (4, 1, 4, \'Second produit\', \'product\'),

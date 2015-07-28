@@ -366,6 +366,8 @@ class Content {
     
 	public function addUserProduct($data){
 
+		$query_select = $this->pdo->query('UPDATE field_stock SET content_stock= content_stock+1 WHERE content_id=:content_id', array( ':content_id' => $data['id_product']));
+		        		
 	    $query_content = $this->pdo->insert(
         'INSERT INTO user_content (user_id, content_id, content_price)
         VALUES (:user_id, :content_id, :content_price)', array(
@@ -717,13 +719,14 @@ class Content {
         $results = $this->pdo->query($query);
         
         /* get products from the current category */
-		$query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
+		$query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*, fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
         JOIN `content_type` t ON c.content_type_name = t.name
         JOIN `field_title` ft ON c.id = ft.content_id
         JOIN `field_price` fp ON c.id = fp.content_id
         JOIN `field_stock` fs ON c.id = fs.content_id
         JOIN `field_category` fc ON c.id = fc.content_id
         JOIN `field_active` fa ON c.id = fa.content_id
+        JOIN `field_image` fi ON c.id = fi.content_id
         JOIN `category` cy ON cy.id = fc.content_category
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'
@@ -938,6 +941,8 @@ class Content {
                         $error = 0;
                     }
 
+                } else {
+					$error = 0;
                 }
 
             }

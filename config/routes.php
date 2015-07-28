@@ -171,7 +171,7 @@ $routes['product/insert'] = array(
 					  'id' => false,
 					  'type' => 'post',
 					  'controller' => 'Content',
-					  'action' => 'Product_add',
+					  'action' => 'Product_add_front',
 					  'view' => 'frontaddProduct',
 				   );
 $routes['product/update'] = array(

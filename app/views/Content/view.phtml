@@ -60,17 +60,15 @@
                         </div>
 
 						<?php foreach($custom as $c) {
-        
-                                if($c->type == 'select') {
-                                    $value = $Content->contentModel->getContentSelectValue($product->{str_replace('field_','content_',$c->name)});
-                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
-                                } else {
-                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>';
-                               }
-        
+                            if($c->type == 'select') {
+                                $value = $Content->contentModel->getContentSelectValue($product->{str_replace('field_','content_',$c->name)});
+                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
+                            } else {
+                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$product->{str_replace('field_','content_',$c->name)}.'</div>';
+                           }        
 	                    } ?>
 	                    <div class="col-md-12">
-	                    	<a class="edit_link" href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/product/edit/' . $product->content_id ?>">Modifier ce contenu.</a>
+	                    	<a class="btn btn-primary" href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/product/edit/' . $product->content_id ?>">Modifier ce contenu</a>
 	                    </div>
 			          	</div>
 					</div>

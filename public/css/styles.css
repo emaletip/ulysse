@@ -25,6 +25,9 @@ body {
 .green {
 	color: #5d9907;
 }
+.space{
+	margin-bottom:60px;
+}
 .left,
 .middle,
 .right {
@@ -75,7 +78,7 @@ h5 {
     line-height: 24px;
     text-transform: uppercase;
 }
-button.btn, a.btn {
+button.btn:not(.btn-default), a.btn {
 	background: #ffffff none repeat scroll 0 0;
     border: 2px solid #5d9907;
     color: #5d9907;
@@ -90,8 +93,16 @@ button.btn, a.btn {
     //width: 80px;
     text-transform: uppercase;
     display: inline-block;
-    border-radius: 0;
+    border-radius: 2px;
 }
+
+button.btn-primary:not(.btn-default), a.btn-primary{
+	color: #fff;
+	border: 0px solid #5d9907;
+	background-color: #337ab7;
+	margin-left: 0px;
+}
+
 .carousel-inner a.btn{
 	background: transparent none repeat scroll 0 0;
 	border: 2px solid #fff;
@@ -1094,15 +1105,17 @@ font-size: 12px;
 	background: #5d9907 ;
 	color: #fff;
 }
+
 .p_row {
 	border: 1px solid #dedede;
 	display: inline-block;
-	height: 200px;
-	margin-right: 70px;
+	height: 240px;
+	margin-right: 45px;
 	margin-top: 35px;
 	position: relative;
-	width: 200px;
+	width: 240px;
 }
+
 .p_row .product_photo,
 .p_row .product_photo img,
 .p_row .product_details,
@@ -1114,9 +1127,24 @@ font-size: 12px;
 	top: 0;
 	width: 100%;
 }
+.home_new_product .p_row .product_details {
+	padding-top:135px;
+}
+.home_new_product .p_row .product_details h2 {
+	font-size: 35px;
+}
+.home_new_product .p_row .product_details h4 {
+	font-size: 20px;
+}
+.home_new_product .p_row{
+	height: 360px;
+	padding-left: 15px;
+    padding-right: 15px;	
+	width: 360px;
+}
 .p_row .product_details {
 	opacity: 0;
-	padding-top:35px;
+	padding-top:65px;
 	text-align: center;
 	transition: all 300ms ease;
 }
@@ -1132,7 +1160,7 @@ font-size: 12px;
 .p_row .edit{
 	position: absolute;
 	top: 150px;
-	left: 65px;
+	left: 85px;
 }
 .p_row .product_details h2 {
 	color: #5d9907;

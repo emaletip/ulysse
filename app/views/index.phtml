@@ -1,31 +1,56 @@
 <?php 
-include_once("frontheader.phtml"); ?>
+include_once("frontheader.phtml"); 
+$products = $contentModel->getProductList(); 
+$products_new = array_reverse($products);
+?>
 <!-- CONTENT -->
 <div id="content-wrapper">
 	<div class="container">
-		<div class="row">
+		<div class="row home_new_product">
 			<h2>Meilleures ventes</h2>
 			<hr>
-			<div class="col-md-4">
-				<a href="#">
-					<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-1.jpg" alt="DES CHATS !">
-				</a>
-			</div>
-			<div class="col-md-4">
-				<a href="#">
-					<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-4.jpg" alt="DES CHATS !">
-				</a>
-			</div>
-			<div class="col-md-4">
-				<a href="#">
-					<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-9.jpg" alt="DES CHATS !">
-				</a>
-			</div>
+			<?php 					
+					for($i=0; $i<3; $i++) {
+						$p = $products[$i];
+            			$row = '<div class="col-md-4">';
+            			$row .= "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+						$row .= "<div class='product_photo'>";
+						$row .= "<img src='" . get_miniature($p->content_image) . "' alt='" . $p->content_title . "'>";
+						$row .= "</div>";
+						$row .= "<div class='product_details'>";
+						$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
+						$row .= "<h2>" . $p->content_title . "</h2>";
+						$row .= "<h4>" . $p->content_price . " €</h4>";
+						$row .= "</div>";
+						$row .= "</div>";
+						$row .= "</div>";
+						echo $row;
+					}
+			?>
 		</div>
-		<div class="row">
+		<div class="row home_new_product">
 			<h2>Nouveautés</h2>
 			<hr>
-			<div class="col-md-4">
+			<?php 					
+					for($i=0; $i<3; $i++) {
+						$p = $products_new[$i];
+            			$row = '<div class="col-md-4">';
+            			$row .= "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+						$row .= "<div class='product_photo'>";
+						$row .= "<img src='" . get_miniature($p->content_image) . "' alt='" . $p->content_title . "'>";
+						$row .= "</div>";
+						$row .= "<div class='product_details'>";
+						$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
+						$row .= "<h2>" . $p->content_title . "</h2>";
+						$row .= "<h4>" . $p->content_price . " €</h4>";
+						$row .= "</div>";
+						$row .= "</div>";
+						$row .= "</div>";
+						echo $row;
+					}
+			?>
+			<!--
+<div class="col-md-4">
 				<a href="#">
 					<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-1.jpg" alt="DES CHATS !">
 				</a>
@@ -40,8 +65,10 @@ include_once("frontheader.phtml"); ?>
 					<img class="img-responsive" src="<?= FRONT_IMG_PATH ?>cats-q-c-600-600-9.jpg" alt="DES CHATS !">
 				</a>
 			</div>
+			-->
 		</div>
-		<div class="row">
+		<!--
+<div class="row">
 			<h2>Prochaines ventes</h2>
 			<hr>
 			<div class="col-md-4">
@@ -60,6 +87,7 @@ include_once("frontheader.phtml"); ?>
 				</a>
 			</div>
 		</div>
+-->
 	</div>
 	<!-- <hr> -->
 </div>

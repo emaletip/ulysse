@@ -37,7 +37,7 @@
                                     $row .= "<td>" . $category[0]->name . "</td>";
 									$row .= "<td>" . $Product->content_price. " €</td>";
 									$row .= "<td>" . $Product->content_stock . "</td>";
-									$row .= "<td style='text-align:center'>".($Product->content_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
+									$row .= "<td style='text-align:center'>".($Product->content_active == 1 ? '<span class="label label-success">Validé</span>' : '<span class="label label-danger">Non validé</span>')." </td>";
 
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";

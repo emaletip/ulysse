@@ -6,16 +6,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" id="page_cart">
-				<div class="col-md-12">
-					<div class="row">
-						<h1>Récapitulatif de votre commande</h1>
-						<!-- Produits achetés -->
-						<div class="panel panel-default">
-					    	<div class="panel-heading">
-								<h3 class="panel-title">Commande</h3>
-							</div>
-							<div class="panel-body">
-								<table class="tab_product">	
+				
+				
+					<h1>Récapitulatif de votre commande</h1>
+					<div class="col-md-12 space">
+					<!-- Produits achetés -->
+						<h2>Commande</h2><br>
+						<table class="tab_product">	
 									<thead>
 										<td>Image</td>
 										<td>Nom du produit</td>
@@ -47,13 +44,9 @@
 	
 									} ?>
 								</table>
-							</div>
-						</div>
-						<div class="panel panel-default">
-					    	<div class="panel-heading">
-								<h3 class="panel-title">Livreur</h3>
-							</div>
-							<div class="panel-body">
+					</div>
+					<div class="col-md-12 space">
+				    	<h2>Livreur</h2><br>
 						<table width="100%">
 						<?php switch ($Orders['livraison']) {
 							case 1:
@@ -105,29 +98,20 @@
 								</tr>';
 							break;
 						} ?>		
-							</table>
-								
-															
-							</div>
+						</table>
+					</div>
+					<div class="col-md-12 space">
+						<h2>Adresse de livraison</h2><br>
+						<div class="col-md-2">
+							<i class="fa fa-truck" style="font-size: 50px"></i>
 						</div>
-						<div class="panel panel-default">
-					    	<div class="panel-heading">
-								<h3 class="panel-title">Adresse de livraison</h3>
-							</div>
-							<div class="panel-body">
-								<div class="col-md-2">
-									<i class="fa fa-truck" style="font-size: 50px"></i>
-								</div>
-								<div class="col-md-10">								
-									<?= str_replace(',','<br>',$Orders['delivery_address']); ?>
-								</div>							
-							</div>
-						</div>
-						
+						<div class="col-md-10">								
+							<?= str_replace(',','<br>',$Orders['delivery_address']); ?>
+						</div>												
 					</div>
 				</div>	
 				<div class="col-md-12 text-center">
-				<a class="btn">Imprimer</a>
+					<a class="btn">Imprimer</a>
 				</div>
 			</div>
 		</div>
