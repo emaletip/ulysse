@@ -18,7 +18,14 @@ class Order {
 	public function getList() {
 		return $this->orderModel->getList();
 	}
-	
+
+	public function getListOrderProduct() {
+		return $this->orderModel->getListOrderProduct();
+	}	
+
+	public function getTotalEarnings() {
+		return $this->orderModel->getTotalEarnings();
+	}
 	
 	public function getStep1() {
 		$cart = array();
