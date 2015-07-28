@@ -9,4 +9,8 @@ $(document).ready(function(){
 		$('.dropdown-menu').fadeToggle();
 	//	$('.dropdown-menu').css({'visibility':'visible'});
 	});
+	
+	$('.ckeditor').each(function(){	
+		CKEDITOR.replace( $(this).attr('name') );
+	});
 });

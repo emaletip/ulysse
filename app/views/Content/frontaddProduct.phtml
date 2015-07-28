@@ -6,7 +6,7 @@
 				<div class="row">
 					<div class="col-md-6" id="product_add">
 						<h1>Enregistrer un nouveau produit</h1>
-			            <form action="/<?= PROJECT_DIRECTORY ?>dashboard/product/insert" method="post" class="form-horizontal" enctype="multipart/form-data">
+			            <form action="/<?= PROJECT_DIRECTORY ?>product/insert" method="post" class="form-horizontal" enctype="multipart/form-data">
 			                
 			                <?php foreach($fields as $field): ?>
 			                
@@ -15,6 +15,10 @@
 			                <?php
 			                    $type = $field[0]->type;
 			                    $name = substr(strstr($field[0]->name, '_'), 1);
+			                    if($name == 'stock'){
+				                    echo '<input type="hidden" name="stock" value="1">';
+				                    continue;
+			                    }
 			                    if($name == 'category'){
                                     $options = $Content->contentModel->AllCategory();
                                     $value = '';

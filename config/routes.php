@@ -105,7 +105,15 @@ $routes['product/search'] = array(
 					  'action' => 'ProductListSearch',
 					  'view' => 'frontlistProduct',
 				   );
-
+$routes['user/product/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Product',
+					  'view' => 'fronteditProduct',
+				   );
+				   
 $routes['product/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -158,7 +166,14 @@ $routes['product/insert'] = array(
 					  'action' => 'Product_add',
 					  'view' => 'frontaddProduct',
 				   );
-
+$routes['product/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Product_edit_front',
+					  'view' => 'fronteditProduct',
+				   );
 $routes['cart/add/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
