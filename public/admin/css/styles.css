@@ -43,6 +43,11 @@ body {
 .panel.panel-transparent .panel-body{
 	padding: 0;
 }
+.label {
+	color: #333;
+	padding-left: 0;
+	text-align: left;
+}
 /********************/
 /*		LOGIN		*/
 /********************/
@@ -218,6 +223,9 @@ body.login .page-content .logo {
 #back_product_view .product_details .edit_link {
 	display: block;
 	margin-top: 50px;
+}
+#back_product_view .product_details .label {
+	padding-left: 15px;
 }
 
 
