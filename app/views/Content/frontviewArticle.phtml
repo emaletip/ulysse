@@ -18,8 +18,6 @@ $created_by = $a->first_name && $a->last_name ? $a->first_name . " " . $a->last_
 								<?php 
 									if (isset($a->tagsView)) {
 										echo str_replace(',', ', ', $a->tagsView);
-									} else {
-										echo "Pas de tag associés";
 									}
 								?>
 							</small>

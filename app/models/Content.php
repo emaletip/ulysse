@@ -309,6 +309,19 @@ class Content {
         return $products;  
     
 	}
+
+    public function getContentByProduct($id) {
+        $query = $this->pdo->query(
+            'SELECT * FROM `content` c
+            JOIN `user_content` uc ON c.id = uc.content_id
+            JOIN `user` u ON uc.user_id = u.id
+            WHERE uc.content_id = :id
+            ORDER BY uc.content_price ASC', array(
+                ':id' => $id
+            )
+        );
+        return $query;
+    }
     
 	public function getPage($id){
         $query = 'SELECT c.*, ft.*, fb.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c

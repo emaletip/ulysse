@@ -20,7 +20,7 @@
 						<?php
 							foreach ($Contents as $k => $p) {
 								//$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
-								$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
+								$row = "<div class='p_row " . str_replace(' ', '', strtolower($p->category_name)) . " data-category=" . str_replace(' ', '', strtolower($p->category_name)) . "'>";
 								$row .= "<div class='product_photo'>";
 								$row .= "<img src='" . get_miniature($p->content_image) . "' alt='" . $p->content_title . "'>";
 								$row .= "</div>";

@@ -342,43 +342,49 @@
 					 PRIMARY KEY (`id`)
 					 ) ENGINE=InnoDB DEFAULT charset=utf8 AUTO_INCREMENT=1',
                     
-                    'INSERT INTO `block` (`id`, `name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
-                    (1, \'block_logo\', \'Logo\', 1, 0, \'\', 4, 1),
-					(2, \'block_connect\', \'Connection\', 1, 0, \'\', 1, 1),
-					(3, \'block_cart\', \'Panier\', 1, 0, \'\', 2, 1),
-					(4, \'block_search\', \'Rechercher\', 1, 0, \'\', 3, 1),
-					(5, \'block_principal_menu\', \'Menu principal\', 1, 0, \'\', 4, 2),
-					(6, \'block_content\', \'Contenu\', 1, 0, \'\', 8, 0),
-					(7, \'block_top_sell\', \'Meilleures ventes\', 0, 0, \'\', 7, 0),
-					(8, \'block_informations\', \'A propos\', 1, 1, \'<div class="Texte" id="TheTexte">\r\n<p><strong>Sed tamen haec cum ita tutius observentur, </strong></p>\r\n\r\n<p>quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.</p>\r\n</div>\r\n\', 10, 2),
-					(9, \'block_secondary_menu\', \'Menu secondaire\', 0, 0, \'\', 4, 0),
-					(10, \'block_copyright\', \'\', 1, 1, \'Copyright 2015 - Contenu bloc copyright\', 11, 2),
-					(11, \'block_slider\', \'Slider\', 1, 0, \'\', 5, 2),
-					(12, \'block_article\', \'Derniers articles\', 1, 0, \'\', 10, 1),
-					(13, \'block_contact\', \'Coordonnées\', 1, 1, \'<p><strong>Tel.</strong> +33(0) 606 060 606</p>\r\n\r\n<p><strong>Mobile.</strong> +33(0) 606 060 606</p>\r\n\r\n<p>Adresse rue<br />\r\n00000 Ville</p>\r\n\', 10, 3),
-					(14, \'block_filter\', \'Recherche filtrée\', 1, 0, \'\', 7, 1)',
+                    'INSERT INTO `block` (`name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
+                    (\'block_logo\', \'Logo\', 1, 0, \'\', 4, 1),
+					(\'block_connect\', \'Connection\', 1, 0, \'\', 1, 1),
+					(\'block_cart\', \'Panier\', 1, 0, \'\', 2, 1),
+					(\'block_search\', \'Rechercher\', 1, 0, \'\', 3, 1),
+					(\'block_principal_menu\', \'Menu principal\', 1, 0, \'\', 4, 2),
+					(\'block_content\', \'Contenu\', 1, 0, \'\', 8, 0),
+					(\'block_top_sell\', \'Meilleures ventes\', 0, 0, \'\', 7, 0),
+					(\'block_informations\', \'A propos\', 1, 1, \'<div class="Texte" id="TheTexte">\r\n<p><strong>Sed tamen haec cum ita tutius observentur, </strong></p>\r\n\r\n<p>quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.</p>\r\n</div>\r\n\', 10, 2),
+					(\'block_secondary_menu\', \'Menu secondaire\', 0, 0, \'\', 4, 0),
+					(\'block_copyright\', \'\', 1, 1, \'Copyright 2015 - Contenu bloc copyright\', 11, 2),
+					(\'block_slider\', \'Slider\', 1, 0, \'\', 5, 2),
+					(\'block_article\', \'Derniers articles\', 1, 0, \'\', 10, 1),
+					(\'block_contact\', \'Coordonnées\', 1, 1, \'<p><strong>Tel.</strong> +33(0) 606 060 606</p>\r\n\r\n<p><strong>Mobile.</strong> +33(0) 606 060 606</p>\r\n\r\n<p>Adresse rue<br />\r\n00000 Ville</p>\r\n\', 10, 3),
+					(\'block_filter\', \'Recherche filtrée\', 1, 0, \'\', 7, 1)',
                     
-                    'INSERT INTO `category` (`id`, `name`) VALUES
-                    (1, \'Mobilier\'),
-                    (2, \'Nourriture\'),
-                    (3, \'Informatique\')',
+                    'INSERT INTO `category` (`name`) VALUES
+                    (\'Chambre\'),
+                    (\'Salle de bain\'),
+                    (\'Salon\'),
+                    (\'Cuisine\')',
                     
-                    'INSERT INTO `emplacement` (`id`, `name`, `nb_column`) VALUES
-                    (1, \'Header Left\', 1),
-                    (2, \'Header Right\', 1),
-                    (3, \'Header Center\', 1),
-                    (4, \'Menu\', 1),
-                    (5, \'Slider\', 1),
-                    (6, \'Before Content\', 3),
-                    (7, \'Sidebar\', 1),
-                    (8, \'Content\', 1),
-                    (9, \'Pre Footer\', 3),
-                    (10, \'Footer\', 3),
-                    (11, \'Copyright\', 1)',
+                    'INSERT INTO `emplacement` (`name`, `nb_column`) VALUES
+                    (\'Header Left\', 1),
+                    (\'Header Right\', 1),
+                    (\'Header Center\', 1),
+                    (\'Menu\', 1),
+                    (\'Slider\', 1),
+                    (\'Before Content\', 3),
+                    (\'Sidebar\', 1),
+                    (\'Content\', 1),
+                    (\'Pre Footer\', 3),
+                    (\'Footer\', 3),
+                    (\'Copyright\', 1)',
                     
                     'INSERT INTO content (`content_type_name`, `created_user`) VALUES
                     (\'page\', 1),
                     (\'article\', 1),
+                    (\'product\', 1),
+                    (\'product\', 1),
+                    (\'product\', 1),
+                    (\'product\', 1),
+                    (\'product\', 1),
                     (\'product\', 1),
                     (\'product\', 1),
                     (\'slider\', 1),
@@ -388,6 +394,7 @@
                     (\'principal\'),
                     (\'secondaire\')',
                     
+/* refaire*/
                     'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
 					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
 					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
@@ -410,10 +417,17 @@
                     (3, 7),
                     (3, 8)',
                     
-                    'INSERT INTO `content_tag` (`id`, `content_id`, `tag_id`) VALUES
-                    (1, 3, 1),
-                    (2, 4, 1),
-                    (3, 4, 2)',
+                    'INSERT INTO `content_tag` (`content_id`, `tag_id`) VALUES
+                    (3, 2),
+                    (4, 5),
+                    (4, 1),
+                    (5, 3),
+                    (6, 5),
+                    (7, 7),
+                    (8, 4),
+                    (8, 2),
+                    (9, 1),
+                    (9, 2)',
                 
                     'INSERT INTO content_type (`name`) VALUES
                     (\'page\'),
@@ -421,57 +435,92 @@
                     (\'slider\'),
                     (\'product\')',
 
-                    'INSERT INTO `field` (`id`, `name`, `label`, `type`, `size_min`, `size_max`, `custom`) VALUES
-                    (1, \'field_title\', \'Titre\', \'input_text\', 10, 200, 0),
-                    (2, \'field_body\', \'Body\', \'textarea\', 0, NULL, 0),
-                    (3, \'field_description\', \'Description\', \'textarea\', 0, NULL, 0),
-                    (4, \'field_category\', \'Catégorie\', \'select\', 0, NULL, 0),
-                    (5, \'field_price\', \'Prix\', \'input_decimal\', 3, NULL, 0),
-                    (6, \'field_caption\', \'Sous-titre\', \'input_text\', 0, NULL, 0),
-                    (7, \'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL, 0),
-                    (8, \'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL, 0),
-                    (9, \'field_stock\', \'Stock\', \'input_text\', 0, NULL, 0),
-					(10, \'field_image\', \'Image\', \'input_file\', 0, NULL, 0),
-                    (11, \'field_active\', \'Actif\', \'input_checkbox\', 0, NULL, 0)',
+                    'INSERT INTO `field` (`name`, `label`, `type`, `size_min`, `size_max`, `custom`) VALUES
+                    (\'field_title\', \'Titre\', \'input_text\', 10, 200, 0),
+                    (\'field_body\', \'Body\', \'textarea\', 0, NULL, 0),
+                    (\'field_description\', \'Description\', \'textarea\', 0, NULL, 0),
+                    (\'field_category\', \'Catégorie\', \'select\', 0, NULL, 0),
+                    (\'field_price\', \'Prix\', \'input_decimal\', 3, NULL, 0),
+                    (\'field_caption\', \'Sous-titre\', \'input_text\', 0, NULL, 0),
+                    (\'field_path\', \'Image (Slider)\', \'input_file\', 0, NULL, 0),
+                    (\'field_link\', \'Lien (Slider)\', \'input_text\', 0, NULL, 0),
+                    (\'field_stock\', \'Stock\', \'input_text\', 0, NULL, 0),
+					(\'field_image\', \'Image\', \'input_file\', 0, NULL, 0),
+                    (\'field_active\', \'Actif\', \'input_checkbox\', 0, NULL, 0)',
 
-                    'INSERT INTO `field_body` (`id`, `field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
-                    (1, 2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
-                    (2, 2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\')',
+                    'INSERT INTO `field_body` (`field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
+                    (2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
+                    (2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\')',
                     
-                    'INSERT INTO `field_description` (`id`, `field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
-                    (1, 4, 3, \'La nucléarité des rollers\', \'product\'),
-                    (2, 4, 4, \'Mais oui cest clair !\', \'product\'),
-					(3, 3, 5, \'\', \'slider\'),
-					(4, 3, 6, \'\', \'slider\')',
+                    'INSERT INTO `field_description` (`field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
+                    (3, 3, \'<p>Le tiroir, facile &agrave; ouvrir et &agrave; fermer, est &eacute;quip&eacute; d&#39;un arr&ecirc;t.</p><p>Dimensions : 46 x&nbsp;35 cm</p>\', \'product\'),
+                    (3, 4, \'Mais oui cest clair !\', \'product\'),
+                    (3, 5, \'Mais oui cest clair !\', \'product\'),
+                    (3, 6, \'Mais oui cest clair !\', \'product\'),
+                    (3, 7, \'Mais oui cest clair !\', \'product\'),
+                    (3, 8, \'Mais oui cest clair !\', \'product\'),
+                    (3, 9, \'Mais oui cest clair !\', \'product\'),
+					(3, 10, \'\', \'slider\'),
+					(3, 11, \'\', \'slider\')',
                     
-                    'INSERT INTO `field_price` (`id`, `field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
-                    (1, 4, 3, \'10.50\', \'product\'),
-                    (2, 4, 4, \'13.25\', \'product\')',
+                    'INSERT INTO `field_price` (`field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
+                    (5, 3, \'49.50\', \'product\'),
+                    (5, 4, \'10.50\', \'product\'),
+                    (5, 5, \'10.50\', \'product\'),
+                    (5, 6, \'10.50\', \'product\'),
+                    (5, 7, \'10.50\', \'product\'),
+                    (5, 8, \'10.50\', \'product\'),
+                    (5, 9, \'10.50\', \'product\')',
                     
-                    'INSERT INTO `field_stock` (`id`, `field_id`, `content_id`, `content_stock`, `content_type_name`) VALUES
-                    (1, 4, 3, \'10\', \'product\'),
-                    (2, 4, 4, \'13\', \'product\')',
+                    'INSERT INTO `field_stock` (`field_id`, `content_id`, `content_stock`, `content_type_name`) VALUES
+                    (9, 3, \'64\', \'product\'),
+                    (9, 4, \'10\', \'product\'),
+                    (9, 5, \'10\', \'product\'),
+                    (9, 6, \'10\', \'product\'),
+                    (9, 7, \'10\', \'product\'),
+                    (9, 8, \'10\', \'product\'),
+                    (9, 9, \'10\', \'product\')',
                     
-                    'INSERT INTO `field_category` (`id`, `field_id`, `content_id`, `content_category`, `content_type_name`) VALUES
-                    (1, 4, 3, \'1\', \'product\'),
-                    (2, 4, 4, \'2\', \'product\')',
+                    'INSERT INTO `field_category` (`field_id`, `content_id`, `content_category`, `content_type_name`) VALUES
+                    (4, 3, \'1\', \'product\'),
+                    (4, 4, \'3\', \'product\'),
+                    (4, 5, \'2\', \'product\'),
+                    (4, 6, \'1\', \'product\'),
+                    (4, 7, \'3\', \'product\'),
+                    (4, 8, \'4\', \'product\'),
+                    (4, 9, \'2\', \'product\')',
 
-                    'INSERT INTO `field_active` (`id`, `field_id`, `content_id`, `content_active`, `content_type_name`) VALUES
-                    (1, 11, 3, 1, \'product\'),
-                    (2, 11, 4, 1, \'product\')',
+                    'INSERT INTO `field_active` (`field_id`, `content_id`, `content_active`, `content_type_name`) VALUES
+                    (11, 3, 1, \'product\'),
+                    (11, 4, 1, \'product\'),
+                    (11, 5, 1, \'product\'),
+                    (11, 6, 1, \'product\'),
+                    (11, 7, 1, \'product\'),
+                    (11, 8, 1, \'product\'),
+                    (11, 9, 1, \'product\')',
 
                     
-                    'INSERT INTO `field_image` (`id`, `field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
-                    (1, 4, 3, \'\', \'product\'),
-                    (2, 4, 4, \'\', \'product\')',
+                    'INSERT INTO `field_image` (`field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
+                    (10, 3, \'public/img/Content/883aa47854bf0803e8d30dd1d91ff2cd.jpg\', \'product\'),
+                    (10, 4, \'\', \'product\'),
+                    (10, 5, \'\', \'product\'),
+                    (10, 6, \'\', \'product\'),
+                    (10, 7, \'\', \'product\'),
+                    (10, 8, \'\', \'product\'),
+                    (10, 9, \'\', \'product\')',
 
-                    'INSERT INTO `field_title` (`id`, `field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
-                    (1, 1, 1, \'Présentation\', \'page\'),
-                    (2, 1, 2, \'Nouvelle !\', \'article\'),
-                    (3, 1, 3, \'Premier produit\', \'product\'),
-                    (4, 1, 4, \'Second produit\', \'product\'),
-					(6, 1, 5,\'Le chat\',\'slider\'),
-					(7, 1, 6,\'Un chat 2\',\'slider\')',
+                    'INSERT INTO `field_title` (`field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
+                    (1, 1, \'Page de base\', \'page\'),
+                    (1, 2, \'Nouvelle !\', \'article\'),
+                    (1, 3, \'HEMNES - Table de chevet, brun noir\', \'product\'),
+                    (1, 4, \'Produit 2\', \'product\'),
+                    (1, 5, \'Produit 3\', \'product\'),
+                    (1, 6, \'Produit 4\', \'product\'),
+                    (1, 7, \'Produit 5\', \'product\'),
+                    (1, 8, \'Produit 6\', \'product\'),
+                    (1, 9, \'Produit 7\', \'product\'),
+					(1, 10,\'Le chat\',\'slider\'),
+					(1, 11,\'Un chat 2\',\'slider\')',
                     
                     'INSERT INTO `field_caption` (`id`,`field_id`,`content_id`,`content_caption`,`content_type_name`) VALUES 
 					(1,6,5,\'Joli chat\',\'slider\'),
@@ -490,10 +539,15 @@
                     (\'administrateur\'),
                     (\'inscrit\')',
                     
-                    'INSERT INTO `tag` (`id`, `name`) VALUES
-                    (1, \'Chaise\'),
-                    (2, \'Table\'),
-                    (3, \'Fruit\')',
+                    'INSERT INTO `tag` (`name`) VALUES
+                    (\'Lit\'),
+                    (\'Table de chevet\'),
+                    (\'Miroir\'),
+                    (\'Lavabo\'),
+                    (\'Canapé\'),
+                    (\'Meuble Télé\'),
+                    (\'Placard\'),
+                    (\'Plan de travail\')',
 
                 );
                 foreach($tables as $table) {

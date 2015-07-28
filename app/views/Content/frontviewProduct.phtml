@@ -8,6 +8,8 @@
 		}
 	}
 	$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
+	$user_content = $Content->contentModel->getContentByProduct($p->content_id);
+	//var_dump($user_content);
 ?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="product">
@@ -68,6 +70,26 @@
 	                    } ?>
 
 						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
+					</div>
+					<div class='col-md-12'>
+						<h2>Ce même produit est proposé par :</h2>
+						<?php 
+							foreach ($user_content as $v) {
+								$p->content_price = $v->content_price;
+								$row = "<div class='row'>";
+								$row .= "<div class='col-md-4'>";
+								$row .= "<p>" . $v->login . "</p>";
+								$row .= "</div>";
+								$row .= "<div class='col-md-4'>";
+								$row .= "<p>À " . $v->content_price . " €</p>";
+								$row .= "</div>";
+								$row .= "<div class='col-md-4'>";
+								$row .= "<a class='btn btn-add' href='/". PROJECT_DIRECTORY ."cart/add/" . $p->content_id . "' >Ajouter au panier</a>";
+								$row .= "</div>";
+								$row .= "</div>";
+								echo $row;
+							}
+						?>
 					</div>
 				</div>
 			</div>
