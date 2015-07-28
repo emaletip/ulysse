@@ -206,6 +206,10 @@ class Content {
 	public function getProductList() {
         return $this->contentModel->getProductList();
     }
+
+    public function getProductListWithStock() {
+        return $this->contentModel->getProductListWithStock();
+    }
     
     public function postProductListSearch() {
         return $this->contentModel->postProductListSearch();

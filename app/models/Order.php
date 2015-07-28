@@ -50,6 +50,7 @@ class Order {
 	            )
 	        );
 
+
 	        if($product->user_content_id != 0) {
 	        	$usc = $this->cartModel->getUserContent($pdt->user_content_id);
 				$price = $usc[0]->content_price;
@@ -57,6 +58,16 @@ class Order {
 		        $price = $pdt->content_price;
 	        }
 			$total_price += $product->quantity * $price;
+
+	        $res2 = $this->pdo->update(
+	        	'UPDATE `field_stock`
+	        	SET `content_stock` = :new_value
+	        	WHERE content_id = :content_id', array(
+	        		':new_value' => (int)$pdt->content_stock - $product->quantity,
+	        		':content_id' => (int)$pdt->content_id
+	        	)
+	        );
+
 		}
 		
 		$delivery_address = $post['delivery_address']; 
