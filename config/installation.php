@@ -343,6 +343,16 @@
 					 PRIMARY KEY (`id`)
 					 ) ENGINE=InnoDB DEFAULT charset=utf8 AUTO_INCREMENT=1',
                     
+                    'CREATE TABLE IF NOT EXISTS `review` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `content_id` int(11) NOT NULL,
+                      `user_id` int(11) NOT NULL,
+                      `comment` text NOT NULL,
+                      `score` int(11) NOT NULL,
+                      `datecreated` datetime NOT NULL,
+                      PRIMARY KEY (`id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1',
+                    
                     'INSERT INTO `block` (`name`, `title`, `is_active`, `is_editable`, `content_block`, `emplacement_id`, `position`) VALUES
                     (\'block_logo\', \'Logo\', 1, 0, \'\', 4, 1),
 					(\'block_connect\', \'Connection\', 1, 0, \'\', 1, 1),

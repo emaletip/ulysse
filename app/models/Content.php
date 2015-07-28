@@ -296,6 +296,9 @@ class Content {
             $results['results'][0]->tags = $string;
             $results['results'][0]->tagsView = $string2;
         }
+        
+        $query = 'SELECT * FROM review WHERE content_id = '.$id.'';
+        $results['review'] = $this->pdo->query($query);
 
         return($results);
     }

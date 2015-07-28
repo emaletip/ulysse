@@ -1,6 +1,7 @@
 <?php include_once("frontheader.phtml"); 
 	$p = $Contents['results'][0];
 	$p_f = $Contents['fields'];
+    $r = $Contents['review'];
 	$custom = array();
 	foreach($p_f as $field) {
 		if($field[0]->custom == 1) {
@@ -111,5 +112,18 @@
 					<?php } ?>
 				</div>
 			</div>
+			<?php if(!empty($r)) : ?>
+			<hr>
+			 <div class="row">
+			     <div class="col-md-12">
+			         <?php foreach($r as $review) : ?>
+			             <p><?php print $review->comment; ?></p>
+			             <p><?php print $review->score; ?></p>
+			             <p><?php print $review->datecreated; ?></p>
+			             <p>-</p>
+			         <?php endforeach; ?>
+			     </div>
+			 </div>
+			<?php endif; ?>
 		</div>
 <?php include_once("frontfooter.phtml"); ?>
