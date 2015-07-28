@@ -89,7 +89,7 @@ class Order {
 
 		$order = $_SESSION['order'];
 		$order['products'] = $this->orderModel->getOrderProduct($_SESSION['order_id']);
-		
+		$this->cartModel->deleteCart($_SESSION['user']->id);
 		return $order;
 	}
 

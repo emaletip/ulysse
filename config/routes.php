@@ -94,7 +94,7 @@ $routes['product'] = array(
 					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'Content',
-					  'action' => 'ProductList',
+					  'action' => 'ActiveProductList',
 					  'view' => 'frontlistProduct',
 				   );
 $routes['product/search'] = array(

@@ -12,7 +12,7 @@
 						<?php foreach($page->products as $p) {
 							$row = "<div class='p_row " . strtolower($p->category_name) . " data-category=" . strtolower($p->category_name) . "'>";
 							$row .= "<div class='product_photo'>";
-							$row .= "<img src='' alt=''>";
+							$row .= '<img src="'.get_miniature($p->content_image).'" alt="">';
 							$row .= "</div>";
 							$row .= "<div class='product_details'>";
 							$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
