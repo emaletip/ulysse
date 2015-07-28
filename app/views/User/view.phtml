@@ -5,7 +5,6 @@ $u        = $Users[0];
 $orders   = $User->orderModel->getUserOrder($id);
 $buys     = $User->orderModel->getUserBuys($id);
 $products = $User->contentModel->getUserProduct($id);
-var_dump($orders);
 ?>
 <div id="main-wrapper">
 		<div class="profile-user">
@@ -102,7 +101,7 @@ var_dump($orders);
 		                          } ?>
 		                        </table>
 		                        <div style="text-align:center;">
-		                        	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders" class="btn btn-success">Voir toutes mes commandes</a>
+		                        	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/orders/<?= $u->id ?>" class="btn btn-success">Voir toutes mes commandes</a>
 								</div>
 		                    </div>
 		                </div>

@@ -1,5 +1,5 @@
 <?php include_once("admin/header.phtml"); ?>
-<?php include_once("admin/breadcrumb.phtml"); ?>            
+<?php include_once("admin/breadcrumb.phtml"); ?>      
 <div id="main-wrapper">
 	<div class="col-lg-12 col-md-12">
 		<div class="panel panel-white">
@@ -24,13 +24,19 @@
 							<?php
 								foreach ($Orders as $k => $v) {
 									$user = $Order->orderModel->getUser($v->user_id);
+									$user = $user[0];
+
+									$pdt = $Order->contentModel->getProduct($v->product_id);
+									var_dump($pdt['results'][0]);
+
+									$username = $user->first_name && $user->last_name ? $user->first_name . " " . $user->last_name : $user->login; 
 
 									// Vérifie si l'utilisateur est Super administrateur (1) ou administrateur (2)
 									$row = "<tr>";
-									$row .= "<th>" . $user->first_name . ' '. $user->last_name ."</th>";
+									$row .= "<th>" . $username ."</th>";
 									$row .= "<td>" . $v->total_price ."</td>";
 									$row .= "<td>" . $v->created_date . " </td>";
-									$row .= "<td style='text-align:center'>".($v->is_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
+									$row .= "<td style='text-align:center'>".($v->status_id == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
 
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";

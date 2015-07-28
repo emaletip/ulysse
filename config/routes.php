@@ -475,12 +475,12 @@ $routes['dashboard/order'] = array(
 					  'view' => 'list',
 				   );
 
-$routes['dashboard/orders'] = array(
+$routes['dashboard/orders/([0-9]+)'] = array(
 					  'path' => 'app',
-					  'id' => false,
+					  'id' => true,
 					  'type' => 'get',
 					  'controller' => 'Order',
-					  'action' => 'List',
+					  'action' => 'UserOrder',
 					  'view' => 'list',
 				   );
 /* Menu */
