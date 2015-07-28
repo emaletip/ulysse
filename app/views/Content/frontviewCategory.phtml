@@ -18,7 +18,7 @@
 							$row .= "<a href='/" . PROJECT_DIRECTORY . "product/".$p->content_id."'></a>";
 							$row .= "<h2>" . $p->content_title . "</h2>";
 							$row .= "<small>Proposé par : " . $p->user_login . "</small>";
-							$row .= "<div> " . $p->content_price . " €</div>";
+							$row .= "<div> <span class='green'>Prix :</span> " . $p->content_price . " €</div>";
 							$row .= "</div>";
 							$row .= "</div>";
 							echo $row;

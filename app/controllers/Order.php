@@ -21,14 +21,7 @@ class Order {
 	
 	
 	public function getStep1() {
-		$cart = array();
-
-		if(isset($_SESSION['user'])){
-			$cart = $this->cartModel->listCart();
-		} else if(isset($_SESSION['cart'])){
-			$cart = $_SESSION['cart'];
-		}	
-		return $cart;
+		return $this->cartModel->listCart();
 	}
 	
 	public function getStep2() {

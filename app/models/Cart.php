@@ -27,20 +27,32 @@ class Cart {
         return $query;
 	} 
 	
-	public function addProduct($id) {
-	
-		$cart_product = $this->pdo->query('SELECT * FROM cart 
-									  WHERE product_id=:product_id 
-									  AND user_id=:user_id', 
-									 array(':product_id'=>$id, ':user_id'=>$_SESSION['user']->id)									 );	
+	public function getUserContent($id) {
+		return $this->pdo->query('SELECT * FROM user_content 
+								 WHERE id=:id',
+								 array(':id' => $id));
 		
+	}
+	
+	public function addProduct($id, $id_content) {
+		
+		$cart_product = $this->pdo->query('SELECT * FROM cart 
+								 WHERE product_id=:product_id 
+								 AND user_id=:user_id
+								 AND user_content_id=:user_content_id',
+								 array(':product_id' => $id,
+								 	   ':user_id' => $_SESSION['user']->id,
+								 	   ':user_content_id' => $id_content
+								 ));	
+
 		if(empty($cart_product)){
 			/* Insert product in cart*/			
 			$res = $this->pdo->insert(
-	        'INSERT INTO cart (user_id, product_id, quantity)
-	        VALUES (:user_id, :product_id, :quantity)', array(
+	        'INSERT INTO cart (user_id, product_id, quantity, user_content_id)
+	        VALUES (:user_id, :product_id, :quantity, :user_content_id)', array(
 	            ':product_id' => $id,
 	            ':user_id' => $_SESSION['user']->id,
+	            ':user_content_id' => $id_content,
 	            ':quantity' => 1
 	            )
 	        );  

@@ -166,6 +166,9 @@ $routes['user/product/add'] = array(
 					  'action' => 'Product_add',
 					  'view' => 'frontaddProduct',
 				   );
+				   
+				   
+				   
 $routes['product/insert'] = array(
 					  'path' => 'app',
 					  'id' => false,
@@ -182,15 +185,23 @@ $routes['product/update'] = array(
 					  'action' => 'Product_edit_front',
 					  'view' => 'fronteditProduct',
 				   );
-$routes['cart/add/([0-9]+)'] = array(
+$routes['cart/add'] = array(
 					  'path' => 'app',
 					  'id' => true,
-					  'type' => 'get',
+					  'type' => 'post',
 					  'controller' => 'Cart',
 					  'action' => 'AddProduct',
 					  'view' => 'frontlistArticle',
 				   );
-
+$routes['cart/adduser'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'post',
+					  'controller' => 'Cart',
+					  'action' => 'AddProductUser',
+					  'view' => 'frontlistArticle',
+				   );
+				   
 $routes['cart/delete/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -475,6 +486,17 @@ $routes['dashboard/order'] = array(
 					  'view' => 'list',
 				   );
 
+/* user order pour pauline */
+
+$routes['dashboard/user/order/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'User',
+					  'action' => 'OrderUser',
+					  'view' => 'list',
+				   );
+				   
 $routes['dashboard/orders'] = array(
 					  'path' => 'app',
 					  'id' => false,

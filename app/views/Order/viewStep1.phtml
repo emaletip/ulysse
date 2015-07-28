@@ -45,6 +45,14 @@
 						
 		<?php 		foreach($products as $product_cart) {
 						echo '<tr>';
+						
+						if($product_cart->user_content_id != 0) {
+							$usc = $Cart->cartModel->getUserContent($product_cart->user_content_id);
+							$price = $usc[0]->content_price;
+						} else {
+							$price = $pdt->content_price;
+						}
+						
 						$pdt = $product[$product_cart->product_id];
 						
 						$miniature = get_miniature($pdt->content_image);
@@ -53,12 +61,12 @@
 						<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
 						<td class="cart_product_line name"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
 						<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
-						<td class="cart_product_line price"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
-						<td class="cart_product_line"><?= number_format($pdt->content_price*$product_cart->quantity,2,',',' ');?> €</td>
+						<td class="cart_product_line price"> <?= number_format($price,2,',',' ');?> €</td> 
+						<td class="cart_product_line"><?= number_format($price*$product_cart->quantity,2,',',' ');?> €</td>
 						<td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
 						<?php
 						echo '</tr>';
-						$total += $product_cart->quantity * $pdt->content_price;
+						$total += $product_cart->quantity * $price;	
 					}
 				?>
 				

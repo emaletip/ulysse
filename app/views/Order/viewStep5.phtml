@@ -25,7 +25,13 @@
 										$pdt = $p['results'][0];
 										echo '<tr>';
 										
-										//var_dump($product);die;
+										if($product->user_content_id != 0) {
+											$usc = $Cart->cartModel->getUserContent($product->user_content_id);
+											$price = $usc[0]->content_price;
+										} else {
+											$price = $pdt->content_price;
+										}
+
 										
 										$miniature = get_miniature($pdt->content_image);
 										$img = $miniature;
@@ -34,12 +40,12 @@
 										<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
 										<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
 										<td class="cart_product_line qty">x <?=  $product->quantity; ?></td>
-										<td class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> 
-										<td class="cart_product_line"><?= number_format($pdt->content_price*$product->quantity,2,',',' ');?> €</td>
+										<td class="cart_product_line"> <?= number_format($price,2,',',' ');?> €</td> 
+										<td class="cart_product_line"><?= number_format($price*$product->quantity,2,',',' ');?> €</td>
 										<?php
 										echo '</tr>';
 										
-										 $total += $product->quantity * $pdt->content_price;
+										 $total += $product->quantity * $price;
 										
 	
 									} ?>

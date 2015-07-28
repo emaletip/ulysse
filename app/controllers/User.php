@@ -58,11 +58,6 @@ class User {
 				setcookie('userloged',1, (time() + 3600));
 			}
 			
-			/* set new cart or get old one */
-			if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-				$this->userCart->initCart($user->id);
-			}
-			
 			return true;
 		} else {
 			return false;
@@ -167,7 +162,7 @@ class User {
 	public function getUser_front_edit($id) {
 		$user = $this->userModel->getUser($id);
 
-		if($_SESSION['user']->role_id != $user[0]->id) {
+		if($_SESSION['user']->role_id != 1 && $_SESSION['user']->id != $id) {
 			$_SESSION['flash']['user']['key'] = 'warning';
 			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Vous n\'êtes pas autorisé à accéder à cette page.';
 			$_SESSION['flash']['user']['time'] = time() + 1;

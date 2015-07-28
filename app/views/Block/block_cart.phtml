@@ -41,14 +41,27 @@
 		if(!empty($products)){ ?>
 		<table class="tab_product">		
 <?php 		foreach($products as $product_cart) {
-				echo '<tr>';
-				$pdt = $product[$product_cart->product_id];?>
-				<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td><td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td><td  class="cart_product_line"> <?= number_format($pdt->content_price,2,',',' ');?> €</td> <td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
-				<?php
-				echo '</tr>';
-				echo '<tr>';
-				$total += $product_cart->quantity * $pdt->content_price;
-				echo '</tr>';
+					$pdt = $product[$product_cart->product_id];
+				
+					if($product_cart->user_content_id != 0) {
+						$usc = $Cart->cartModel->getUserContent($product_cart->user_content_id);
+						$price = $usc[0]->content_price;
+					} else {
+						$price = $pdt->content_price;
+					}
+
+					echo '<tr>';
+					?>
+					<td class="cart_product_line"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>">
+						<?=$pdt->content_title; ?></a>
+					</td>
+					<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
+					<td  class="cart_product_line"> <?= number_format($price,2,',',' ');?> €</td> <td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
+					<?php
+					echo '</tr>';
+					echo '<tr>';
+					$total += $product_cart->quantity * $price;
+					echo '</tr>';
 			}
 		
 		?>

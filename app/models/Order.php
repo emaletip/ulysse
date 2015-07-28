@@ -21,6 +21,8 @@ class Order {
 		
 	public function addOrder($post) {
 
+		$user_content_id = 0;
+
 		$products = $this->cartModel->listCart();
 
 		$total_price = 0;
@@ -31,19 +33,25 @@ class Order {
 		foreach($products as $product) {
 			$p = $this->contentModel->getProduct($product->product_id);
 			$pdt = current($p['results']);
-			
 			$res = $this->pdo->insert(
-				'INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `user_id`)
-				VALUES (:order_id, :product_id, :quantity, :user_id)', array(
+				'INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `user_id`, `user_content_id`)
+				VALUES (:order_id, :product_id, :quantity, :user_id, :user_content_id)', array(
 	            ':user_id' => (int)$pdt->created_user,
 	            ':product_id' => (int)$pdt->content_id,
 	            ':order_id' => (int)$last_id,
 	            ':quantity' => (int)$product->quantity,
+	            ':user_content_id' => (int)$product->user_content_id,
 	            )
 	        );
-			$total_price += $product->quantity * $pdt->content_price;
+
+	        if($product->user_content_id != 0) {
+	        	$usc = $this->cartModel->getUserContent($pdt->user_content_id);
+				$price = $usc[0]->content_price;
+			} else {
+		        $price = $pdt->content_price;
+	        }
+			$total_price += $product->quantity * $price;
 		}
-		//$_SESSION['order']['products'] = $product_json;		
 		
 		$delivery_address = $post['delivery_address']; 
 		

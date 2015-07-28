@@ -9,7 +9,6 @@
 	}
 	$image = $p->content_image ? "/" . PROJECT_DIRECTORY . $p->content_image : FRONT_IMG_PATH . "default-image.png";
 	$user_content = $Content->contentModel->getContentByProduct($p->content_id);
-	//var_dump($user_content);
 ?>
 	  <!-- CONTENT -->
 		<div id="content-wrapper" class="product">
@@ -19,11 +18,12 @@
 						<h1><?= $p->content_title ?></h1>
 						<div class="col-md-6 product_image">
 							<img src="<?= $image ?>">
-							<a href="/<?= PROJECT_DIRECTORY; ?>product" >Retour à la liste des produits</a>
+							<a href="/<?= PROJECT_DIRECTORY; ?>product" > <i class="fa fa-arrow-left"></i> 
+								<b>Retour à la liste des produits</b>
+							</a>
 						</div>
 						<div class="col-md-6">						
 					
-						<h3>Attributs</h3> 
 						<div class="col-md-3">
                         	<b>Prix :</b>
                         </div>	
@@ -67,30 +67,49 @@
                                     print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div>';
                                }
         
-	                    } ?>
-
-						<a class="btn btn-add" href="/<?= PROJECT_DIRECTORY; ?>cart/add/<?=$p->content_id?>" >Ajouter au panier</a>
+	                    } 
+	                    
+	                    if(isset($_SESSION['user'])) {
+		                    
+	                    ?>
+						<form method="post" action="/<?= PROJECT_DIRECTORY ?>cart/add">
+							<input type="hidden" name="user_content_id" value='0'>
+							<input type="hidden" name="content_id" value="<?= $p->content_id ?>">
+							<button class='btn btn-add' type='submit' >Ajouter au panier</button>
+						</form>
+						<?php } ?>
 					</div>
-					<div class='col-md-12'>
+					<?php if(!empty($user_content)) { ?>
+					<div class='col-md-6 col-md-offset-'>
 						<h2>Ce même produit est proposé par :</h2>
+						<div class="col-md-12 user_content">
+						<table>
 						<?php 
 							foreach ($user_content as $v) {
+								
 								$p->content_price = $v->content_price;
-								$row = "<div class='row'>";
-								$row .= "<div class='col-md-4'>";
-								$row .= "<p>" . $v->login . "</p>";
-								$row .= "</div>";
-								$row .= "<div class='col-md-4'>";
-								$row .= "<p>À " . $v->content_price . " €</p>";
-								$row .= "</div>";
-								$row .= "<div class='col-md-4'>";
-								$row .= "<a class='btn btn-add' href='/". PROJECT_DIRECTORY ."cart/add/" . $p->content_id . "' >Ajouter au panier</a>";
-								$row .= "</div>";
-								$row .= "</div>";
+								$row = "<tr>";
+								$row .= "<td class='title'>" . $v->login . "</td>";
+								$row .= "<td class='price'>à " . $v->content_price . " €</td>";
+								if(isset($_SESSION['user'])) {
+								$row .= "<td class='add'>";
+  									$row .= "
+									<form method=\"post\" action=\"/". PROJECT_DIRECTORY ."cart/add\">
+									<input type=\"hidden\" name=\"user_content_id\" value='". $v->uc_id."'>
+									<input type=\"hidden\" name=\"content_id\" value='" . $p->content_id . "'>
+									<button /* class='btn'  */type='submit' >Ajouter au panier</button>
+									</form>
+									";
+								$row .= "</td>";
+								}								
+								$row .= "</tr>";
 								echo $row;
 							}
 						?>
+							</table>
+						</div>
 					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

@@ -2,10 +2,14 @@
 <?php include_once("breadcrumb.phtml"); ?>
 <?php
 $u        = $Users[0];	
+
+/* Commande qui te sont passées */
 $orders   = $User->orderModel->getUserOrder($id);
+
+/* Tes achats */
 $buys     = $User->orderModel->getUserBuys($id);
 $products = $User->contentModel->getUserProduct($id);
-var_dump($orders);
+
 ?>
 <div id="main-wrapper">
 		<div class="profile-user">

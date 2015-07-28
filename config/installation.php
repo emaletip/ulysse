@@ -327,6 +327,7 @@
                     'CREATE TABLE IF NOT EXISTS `cart` (
 					  `id` INT NOT NULL AUTO_INCREMENT,
 					  `user_id` INT NULL,
+					  `user_content_id` INT NULL,
 					  `product_id` INT NULL,
 					  `quantity` INT NULL,
 					  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -336,6 +337,7 @@
                     'CREATE TABLE IF NOT EXISTS `order_product` (
 					 `id` INT NOT NULL AUTO_INCREMENT,
 					 `order_id` INT NOT NULL,
+					 `user_content_id` INT NOT NULL,
 					 `product_id` INT NOT NULL,
 					 `quantity` INT NOT NULL,
 					 `user_id` INT NOT NULL,

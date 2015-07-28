@@ -312,7 +312,7 @@ class Content {
 
     public function getContentByProduct($id) {
         $query = $this->pdo->query(
-            'SELECT * FROM `content` c
+            'SELECT *, uc.id uc_id FROM `content` c
             JOIN `user_content` uc ON c.id = uc.content_id
             JOIN `user` u ON uc.user_id = u.id
             WHERE uc.content_id = :id
