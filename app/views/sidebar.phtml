@@ -1,0 +1,69 @@
+<!-- Sidebar -->
+	<div id="sidebar-wrapper">
+		<div class="row">
+		    <ul class="sidebar-nav">
+	        	<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+					</span>
+					<input type="text" class="form-control" placeholder="Tags ..." id="research_tag">
+				</div>
+		        <li>
+		            <a href="#">Dashboard</a>
+		        </li>
+		        <li>
+		            <a href="#">Shortcuts</a>
+		        </li>
+		        <li>
+		            <a href="#">Overview</a>
+		        </li>
+		        <li>
+		            <a href="#">Events</a>
+		        </li>
+		        <li>
+		            <a href="#">About</a>
+		        </li>
+		        <li>
+		            <a href="#">Services</a>
+		        </li>
+		        <li>
+		            <a href="#">Contact</a>
+		        </li>
+		    </ul>
+	    </div>
+	</div>
+
+<script>
+  $(function() {
+    var projects = [
+    	 <?php foreach($tags as $v) {
+		 	echo '{
+				  	value: "'.$v->id.'",
+				  	label: "'.$v->name.'"
+		 		  },
+		 ';
+		 } ?>
+    ];
+ 
+    $( "#research_tag" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#research_tag" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        //$( "#research_tag" ).val( ui.item.label );
+        //$( "#tag_id" ).val( ui.item.value ); 
+        window.location.href="/<?= PROJECT_DIRECTORY ?>tag/"+ui.item.value;
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "</a>" )
+        .appendTo( ul );
+    };
+  });
+</script>
+<!-- /#sidebar-wrapper -->
