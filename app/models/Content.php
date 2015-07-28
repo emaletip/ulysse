@@ -199,24 +199,6 @@ class Content {
         $results = $this->pdo->query($query);
         return $results;
     }
-
-    public function getActiveProductList(){
-        $query = 'SELECT c.*, ft.*, fp.*, fs.*, fc.*,fa.*,fi.*, cy.name AS category_name, u.login AS user_login, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
-        JOIN `content_type` t ON c.content_type_name = t.name
-        JOIN `field_title` ft ON c.id = ft.content_id
-        JOIN `field_price` fp ON c.id = fp.content_id
-        JOIN `field_stock` fs ON c.id = fs.content_id
-        JOIN `field_category` fc ON c.id = fc.content_id
-        JOIN `field_active` fa ON c.id = fa.content_id
-        JOIN `field_image` fi ON c.id = fi.content_id
-        JOIN `field_active` fac ON c.id = fac.content_id
-        JOIN `category` cy ON cy.id = fc.content_category
-        JOIN `user` u ON u.id = c.created_user
-        WHERE c.`content_type_name` = \'product\'
-        AND fac.`content_active` = 1';
-        $results = $this->pdo->query($query);
-        return $results;
-    }
     
      public function getSliderList(){
         $query = 'SELECT c.*, ft.*, fi.*, fd.*, fc.*, fl.*, c.id AS content_id, t.*, t.id AS content_type_id FROM `content` c
@@ -264,6 +246,24 @@ class Content {
         $query .= 'JOIN `category` cy ON cy.id = f2.content_category ';
         $query .= 'WHERE c.`content_type_name` = \'product\' AND c.id = '.$id.'';
         $results['results'] = $this->pdo->query($query);
+
+        $query2 = 'SELECT ct.*, t.* FROM `content_tag` ct
+        JOIN `tag` t ON ct.tag_id = t.id
+        WHERE ct.content_id = '.$id.'';
+        $results2 = $this->pdo->query($query2);
+
+        if ($results2 != null) {
+            foreach ($results2 as $v) {
+                $tagtemp[] = $v->name;
+                $tagtemp2[] = '<a href="/'.PROJECT_DIRECTORY.'tag/'.$v->tag_id.'">'.$v->name.'</a>';
+            }
+            $string = implode(',', $tagtemp);
+            $string2 = implode(',', $tagtemp2);
+
+            $results['results'][0]->tags = $string;
+            $results['results'][0]->tagsView = $string2;
+        }
+
         return($results);
     }
     
@@ -302,7 +302,7 @@ class Content {
         $results = $this->pdo->query($query);
 
         $query2 = 'SELECT ct.*, t.* FROM `content_tag` ct
-        JOIN `tags` t ON ct.tag_id = t.id
+        JOIN `tag` t ON ct.tag_id = t.id
         WHERE ct.content_id = '.$id.'';
         $results2 = $this->pdo->query($query2);
 
@@ -400,6 +400,9 @@ class Content {
                 $error = 1;
             }
         }
+
+        $error = $this->addTags($data, $lastId);
+
 		if($error == 0) {
 			return true;
 		} else {
@@ -450,10 +453,6 @@ class Content {
             } else {
                 $error = 1;
             }
-        }
-
-        if ($type == 'article') {
-            $error = $this->addTags($data, $lastId);
         }
 
 		if($error == 0) {
@@ -539,6 +538,8 @@ class Content {
                 }
             }
         }
+
+        $error = $this->addTags($data, $data['content_id']);
             
 		if($error == 0) {
 			return true;
@@ -569,6 +570,8 @@ class Content {
             ':id' => $id
             )
         );
+
+        $error = $this->deleteTagsContent($id);
             
 		if($error == 0) {
 			return true;
@@ -752,7 +755,7 @@ class Content {
         $query = $this->pdo->query(
             'SELECT * FROM field_title AS ft
             JOIN content_tag AS ct ON ft.content_id = ct.content_id
-            JOIN tags AS t ON ct.tag_id = t.id
+            JOIN tag AS t ON ct.tag_id = t.id
             WHERE ct.tag_id = :tag_id', array(
                 ':tag_id' => $tag_id
             )
@@ -785,7 +788,7 @@ class Content {
         /* Liste complète des tags : $selected_tags */
         // Requête
         $st = $this->pdo->query(
-            'SELECT * FROM tags'
+            'SELECT * FROM tag'
         );
 
         // Rangement au propre dans un tableau
@@ -797,7 +800,7 @@ class Content {
         /* Liste complète des tags relié au contenu $id : $tags_content */
         // Requête
         $t_c = $this->pdo->query(
-            'SELECT * FROM tags AS t
+            'SELECT * FROM tag AS t
             JOIN content_tag AS ct ON t.id = ct.tag_id
             WHERE ct.content_id = :content_id', array(
                 ':content_id' => $id
@@ -808,8 +811,7 @@ class Content {
         $tags_content = array();
         foreach ($t_c as $tc) {
             $tags_content[$tc->id] = $tc->name;
-        }
-        
+        }        
 
         /* Gestion au cas ou l'un des tags souhaite être supprimer */
         // Pour chaque tags relié au contenu ...
@@ -836,7 +838,7 @@ class Content {
 
                 // ... L'ajouter à la base.
                 $query = $this->pdo->insert(
-                    'INSERT INTO tags (name)
+                    'INSERT INTO tag (name)
                     VALUES (:name)', array(
                         ':name' => $v
                     )
@@ -903,6 +905,28 @@ class Content {
         return $error;
     }
 
+    public function deleteTagsContent($id) {
+        $query = $this->pdo->update(
+            'DELETE FROM content_tag WHERE content_id = :content_id', array(
+                ':content_id' => $id
+            )
+        );
+
+        if ($query) {
+            $error = 1;
+        } else {
+            $error = 0;
+        }
+
+        return $error;
+    }
+
+    public function getTags() {
+        $query = $this->pdo->query('SELECT * FROM tag');
+
+        return $query;
+    }
+
     public function deleteArticle($id) {
 
         // Suppression du contenu dans la table regroupant tous les contenus        
@@ -941,6 +965,8 @@ class Content {
             }
 
         }
+
+        $error = $this->deleteTagsContent($id);
             
         if($error == 0) {
             return true;

@@ -36,6 +36,19 @@
 							<?= $p->category_name; ?>
                         </div>
 
+                        <div class="col-md-3">
+                        	<b>Tags :</b>
+                        </div>	
+						<div class="col-md-9">
+	                        <?php 
+								if (isset($p->tagsView)) {
+									echo str_replace(',', ', ', $p->tagsView);
+								} else {
+									echo "Pas de tag associés";
+								}
+							?>
+						</div>
+
 						<div class="col-md-12">
                         	<b>Description :</b><br>
                         	<small>

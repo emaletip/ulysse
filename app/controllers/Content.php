@@ -144,10 +144,6 @@ class Content {
         return $this->contentModel->getProductList();
     }
 
-    public function getActiveProductList() {
-        return $this->contentModel->getActiveProductList();
-    }
-    
     public function getFieldList() {
         return $this->contentModel->getFieldList();
     }

@@ -1,3 +1,6 @@
+<?php 
+	$tags = $contentModel->getTags();
+?>
 <div class="block" id="block-search">
 	<div class="input-group">
 		<span class="input-group-btn">
@@ -5,4 +8,40 @@
 		</span>
 		<input type="text" class="form-control" placeholder="Recherche ...">
 	</div>
+	<div class="input-group">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+		</span>
+		<input id="research_tag" type="text" class="form-control" placeholder="Tags ...">
+		<input type="hidden" id="tag_id">
+	</div>
 </div>
+
+<script>
+  $(function() {
+    var projects = [
+    	<?php foreach ($tags as $key => $value) {
+    		echo " { value: " . $key . ", label: " . $value . " },";
+    	} ?>
+    ];
+ 
+    $( "#research_tag" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function( event, ui ) {
+        $( "#research_tag" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#research_tag" ).val( ui.item.label );
+        $( "#tag_id" ).val( ui.item.value ); 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label + "</a>" )
+        .appendTo( ul );
+    };
+  });
+</script>
