@@ -94,13 +94,13 @@ $routes['product'] = array(
 					  'id' => false,
 					  'type' => 'get',
 					  'controller' => 'Content',
-					  'action' => 'ActiveProductList',
+					  'action' => 'ProductList',
 					  'view' => 'frontlistProduct',
 				   );
 $routes['product/search'] = array(
 					  'path' => 'app',
 					  'id' => false,
-					  'type' => 'get',
+					  'type' => 'post',
 					  'controller' => 'Content',
 					  'action' => 'ProductListSearch',
 					  'view' => 'frontlistProduct',

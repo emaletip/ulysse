@@ -144,9 +144,9 @@ class Content {
         return $this->contentModel->getProductList();
     }
     
-    public function getProductListSearch($name) {
-        return $this->contentModel->getProductListSearch($name);
-
+    public function postProductListSearch() {
+        return $this->contentModel->postProductListSearch();
+    }
     public function getActiveProductList() {
         return $this->contentModel->getActiveProductList();
     }
