@@ -297,7 +297,9 @@ class Content {
             $results['results'][0]->tagsView = $string2;
         }
         
-        $query = 'SELECT * FROM review WHERE content_id = '.$id.'';
+        $query = 'SELECT r.*, u.id, u.login FROM review r
+        LEFT JOIN user u ON r.user_id = u.id
+        WHERE content_id = '.$id.'';
         $results['review'] = $this->pdo->query($query);
 
         return($results);

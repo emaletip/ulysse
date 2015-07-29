@@ -112,16 +112,24 @@
 			</div>
 			<?php if(!empty($r)) : ?>
 			<hr>
-			 <div class="row">
-			     <div class="col-md-12">
-			         <?php foreach($r as $review) : ?>
-			             <p><?php print $review->comment; ?></p>
-			             <p><?php print $review->score; ?></p>
-			             <p><?php print $review->datecreated; ?></p>
-			             <p>-</p>
-			         <?php endforeach; ?>
-			     </div>
-			 </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php foreach($r as $review) : ?>
+                    <?php $date = new DateTime($review->datecreated); ?>
+                        <div class="comment">
+                            <p class="comment-first">Commentaire du <strong><?php print $date->format('d/m/Y à H:i'); ?></strong> par <em><?php print $review->login; ?></em></p>
+                            <p><input type="hidden" class="rating" value="<?php print $review->score; ?>" data-readonly/> - <?php print nl2br($review->comment); ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php else : ?>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Aucun commentaire pour le moment. Soyez le premier !</p>
+                </div>
+            </div>
 			<?php endif; ?>
 		</div>
 <?php include_once("frontfooter.phtml"); ?>
