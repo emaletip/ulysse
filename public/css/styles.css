@@ -1265,3 +1265,12 @@ font-size: 12px;
 .ui-menu-item.ui-state-focus a{
 color: #fff;
 }
+
+.comment{
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+.comment:first-child{
+    border-top: none;
+    padding-top: 0;
+}
