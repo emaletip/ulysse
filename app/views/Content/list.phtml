@@ -31,12 +31,14 @@
 										$row = "<tr>";
 									}
                                     
+                                    $review = $Content->contentModel->countReview($Product->content_id);
                                     $category = $Content->contentModel->getCategory($Product->content_category);
 
 									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'>" . $Product->content_title . "</a></th>";
                                     $row .= "<td>" . $category[0]->name . "</td>";
 									$row .= "<td>" . $Product->content_price. " €</td>";
 									$row .= "<td>" . $Product->content_stock . "</td>";
+									$row .= "<td><i class=\"fa fa-comments\"></i> " . $review[0]->nbr . "</td>";
 									$row .= "<td style='text-align:center'>".($Product->content_active == 1 ? '<span class="label label-success">Validé</span>' : '<span class="label label-danger">Non validé</span>')." </td>";
 
 									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";

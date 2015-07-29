@@ -42,6 +42,9 @@ class Content {
         $query = 'DELETE FROM review WHERE id = '.$_POST['id'].'';
         return $this->pdo->update($query);
     }
+    public function countReview($id){
+        return $this->pdo->query('SELECT COUNT(*) AS nbr FROM review WHERE content_id ='.$id);
+    }
     
     public function getFieldList() {
         return $this->pdo->query('SELECT * FROM field WHERE custom = 1'); 
