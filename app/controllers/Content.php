@@ -117,7 +117,7 @@ class Content {
 
 		$edit = $this->contentModel->editContent($_POST);
 
-		show_flash($edit,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'dashboard/product/'.$_POST['content_id'],'dashboard/product/edit/'.$_POST['content_id']);
+		show_flash(true,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.',false,'dashboard/product/'.$_POST['content_id'],'dashboard/product/edit/'.$_POST['content_id']);
 		
 		redirect('dashboard/product/'.$_POST['content_id']);
 

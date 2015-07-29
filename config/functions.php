@@ -124,8 +124,6 @@ function handleFile($file, $path) {
             $largeur = 360;
 			$hauteur = 360;
 			
-		
-			
 			switch($extension) {
 				case 'jpg':
 					$image = imagecreatefromjpeg($image_path);
