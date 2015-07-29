@@ -235,6 +235,14 @@ $routes['cart/delete/([0-9]+)'] = array(
 					  'action' => 'DeleteProduct',
 					  'view' => 'frontlistArticle',
 				   );
+$routes['cart/qty'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Cart',
+					  'action' => 'EditQty',
+					  'view' => 'frontlistArticle',
+				   );
 // Pauline
 $routes['article'] = array(
 					  'path' => 'app',

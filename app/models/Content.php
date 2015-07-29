@@ -765,7 +765,7 @@ class Content {
         JOIN `category` cy ON cy.id = fc.content_category
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'
-        AND fc.id='.$id;
+        AND cy.id='.$id;
         $res = $this->pdo->query($query);
 
         $results[0]->products = $res;

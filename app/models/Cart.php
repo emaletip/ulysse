@@ -27,6 +27,16 @@ class Cart {
         return $query;
 	} 
 	
+	public function updateQtyProduct($post) {
+		$query = $this->pdo->update(
+        'UPDATE cart SET quantity=:quantity WHERE id=:id', array(
+            ':id' 		=> (int)$post['id'],
+            ':quantity' => (int)$post['qty'],
+            )
+        );
+        return $query;
+	} 
+	
 	public function getUserContent($id) {
 		return $this->pdo->query('SELECT * FROM user_content 
 								 WHERE id=:id',

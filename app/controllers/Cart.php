@@ -18,6 +18,12 @@ class Cart {
 		$this->cart = array();
 	}
 	
+	public function postEditQty() {
+		$res = $this->cartModel->updateQtyProduct($_POST);
+		return true;
+	}
+	
+	
 	public function postAddProduct() {
 	
 		$id = $_POST['content_id'];

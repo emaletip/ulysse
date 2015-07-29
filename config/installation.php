@@ -406,13 +406,16 @@
                     (\'secondaire\')',
                     
 /* refaire*/
-                    'INSERT INTO `content_menu` (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
+                    'INSERT INTO `content_menu` 
+                    (`id`, `content_id`, `menu_id`, `parent_id`, `path`, `type`, `label`, `position`) VALUES
 					(1, 0, 1, NULL, \'/index\', \'link\', \'Accueil\', 1),
-					(2, 1, 1, NULL, NULL, \'category\', \'Mobilier\', 2),
-					(5, 1, 1, 2, NULL, \'page\', \'Présentation\', 1),
-					(8, 1, 2, NULL, NULL, \'category\', \'Mob\', NULL),
-					(9, 1, 2, 8, NULL, \'page\', \'Test\', 1),
-					(10, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 6);',
+					(2, 0, 1, NULL, \'/product\', \'link\', \'Produits\', 1),
+					(3, 1, 1, 2, NULL, \'category\', \'Chambre\', 2),
+					(4, 2, 1, 2, NULL, \'category\', \'Salle de bain\', 3),
+					(5, 3, 1, 2, NULL, \'category\', \'Salon\', 4),
+					(6, 4, 1, 2, NULL, \'category\', \'Cuisine\', 5),
+					(7, 1, 1, NULL, NULL, \'page\', \'Présentation\', 1),
+					(8, 0, 1, NULL, \'/contact\', \'link\', \'Contact\', 1);',                    
                     
                     'INSERT INTO `content_field` (`content_type_id`, `field_id`) VALUES
                     (4, 1),
