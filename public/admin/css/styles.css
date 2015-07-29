@@ -245,6 +245,49 @@ body.login .page-content .logo {
 	border-bottom: 1px solid #ddd;
 }
 
+/* USER PRODUCT */
+/.user-product .p_row {
+	position: relative;
+}
+
+.user-product .p_row {
+	border: 1px solid #dedede;
+	display: inline-block;
+	height: 150px;
+	margin-left: 55px;
+	margin-top: 55px;
+	position: relative;
+	width: 150px;
+}
+
+.user-product .p_row .product_photo,
+.user-product .p_row .product_photo img,
+.user-product .p_row .product_details,
+.user-product .p_row .product_details a {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.user-product .p_row .product_details a:hover {
+	text-decoration: none;
+}
+.user-product .p_row .product_details h4 {
+	font-size: 20px;
+	margin-top: 40px;
+}
+.user-product .p_row .product_details {
+	opacity: 0;
+	padding-top:65px;
+	text-align: center;
+	transition: all 300ms ease;
+}
+.user-product .p_row .product_details:hover {
+	background-color: rgba(255, 255, 255, 0.8);
+	opacity: 1;
+}
 
 /********************/
 /*		PRODUCT		*/

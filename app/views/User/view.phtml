@@ -45,25 +45,29 @@ $products = $User->contentModel->getUserProduct($id);
 	                        <?php } ?>
 	                    </ul>
 	                </div>
-		            <div class="col-md-8 m-t-lg">
+		            <div class="col-md-8 m-t-lg user-product">
 		           		<div class="panel panel-default panel-transparent">
 		                	<div class="panel-heading bg-white">
 								<h3 class="panel-title">Vos produits</h3>
 		                    </div>
 		                    <div class="panel-body">
-		            	<?php if(!empty($products)) {
-		            		foreach($products as $product) {
-		            			$product = current($product['results']);
-		            			echo '
-		            			<div class="col-md-3 text-center">
-		            			<img height="150px" src="'.get_miniature($product->content_image).'" />
-		            			<a href="/'.PROJECT_DIRECTORY.'product/'.$product->content_id.'">
-		            			<h4>'. $product->content_title .'</h4>
-		            			</a>
-		            			</div>';
-		            			} 
-			            	}
-		            	?>
+				            	<?php if(!empty($products)) {
+				            		foreach($products as $product) {
+				            			$product = current($product['results']);
+				            			echo '
+				            			<div class="col-md-3 text-center p_row">
+				            			<div class="product_photo">
+				            			<img height="150px" src="'.get_miniature($product->content_image).'" />
+				            			</div>
+				            			<div class="product_details">
+				            			<a href="/'.PROJECT_DIRECTORY.'product/'.$product->content_id.'">
+				            			<h4>'. $product->content_title .'</h4>
+				            			</a>
+				            			</div>
+				            			</div>';
+				            			} 
+					            	}
+				            	?>
 							</div>
 	                	</div>
 	                </div>
