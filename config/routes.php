@@ -683,6 +683,38 @@ $routes['dashboard/product/remove'] = array(
 					  'action' => 'Product_delete',
 					  'view' => 'delete',
 				   );
+$routes['dashboard/review/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'editReview',
+				   );
+$routes['dashboard/review/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'editReview',
+				   );
+$routes['dashboard/review/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'deleteReview',
+				   );
+$routes['dashboard/review/remove'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'ReviewDelete',
+					  'view' => 'deleteReview',
+				   );
 
 /* Fields */
 

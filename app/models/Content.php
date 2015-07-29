@@ -14,6 +14,20 @@ class Content {
         $this->pdo = new \config\database();
     }
     
+    public function getReview($id){
+        return $this->pdo->query('SELECT r.*, u.id AS uid, u.login FROM review r
+        LEFT JOIN user u ON r.user_id = u.id
+        WHERE r.id = '.$id.'');
+    }
+    public function postReview(){
+        $query = 'UPDATE review SET comment = \''.addslashes($_POST['comment']).'\', score = \''.$_POST['score'].'\' WHERE id = '.$_POST['id'].'';
+        return $this->pdo->update($query);
+    }
+    public function postReviewDelete(){
+        $query = 'DELETE FROM review WHERE id = '.$_POST['id'].'';
+        return $this->pdo->update($query);
+    }
+    
     public function getFieldList() {
         return $this->pdo->query('SELECT * FROM field WHERE custom = 1'); 
     }
@@ -297,7 +311,7 @@ class Content {
             $results['results'][0]->tagsView = $string2;
         }
         
-        $query = 'SELECT r.*, u.id, u.login FROM review r
+        $query = 'SELECT r.*, u.id AS uid, u.login FROM review r
         LEFT JOIN user u ON r.user_id = u.id
         WHERE content_id = '.$id.'';
         $results['review'] = $this->pdo->query($query);

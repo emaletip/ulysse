@@ -1,0 +1,39 @@
+<?php include_once("admin/header.phtml"); ?>
+<?php include_once("admin/breadcrumb.phtml"); ?>
+<?php $r = $Contents[0]; ?>
+<div id="main-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-heading clearfix">
+                    <h4 class="panel-title">Modifier un commentaire</h4>
+                </div>
+				<div class="panel-body">
+                    
+                <form action="/<?= PROJECT_DIRECTORY ?>dashboard/review/update" method="post" class="form-horizontal">
+                    
+                    <?php $date = new DateTime($r->datecreated); ?>
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <p>Posté par <em><?php print $r->login; ?></em> le <strong><?php print $date->format('d/m/Y à H:i'); ?></strong></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="col-sm-3 control-label">Commentaire</label>
+                        <div class="col-sm-9"><textarea class="form-control" name="comment"><?php print $r->comment; ?></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="score" class="col-sm-3 control-label">Score</label>
+                        <div class="col-sm-9"><input value="<?php print $r->score; ?>" type="text" class="form-control" name="score"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<?php print $r->id; ?>">
+                        <div class="col-sm-offset-3 col-sm-9"><button type="submit" class="btn btn-primary">Sauvegarder</button></div>
+                    </div>
+                 </form>
+                    
+			     </div>
+            </div>
+        </div>
+    </div>
+</div>
+	
+<?php include_once("footer.phtml"); ?>
