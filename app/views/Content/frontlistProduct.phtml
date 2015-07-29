@@ -12,7 +12,7 @@
 						  	$categories = $Content->contentModel->AllCategory();
 
 						  	foreach ($categories as $c) {
-						  		echo "<button class='button btn-filter' data-filter='." . strtolower($c->name) . "'>" . ucfirst($c->name) . "</button>";
+						  		echo "<button class='button btn-filter' data-filter='." . str_replace(' ', '', strtolower($c->name)) . "'>" . ucfirst($c->name) . "</button>";
 						  	}
 						  ?>
 						</div>
