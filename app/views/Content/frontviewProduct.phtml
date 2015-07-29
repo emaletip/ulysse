@@ -72,11 +72,13 @@
 	                    if(isset($_SESSION['user'])) {
 		                    
 	                    ?>
+	                    <div class="col-md-2">
 						<form method="post" action="/<?= PROJECT_DIRECTORY ?>cart/add">
 							<input type="hidden" name="user_content_id" value='0'>
 							<input type="hidden" name="content_id" value="<?= $p->content_id ?>">
 							<button class='btn btn-add' type='submit' >Ajouter au panier</button>
 						</form>
+	                    </div>
 						<?php } ?>
 					</div>
 					<?php if(!empty($user_content)) { ?>

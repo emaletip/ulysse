@@ -42,14 +42,14 @@ class Content {
 			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
 			$_SESSION['flash']['user']['time'] = time() + 1;
 	
-			redirect('user/'.$_SESSION['user']->id);
+			redirect('user');
 		}
 
 
 	public function postProductPlus() {	
 		
 		$add = $this->contentModel->addUserProduct($_POST);
-		show_flash($add,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.','<b>Erreur ! </b> Votre produit \'a pas pu être enregistré.','user/'.$_SESSION['user']->id,'user/'.$_SESSION['user']->id);
+		show_flash($add,'<b>Félicitations ! </b> Votre produit a bien été enregistrée.','<b>Erreur ! </b> Votre produit \'a pas pu être enregistré.','user','user');
 
     }
     

@@ -7,13 +7,11 @@ class Order {
 	public $cartModel;
 	public $orderModel;
 	public $contentModel;
-	public $cartModel;
 
 	public function __construct() {
 		$this->orderModel = new \app\models\Order();
 		$this->cartModel = new \app\models\Cart();
 		$this->contentModel = new \app\models\Content();
-		$this->cartModel = new \app\models\Cart();
 		return $this;
 	}
 
