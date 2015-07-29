@@ -47,8 +47,8 @@ class Block {
 		return $this->blockModel->getBlock($id);
 	}
 	
-	public function getSlider_view() {
-		return $this->contentModel->getSliderView();
+	public function getSlider_view($id) {
+		return $this->contentModel->getSlider($id);
 	}
 	
 	public function getSlider_add() {

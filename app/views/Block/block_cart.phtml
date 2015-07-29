@@ -20,16 +20,6 @@
 	foreach($products as $pc) {
 		$nb += $pc->quantity;
 	}
-/*
-
-
-<form action="/<?= PROJECT_DIRECTORY; ?>product/add/3" method="post">
-<button type=submit class="btn" >Add 3</button>
-</form>
-<form action="/<?= PROJECT_DIRECTORY; ?>product/add/4" method="post">
-<button type=submit class="btn" >Add 4</button>
-</form>
-*/
 
 ?>
 <div id="block-cart" class="block">
@@ -56,7 +46,7 @@
 						<?=$pdt->content_title; ?></a>
 					</td>
 					<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
-					<td  class="cart_product_line"> <?= number_format($price,2,',',' ');?> €</td> <td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
+					<td  class="cart_product_line" width="60px"> <?= number_format($price,2,',',' ');?> €</td> <td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
 					<?php
 					echo '</tr>';
 					echo '<tr>';

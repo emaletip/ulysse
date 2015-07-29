@@ -26,6 +26,10 @@ class Block {
 		}
 		return $this;
 	}
+	
+	 public function getSliderView() {
+	 	return $this->getSlider($id);
+	 }
 
 	public function updateBlock($post) {
 		$sql ='UPDATE block SET ';

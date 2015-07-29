@@ -8,8 +8,9 @@
 					<h4 class="panel-title">Les pages</h4>
 				</div>
 				<div class="panel-body">
-					<div class="table-responsive list-user">  
-						<table class="table">
+					<div class="table-responsive list-user">
+                   <p><a href="page/add"><button type="button" class="btn btn-primary">Ajouter une page</button></a></p>
+                    	<table class="table listtable">
 							<thead>
 								<tr>
 									<th>Titre</th>
@@ -23,9 +24,9 @@
 									foreach ($Contents as $Page) {
 										$row = '';
 										$row .= "<th>" . $Page->content_title . "</th>";
-										$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/page/".$Page->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
-										$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/page/edit/".$Page->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
-										$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/page/delete/".$Page->content_id."'><span class='fa fa-times'></span></a></td></tr>";
+										$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/page/".$Page->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
+										$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/page/edit/".$Page->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+										$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/page/delete/".$Page->content_id."'><span class='fa fa-times'></span></a></td></tr>";
 										$row .= "</tr>";
 										echo $row;
 	

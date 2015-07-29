@@ -426,8 +426,8 @@
                     (4, 10),
                     (4, 11),
                     (3, 1),
-                    (3, 3),
                     (3, 6),
+                    (3, 3),
                     (3, 7),
                     (3, 8)',
                     
@@ -458,7 +458,7 @@
                     (\'field_active\', \'Actif\', \'input_checkbox\', 0, NULL, 0)',
 
                     'INSERT INTO `field_body` (`field_id`, `content_id`, `content_body`, `content_type_name`) VALUES
-                    (2, 1, \'Ut enim benefici liberalesque sumus, non ut exigamus gratiam (neque enim beneficium faeneramur sed natura propensi ad liberalitatem sumus), sic amicitiam non spe mercedis adducti sed quod omnis eius fructus in ipso amore inest, expetendam putamus.\', \'page\'),
+                    (2, 1, \'<p>Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi spatio disparatur, refertum mercatoribus opulentis, ubi annua sollemnitate prope Septembris initium mensis ad nundinas magna promiscuae fortunae convenit multitudo ad commercanda quae Indi mittunt et Seres aliaque plurima vehi terra marique consueta.</p><p>Quod si rectum statuerimus vel concedere amicis, quidquid velint, vel impetrare ab iis, quidquid velimus, perfecta quidem sapientia si simus, nihil habeat res vitii; sed loquimur de iis amicis qui ante oculos sunt, quos vidimus aut de quibus memoriam accepimus, quos novit vita communis. Ex hoc numero nobis exempla sumenda sunt, et eorum quidem maxime qui ad sapientiam proxime accedunt.</p><p>Quam ob rem vita quidem talis fuit vel fortuna vel gloria, ut nihil posset accedere, moriendi autem sensum celeritas abstulit; quo de genere mortis difficile dictu est; quid homines suspicentur, videtis; hoc vere tamen licet dicere, P. Scipioni ex multis diebus, quos in vita celeberrimos laetissimosque viderit, illum diem clarissimum fuisse, cum senatu dimisso domum reductus ad vesperum est a patribus conscriptis, populo Romano, sociis et Latinis, pridie quam excessit e vita, ut ex tam alto dignitatis gradu ad superos videatur deos potius quam ad inferos pervenisse.</p>\', \'page\'),
                     (2, 2, \'Quae amicitia voluntatibus aut sententia acceperit est aequo neque affluentior.\', \'article\')',
                     
                     'INSERT INTO `field_description` (`field_id`, `content_id`, `content_description`, `content_type_name`) VALUES
@@ -469,8 +469,8 @@
                     (3, 7, \'<p>L&#39;ouverture &agrave; l&#39;arri&egrave;re vous permet de rassembler et d&#39;organiser facilement les c&acirc;bles.</p>\', \'product\'),
                     (3, 8, \'<p>Induction domino/booster</p><p>Garantie 5 ans gratuite. D&eacute;tails des conditions disponibles en magasin ou sur internet.</p>\', \'product\'),
                     (3, 9, \'<p>Garantie 10 ans gratuite. D&eacute;tails des conditions disponibles en magasin ou sur internet.</p>\', \'product\'),
-					(3, 10, \'\', \'slider\'),
-					(3, 11, \'\', \'slider\')',
+					(3, 10, \'Novitates autem si spem adferunt, ut tamquam in herbis non fallacibus fructus appareat\', \'slider\'),
+					(3, 11, \'Maxima est enim vis vetustatis et consuetudinis\', \'slider\')',
                     
                     'INSERT INTO `field_price` (`field_id`, `content_id`, `content_price`, `content_type_name`) VALUES
                     (5, 3, \'49.50\', \'product\'),
@@ -519,7 +519,7 @@
                     (10, 9, \'public/img/Content/42fb4c9cbc8de6ab19be9415a92bffdb.JPG\', \'product\')',
 
                     'INSERT INTO `field_title` (`field_id`, `content_id`, `content_title`, `content_type_name`) VALUES
-                    (1, 1, \'Page de base\', \'page\'),
+                    (1, 1, \'Présentation\', \'page\'),
                     (1, 2, \'Nouvelle !\', \'article\'),
                     (1, 3, \'HEMNES - Table de chevet, brun noir\', \'product\'),
                     (1, 4, \'TIMSFORS - Canapé d&#39;angle 2+2 places\', \'product\'),
@@ -528,20 +528,20 @@
                     (1, 7, \'LACK - Banc TV, motif bouleau\', \'product\'),
                     (1, 8, \'MÖJLIG - Table cuisson induction\', \'product\'),
                     (1, 9, \'LILLÅNGEN - Lavabo, blanc\', \'product\'),
-					(1, 10,\'Le chat\',\'slider\'),
-					(1, 11,\'Un chat 2\',\'slider\')',
+					(1, 10,\'Vente de produits\',\'slider\'),
+					(1, 11,\'Produits divers\',\'slider\')',
                     
                     'INSERT INTO `field_caption` (`id`,`field_id`,`content_id`,`content_caption`,`content_type_name`) VALUES 
-					(1,6,5,\'Joli chat\',\'slider\'),
-					(2,6,6,\'Piti piti\',\'slider\')',
+					(1,6,5,\'Novitates autem si appareat\',\'slider\'),
+					(2,6,6,\'Vetustatis et consuetudinis\',\'slider\')',
                     
                     'INSERT INTO `field_link` (`id`,`field_id`,`content_id`,`content_link`,`content_type_name`) VALUES 
-					(1,8,5,\'index\',\'slider\'),
-					(2,8,6,\'page/21\',\'slider\')',
+					(1,8,5,\'product\',\'slider\'),
+					(2,8,6,\'contact\',\'slider\')',
                     
                     'INSERT INTO `field_path` (`id`,`field_id`,`content_id`,`content_path`,`content_type_name`) VALUES 
-					(1,1,5,\'public/img/Slider/be954d3f236da02e970314e2e1852e65.jpg\',\'slider\'),
-					(2,1,6,\'public/img/Slider/5ed2bd8ac95739929f6699a68aac38fc.jpg\',\'slider\')',
+					(1,1,5,\'public/img/Slider/964e024cbbefe76949d0b93ee41ac301.jpg\',\'slider\'),
+					(2,1,6,\'public/img/Slider/ec3c6e131746f3173161ea907c830201.jpg\',\'slider\')',
                     
                     'INSERT INTO role (`name`) VALUES
                     (\'root\'),

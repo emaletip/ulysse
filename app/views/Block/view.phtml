@@ -12,7 +12,10 @@
 				<?php if($Blocks->getContent_block() != '') { ?>
 				<p><b>Contenu :</b> <?=  $Blocks->getContent_block() ?></p>
 				<?php } ?>
-
+				
+				 <p>
+                    <a class="btn btn-primary" href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/block/edit/' . $Blocks->getId() ?>">Modifier ce contenu</a>
+                </p>
 			</div>
 		</div>
 	</div>

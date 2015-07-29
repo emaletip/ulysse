@@ -11,7 +11,7 @@
 			<div class="panel-body">
 				<div class="table-responsive list-user">
                     <p><a href="fields/add"><button type="button" class="btn btn-primary">Ajouter un champ</button></a></p>
-                    <table class="table">
+                    <table class="table listtable">
                         <tr>
                             <th>Label</th>
                             <th>Type</th>
@@ -23,8 +23,8 @@
                         <tr>
                             <td><?php print $field->label; ?></td>
                             <td><?php print $types[$field->type]; ?></td>
-                            <td><a href="fields/edit/<?php print $field->id; ?>"><span class='fa fa-pencil-square-o'></span></a></td>
-                            <td><a href="fields/delete/<?php print $field->id; ?>"><span class='fa fa-times'></span></a></td>
+                            <td class='action'><a href="fields/edit/<?php print $field->id; ?>"><span class='fa fa-pencil-square-o'></span></a></td>
+                            <td class='action'><a href="fields/delete/<?php print $field->id; ?>"><span class='fa fa-times'></span></a></td>
                         </tr>
 
                         <?php endforeach; ?>

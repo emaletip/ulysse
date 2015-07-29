@@ -10,7 +10,11 @@
 					</div>
 					<div class="panel-body">
 		            <p><?php print $Contents[0]->content_body; ?></p>
-		        </div>
+		            <p>
+	                    <a class="btn btn-primary" href="<?= '/' . PROJECT_DIRECTORY . 'dashboard/page/edit/' . $Contents[0]->content_id ?>">Modifier ce contenu</a>
+	                </p>
+					</div>
+				</div>
 		    </div>
 		</div>
 	</div>
