@@ -8,7 +8,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive list-user">  
-					<table class="table">
+                   <p><a href="product/add"><button type="button" class="btn btn-primary">Ajouter un produit</button></a></p>
+					<table class="table listtable">
 						<thead>
 							<tr>
 								<th>Titre</th>
@@ -41,9 +42,9 @@
 									$row .= "<td><i class=\"fa fa-comments\"></i> " . $review[0]->nbr . "</td>";
 									$row .= "<td style='text-align:center'>".($Product->content_active == 1 ? '<span class="label label-success">Validé</span>' : '<span class="label label-danger">Non validé</span>')." </td>";
 
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/product/delete/".$Product->content_id."'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/product/".$Product->content_id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/product/edit/".$Product->content_id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/product/delete/".$Product->content_id."'><span class='fa fa-times'></span></a></td></tr>";
 									$row .= "</tr>";
 									echo $row;
 

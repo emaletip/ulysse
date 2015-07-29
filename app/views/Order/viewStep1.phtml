@@ -107,22 +107,23 @@
 </div>
 <script>
 	$(document).ready(function(){
-		$('.btn-qty').bind('click',function(){
+		/* UPDATE CART QUANTITY */
+	    $('.btn-qty').bind('click', function(){
 			var id = $(this).attr('data-id');
 			var qty = $(this).attr('data-qty');
 			var change = $(this).attr('data-change');
-			
 			var parent = $(this).parents('tr:first');
 			
-			var price_str = parent.find('.price').html().replace(' €','').replace(',','.'); 
-			var price = parseFloat(price_str);
-			
+			/* ADD OR REMOVE 1 FROM QUANTITY */			
 			if(change == 'plus') {
 				var new_qty = parseInt(qty) + 1;
 			} else {
 				var new_qty = parseInt(qty) - 1;
-			}			
-
+			}	
+					
+			/* GET AND UPDATE PRICE*/
+			var price_str = parent.find('.price').html().replace(' €','').replace(',','.'); 
+			var price = parseFloat(price_str);
 			var sous_total = new_qty * price;
 			parent.find('.sous-total').html(sous_total.toFixed(2).replace('.',',')+' €');
 			
@@ -133,7 +134,7 @@
 					data: {id: id, qty: new_qty},
 					method: "POST",
 					success : function(){
-					  parent.find('.qty-u').html(new_qty);
+						parent.find('.qty-u').html(new_qty);
 					}
 	  			});
 	  			parent.find('.btn-plus').attr('data-qty', new_qty);
@@ -147,6 +148,16 @@
 					}
 	  			});
 			}
+			
+			/* REMPLACER LE TOTAL */
+			var total = 0;
+			$('.sous-total').each(function(){
+				var total_str = $(this).html().replace(' €','').replace(',','.').replace(' ',''); 
+				var total_tmp = parseFloat(total_str);
+				console.log(total_tmp);
+				total = total + total_tmp;
+			});
+			$('.total_value').html(total.toFixed(2).replace('.',',')+' €');
 			
 		});
 	});

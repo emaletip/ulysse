@@ -26,24 +26,24 @@ class Content {
 		$_SESSION['flash']['user']['time'] = time() + 1;
 
 		redirect('dashboard/product');
-	}
-
-	 public function postProduct_add_front() {
+	}	
+	
+	public function postProduct_add_front() {
 			
-			unset($_POST['submit']);	
-			$path = 'Content';
-			$_POST['image'] = handleFile($_FILES['image'], $path);
-			if(!isset($_POST['active'])) {
-				$_POST['active'] = 0;
-			}
-			$add = $this->contentModel->addProduct($_POST);
-	
-			$_SESSION['flash']['user']['key'] = 'success';
-			$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
-			$_SESSION['flash']['user']['time'] = time() + 1;
-	
-			redirect('user');
+		unset($_POST['submit']);	
+		$path = 'Content';
+		$_POST['image'] = handleFile($_FILES['image'], $path);
+		if(!isset($_POST['active'])) {
+			$_POST['active'] = 0;
 		}
+		$add = $this->contentModel->addProduct($_POST);
+
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Vos données ont bien été enregistrées.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+
+		redirect('user');
+	}
 
 
 	public function postProductPlus() {	

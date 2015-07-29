@@ -8,13 +8,12 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive list-user">  
-					<table class="table">
+					<table class="table listtable">
 						<thead>
 							<tr>
 								<th>Nom</th>
 								<th>Titre</th>
 								<th>Contenu Editable</th>
-								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>
@@ -31,8 +30,8 @@
 									$row .= "<td>".($v->is_editable == 1 ? 'Oui' : 'Non')." </td>";
 									$row .= "<td style='text-align:center'>".($v->is_active == 1 ? '<span class="label label-success">Actif</span>' : '<span class="label label-danger">Inactif</span>')." </td>";
 
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/block/".$v->id."'><span class='fa fa-plus-square-o'></span></a></td>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/block/edit/".$v->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
 									$row .= "</tr>";
 									echo $row;
 								}

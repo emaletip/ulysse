@@ -26,6 +26,12 @@
 		<img class="img-responsive" src="/<?= PROJECT_DIRECTORY.$slide->content_path ?>" alt="<?= $slide->content_title ?>" />
       <div class="carousel-caption">
       	<h2><?= $slide->content_title ?></h2>
+	  	<h3>
+	  	<span><?= $slide->content_caption ?></span>
+	  	</h3>
+
+	  		<?= $slide->content_description != '' ? '<span class="desc">'.$slide->content_description.'</span>' : '' ?>
+	  
 	  	<a class="btn" href="/<?= PROJECT_DIRECTORY.$slide->content_link ?>">En savoir plus</a>
       </div>
     </div>

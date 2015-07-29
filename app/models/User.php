@@ -66,14 +66,22 @@ class User {
 			$data['role_id'] = 3;
 		}
 
+		if(strstr(parent_url(),'dashboard')) {
+			$url = 'dashboard/user/list';
+		} else {
+			$url = 'register';
+		}
+		
 		// Vérifie si un utilisateur possède déjà le login OU l'e-mail envoyé
 		$exist = $this->existUser($data['login'], $data['email']);
-		$errors = array();
-
+		//$errors = array();
+		
 		// Si c'est le cas, le tableau d'erreurs possède l'erreur "login/email"
 		// Et l'utilisateur n'est pas ajouté
 		if ($exist) {
-			$errors['login/email'] = '<b>Attention ! </b> Ce login et/ou cette adresse e-mail est déjà utilisé par un utilisateur.';
+			$_SESSION['flash']['user']['key'] = 'error';
+			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Ce login et/ou cette adresse e-mail est déjà utilisé par un utilisateur.';
+			$_SESSION['flash']['user']['time'] = time() + 1;
 		} else {
 			// Ajout des données de la table USER
 			$data['password'] = sha1($data['password']);
@@ -81,19 +89,18 @@ class User {
 				'INSERT INTO user (email, login, password, last_name, first_name, address1, address2, postal_code, city, country)
 				VALUES (:email, :login, :password, :last_name, :first_name, :address1, :address2, :postal_code, :city, :country)',
 				array(	
-					':email' => $data['email'],
-					':login' => $data['login'],
-					':password' => $data['password'],
-					':last_name' => $data['last_name'],
-					':first_name' => $data['first_name'],
-					':address1' => $data['address1'],
-					':address2' => $data['address2'],
-					':postal_code' => $data['postal_code'],
-					':city' => $data['city'],
-					':country' => $data['country']
+					':email' => isset($data['email']) ? $data['email'] : '',
+					':login' => isset($data['login']) ? $data['login'] : '',
+					':password' => isset($data['password']) ? $data['password'] : '',
+					':last_name' => isset($data['last_name']) ? $data['last_name'] : '',
+					':first_name' => isset($data['first_name']) ? $data['first_name'] : '',
+					':address1' => isset($data['address1']) ? $data['address1'] : '',
+					':address2' => isset($data['address2']) ? $data['address2'] : '',
+					':postal_code' => isset($data['postal_code']) ? $data['postal_code'] : '',
+					':city' => isset($data['city']) ? $data['city'] : '',
+					':country' => isset($data['country']) ? $data['country'] : ''
 				)
 			);
-
 			// Ajout des données de la table USER_ROLE pour définir le role de l'utilisateur
 			$lastId = $this->pdo->lastId();
 			$result2 = $this->pdo->insert(
@@ -107,16 +114,18 @@ class User {
 
 			// Si les requêtes ne se sont pas correctement effectuées, alors le tableau d'erreurs possède l'erreur "request"
 			if(!($result && $result2)) {
-				$errors['request'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
+				//$errors['request'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
+				$_SESSION['flash']['user']['key'] = 'error';
+				$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
+				$_SESSION['flash']['user']['time'] = time() + 1;
+			} else {
+				$_SESSION['flash']['user']['key'] = 'success';
+				$_SESSION['flash']['user']['msg'] = '<b>Félicitation ! </b> Vos données ont bien été enregistrées.';
+				$_SESSION['flash']['user']['time'] = time() + 1;
 			}
 		}
-
-		// Renvoi true en cas de succès, sinon renvoi le tableau d'erreurs
-		if (empty($errors)) {
-			return true;
-		} else {
-			return $errors;
-		}
+		// Renvoi true en cas de succès, sinon renvoi le tableau d'erreurs	
+		return $url;
 	}
 	
 

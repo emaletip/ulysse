@@ -7,12 +7,12 @@
 				<h4 class="panel-title">Les catégories</h4>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive list-user">  
-					<table class="table">
+				<div class="table-responsive list-user"> 
+					<p><a href="category/add"><button type="button" class="btn btn-primary">Ajouter une catégorie</button></a></p> 
+					<table class="table listtable">
 						<thead>
 							<tr>
 								<th>Nom</th>
-								<th></th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -22,9 +22,8 @@
 								foreach ($Categorys as $Category) {
 									$row = "<tr>";
 									$row .= "<th><a href='/" . PROJECT_DIRECTORY . "dashboard/category/".$Category->id."'>" . $Category->name . "</a></th>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/category/".$Category->id."'><span class='fa fa-plus-square-o'></span></a></td>";
-									$row .= "<td><a href='/" . PROJECT_DIRECTORY . "dashboard/category/edit/".$Category->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
-									$row .= "<td><a onclick='myFunction(".$Category->id.")'><span class='fa fa-times'></span></a></td></tr>";
+									$row .= "<td class='action'><a href='/" . PROJECT_DIRECTORY . "dashboard/category/edit/".$Category->id."'><span class='fa fa-pencil-square-o'></span></a></td>";
+									$row .= "<td class='action'><a onclick='myFunction(".$Category->id.")'><span class='fa fa-times'></span></a></td></tr>";
 									$row .= "</tr>";
 									echo $row;
 								}
