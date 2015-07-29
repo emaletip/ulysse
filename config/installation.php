@@ -532,16 +532,16 @@
 					(1, 11,\'Produits divers\',\'slider\')',
                     
                     'INSERT INTO `field_caption` (`id`,`field_id`,`content_id`,`content_caption`,`content_type_name`) VALUES 
-					(1,6,5,\'Novitates autem si appareat\',\'slider\'),
-					(2,6,6,\'Vetustatis et consuetudinis\',\'slider\')',
+					(1,6,10,\'Novitates autem si appareat\',\'slider\'),
+					(2,6,11,\'Vetustatis et consuetudinis\',\'slider\')',
                     
                     'INSERT INTO `field_link` (`id`,`field_id`,`content_id`,`content_link`,`content_type_name`) VALUES 
-					(1,8,5,\'product\',\'slider\'),
-					(2,8,6,\'contact\',\'slider\')',
+					(1,8,10,\'product\',\'slider\'),
+					(2,8,11,\'contact\',\'slider\')',
                     
                     'INSERT INTO `field_path` (`id`,`field_id`,`content_id`,`content_path`,`content_type_name`) VALUES
-					(1,1,10,\'public/img/Slider/62d9f3ef122254e8b5e8ed7d1ad3d10e.jpg\',\'slider\'),
-					(2,1,11,\'public/img/Slider/ec3c6e131746f3173161ea907c830201.jpg\',\'slider\')',
+					(1,7,10,\'public/img/Slider/62d9f3ef122254e8b5e8ed7d1ad3d10e.jpg\',\'slider\'),
+					(2,7,11,\'public/img/Slider/ec3c6e131746f3173161ea907c830201.jpg\',\'slider\')',
                     
                     'INSERT INTO role (`name`) VALUES
                     (\'root\'),
