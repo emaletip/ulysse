@@ -59,19 +59,15 @@
                         </div>	
 
                         <?php foreach($custom as $c) {
-        
-                                if($c->type == 'select') {
-                                    $value = $Content->contentModel->getContentSelectValue($p->{str_replace('field_','content_',$c->name)});
-                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
-                                } else {
-                                    print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div>';
-                               }
-        
+                            if($c->type == 'select') {
+                                $value = $Content->contentModel->getContentSelectValue($p->{str_replace('field_','content_',$c->name)});
+                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
+                            } else {
+                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div>';
+							}
 	                    } 
 	                    
-	                    if(isset($_SESSION['user'])) {
-		                    
-	                    ?>
+	                    if(isset($_SESSION['user'])) { ?>
 	                    <div class="col-md-2">
 						<form method="post" action="/<?= PROJECT_DIRECTORY ?>cart/add">
 							<input type="hidden" name="user_content_id" value='0'>
@@ -79,7 +75,7 @@
 							<button class='btn btn-add' type='submit' >Ajouter au panier</button>
 						</form>
 	                    </div>
-						<?php } ?>
+					<?php } ?>
 					</div>
 					<?php if(!empty($user_content)) { ?>
 					<div class='col-md-6 col-md-offset-'>

@@ -131,7 +131,7 @@ class User {
 		return $users;
 	}
 
-	public function getUser($id) {
+	public function getUser($id = null) {
 		$id = $_SESSION['user']->id;
 		$user = $this->userModel->getUser($id);
 		return $user;
