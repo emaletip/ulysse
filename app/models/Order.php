@@ -85,6 +85,17 @@ class Order {
         
 	    return $last_id;    
 	}
+
+	public function setStatus($status_id, $id) {
+		return $this->pdo->update(
+			'UPDATE `order`
+			SET `status_id` = :status_id
+			WHERE `id` = :id', array(
+				':status_id' => $status_id,
+				':id' => $id
+			)
+		);
+	}
 	
 	public function getPdo() {
 		return $this->pdo;	

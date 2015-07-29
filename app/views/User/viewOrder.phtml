@@ -33,7 +33,13 @@
 						}
 						switch($order->status_id) {
 							case 1:
-								$status = '<span class="label label-success">Envoyé</span>';
+								$status = '<span class="label label-info">Envoyé</span>';
+								break;
+							case 2:
+								$status = '<span class="label label-success">Reçu</span>';
+								break;
+							case 3:
+								$status = '<span class="label label-important">Annulée</span>';
 								break;
 							default:
 								$status = '<span class="label label-default">En cours</span>';
@@ -98,11 +104,11 @@
 						</table>
 						<br>
 						<div class="col-md-12">
-							<select class="form-control	">
-								<option <?php if ($order->status_id == 0): echo 'selected'; endif; ?>value="0">En cours</option>
-								<option <?php if ($order->status_id == 1): echo 'selected'; endif; ?>value="1">Envoyée</option>
-								<option <?php if ($order->status_id == 2): echo 'selected'; endif; ?>value="2">Reçue</option>
-								<option <?php if ($order->status_id == 3): echo 'selected'; endif; ?>value="3">Annulée</option>
+							<select class="form-control	" id="select_statut">
+								<option <?php if ($order->status_id == 0): echo 'selected '; endif; ?>value="0">En cours</option>
+								<option <?php if ($order->status_id == 1): echo 'selected '; endif; ?>value="1">Envoyée</option>
+								<option <?php if ($order->status_id == 2): echo 'selected '; endif; ?>value="2">Reçue</option>
+								<option <?php if ($order->status_id == 3): echo 'selected '; endif; ?>value="3">Annulée</option>
 							</select>
 						</div>
 						</div>
@@ -125,4 +131,17 @@
 		</div>
 	</div>
 </div>
+<script>
+	$("#select_statut").bind("change", function(){
+		var x = document.getElementById("select_statut").value;
+		$.ajax({
+	    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
+	    	data: {status_id: x, id: <?= $order->order_id ?>},
+	    	method: "POST",
+	    	/*success: function(data) {
+	    		$().;
+	    	}*/
+	    });
+	});
+</script>
 <?php include_once("footer.phtml"); ?>

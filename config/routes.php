@@ -78,6 +78,14 @@ $routes['order/confirmation'] = array(
 					  'action' => 'Step5',
 					  'view' => 'viewStep5',
 				   );	
+$routes['order/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Order',
+					  'action' => 'FrontStatus',
+					  'view' => 'list',
+				   );
 
 				   						   
 $routes['register/insert'] = array(
@@ -508,6 +516,15 @@ $routes['dashboard/order'] = array(
 					  'type' => 'get',
 					  'controller' => 'Order',
 					  'action' => 'List',
+					  'view' => 'list',
+				   );
+
+$routes['dashboard/order/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Order',
+					  'action' => 'Status',
 					  'view' => 'list',
 				   );
 

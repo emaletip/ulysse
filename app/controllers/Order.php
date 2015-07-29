@@ -26,6 +26,22 @@ class Order {
 	public function getTotalEarnings() {
 		return $this->orderModel->getTotalEarnings();
 	}
+
+	public function postStatus() {
+		$r = $this->orderModel->setStatus($_POST['status_id'], $_POST['id']);
+
+		if($r) {
+			redirect('dashboard/order/'.$_POST['id']);
+		}
+	}
+
+	public function postFrontStatus() {
+		$r = $this->orderModel->setStatus($_POST['status_id'], $_POST['id']);
+
+		if($r) {
+			redirect('user/order/'.$_POST['id']);
+		}
+	}
 	
 	public function getStep1() {
 		return $this->cartModel->listCart();
