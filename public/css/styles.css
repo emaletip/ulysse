@@ -144,6 +144,12 @@ button.btn-primary:not(.btn-default), a.btn-primary{
 .breadcrumb {
 	background-color: #fff;
 }
+.glyphicon-star{
+	color:#f0c541
+}
+.glyphicon-star-empty{
+	color:#ccc;
+}
 /*
 .label {
 	color: #333;
