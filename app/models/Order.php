@@ -22,6 +22,10 @@ class Order {
 	public function getOrder($id) {
 		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`id`=:id', array(':id' => (int)$id));
 	}
+	
+	public function getOrderList() {
+		 return $this->pdo->query('SELECT * FROM `order` o');
+	}
 		
 	public function addOrder($post) {
 		
