@@ -88,10 +88,10 @@ class Order {
 
 	public function setStatus($status_id, $id) {
 		return $this->pdo->update(
-			'UPDATE `order`
-			SET `status_id` = :status_id
-			WHERE `id` = :id', array(
-				':status_id' => $status_id,
+			'UPDATE `order_product`
+			SET `delivery_status_id`=:delivery_status_id
+			WHERE `id`=:id', array(
+				':delivery_status_id' => $status_id,
 				':id' => $id
 			)
 		);

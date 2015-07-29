@@ -250,7 +250,6 @@
                       `delivery_address` text NOT NULL,
                       `total_price` decimal(10,2) NOT NULL,
                       `delivery_id` int(11) NOT NULL,
-                      `status_id` int(11) NOT NULL,
                       `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                       PRIMARY KEY (`id`)
                     ) ENGINE=InnoDB DEFAULT charset=utf8 AUTO_INCREMENT=1',
@@ -339,6 +338,7 @@
 					 `user_content_id` INT NOT NULL,
 					 `product_id` INT NOT NULL,
 					 `quantity` INT NOT NULL,
+					 `delivery_status_id` INT NOT NULL,
 					 `user_id` INT NOT NULL,
 					 PRIMARY KEY (`id`)
 					 ) ENGINE=InnoDB DEFAULT charset=utf8 AUTO_INCREMENT=1',

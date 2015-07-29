@@ -2,8 +2,16 @@
 <?php include_once("breadcrumb.phtml"); 
 	$id = $_SESSION['user']->id;
 	$u 		 = $Users[0];
-	$order = $Users['order'][0];
+	$order  = $Users['order'][0];
 	$products = $User->contentModel->getUserProduct($id);
+	
+	$o = $User->getOrder($order->order_id);
+	
+	if($order->user_content_id != 0) {
+		$product = $products[$order->user_content_id];
+	} else {
+		$product = $products[$order->product_id];		
+	}
 ?>
 <!-- CONTENT -->
 <div id="main-wrapper">
@@ -100,7 +108,8 @@
 						} ?>		
 						</table>
 						<br>
-						<div class="col-md-12">
+						<div class="col-md-12">				
+						
 							<select class="form-control	" id="select_statut">
 								<option <?php if ($order->status_id == 0): echo 'selected '; endif; ?>value="0">En cours</option>
 								<option <?php if ($order->status_id == 1): echo 'selected '; endif; ?>value="1">Envoyée</option>
@@ -126,16 +135,28 @@
 	</div>
 </div>
 <script>
-	$("#select_statut").bind("change", function(){
+	/*
+$("#select_statut").bind("change", function(){
 		var x = document.getElementById("select_statut").value;
 		$.ajax({
 	    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
 	    	data: {status_id: x, id: <?= $order->order_id ?>},
 	    	method: "POST",
-	    	/*success: function(data) {
-	    		$().;
-	    	}*/
 	    });
+	});
+*/
+	$(document).ready(function(){
+		$("#select_statut").bind("change", function(){
+			var x = $('#select_statut').val();
+			$.ajax({
+		    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
+		    	data: {status_id: x, id: <?= $o->id ?>},
+		    	method: "POST",
+		    	success: function(data) {
+		    		console.log('good');
+		    	}
+		    });
+		});
 	});
 </script>
 <?php include_once("footer.phtml"); ?>

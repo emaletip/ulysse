@@ -139,16 +139,20 @@
 		</div>
 	</div>
 	<script>
-	$("#select_statut").bind("change", function(){
-		var x = document.getElementById("select_statut").value;
-		$.ajax({
-	    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
-	    	data: {status_id: x, id: <?= $order->order_id ?>},
-	    	method: "POST",
-	    	/*success: function(data) {
-	    		$().;
-	    	}*/
-	    });
+	$(document).ready(function(){
+		$("#select_statut").bind("select", function(){
+			var x = $('#select_statut').val();
+			console.log(x);
+			return false;
+			$.ajax({
+		    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
+		    	data: {status_id: x, id: <?= $order->order_id ?>},
+		    	method: "POST",
+		    	success: function(data) {
+		    		console.log(x);
+		    	}
+		    });
+		});
 	});
 	</script>
 <?php include_once("frontfooter.phtml"); ?>
