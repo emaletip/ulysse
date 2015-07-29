@@ -114,6 +114,7 @@
 			<hr>
             <div class="row">
                 <div class="col-md-12">
+                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un commentaire.</a></p>
                     <?php foreach($r as $review) : ?>
                     <?php $date = new DateTime($review->datecreated); ?>
                         <div class="comment">
@@ -127,7 +128,8 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <p>Aucun commentaire pour le moment. Soyez le premier !</p>
+                    <p>Aucun commentaire pour le moment !</p>
+                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un commentaire.</a></p>
                 </div>
             </div>
 			<?php endif; ?>

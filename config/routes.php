@@ -113,6 +113,22 @@ $routes['product/plus'] = array(
 					  'action' => 'ProductPlus',
 					  'view' => 'frontlistProduct',
 				   );
+$routes['review/add/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ReviewAdd',
+					  'view' => 'frontaddReview',
+				   );
+$routes['review/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'ReviewAdd',
+					  'view' => 'frontaddReview',
+				   );
 $routes['user/product/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,

@@ -23,6 +23,21 @@ class Content {
         $query = 'UPDATE review SET comment = \''.addslashes($_POST['comment']).'\', score = \''.$_POST['score'].'\' WHERE id = '.$_POST['id'].'';
         return $this->pdo->update($query);
     }
+    public function getReviewAdd(){
+    }
+    public function postReviewAdd(){
+        $insert = $this->pdo->insert(
+        'INSERT INTO review (content_id, user_id, comment, score, datecreated)
+        VALUES (:content_id, :user_id, :comment, :score, :datecreated)', array(
+            ':content_id' => $_POST['content_id'],
+            ':user_id' => $_POST['user_id'],
+            ':comment' => $_POST['comment'],
+            ':score' => $_POST['score'],
+            ':datecreated' => date('Y-m-d H:i:s')
+            )
+        );
+        return $insert;
+    }
     public function postReviewDelete(){
         $query = 'DELETE FROM review WHERE id = '.$_POST['id'].'';
         return $this->pdo->update($query);
