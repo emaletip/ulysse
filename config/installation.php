@@ -510,7 +510,7 @@
 
                     
                     'INSERT INTO `field_image` (`field_id`, `content_id`, `content_image`, `content_type_name`) VALUES
-                    (10, 3, \'public/img/Content/883aa47854bf0803e8d30dd1d91ff2cd.jpg\', \'product\'),
+                    (10, 3, \'public/img/Content/ccda356949069d138e83dfbe402b893b.JPG\', \'product\'),
                     (10, 4, \'public/img/Content/94f6443c3ad607c078c0473ecbc8b71e.JPG\', \'product\'),
                     (10, 5, \'public/img/Content/7ac5319ae2499d6c19c6dd53f750371b.JPG\', \'product\'),
                     (10, 6, \'public/img/Content/5b74f7c77ca9b6b05774dd1e13518dba.JPG\', \'product\'),
