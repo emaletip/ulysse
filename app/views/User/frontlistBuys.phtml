@@ -42,12 +42,18 @@
 							$pdt = $User->contentModel->getProduct($buy->product_id);
 							$pdt = current($pdt['results']); 
 							
-							switch($buy->status_id) {
+							switch($buy->delivery_status_id) {
 								case 1:
-									$status = '<span class="label label-success">Envoyé</span>';
+									$status = '<span class="label label-info">Envoyé</span>';
+									break;
+								case 2:
+									$status = '<span class="label label-success">Reçue</span>';
+									break;
+								case 3:
+									$status = '<span class="label label-danger">Annulé</span>';
 									break;
 								default:
-									$status = '<span class="label label-default">En cours</span>';
+									$status = '<span class="label label-primary">En cours</span>';
 									break;
 							}
 							
