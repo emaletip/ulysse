@@ -121,6 +121,22 @@ $routes['product/plus'] = array(
 					  'action' => 'ProductPlus',
 					  'view' => 'frontlistProduct',
 				   );
+$routes['review/add/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'ReviewAdd',
+					  'view' => 'frontaddReview',
+				   );
+$routes['review/insert'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'ReviewAdd',
+					  'view' => 'frontaddReview',
+				   );
 $routes['user/product/edit/([0-9]+)'] = array(
 					  'path' => 'app',
 					  'id' => true,
@@ -241,6 +257,14 @@ $routes['cart/delete/([0-9]+)'] = array(
 					  'type' => 'post',
 					  'controller' => 'Cart',
 					  'action' => 'DeleteProduct',
+					  'view' => 'frontlistArticle',
+				   );
+$routes['cart/qty'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Cart',
+					  'action' => 'EditQty',
 					  'view' => 'frontlistArticle',
 				   );
 // Pauline
@@ -691,6 +715,38 @@ $routes['dashboard/product/remove'] = array(
 					  'controller' => 'Content',
 					  'action' => 'Product_delete',
 					  'view' => 'delete',
+				   );
+$routes['dashboard/review/edit/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'editReview',
+				   );
+$routes['dashboard/review/update'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'editReview',
+				   );
+$routes['dashboard/review/delete/([0-9]+)'] = array(
+					  'path' => 'app',
+					  'id' => true,
+					  'type' => 'get',
+					  'controller' => 'Content',
+					  'action' => 'Review',
+					  'view' => 'deleteReview',
+				   );
+$routes['dashboard/review/remove'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Content',
+					  'action' => 'ReviewDelete',
+					  'view' => 'deleteReview',
 				   );
 
 /* Fields */

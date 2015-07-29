@@ -8,6 +8,8 @@ function selectshow(obj) {
 }
 
 $(document).ready(function() {
+    
+    $(".rating").rating();
 
 	$('.editor').each(function(){	
 		CKEDITOR.replace( $(this).attr('name') );

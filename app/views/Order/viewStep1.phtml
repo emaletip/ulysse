@@ -3,6 +3,7 @@
 	/* Créer route pour ajouter et supprimer un produit au panier */
 	$products = $Orders;
 	$product_res = $contentModel->getProductList();
+	
 	foreach($product_res as $pr){
 		$product[$pr->content_id] = $pr;
 	}
@@ -43,26 +44,30 @@
 						<td></td>
 					</thead>
 						
-		<?php 		foreach($products as $product_cart) {
+		<?php 				
+				foreach($products as $product_cart) {
 						echo '<tr>';
+						$pdt = $product[$product_cart->product_id];
 						
 						if($product_cart->user_content_id != 0) {
 							$usc = $Cart->cartModel->getUserContent($product_cart->user_content_id);
 							$price = $usc[0]->content_price;
 						} else {
+						
 							$price = $pdt->content_price;
 						}
-						
-						$pdt = $product[$product_cart->product_id];
 						
 						$miniature = get_miniature($pdt->content_image);
 						$img = $miniature;
 						?>
 						<td class="cart_product_line img"> <img src="<?= $img; ?>" height="70px"></td>
 						<td class="cart_product_line name"> <a href="/<?= PROJECT_DIRECTORY; ?>product/<?=$pdt->content_id?>"><?=$pdt->content_title; ?></a> </td>
-						<td class="cart_product_line qty">x <?=  $product_cart->quantity; ?></td>
+						<td class="cart_product_line qty">x <span class="qty-u"> <?=  $product_cart->quantity; ?></span> 
+						<button data-change="plus" data-qty="<?= $product_cart->quantity; ?>"  data-id="<?= $product_cart->id ?>" class="btn-plus btn-primary btn-qty">+</button>
+						<button data-change="moins" data-qty="<?= $product_cart->quantity; ?>"  class="btn-plus btn-primary btn-qty"  data-id="<?= $product_cart->id ?>">-</button>
+						</td>
 						<td class="cart_product_line price"> <?= number_format($price,2,',',' ');?> €</td> 
-						<td class="cart_product_line"><?= number_format($price*$product_cart->quantity,2,',',' ');?> €</td>
+						<td class="cart_product_line sous-total"><?= number_format($price*$product_cart->quantity,2,',',' ');?> €</td>
 						<td  class="cart_product_line"> <a class="deleteproduct" data-id="<?=$product_cart->id;?>"><i class="fa fa-times"></i></a></td>
 						<?php
 						echo '</tr>';
@@ -100,4 +105,50 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		$('.btn-qty').bind('click',function(){
+			var id = $(this).attr('data-id');
+			var qty = $(this).attr('data-qty');
+			var change = $(this).attr('data-change');
+			
+			var parent = $(this).parents('tr:first');
+			
+			var price_str = parent.find('.price').html().replace(' €','').replace(',','.'); 
+			var price = parseFloat(price_str);
+			
+			if(change == 'plus') {
+				var new_qty = parseInt(qty) + 1;
+			} else {
+				var new_qty = parseInt(qty) - 1;
+			}			
+
+			var sous_total = new_qty * price;
+			parent.find('.sous-total').html(sous_total.toFixed(2).replace('.',',')+' €');
+			
+			if(new_qty != 0) {
+				/* update prod */
+				$.ajax({
+					url: "/<?= PROJECT_DIRECTORY ?>cart/qty",
+					data: {id: id, qty: new_qty},
+					method: "POST",
+					success : function(){
+					  parent.find('.qty-u').html(new_qty);
+					}
+	  			});
+	  			parent.find('.btn-plus').attr('data-qty', new_qty);
+			} else {
+				/* delete product_cart */
+				$.ajax({
+					url: "/<?= PROJECT_DIRECTORY ?>cart/delete/"+id,
+					method: "POST",
+					success : function(){
+					  parent.remove();
+					}
+	  			});
+			}
+			
+		});
+	});
+</script>
 <?php include_once("frontfooter.phtml"); ?>

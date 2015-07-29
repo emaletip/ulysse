@@ -14,6 +14,38 @@ class Content {
         $this->pdo = new \config\database();
     }
     
+    public function getReview($id){
+        return $this->pdo->query('SELECT r.*, u.id AS uid, u.login FROM review r
+        LEFT JOIN user u ON r.user_id = u.id
+        WHERE r.id = '.$id.'');
+    }
+    public function postReview(){
+        $query = 'UPDATE review SET comment = \''.addslashes($_POST['comment']).'\', score = \''.$_POST['score'].'\' WHERE id = '.$_POST['id'].'';
+        return $this->pdo->update($query);
+    }
+    public function getReviewAdd(){
+    }
+    public function postReviewAdd(){
+        $insert = $this->pdo->insert(
+        'INSERT INTO review (content_id, user_id, comment, score, datecreated)
+        VALUES (:content_id, :user_id, :comment, :score, :datecreated)', array(
+            ':content_id' => $_POST['content_id'],
+            ':user_id' => $_POST['user_id'],
+            ':comment' => $_POST['comment'],
+            ':score' => $_POST['score'],
+            ':datecreated' => date('Y-m-d H:i:s')
+            )
+        );
+        return $insert;
+    }
+    public function postReviewDelete(){
+        $query = 'DELETE FROM review WHERE id = '.$_POST['id'].'';
+        return $this->pdo->update($query);
+    }
+    public function countReview($id){
+        return $this->pdo->query('SELECT COUNT(*) AS nbr FROM review WHERE content_id ='.$id);
+    }
+    
     public function getFieldList() {
         return $this->pdo->query('SELECT * FROM field WHERE custom = 1'); 
     }
@@ -297,7 +329,7 @@ class Content {
             $results['results'][0]->tagsView = $string2;
         }
         
-        $query = 'SELECT r.*, u.id, u.login FROM review r
+        $query = 'SELECT r.*, u.id AS uid, u.login FROM review r
         LEFT JOIN user u ON r.user_id = u.id
         WHERE content_id = '.$id.'';
         $results['review'] = $this->pdo->query($query);
@@ -765,7 +797,7 @@ class Content {
         JOIN `category` cy ON cy.id = fc.content_category
         JOIN `user` u ON u.id = c.created_user
         WHERE c.`content_type_name` = \'product\'
-        AND fc.id='.$id;
+        AND cy.id='.$id;
         $res = $this->pdo->query($query);
 
         $results[0]->products = $res;

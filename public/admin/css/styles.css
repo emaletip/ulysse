@@ -182,28 +182,28 @@ body.login .page-content .logo {
 .list-user td {
 	vertical-align: middle !important;
 }
-.list-user .fa {
+.list-user .fa, .list-comment .fa {
 	font-size: 25px;
 }
-.list-user .fa-plus-square-o {
+.list-user .fa-plus-square-o, .list-comment .fa-plus-square-o {
 	color: #337ab7;
 }
-.list-user .fa-pencil-square-o {
+.list-user .fa-pencil-square-o, .list-comment .fa-pencil-square-o {
 	color: #00af00;
 }
-.list-user .fa-times {
+.list-user .fa-times, .list-comment .fa-times {
 	color: #cf1010;
 }
-.list-user .fa-plus-square-o:hover {
+.list-user .fa-plus-square-o:hover, .list-comment .fa-plus-square-o:hover {
 	color: #135a97;
 }
-.list-user .fa-pencil-square-o:hover {
+.list-user .fa-pencil-square-o:hover, .list-comment .fa-pencil-square-o:hover {
 	color: #108f10;
 }
-.list-user .fa-times:hover {
+.list-user .fa-times:hover, .list-comment .fa-times:hover {
 	color: #af0000;
 }
-.list-user a {
+.list-user a, .list-comment a {
 	cursor: pointer;
 }
 

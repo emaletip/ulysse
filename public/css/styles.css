@@ -95,7 +95,15 @@ button.btn:not(.btn-default), a.btn {
     display: inline-block;
     border-radius: 2px;
 }
+.btn-plus{
+	height:20px;
+	width:20px;
+	line-height: 18px;
+	padding: 1px 6px;
+	margin-left: 5px !important;
+	border-radius: 4px;
 
+}
 button.btn-primary:not(.btn-default), a.btn-primary{
 	color: #fff;
 	border: 0px solid #5d9907;

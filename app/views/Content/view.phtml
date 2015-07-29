@@ -2,6 +2,7 @@
 <?php include_once("admin/breadcrumb.phtml"); 
 	$product = $Contents['results'][0];
 	$product_fields = $Contents['fields'];
+	$r = $Contents['review'];
 	$custom = array();
 	foreach($product_fields as $field) {
 		if($field[0]->custom == 1) {
@@ -75,5 +76,36 @@
                 </div>
 			</div>
         </div>
+        <?php if(!empty($r)) : ?>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped list-comment">
+                    <th>Auteur</th>
+                    <th>Note</th>
+                    <th>Commentaire</th>
+                    <th></th>
+                    <th></th>
+                <?php foreach($r as $review) : ?>
+                <?php $date = new DateTime($review->datecreated); ?>
+                    <tr>
+                        <td><?php print $review->login; ?> (<?php print $date->format('d/m/Y à H:i'); ?>)</td>
+                        <td><input type="hidden" class="rating" value="<?php print $review->score; ?>" data-readonly/></td>
+                        <td><?php print substr($review->comment, 0, 20); ?> ...</td>
+                        <td><a href="/<?php print PROJECT_DIRECTORY ; ?>dashboard/review/edit/<?php print $review->id; ?>"><span class="fa fa-pencil-square-o"></span></a></td>
+						<td><a href="/<?php print PROJECT_DIRECTORY ; ?>dashboard/review/delete/<?php print $review->id; ?>"><span class="fa fa-times"></span></a></td>
+                    </tr>
+                <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+        <?php else : ?>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Aucun commentaire pour le moment.</p>
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
 <?php include_once("footer.phtml"); ?>

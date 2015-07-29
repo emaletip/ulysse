@@ -165,6 +165,36 @@ class Content {
     public function getProduct_edit($id) {
         return $this->contentModel->getProduct($id);
 	}
+    public function getReview($id) {
+        return $this->contentModel->getReview($id);
+	}
+    public function getReviewAdd($id) {
+        return $this->contentModel->getProduct($id);
+	}
+    public function postReview(){
+        $this->contentModel->postReview($_POST);
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le commentaire a bien été modifié.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+	
+		redirect('dashboard/product');
+    }
+    public function postReviewAdd(){
+        $this->contentModel->postReviewAdd($_POST);
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le commentaire a bien été ajouté.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+	
+		redirect('product');
+    }
+    public function postReviewDelete(){
+        $this->contentModel->postReviewDelete($_POST);
+        $_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le commentaire a bien été supprimé.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
+	
+		redirect('dashboard/product');
+    }
 
     public function getPage_edit($id) {
         return $this->contentModel->getPage($id);
