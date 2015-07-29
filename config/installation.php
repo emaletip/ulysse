@@ -540,8 +540,8 @@
 					(2,8,6,\'contact\',\'slider\')',
                     
                     'INSERT INTO `field_path` (`id`,`field_id`,`content_id`,`content_path`,`content_type_name`) VALUES
-					(1,1,10,\'public/img/Slider/be954d3f236da02e970314e2e1852e65.jpg\',\'slider\'),
-					(2,1,11,\'public/img/Slider/5ed2bd8ac95739929f6699a68aac38fc.jpg\',\'slider\')',
+					(1,1,10,\'public/img/Slider/62d9f3ef122254e8b5e8ed7d1ad3d10e.jpg\',\'slider\'),
+					(2,1,11,\'public/img/Slider/ec3c6e131746f3173161ea907c830201.jpg\',\'slider\')',
                     
                     'INSERT INTO role (`name`) VALUES
                     (\'root\'),
