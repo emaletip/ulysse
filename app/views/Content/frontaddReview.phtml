@@ -8,24 +8,24 @@
     <?php include_once("frontbreadcrumb.phtml"); ?>
         <div class="row">
             <div class="col-md-4">
-                <h3>Ajouter un commentaire</h3>
+                <h3>Ajouter un avis</h3>
                 <h4><?php print $c->content_title; ?></h4>
                 <p><img src="<?php print $image; ?>" class="img-responsive"></p>
             </div>
             <div class="col-md-8">
                 <form action="/<?= PROJECT_DIRECTORY ?>review/insert" method="post" class="form-horizontal">
                     <div class="form-group">
-                        <label for="comment" class="col-sm-3 control-label">Commentaire</label>
+                        <label for="comment" class="col-sm-3 control-label">Avis</label>
                         <div class="col-sm-9"><textarea class="form-control" name="comment"></textarea></div>
                     </div>
                     <div class="form-group">
                         <label for="score" class="col-sm-3 control-label">Score (1 à 5)</label>
-                        <div class="col-sm-9"><input type="text" class="form-control" name="score"></div>
+                        <div class="col-sm-9"><input value="1" type="number" min="1" max="5" class="form-control" name="score"></div>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="content_id" value="<?php print $c->content_id; ?>">
                         <input type="hidden" name="user_id" value="<?php print $_SESSION['user']->id ?>">
-                        <div class="col-sm-offset-3 col-sm-9"><button type="submit" class="btn btn-primary">Sauvegarder</button></div>
+                        <div class="col-sm-offset-3 col-sm-9"><button type="submit" class="btn btn-primary">Envoyer</button></div>
                     </div>
                 </form>
             </div>

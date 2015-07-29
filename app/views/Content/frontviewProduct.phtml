@@ -114,11 +114,11 @@
 			<hr>
             <div class="row">
                 <div class="col-md-12">
-                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un commentaire.</a></p>
+                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un avis</a></p>
                     <?php foreach($r as $review) : ?>
                     <?php $date = new DateTime($review->datecreated); ?>
                         <div class="comment">
-                            <p class="comment-first">Commentaire du <strong><?php print $date->format('d/m/Y à H:i'); ?></strong> par <em><?php print $review->login; ?></em></p>
+                            <p class="comment-first">avis du <strong><?php print $date->format('d/m/Y à H:i'); ?></strong> par <em><?php print $review->login; ?></em></p>
                             <p><input type="hidden" class="rating" value="<?php print $review->score; ?>" data-readonly/> - <?php print nl2br($review->comment); ?></p>
                         </div>
                     <?php endforeach; ?>
@@ -128,8 +128,8 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <p>Aucun commentaire pour le moment !</p>
-                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un commentaire.</a></p>
+                    <p>Aucun avis pour le moment !</p>
+                    <p><a class="btn btn-default" href="<?php print '/'. PROJECT_DIRECTORY . 'review/add/'.$p->content_id; ?>">Ajouter un avis</a></p>
                 </div>
             </div>
 			<?php endif; ?>

@@ -185,7 +185,7 @@ class Content {
 		$_SESSION['flash']['user']['msg'] = '<b>Félicitations ! </b> Le commentaire a bien été ajouté.';
 		$_SESSION['flash']['user']['time'] = time() + 1;
 	
-		redirect('product');
+		redirect('product/'.$_POST['content_id']);
     }
     public function postReviewDelete(){
         $this->contentModel->postReviewDelete($_POST);
