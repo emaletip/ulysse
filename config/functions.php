@@ -123,20 +123,42 @@ function handleFile($file, $path) {
 
             $largeur = 360;
 			$hauteur = 360;
-			 
-			$image = imagecreatefromjpeg($image_path);
-			$taille = getimagesize($image_path);
-			 
-			$sortie = imagecreatetruecolor($largeur,$hauteur);
-			 
-			$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
-			 
-			$deltax = $taille[0]-($coef * $largeur); 
-			$deltay = $taille[1]-($coef * $hauteur);
-			 
-			imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
-			$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
-            		
+			
+			switch($extension) {
+				case 'jpg':
+					$image = imagecreatefromjpeg($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+					break;
+				case 'png':
+					$image = imagecreatefrompng($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagepng($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+					break;
+				case 'gif':
+					$image = imagecreatefromgif($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagegif($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+					break;
+				default:
+					break;
+			}
+			            		
             if ($create_img) {
                 $message = 'Upload réussi !';
                 return $img_path. '/' .$name;
