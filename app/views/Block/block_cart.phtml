@@ -74,7 +74,9 @@
 		/* ajax delete product */
 		$('.deleteproduct').bind('click', function(){
 			var id = $(this).data('id');
-			var url = '/<?= PROJECT_DIRECTORY; ?>product/delete/'+id;
+			var url = '/<?= PROJECT_DIRECTORY; ?>cart/delete/'+id;
+			console.log(window.location.origin+url);
+			
 			$.post(window.location.origin+url).done(function() {
 			    location.reload();
 			});

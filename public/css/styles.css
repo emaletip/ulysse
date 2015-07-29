@@ -1136,7 +1136,9 @@ font-size: 12px;
 	margin-bottom: 40px;
 	text-transform: uppercase;
 }
-
+#product_view .product_attr > .row{
+	padding-bottom: 15px;
+}
 /*	LIST	*/
 .filters-button-group .button {
 	background: #ffffff none repeat scroll 0 0;
@@ -1231,9 +1233,7 @@ font-size: 12px;
 }
 
 /*	VIEW	*/
-#product_view .btn-add {
-  margin-top: 30px;
-}
+
 #product_view img {
   border: 1px solid #ccc;
   max-width: 90%;
@@ -1275,12 +1275,20 @@ font-size: 12px;
 .user_content .add .btn {
 	font-size: 12px;
 }
-/*
-#product_view .label {
-	padding-left: 15px;
-}
 
-*/
+#product_view .label {
+	margin-left: 5px;
+	margin-top: 5px;
+	text-align: left;
+	color: #fff;
+	font-size:10px;
+}
+#product_view .label a{
+	color: #fff;
+}
+#product_view .label a:hover{
+	text-decoration: none;
+}
 /*	ADD	*/
 #product_add form, #product_add_stock form {
   border: 1px solid #ccc;

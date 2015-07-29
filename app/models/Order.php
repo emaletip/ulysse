@@ -20,7 +20,7 @@ class Order {
 	}
 	
 	public function getOrder($id) {
-		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`id`=:id', array(':id' => (int)$id));
+		 return $this->pdo->query('SELECT *, o.user_id user FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`id`=:id', array(':id' => (int)$id));
 	}
 	
 	public function getOrderList() {
@@ -119,7 +119,7 @@ class Order {
 	}
 		
 	public function getUserOrder($id) {
-		 return $this->pdo->query('SELECT * FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`user_id`=:user_id', array(':user_id' => (int)$id));
+		 return $this->pdo->query('SELECT *, o.user_id user FROM `order` o JOIN `order_product` op ON op.`order_id` = o.`id` WHERE op.`user_id`=:user_id', array(':user_id' => (int)$id));
 	}
 	
 	public function getUserBuys($id) {

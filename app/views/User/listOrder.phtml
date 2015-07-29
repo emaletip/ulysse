@@ -1,13 +1,13 @@
 <?php include_once("header.phtml"); ?>
 <?php include_once("breadcrumb.phtml"); ?>
-<div id="main-wrapper">
-<div class="col-lg-12 col-md-12">
 <?php
 	$id = $_SESSION['user']->id;
 	$u 		 = $Users[0];
 	$orders  = $User->orderModel->getUserOrder($id);
 	$products = $User->contentModel->getUserProduct($id);
 ?>
+<div id="main-wrapper">
+	<div class="col-lg-12 col-md-12">
 <!-- CONTENT -->
 		<div class="panel panel-white">
 			<div class="panel-heading">
@@ -15,70 +15,72 @@
 			</div>
 
 			<div class="panel-body">
-        <table class="table adminorder adminorderview">
-        <thead>
-            <tr>
-			   	<td>Produit</td>
-			   	<td>Adresse de livraison</td> 	
-			   	<td>Utilisateur</td>
-			   	<td>Quantité </td>
-			   	<td>Prix</td>
-			   	<td></td>
-			   	<td></td>
-			</tr>
-        </thead>
-		<?php 
-		foreach($orders as $order) {
-		
-			$pdt = $User->contentModel->getProduct($order->product_id);
-			$pdt = current($pdt['results']); 
-			$user = $User->getuser($order->user_id);
-			$user = $user[0];
+			<?php if(empty($orders)) {
+				 echo '<p style="border:1px solid #f0f0f0;padding:15px">Aucune commande en cours<p>';
+	        } else { ?>
+	        <table class="table adminorder adminorderview">
+	        <thead>
+	            <tr>
+				   	<td>Produit</td>
+				   	<td>Adresse de livraison</td> 	
+				   	<td>Utilisateur</td>
+				   	<td>Quantité </td>
+				   	<td>Prix</td>
+				   	<td></td>
+				   	<td></td>
+				</tr>
+	        </thead>
+			<?php 
+			foreach($orders as $order) {
 			
-			if($order->user_content_id != 0) {
-				$usc = $User->cartModel->getUserContent($order->user_content_id);
-				$price = $usc[0]->content_price;
-			} else {
-				$price = $pdt->content_price;
-			}
-			$dsi = (int)$order->delivery_status_id;
-			switch($dsi) {
-				case 1:
-					$status = '<span class="label label-info">Envoyée</span>';
-					break;
-				case 2:
-					$status = '<span class="label label-success">Reçue</span>';
-					break;
-				case 3:
-					$status = '<span class="label label-danger">Annulée</span>';
-					break;
-				default:
-					$status = '<span class="label label-primary">En cours</span>';
-					break;
-			}
-			?>
-		   	<tr>
-			   	<td><?= $pdt->content_title ?></td>
-			   	<td width="30%"><?= $order->delivery_address ?></td> 	
-			   	<td><?= $user->first_name.' '.$user->last_name ?></td>
-			   	<td>x<?=$order->quantity ?> </td>
-			   	<td><?= $price ?> €</td>
-			   	<td><?= $status ?></td>
-			   	<td>
-			   	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/order/<?= $order->id ?>">
-					<span style="font-size:22px;" class="fa fa-plus-square-o"></span>
-				</a>
-				</td>
-			</tr>
+				//var_dump($order);
 			
-          <?php  
-         }
-         if(empty($orders)) {
-			 echo '<p style="border:1px solid #f0f0f0;padding:15px">Aucune commande en cours<p>';
-         }
-          ?>
-        </table>
+				$pdt = $User->contentModel->getProduct($order->product_id);
+				$pdt = current($pdt['results']); 
+				$user = $User->userModel->getUser($order->user);
+				$user = $user[0];
+				
+				if($order->user_content_id != 0) {
+					$usc = $User->cartModel->getUserContent($order->user_content_id);
+					$price = $usc[0]->content_price;
+				} else {
+					$price = $pdt->content_price;
+				}
+				$dsi = (int)$order->delivery_status_id;
+				switch($dsi) {
+					case 1:
+						$status = '<span class="label label-info">Envoyée</span>';
+						break;
+					case 2:
+						$status = '<span class="label label-success">Reçue</span>';
+						break;
+					case 3:
+						$status = '<span class="label label-danger">Annulée</span>';
+						break;
+					default:
+						$status = '<span class="label label-primary">En cours</span>';
+						break;
+				}
+				?>
+			   	<tr>
+				   	<td><?= $pdt->content_title ?></td>
+				   	<td width="30%"><?= $order->delivery_address ?></td> 	
+				   	<td><?= $user->first_name.' '.$user->last_name ?></td>
+				   	<td>x<?=$order->quantity ?> </td>
+				   	<td><?= $price ?> €</td>
+				   	<td><?= $status ?></td>
+				   	<td>
+				   	<a href="/<?= PROJECT_DIRECTORY ?>dashboard/order/<?= $order->id ?>">
+						<span style="font-size:22px;" class="fa fa-plus-square-o"></span>
+					</a>
+					</td>
+				</tr>
+				
+	          <?php } ?>
+	        </table>
+	        <?php } ?>
 		</div>
 	</div>
+</div>
 </div>
 <?php include_once("footer.phtml"); ?>

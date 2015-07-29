@@ -39,6 +39,8 @@
 						$order = $order[0];					
 						$pdt = $User->contentModel->getProduct($order->product_id);
 						$pdt = current($pdt['results']); 
+						$user = $User->userModel->getUser($order->user);
+						$user = $user[0];
 
 						if($order->user_content_id != 0) {
 							$usc = $Cart->cartModel->getUserContent($order->user_content_id);
@@ -62,8 +64,9 @@
 						}
 						?>
 						<div class="col-md-4">
-							<p><b>Addresse de livraison :</b></p>
-							<p> <?= $order->delivery_address ?></p>
+							<p><b>Nom et Addresse de livraison :</b></p>
+							<p><?= $user->first_name.' '.$user->last_name ?><br>
+								 <?= $order->delivery_address ?></p>
 							<p><b>Livreur :</b></p>
 							<table style="width:100%; font-size:inherit;">
 						<?php switch ($order->delivery_id) {

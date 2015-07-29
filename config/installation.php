@@ -363,7 +363,7 @@
 					(\'block_top_sell\', \'Meilleures ventes\', 0, 0, \'\', 7, 0),
 					(\'block_informations\', \'A propos\', 1, 1, \'<div class="Texte" id="TheTexte">\r\n<p><strong>Sed tamen haec cum ita tutius observentur, </strong></p>\r\n\r\n<p>quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.</p>\r\n</div>\r\n\', 10, 2),
 					(\'block_secondary_menu\', \'Menu secondaire\', 0, 0, \'\', 4, 0),
-					(\'block_copyright\', \'\', 1, 1, \'Copyright 2015 - Contenu bloc copyright\', 11, 2),
+					(\'block_copyright\', \'\', 1, 0, \'Copyright 2015 - Contenu bloc copyright\', 11, 2),
 					(\'block_slider\', \'Slider\', 1, 0, \'\', 5, 2),
 					(\'block_article\', \'Derniers articles\', 1, 0, \'\', 10, 1),
 					(\'block_contact\', \'Coordonnées\', 1, 1, \'<p><strong>Tel.</strong> +33(0) 606 060 606</p>\r\n\r\n<p><strong>Mobile.</strong> +33(0) 606 060 606</p>\r\n\r\n<p>Adresse rue<br />\r\n00000 Ville</p>\r\n\', 10, 3),

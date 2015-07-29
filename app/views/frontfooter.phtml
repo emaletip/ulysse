@@ -10,9 +10,21 @@
 						echo '</div>';
 					}	
 				}	
-				 ?>
+				?>
+				</div>
+				<div class="row text-center">
+				<?php
+				if(isset($emplacement_block[11])) {
+					foreach($emplacement_block[11]['blocks'] as $emp) {
+						echo '<div class="col-md-'.(12/$emplacement_block[11]['nb_column']).'">';
+						include_once('Block/'.$emp->name.'.phtml');
+						echo '</div>';
+					}	
+				}	
+				?>
 				</div>
 			</div>
+			
 		</footer>
 		<!-- END FOOTER -->
 	</body>

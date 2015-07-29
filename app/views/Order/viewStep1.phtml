@@ -11,16 +11,6 @@
 	foreach($products as $pc) {
 		$nb += $pc->quantity;
 	}
-/*
-
-
-<form action="/<?= PROJECT_DIRECTORY; ?>product/add/3" method="post">
-<button type=submit class="btn" >Add 3</button>
-</form>
-<form action="/<?= PROJECT_DIRECTORY; ?>product/add/4" method="post">
-<button type=submit class="btn" >Add 4</button>
-</form>
-*/
 
 ?>
 <div id="content-wrapper" class="page">
@@ -122,7 +112,7 @@
 			}	
 					
 			/* GET AND UPDATE PRICE*/
-			var price_str = parent.find('.price').html().replace(' €','').replace(',','.'); 
+			var price_str = parent.find('.price').html().replace(' €','').replace(',','.').replace(/ /g,""); 
 			var price = parseFloat(price_str);
 			var sous_total = new_qty * price;
 			parent.find('.sous-total').html(sous_total.toFixed(2).replace('.',',')+' €');
@@ -152,9 +142,8 @@
 			/* REMPLACER LE TOTAL */
 			var total = 0;
 			$('.sous-total').each(function(){
-				var total_str = $(this).html().replace(' €','').replace(',','.').replace(' ',''); 
+				var total_str = $(this).html().replace(' €','').replace(',','.').replace(/ /g,""); 
 				var total_tmp = parseFloat(total_str);
-				console.log(total_tmp);
 				total = total + total_tmp;
 			});
 			$('.total_value').html(total.toFixed(2).replace('.',',')+' €');

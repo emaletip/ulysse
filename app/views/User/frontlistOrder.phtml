@@ -53,7 +53,7 @@
 					
 						$pdt = $User->contentModel->getProduct($order->product_id);
 						$pdt = current($pdt['results']); 
-						$user = $User->getuser($order->user_id);
+						$user = $User->userModel->getUser($order->user);
 						$user = $user[0];
 						
 						if($order->user_content_id != 0) {

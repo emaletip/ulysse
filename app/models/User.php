@@ -46,8 +46,7 @@ class User {
 		$user = $this->pdo->query('SELECT u.*, ur.role_id FROM user AS u INNER JOIN user_role AS ur ON u.id = ur.user_id WHERE u.id = ' . $id);
 		return $user;
 	}
-
-	// Pauline
+	
 	public function existUser($login, $email) {
 		$datas = [':login' => $login, ':email' => $email];
 		$exist = $this->pdo->query('SELECT u.* FROM user AS u WHERE u.login = :login OR u.email = :email', $datas);

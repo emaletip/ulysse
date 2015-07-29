@@ -24,46 +24,53 @@
 								<b>Retour à la liste des produits</b>
 							</a>
 						</div>
-						<div class="col-md-6">						
-					
-						<div class="col-md-3">
-                        	<b>Prix :</b>
-                        </div>	
-						<div class="col-md-9">
-							<?= $p->content_price; ?> €
-                        </div>
-
-						<div class="col-md-3">
-                        	<b>Catégorie :</b>
-                        </div>	
-						<div class="col-md-9">
-							<?= $p->category_name; ?>
-                        </div>
-
-                        <div class="col-md-3">
-                        	<b>Tags :</b>
-                        </div>	
-						<div class="col-md-9 label">
-	                        <?php 
-								if (isset($p->tagsView)) {
-									echo str_replace(',', ', ', $p->tagsView);
-								}
-							?>
+						<div class="col-md-6 product_attr">						
+						<div class="row">
+							<div class="col-md-3">
+	                        	<b>Prix :</b>
+	                        </div>	
+							<div class="col-md-9">
+								<?= $p->content_price; ?> €
+	                        </div>
 						</div>
-
-						<div class="col-md-12">
-                        	<b>Description :</b><br>
-                        	<small>
-								<?= $p->content_description ?>
-							</small>
-                        </div>	
+						<div class="row">
+							<div class="col-md-3">
+	                        	<b>Catégorie :</b>
+	                        </div>	
+							<div class="col-md-9">
+								<?= $p->category_name; ?>
+	                        </div>
+						</div>
+                        <div class="row">
+	                        <div class="col-md-3">
+	                        	<b>Tags :</b>
+	                        </div>	
+							<div class="col-md-9 label">
+		                        <?php 
+									if (isset($p->tagsView)) {
+										$tags = explode(',',$p->tagsView);
+										foreach($tags as $tag) {										
+											echo '<div class="label label-default">'.$tag.'</div>';
+										}
+									}
+								?>
+							</div>
+                        </div>
+						<div class="row">
+							<div class="col-md-12">
+	                        	<b>Description :</b><br>
+	                        	<div class="col-md-12 row">
+									<?= $p->content_description ?>
+								</div>
+	                        </div>
+						</div>	
 
                         <?php foreach($custom as $c) {
                             if($c->type == 'select') {
                                 $value = $Content->contentModel->getContentSelectValue($p->{str_replace('field_','content_',$c->name)});
-                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div>';
+                                print '<div class="row"><div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$value[0]->name.'</div></div>';
                             } else {
-                                print '<div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div>';
+                                print '<div class="row"><div class="col-md-3"><b>'.$c->label .' :</b></div><div class="col-md-9"> '.$p->{str_replace('field_','content_',$c->name)}.'</div></div>';
 							}
 	                    } 
 	                    
@@ -81,29 +88,28 @@
 					<div class='col-md-6 col-md-offset-'>
 						<h2>Ce même produit est proposé par :</h2>
 						<div class="col-md-12 user_content">
-						<table>
-						<?php 
-							foreach ($user_content as $v) {
-								
-								$p->content_price = $v->content_price;
-								$row = "<tr>";
-								$row .= "<td class='title'>" . $v->login . "</td>";
-								$row .= "<td class='price'>à " . $v->content_price . " €</td>";
-								if(isset($_SESSION['user'])) {
-								$row .= "<td class='add'>";
-  									$row .= "
-									<form method=\"post\" action=\"/". PROJECT_DIRECTORY ."cart/add\">
-									<input type=\"hidden\" name=\"user_content_id\" value='". $v->uc_id."'>
-									<input type=\"hidden\" name=\"content_id\" value='" . $p->content_id . "'>
-									<button /* class='btn'  */type='submit' >Ajouter au panier</button>
-									</form>
-									";
-								$row .= "</td>";
-								}								
-								$row .= "</tr>";
-								echo $row;
-							}
-						?>
+							<table>
+							<?php 
+								foreach ($user_content as $v) {
+									$p->content_price = $v->content_price;
+									$row = "<tr>";
+									$row .= "<td class='title'>" . $v->login . "</td>";
+									$row .= "<td class='price'>à " . $v->content_price . " €</td>";
+									if(isset($_SESSION['user'])) {
+									$row .= "<td class='add'>";
+	  									$row .= "
+										<form method=\"post\" action=\"/". PROJECT_DIRECTORY ."cart/add\">
+										<input type=\"hidden\" name=\"user_content_id\" value='". $v->uc_id."'>
+										<input type=\"hidden\" name=\"content_id\" value='" . $p->content_id . "'>
+										<button /* class='btn btn-add'  */type='submit' >Ajouter au panier</button>
+										</form>
+										";
+									$row .= "</td>";
+									}								
+									$row .= "</tr>";
+									echo $row;
+								}
+							?>
 							</table>
 						</div>
 					</div>
@@ -134,4 +140,32 @@
             </div>
 			<?php endif; ?>
 		</div>
+		<script>
+			$(document).ready(function(){
+				$('.btn-add').click(function(e){
+					e.preventDefault();
+					form = $(this).parents('form:first');
+					$.ajax({
+				    	url: form.attr('action'),
+				    	data: form.serialize(),
+				    	method: "POST",
+				    	success: function(data) {
+							$("html, body").animate({ scrollTop: 0 }, "slow");
+							$( "#cart" ).load( "<?=PROJECT_DIRECTORY?>index #cart" , function(data) {
+							  $("#block-cart").html($(data).find('#block-cart').html());
+							  $('#cart').show();
+							  $('.deleteproduct').bind('click', function(){
+								  var id = $(this).data('id');
+								  var url = '/<?= PROJECT_DIRECTORY; ?>cart/delete/'+id;
+									
+									$.post(window.location.origin+url).done(function() {
+									    location.reload();
+									});
+								});
+							});
+				    	}
+				    });					
+				})
+			});
+		</script>
 <?php include_once("frontfooter.phtml"); ?>
