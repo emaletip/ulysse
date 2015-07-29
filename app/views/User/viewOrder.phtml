@@ -4,14 +4,6 @@
 	$u 		 = $Users[0];
 	$order  = $Users['order'][0];
 	$products = $User->contentModel->getUserProduct($id);
-	
-	$o = $User->getOrder($order->order_id);
-	
-	if($order->user_content_id != 0) {
-		$product = $products[$order->user_content_id];
-	} else {
-		$product = $products[$order->product_id];		
-	}
 ?>
 <!-- CONTENT -->
 <div id="main-wrapper">
@@ -36,18 +28,19 @@
 						} else {
 							$price = $pdt->content_price;
 						}
-						switch($order->status_id) {
+						$dsi = (int)$order->delivery_status_id;
+						switch($dsi) {
 							case 1:
-								$status = '<span class="label label-info">Envoyé</span>';
+								$status = '<span class="label label-info">Envoyée</span>';
 								break;
 							case 2:
-								$status = '<span class="label label-success">Reçu</span>';
+								$status = '<span class="label label-success">Reçue</span>';
 								break;
 							case 3:
-								$status = '<span class="label label-important">Annulée</span>';
+								$status = '<span class="label label-danger">Annulée</span>';
 								break;
 							default:
-								$status = '<span class="label label-default">En cours</span>';
+								$status = '<span class="label label-primary">En cours</span>';
 								break;
 						}
 						?>
@@ -111,10 +104,10 @@
 						<div class="col-md-12">				
 						
 							<select class="form-control	" id="select_statut">
-								<option <?php if ($order->status_id == 0): echo 'selected '; endif; ?>value="0">En cours</option>
-								<option <?php if ($order->status_id == 1): echo 'selected '; endif; ?>value="1">Envoyée</option>
-								<option <?php if ($order->status_id == 2): echo 'selected '; endif; ?>value="2">Reçue</option>
-								<option <?php if ($order->status_id == 3): echo 'selected '; endif; ?>value="3">Annulée</option>
+								<option <?php if ($order->delivery_status_id == 0): echo 'selected '; endif; ?>value="0">En cours</option>
+								<option <?php if ($order->delivery_status_id == 1): echo 'selected '; endif; ?>value="1">Envoyée</option>
+								<option <?php if ($order->delivery_status_id == 2): echo 'selected '; endif; ?>value="2">Reçue</option>
+								<option <?php if ($order->delivery_status_id == 3): echo 'selected '; endif; ?>value="3">Annulée</option>
 							</select>
 						</div>
 						</div>
@@ -145,18 +138,29 @@ $("#select_statut").bind("change", function(){
 	    });
 	});
 */
-	$(document).ready(function(){
-		$("#select_statut").bind("change", function(){
-			var x = $('#select_statut').val();
-			$.ajax({
-		    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
-		    	data: {status_id: x, id: <?= $o->id ?>},
-		    	method: "POST",
-		    	success: function(data) {
-		    		console.log('good');
-		    	}
-		    });
-		});
+$(document).ready(function(){
+	$("#select_statut").bind("change", function(){
+		var x = $('#select_statut').val();
+		$.ajax({
+	    	url: '/<?= PROJECT_DIRECTORY ?>dashboard/order/insert',
+	    	data: {status_id: x, id: <?= $order->id ?>},
+	    	method: "POST",
+	    	success: function(data) {
+	    		if (x == 0) {
+		    		$('.label').attr('class', 'label label-default').html('En cours');	
+	    		}
+	    		if (x == 1) {
+		    		$('.label').attr('class', 'label label-info').html('Envoyée');	
+	    		}
+	    		if (x == 2) {
+		    		$('.label').attr('class', 'label label-success').html('Reçue');	
+	    		}
+	    		if (x == 3) {
+		    		$('.label').attr('class', 'label label-danger').html('Annulée');	
+	    		}
+	    	}
+	    });
 	});
+});
 </script>
 <?php include_once("footer.phtml"); ?>

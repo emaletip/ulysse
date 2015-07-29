@@ -84,12 +84,18 @@ $products = $User->contentModel->getUserProduct($id);
 									$i++;
 									$pdt = $User->contentModel->getProduct($order->product_id);
 									$pdt = current($pdt['results']); 
-									switch ($order->status_id) {
+									switch($order->delivery_status_id) {
 										case 1:
-											$status = 'Commande envoyée';
+											$status = '<span class="label label-info">Envoyée</span>';
+											break;
+										case 2:
+											$status = '<span class="label label-success">Reçue</span>';
+											break;
+										case 3:
+											$status = '<span class="label label-danger">Annulée</span>';
 											break;
 										default:
-											$status = 'Nouvelle commande';
+											$status = '<span class="label label-primary">En cours</span>';
 											break;
 									}
 									?>
