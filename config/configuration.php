@@ -40,7 +40,7 @@
 		(!empty($_POST['mdp'])) ? $mdp = sha1($_POST['mdp']) : $errors .= '<p>Veuillez renseigner le mot de passe</p>';
         
 		$logo =  handleFile($_FILES['logo'],'Config');
-
+		
         if($errors == ''){
             
             try{
@@ -171,64 +171,64 @@ function handleFile($file, $path) {
             if (!mkdir($path, 0755)) {
                 exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
             }
-        } else {
-            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $nameid = md5(uniqid());
-            $name =  $nameid . '.' . $extension;
-            $image_path = $path . '/' . $name;	
-            
-            $create_img = move_uploaded_file($file['tmp_name'], $path . '/' . $name);
+        } 
+    
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $nameid = md5(uniqid());
+        $name =  $nameid . '.' . $extension;
+        $image_path = $path . '/' . $name;	
+        
+        $create_img = move_uploaded_file($file['tmp_name'], $path . '/' . $name);
 
-            $largeur = 360;
-			$hauteur = 360;
-			
-			switch($extension) {
-				case 'jpg':
-					$image = imagecreatefromjpeg($image_path);
-					$taille = getimagesize($image_path);			 
-					$sortie = imagecreatetruecolor($largeur,$hauteur);
-					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
-					$deltax = $taille[0]-($coef * $largeur); 
-					$deltay = $taille[1]-($coef * $hauteur);			 
-					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
-					$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
-					break;
-				case 'png':
-					$image = imagecreatefrompng($image_path);
-					$taille = getimagesize($image_path);			 
-					$sortie = imagecreatetruecolor($largeur,$hauteur);
-					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
-					$deltax = $taille[0]-($coef * $largeur); 
-					$deltay = $taille[1]-($coef * $hauteur);			 
-					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
-					$avatar = imagepng($sortie,$path.'/'.$nameid.'-200x200.'.$extension,9);
-					break;
-				case 'gif':
-					$image = imagecreatefromgif($image_path);
-					$taille = getimagesize($image_path);			 
-					$sortie = imagecreatetruecolor($largeur,$hauteur);
-					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
-					$deltax = $taille[0]-($coef * $largeur); 
-					$deltay = $taille[1]-($coef * $hauteur);			 
-					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
-					$avatar = imagegif($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
-					break;
-				default:
-					break;
-			}
-						            		
-            if ($create_img) {
-                $message = 'Upload réussi !';
-                return $img_path. '/' .$name;
-            } else {
-                // Sinon on affiche une erreur systeme
-                $message = 'Problème lors de l\'upload !';
-                return $message;
-            }
+        $largeur = 360;
+		$hauteur = 360;
+		
+		switch($extension) {
+			case 'jpg':
+				$image = imagecreatefromjpeg($image_path);
+				$taille = getimagesize($image_path);			 
+				$sortie = imagecreatetruecolor($largeur,$hauteur);
+				$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+				$deltax = $taille[0]-($coef * $largeur); 
+				$deltay = $taille[1]-($coef * $hauteur);			 
+				imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+				$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+				break;
+			case 'png':
+				$image = imagecreatefrompng($image_path);
+				$taille = getimagesize($image_path);			 
+				$sortie = imagecreatetruecolor($largeur,$hauteur);
+				$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+				$deltax = $taille[0]-($coef * $largeur); 
+				$deltay = $taille[1]-($coef * $hauteur);			 
+				imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+				$avatar = imagepng($sortie,$path.'/'.$nameid.'-200x200.'.$extension,9);
+				break;
+			case 'gif':
+				$image = imagecreatefromgif($image_path);
+				$taille = getimagesize($image_path);			 
+				$sortie = imagecreatetruecolor($largeur,$hauteur);
+				$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+				$deltax = $taille[0]-($coef * $largeur); 
+				$deltay = $taille[1]-($coef * $hauteur);			 
+				imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+				$avatar = imagegif($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+				break;
+			default:
+				break;
+		}
+					            		
+        if ($create_img) {
+            $message = 'Upload réussi !';
+            return $img_path. '/' .$name;
+        } else {
+            // Sinon on affiche une erreur systeme
+            $message = 'Problème lors de l\'upload !';
+            return $message;
         }
-    } else {
-        return false;
+    
     }
+    return false;
 }
 
     ?>

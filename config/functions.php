@@ -113,7 +113,7 @@ function handleFile($file, $path) {
             if (!mkdir($path, 0755)) {
                 exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
             }
-        } else {
+        } 
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
             $nameid = md5(uniqid());
             $name =  $nameid . '.' . $extension;
@@ -167,10 +167,10 @@ function handleFile($file, $path) {
                 $message = 'Problème lors de l\'upload !';
                 return $message;
             }
-        }
-    } else {
-        return false;
-    }
+        
+    } 
+    return false;
+
 }
 
 function get_avatar($avatar){
