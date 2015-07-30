@@ -83,9 +83,14 @@
 				</table>
 				
 					<div class="order">
-					<?php if(isset($_SESSION['user'])) { ?>
+					<?php if(isset($_SESSION['user'])) { 
+						if(!empty($products)) { 
+					?>
 						<a class="btn" href="/<?= PROJECT_DIRECTORY; ?>order/adresse">Valider ma commande</a>
-					<?php } else { ?>
+					<?php 
+						} 
+					} else { 
+							?>
 						<div class="alert alert-danger" role="alert">Vous devez vous connecter pour valider votre commande.</div>
 						
 					<?php } ?>
@@ -97,6 +102,17 @@
 </div>
 <script>
 	$(document).ready(function(){
+	
+		$('.deleteproduct').bind('click', function(){
+			var id = $(this).data('id');
+			var url = '/<?= PROJECT_DIRECTORY; ?>cart/delete/'+id;
+			console.log(window.location.origin+url);
+			
+			$.post(window.location.origin+url).done(function() {
+			    location.reload();
+			});
+		});
+	
 		/* UPDATE CART QUANTITY */
 	    $('.btn-qty').bind('click', function(){
 			var id = $(this).attr('data-id');
