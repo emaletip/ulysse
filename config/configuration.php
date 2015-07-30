@@ -1,3 +1,34 @@
+<?php
+
+function handleFile($file, $path) {
+	$img_path = 'public/img/'.$path;
+	$path = __DIR__.'/../public/img/'.$path;
+    if (!empty($file) && $file["name"] != '') {
+        if (!is_dir($path)) {
+            if (!mkdir($path, 0755)) {
+                exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
+            }
+        } else {
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $name = md5(uniqid()) . '.' . $extension;
+            $image_path = str_replace('../', '', $path) . '/' . $name;			
+
+            if (move_uploaded_file($file['tmp_name'], $path . '/' . $name)) {
+                $message = 'Upload réussi !';
+                return $img_path. '/' .$name;
+            } else {
+                // Sinon on affiche une erreur systeme
+                $message = 'Problème lors de l\'upload !';
+                return $message;
+            }
+        }
+    } else {
+        return false;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -162,33 +193,6 @@
         </div>';
         
     }
-    
-    function handleFile($file, $path) {
-	$img_path = 'public/img/'.$path;
-	$path = __DIR__.'/../public/img/'.$path;
-    if (!empty($file) && $file["name"] != '') {
-        if (!is_dir($path)) {
-            if (!mkdir($path, 0755)) {
-                exit('Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous disposiez des droits suffisants pour le faire ou créez le manuellement !');
-            }
-        } else {
-            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $name = md5(uniqid()) . '.' . $extension;
-            $image_path = str_replace('../', '', $path) . '/' . $name;			
-
-            if (move_uploaded_file($file['tmp_name'], $path . '/' . $name)) {
-                $message = 'Upload réussi !';
-                return $img_path. '/' .$name;
-            } else {
-                // Sinon on affiche une erreur systeme
-                $message = 'Problème lors de l\'upload !';
-                return $message;
-            }
-        }
-    } else {
-        return false;
-    }
-}
 
     ?>
 
