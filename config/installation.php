@@ -75,7 +75,7 @@
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `sitename` varchar(100) NOT NULL,
                       `slogan` varchar(255) NOT NULL,
-                      `logo` varchar(255) NOT NULL,
+                      `logo` varchar(255) NULL,
                       `copyright` varchar(255) NOT NULL,
                       `is_maintenance` varchar(45) NOT NULL,
                       `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
