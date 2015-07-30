@@ -115,12 +115,11 @@ class User {
 				$_SESSION['flash']['user']['key'] = 'danger';
 				$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
 				$_SESSION['flash']['user']['time'] = time() + 1;
-			} else {
-				$_SESSION['flash']['user']['key'] = 'success';
-				$_SESSION['flash']['user']['msg'] = '<b>Félicitation ! </b> Vos données ont bien été enregistrées.';
-				$_SESSION['flash']['user']['time'] = time() + 1;
-			}
+			} 
 		}
+		$_SESSION['flash']['user']['key'] = 'success';
+		$_SESSION['flash']['user']['msg'] = '<b>Félicitation ! </b> Vos données ont bien été enregistrées.';
+		$_SESSION['flash']['user']['time'] = time() + 1;
 		// Renvoi true en cas de succès, sinon renvoi le tableau d'erreurs	
 		return $url;
 	}
@@ -131,7 +130,6 @@ class User {
 		$role[':id'] = $data['id'];
 		$role[':role_id'] = $data['role_id'];
 		unset($data['role_id']);
-
 
 		// Mises à jour de l'utilisateur
 		$req = 'UPDATE user SET ';
