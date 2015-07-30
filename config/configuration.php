@@ -41,8 +41,6 @@
         
 		$logo =  handleFile($_FILES['logo'],'Config');
 
-		var_dump($logo);die;
-
         if($errors == ''){
             
             try{
