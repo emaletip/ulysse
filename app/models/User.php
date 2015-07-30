@@ -73,12 +73,11 @@ class User {
 		
 		// Vérifie si un utilisateur possède déjà le login OU l'e-mail envoyé
 		$exist = $this->existUser($data['login'], $data['email']);
-		//$errors = array();
 		
 		// Si c'est le cas, le tableau d'erreurs possède l'erreur "login/email"
 		// Et l'utilisateur n'est pas ajouté
 		if ($exist) {
-			$_SESSION['flash']['user']['key'] = 'error';
+			$_SESSION['flash']['user']['key'] = 'danger';
 			$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Ce login et/ou cette adresse e-mail est déjà utilisé par un utilisateur.';
 			$_SESSION['flash']['user']['time'] = time() + 1;
 		} else {
@@ -113,8 +112,7 @@ class User {
 
 			// Si les requêtes ne se sont pas correctement effectuées, alors le tableau d'erreurs possède l'erreur "request"
 			if(!($result && $result2)) {
-				//$errors['request'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
-				$_SESSION['flash']['user']['key'] = 'error';
+				$_SESSION['flash']['user']['key'] = 'danger';
 				$_SESSION['flash']['user']['msg'] = '<b>Attention ! </b> Votre utilisateur n\'a pas été enregistré.';
 				$_SESSION['flash']['user']['time'] = time() + 1;
 			} else {
@@ -162,7 +160,7 @@ class User {
 		if($data['email'] == '' || $data['login'] == '') {
 			unset($data['email']);
 			unset($data['login']);
-			$_SESSION['flash']['user']['key'] = 'error';
+			$_SESSION['flash']['user']['key'] = 'danger';
 			$_SESSION['flash']['user']['msg'] = '<b>Attention </b> Vous n\'avez indiqué aucun email/login.';
 			$_SESSION['flash']['user']['time'] = time() + 1;
 		}

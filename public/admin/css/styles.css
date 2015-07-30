@@ -328,13 +328,13 @@ body.login .page-content .logo {
 }
 
 .emplacement .panel .panel-heading{
-		border: 0 none !important;
+	border: 0 none !important;
     font-size: 14px;
     font-weight: 600;
     height: 55px;
     overflow: hidden;
-    padding: 20px 0;
-    margin-top: 15px;
+   // padding: 20px 0;
+   // margin-top: 15px;
     height: 60px;
    // margin-bottom: 20px;
 

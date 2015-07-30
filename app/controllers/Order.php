@@ -86,7 +86,7 @@ class Order {
 		/* MAJ ORDER */
 		if(!is_valid_cb($cb)){
 			show_flash(false,false,'<b>Erreur ! </b> Le numéro de carte est invalide.',false,false);
-			redirect(parent_url());
+			redirect('order/paiement');
 		}
 		
 		$_SESSION['order_id'] = $this->orderModel->addOrder($_SESSION['order']);

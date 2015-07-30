@@ -119,7 +119,6 @@ class User {
 				setcookie('user',json_encode($user), (time() + 3600));
 				setcookie('userloged',1, (time() + 3600));
 			}
-			
 			return true;
 		} else {
 			return false;

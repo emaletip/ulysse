@@ -41,6 +41,8 @@
         
 		$logo =  handleFile($_FILES['logo'],'Config');
 
+		var_dump($logo);die;
+
         if($errors == ''){
             
             try{
@@ -163,7 +165,7 @@
         
     }
     
-    function handleFile($file, $path) {
+function handleFile($file, $path) {
 	$img_path = 'public/img/'.$path;
 	$path = __DIR__.'/../public/img/'.$path;
     if (!empty($file) && $file["name"] != '') {
@@ -173,10 +175,51 @@
             }
         } else {
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-            $name = md5(uniqid()) . '.' . $extension;
-            $image_path = str_replace('../', '', $path) . '/' . $name;			
+            $nameid = md5(uniqid());
+            $name =  $nameid . '.' . $extension;
+            $image_path = $path . '/' . $name;	
+            
+            $create_img = move_uploaded_file($file['tmp_name'], $path . '/' . $name);
 
-            if (move_uploaded_file($file['tmp_name'], $path . '/' . $name)) {
+            $largeur = 360;
+			$hauteur = 360;
+			
+			switch($extension) {
+				case 'jpg':
+					$image = imagecreatefromjpeg($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagejpeg($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+					break;
+				case 'png':
+					$image = imagecreatefrompng($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagepng($sortie,$path.'/'.$nameid.'-200x200.'.$extension,9);
+					break;
+				case 'gif':
+					$image = imagecreatefromgif($image_path);
+					$taille = getimagesize($image_path);			 
+					$sortie = imagecreatetruecolor($largeur,$hauteur);
+					$coef = min($taille[0]/$largeur,$taille[1]/$hauteur);
+					$deltax = $taille[0]-($coef * $largeur); 
+					$deltay = $taille[1]-($coef * $hauteur);			 
+					imagecopyresampled($sortie,$image,0,0,$deltax/2,$deltay/2,$largeur,$hauteur,$taille[0]-$deltax,$taille[1]-$deltay);			 
+					$avatar = imagegif($sortie,$path.'/'.$nameid.'-200x200.'.$extension,100);
+					break;
+				default:
+					break;
+			}
+						            		
+            if ($create_img) {
                 $message = 'Upload réussi !';
                 return $img_path. '/' .$name;
             } else {

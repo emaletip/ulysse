@@ -637,7 +637,22 @@ $routes['dashboard/config'] = array(
 					  'action' => 'Config',
 					  'view' => 'edit',
 				   );
-
+$routes['dashboard/config/custom'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'get',
+					  'controller' => 'Config',
+					  'action' => 'CustomCms',
+					  'view' => 'custom',
+				   );
+$routes['dashboard/config/customsave'] = array(
+					  'path' => 'app',
+					  'id' => false,
+					  'type' => 'post',
+					  'controller' => 'Config',
+					  'action' => 'CustomCms',
+					  'view' => 'custom',
+				   );
 $routes['dashboard/config/update'] = array(
 					  'path' => 'app',
 					  'id' => false,

@@ -1,7 +1,6 @@
 <?php include_once("admin/header.phtml"); ?>
 <?php include_once("admin/breadcrumb.phtml"); ?>            
 <?php
-
 	foreach($Blocks as $block) {
 		if ($block->is_active){
 			$emplacement[strtolower(str_replace(' ','_',$block->emplacement_name))][$block->id]['name'] = $block->name;
@@ -30,6 +29,8 @@
 	                            <li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/config">Informations principales</a></li>
 	                            <li role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/menu">Menu</a></li>
 	                            <li class="active" role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/emplacement">Emplacement</a></li>
+								<li  role="presentation"><a href="/<?= PROJECT_DIRECTORY ?>dashboard/config/custom">Customiser le thème</a></li>
+
 	                        </ul>
 	                        <!-- Tab panes -->
 							<div class="tab-content">

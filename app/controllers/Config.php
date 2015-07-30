@@ -14,6 +14,19 @@ class Config {
 	public function getConfig() {
 		return $this->configModel->getConfig();
 	}
+	
+	public function getCustomCms() {
+        return @file_get_contents('public/css/custom-ape.css');
+	}
+	
+	public function postCustomCms() {
+		$customcsss = $_POST['custom'];
+		$ini = "public/css/custom-ape.css";
+
+        $r = @file_put_contents($ini, $customcsss);
+
+		redirect('dashboard/config/custom');
+	}
 
 	public function postConfig_update() {
 		$dirimg = 'Config';
