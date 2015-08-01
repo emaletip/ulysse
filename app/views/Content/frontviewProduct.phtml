@@ -124,7 +124,7 @@
                     <?php foreach($r as $review) : ?>
                     <?php $date = new DateTime($review->datecreated); ?>
                         <div class="comment">
-                            <p class="comment-first">avis du <strong><?php print $date->format('d/m/Y à H:i'); ?></strong> par <em><?php print $review->login; ?></em></p>
+                            <p class="comment-first">Avis du <strong><?php print $date->format('d/m/Y à H:i'); ?></strong> par <em><?php print $review->login; ?></em></p>
                             <p><input type="hidden" class="rating" value="<?php print $review->score; ?>" data-readonly/> - <?php print nl2br($review->comment); ?></p>
                         </div>
                     <?php endforeach; ?>
